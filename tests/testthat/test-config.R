@@ -115,10 +115,12 @@ test_that("the encoding-only function accepts every option and ignores the other
     expect_identical(do.call(fix_encoding, c(list(x), off[name])), expected,
                      label = name)
   }
-  # The four options under `fix_encoding` are accepted too.
+  # The four options under `fix_encoding` are accepted too. None of them
+  # takes part in repairing this text.
   for (name in option_names[4:7]) {
     given <- stats::setNames(list(FALSE), name)
-    expect_no_error(do.call(fix_encoding, c(list(x), given)))
+    expect_identical(do.call(fix_encoding, c(list(x), given)), expected,
+                     label = name)
   }
 })
 
