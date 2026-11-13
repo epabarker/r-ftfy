@@ -2,12 +2,23 @@
 """Write the snapshot of fix_encoding() from the reference version to
 tests/testthat/reference/fix_encoding.tsv.
 
-Columns, tab separated: text and fixed (both escaped, see
-_reference.escape) and plan, the plan of fix_encoding_and_explain() in its
-text form ("encode latin-1 > decode utf-8", or "none" for no steps). The
-inputs are seeded, so a rerun gives the same file byte for byte. A row
-whose input or output holds U+0000 or a surrogate, which an R string
-cannot hold, is left out.
+Columns, tab separated. Texts are escaped (see _reference.escape) and a
+plan is in its text form ("encode latin-1 > decode utf-8", or "none" for
+no steps).
+
+- text: the input.
+- fixed, plan: what fix_encoding_and_explain() gives with default options.
+- no_<option>, plan_no_<option>, for each of the four options under
+  fix_encoding: the same with that option False. An empty field means
+  "the same as with default options".
+- decode_inconsistent_utf8, fix_c1_controls: what the fixer of that name
+  in ftfy.fixes gives. An empty field means "the input, unchanged".
+
+The inputs are seeded, so a rerun gives the same file byte for byte. A row
+whose input holds U+0000 or a surrogate, or whose output holds a
+surrogate, is left out, because an R string cannot hold them. An output
+that holds U+0000 is kept, escaped: the departure decoded-nul-dropped
+says what the package gives in its place.
 """
 
 import os
@@ -21,7 +32,7 @@ from _reference import escape, require_reference, write_ascii
 require_reference()
 
 import ftfy
-from ftfy import chardata
+from ftfy import chardata, fixes
 
 SEED = 30
 
@@ -59,6 +70,59 @@ CLEAN = [
     "a\u0301 combining e\u0308 marks",
     "\ufeffbyte order mark then \u00e9",
     "question? caf\u00e9? \u201cwhy?\u201d",
+]
+
+# Texts that reach the two departures of the codec utf-8-variants: bytes
+# C0 80 (decoded-nul-dropped), and C0 or five bytes of a six-byte
+# surrogate pair before a final newline (utf8-variants-trailing-newline),
+# with their neighbours that the reference version does not misread.
+VARIANTS = [
+    "null\u00c0\u20acseparated",
+    "\u00c0\u20ac",
+    "caf\u00c3\u00a9 \u00c0\u20ac cr\u00c3\u00a8me \u00c0\u20ac",
+    "sch\u00c3\u00b6n \u00c0\u0080",
+    "sch\u00c3\u00b6n \u00c0\n",
+    "sch\u00c3\u00b6n \u00c0\n\n",
+    "sch\u00c3\u00b6n \u00c0\nx",
+    "sch\u00c3\u00b6n \u00c0",
+    "one \u00c0\ntwo sch\u00c3\u00b6n",
+    "\u0421\u0440\u0410\n",
+    "\u00c3\u00a9t\u00c3\u00a9 \u00c0\n",
+    "\u00ed\u00a0\u00bd\u00ed\u00b8\u008a",
+    "\u00ed\u00a0\u00bd\u00ed\u00b8\u0160 caf\u00c3\u00a9",
+    "\u00ed\u00a0\u00bd\u00ed\u00b8\n",
+    "caf\u00c3\u00a9 \u00ed\u00a0\u00bd\u00ed\u00b8\n",
+    "caf\u00c3\u00a9 \u00ed\u00a0\u00bd\u00ed\u00b8\nx",
+    "caf\u00c3\u00a9 \u00ed\u00a0\u00bd\u00ed\u00b8",
+    "\u00ed\u00a0\u00bd\n",
+    "\u00ed\u00a0\u00bd\u00ed\u00b8\u008a\n",
+]
+
+# Texts on which the options under fix_encoding, and the two exported
+# fixers, show: inconsistent mix-ups inside other text, C1 controls, and
+# lost characters.
+OPTION_TEXTS = [
+    "voil\u00c3 le travail",
+    "\u00c3 perturber la r\u00c3\u00a9flexion",
+    "\u00e2\u20ac\u0153 like this \u00e2\u20ac\ufffd",
+    "\u00e2\u20ac\u0153mismatched quotes\u00e2\u20ac\u009d\u2026\u201d",
+    "This text was never Unicode at all\u0085",
+    "\u0081 alone, and \u0081\u008d\u008f\u0090\u009d the five holes",
+    "\u0080\u0099 C1 with a hole \u0081",
+    "\u201chere\u2019s a test\u201d \u00e2\u20ac\u201d with \u00c3\u00a9 and \u0085",
+    "\u00e3\u0081\u201d\u00e3\u0081\u2013 \u65e5\u672c\u8a9e \u00e2\u20ac\u2122",
+    "na\u00efve \u00c3\u00a9 \u00c3\u00a9\u00c3\u00a9 \u2603 \u00e2\u20ac\u2122\u00e2\u20ac\u2122",
+    "\u00c3\u00a9",
+    "\u2603 \u00c3\u00a9",
+    "\ufffd alone",
+    "\ufffd\u00c3\u00a9",
+]
+
+OPTIONS = [
+    "restore_byte_a0",
+    "replace_lossy_sequences",
+    "decode_inconsistent_utf8",
+    "fix_c1_controls",
 ]
 
 SLOPPY = [codec for codec in chardata.CHARMAP_ENCODINGS if codec.startswith("sloppy-")]
@@ -130,17 +194,48 @@ def plan_text(plan):
     return " > ".join("%s %s" % (action, parameter) for action, parameter in plan)
 
 
+def same_or(value, default):
+    """A sparse field: empty when the value is the default."""
+    return "" if value == default else value
+
+
+def has_surrogate(text):
+    return any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
+
+
 def main():
     rng = random.Random(SEED)
-    texts = CLEAN + mix_ups() + random_strings(rng)
+    texts = CLEAN + mix_ups() + random_strings(rng) + VARIANTS + OPTION_TEXTS
     texts = list(dict.fromkeys(texts))
-    lines = ["text\tfixed\tplan\n"]
+    header = ["text", "fixed", "plan"]
+    header += ["no_" + option for option in OPTIONS]
+    header += ["plan_no_" + option for option in OPTIONS]
+    header += ["decode_inconsistent_utf8", "fix_c1_controls"]
+    lines = ["\t".join(header) + "\n"]
     for text in texts:
+        if not storable(text):
+            continue
         fixed, plan = ftfy.fix_encoding_and_explain(text)
         assert fixed == ftfy.fix_encoding(text)
-        if not (storable(text) and storable(fixed)):
+        outputs = [fixed]
+        fields = [escape(text), escape(fixed), plan_text(plan)]
+        off = []
+        for option in OPTIONS:
+            result = ftfy.fix_encoding_and_explain(text, **{option: False})
+            assert result.text == ftfy.fix_encoding(text, **{option: False})
+            off.append(result)
+            outputs.append(result.text)
+        fields += [same_or(escape(result.text), escape(fixed)) for result in off]
+        fields += [
+            same_or(plan_text(result.explanation), plan_text(plan)) for result in off
+        ]
+        for fixer in (fixes.decode_inconsistent_utf8, fixes.fix_c1_controls):
+            result = fixer(text)
+            outputs.append(result)
+            fields.append(same_or(escape(result), escape(text)))
+        if any(has_surrogate(output) for output in outputs):
             continue
-        lines.append("%s\t%s\t%s\n" % (escape(text), escape(fixed), plan_text(plan)))
+        lines.append("\t".join(fields) + "\n")
     write_ascii("tests/testthat/reference/fix_encoding.tsv", "".join(lines))
 
 

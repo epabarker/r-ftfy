@@ -19,5 +19,9 @@ Reference: The newline is read as the missing last byte of the sequence
  return '\U0001f60a'.
 R: Decoding fails, as it does in the reference version when anything
  other than a final newline follows, so this decoding repairs nothing and
- the newline is kept.
+ the newline is kept. The repair then goes on as it does for any text
+ that does not decode: fix_encoding('sch\u00c3\u00b6n \u00c0\n') gives
+ 'sch\xf6n \xc0\n', with the mojibake before the C0 repaired by
+ decode_inconsistent_utf8, and fix_encoding('\u00ed\u00a0\u00bd\u00ed\u00b8\n')
+ returns its input unchanged.
 Decided: docs/adr/0004-utf-8-variants-does-not-copy-upstreams-trailing-newline-behaviour.md

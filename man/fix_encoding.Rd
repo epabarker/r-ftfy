@@ -17,8 +17,8 @@ name, such as \code{restore_byte_a0 = FALSE}. They override \code{config}. See
 \item{config}{A set of options made by \code{\link[=ftfy_config]{ftfy_config()}}.}
 }
 \value{
-A character vector as long as \code{x}, marked as UTF-8. A missing
-string gives \code{NA}.
+A character vector as long as \code{x}, marked as UTF-8, with the
+\code{names}, \code{dim} and \code{dimnames} of \code{x}. A missing string gives \code{NA}.
 }
 \description{
 \code{fix_encoding()} repairs mojibake: text that was decoded with the wrong
@@ -27,14 +27,40 @@ else, so quotes, ligatures and line breaks are left alone, and text that
 does not look like mojibake comes back unchanged.
 }
 \details{
-This version repairs a mix-up between UTF-8 and a single-byte codec such
-as Latin-1 or Windows-1252, where decoding the bytes again is the whole
-repair. Any other value comes back unchanged.
+Each string is repaired by itself, as Python ftfy 6.3.1 repairs it:
+\itemize{
+\item Text that was UTF-8 and was read with a single-byte codec, such as
+Latin-1, Windows-1252 or another Windows code page, is encoded with
+that codec and decoded as UTF-8. A mix-up several layers deep is
+undone a layer at a time.
+\item A plain space is read as a no-break space, and a sequence in which a
+character was lost becomes U+FFFD, when that makes the rest of the
+string decodable (the options \code{restore_byte_a0} and
+\code{replace_lossy_sequences}).
+\item When the string as a whole cannot be decoded, the sequences in it that
+plainly are UTF-8 mojibake are repaired one by one (the option
+\code{decode_inconsistent_utf8}; see \code{\link[=decode_inconsistent_utf8]{decode_inconsistent_utf8()}}).
+\item C1 control characters are read as the Windows-1252 characters at the
+same bytes (the option \code{fix_c1_controls}; see \code{\link[=fix_c1_controls]{fix_c1_controls()}}).
+}
 
 Call it on a whole vector, not once per string: each call has a fixed
 cost of about half a millisecond.
 }
+\section{Differences from Python ftfy}{
+
+Where the repair decodes the two bytes C0 80, which stand for the
+character U+0000, nothing is put in their place, because an R string
+cannot hold U+0000. And a string that ends in a newline just after the
+byte C0, or after the first five bytes of a six-byte surrogate pair, is
+not repaired by reading the newline as the missing byte.
+}
+
 \examples{
 x <- c("caf\u00c3\u00a9", "it\u00e2\u20ac\u2122s", "caf\u00e9", NA)
 fix_encoding(x)
+
+# Mojibake beside text that was never mangled is repaired where it is
+fix_encoding("\u2603 caf\u00c3\u00a9")
+fix_encoding("\u2603 caf\u00c3\u00a9", decode_inconsistent_utf8 = FALSE)
 }
