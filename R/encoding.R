@@ -24,8 +24,9 @@
 #' fix_encoding(x)
 #' @export
 fix_encoding <- function(x) {
+  shape <- entry_shape(x)
   x <- entry_step(x)
-  repair_encoding(x)$text
+  exit_step(repair_encoding(x)$text, shape)
 }
 
 # The codecs a mix-up is looked for in, in the order upstream tries them
