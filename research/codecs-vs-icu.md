@@ -11,14 +11,16 @@ Ship the single-byte tables as data generated from CPython, and write the `utf-8
 decoder by hand in R.
 
 - Of the ten single-byte encodings ftfy tries, ICU matches CPython exactly on only three:
-  `latin-1`, `iso-8859-2` and `macroman`. Even for those, stringi cannot report an unencodable
-  character as an error, and it silently deletes some characters when encoding.
+  `latin-1`, `iso-8859-2` and `macroman`. Even for those, stringi reports an unencodable
+  character only as a warning, and it drops some characters from the output instead of
+  substituting them.
 - ICU's `cp437` table differs from CPython's at four bytes (1A, 1C, 7F, E6).
 - ICU's Windows-125x tables already fill most holes the way ftfy's sloppy codecs do, but not
   all of them (1253: D2, FF; 1257: A1, A5), and none of them map byte 1A to U+FFFD.
 - Neither ICU's `UTF-8` nor its `CESU-8` converter behaves like `utf-8-variants`.
-- stringi has no strict mode. Every place where ftfy depends on a `UnicodeDecodeError` or
-  `UnicodeEncodeError` needs its own check.
+- stringi has no strict mode: it substitutes and warns where Python raises. A port could turn
+  those warnings into errors, but for the Windows-125x hole bytes stringi gives no warning at
+  all, so strict `windows-1252` decoding cannot be recovered that way.
 - The tables are tiny and frozen: the CPython charmap files involved have not changed since
   2007.
 
@@ -181,11 +183,16 @@ against real ftfy should settle whether it does.
 #### The NUL problem
 
 `C0 80` decodes to U+0000, and an R character string cannot contain U+0000. stringi raised
-"embedded nul in string" when asked to produce one. **[measured]** Python's `fix_encoding` can
-therefore return a string the R port cannot represent. In the full `fix_text` pipeline U+0000 is
-on the list of control characters to remove (`ftfy/chardata.py:97-114`), so the difference
-shows only where encoding fixing is used alone. How the port handles this is a separate
-decision; it is not something a codec table can solve.
+"embedded nul in string" when asked to produce one. **[measured]** Python's decoder can therefore
+return a string R cannot represent, and the port has to do something at the moment of decoding,
+on every path that uses `utf-8-variants`.
+
+Upstream lists U+0000 among the control characters that `remove_control_chars` strips
+(`ftfy/chardata.py:97-114`), and that option defaults to on (`ftfy/__init__.py:224`). So in a
+default `fix_text` call Python's final output probably has no U+0000 either, which would make
+"drop it at decode time" match Python there but not for `fix_encoding` called alone.
+**[derived]**: the order of the steps in `fix_text` was not traced. How the port handles this is
+a separate decision; it is not something a codec table can solve.
 
 ## 2. Where stringi and ICU differ
 
@@ -241,8 +248,10 @@ Every code point U+0001-U+10FFFF (surrogates excluded) was encoded through
 
 - For every character CPython can encode, ICU produces the same byte, except the four cp437
   entries above (U+001A, U+001C, U+007F, U+00B5).
-- **No error is possible.** For a character with no mapping, stringi writes a substitute byte
-  and issues a warning. The stringi manual says the same: an incorrect code point "is replaced
+- **stringi warns instead of raising.** For a character with no mapping, stringi writes a
+  substitute byte and issues a warning ("the Unicode code point ... cannot be converted to
+  destination encoding"). A port can catch that warning and treat it as an error. The stringi
+  manual describes the same behaviour: an incorrect code point "is replaced
   with the default (for that target encoding) 'missing/erroneous' character (with a warning)"
   **[docs]**
   ([stri_encode.Rd](https://github.com/gagolews/stringi/blob/master/man/stri_encode.Rd)).
@@ -251,16 +260,18 @@ Every code point U+0001-U+10FFFF (surrogates excluded) was encoded through
   ([stri_ucnv.cpp](https://github.com/gagolews/stringi/blob/master/src/stri_ucnv.cpp)).
 - **The substitute byte varies by converter**: 1A for most, 3F for `macintosh` and
   `windows-874`, 7F for `cp437`.
-- **About 4,170 characters are silently deleted.** Unmappable "default ignorable" code points
-  (U+00AD, U+200B-U+200F, U+2060-U+206F, U+FE00-U+FE0F, U+FEFF, U+E0000-U+E0FFF and others)
-  produce zero bytes. Python raises `UnicodeEncodeError` for them. The list is hard-coded in
+- **About 4,170 characters are dropped rather than substituted.** Unmappable "default
+  ignorable" code points (U+00AD, U+200B-U+200F, U+2060-U+206F, U+FE00-U+FE0F, U+FEFF,
+  U+E0000-U+E0FFF and others) produce zero bytes. stringi still warns for them (checked for
+  U+200B, U+FEFF and U+180F into `windows-1252`), but no substitute byte marks where they
+  were. Python raises `UnicodeEncodeError` for them. The list is hard-coded in
   ICU **[docs]**
   ([ucnv_err.cpp](https://github.com/unicode-org/icu/blob/main/icu4c/source/common/ucnv_err.cpp),
   macro `IS_DEFAULT_IGNORABLE_CODE_POINT`).
 - **That list depends on the ICU version.** The commit for Unicode 14 (June 2021) widened one
   range from U+180B-U+180E to U+180B-U+180F **[docs]**
   ([d4c92ebcf](https://github.com/unicode-org/icu/commit/d4c92ebcf)). stringi accepts any system
-  ICU from version 61 up, so U+180F is substituted on some installs and deleted on others.
+  ICU from version 61 up, so U+180F is substituted on some installs and dropped on others.
 - ICU encodes the hole characters U+00NN to byte NN for the Windows tables, mirroring its
   decode. So it accepts U+0081 in "windows-1252" where strict Python does not.
 - No classic best-fit mappings were seen (nothing like fullwidth letters mapping to ASCII). The
@@ -344,8 +355,8 @@ are the same on every platform. Python's default error handler is `strict`, whic
 | sloppy 1250/1251/1252/1254 | wrong at byte 1A | matches |
 | sloppy 1253/1257 | wrong at 3 bytes each | matches |
 | strict windows-1252 decode failing on holes | impossible | matches |
-| "is this text encodable in X" | wrong (deletions, substitutes, version-dependent) | exact set membership |
-| raising on unencodable or undecodable input | not available | port decides |
+| "is this text encodable in X" | wrong (extra hole characters accepted, cp437 differences) | exact set membership |
+| raising on unencodable or undecodable input | only by trapping warnings; none for Windows-125x holes | port decides |
 | same result on every platform and ICU version | not guaranteed | guaranteed |
 
 A mixed approach (ICU for the three matching encodings, tables for the rest) saves three
