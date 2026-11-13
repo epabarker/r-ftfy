@@ -8,7 +8,7 @@ Run: `uv run --python 3.13 --with ftfy==6.3.1 python probe.py > output.txt` (ftf
 
 - Word lists from the dominant-plan probes (10 languages, about 200 values each), plus an all-caps copy of 100 of them, because capitals hit codec holes more often.
 - Columns of 100 and 1,000 rows, drawn **with repetition** (Zipf weights), share corrupted *p* in {0.1, 0.5, 0.9}. A lossy row can therefore have an intact twin elsewhere in the column.
-- A separate adversarial set of **minimal pairs**: real names that differ in one non-ASCII letter (`José`/`Josè`, `Müller`/`Möller`, `ÁLVARO`/`ÄLVARO`).
+- A separate adversarial set of **minimal pairs**: real names that differ in one non-ASCII letter (`ÍÑIGO`/`ÏÑIGO`, `Zoé`/`Zoë`, `ÁLVARO`/`ÄLVARO`).
 - Three loss kinds:
   - **U+FFFD**: UTF-8 decoded with a codec that has holes, `errors="replace"`. Codecs: 1250, 1251, 1252, 1253, 1254. Per-value encoding repair leaves U+FFFD where a character was lost.
   - **`?`**: clean text exported to a narrower codec with `errors="replace"`, so that each character the codec can't hold became `?`. Western text to ASCII; other languages to latin-1 and windows-1252.
@@ -41,7 +41,7 @@ Counts are distinct lossy values, summed over the grid.
   - `GR?SSE` matched to `GRÖSSE`; the truth was `GRÜSSE`
   - `T�` matched to `TŰ`; the truth was `TŐ`
   - `Д�` matched to `ДО`; the truth was `ДА`
-  - from the pairs set: `Jos�` matched to `José`; the truth was `Josè`
+  - from the pairs set: `�ÑIGO` matched to `ÍÑIGO` (truth `ÏÑIGO`), even with the holes check, and `Zo?` matched to `Zoé` (truth `Zoë`). `output.txt` lists every wrong match.
 - **The holes constraint helps but doesn't remove the problem.**
   - On ordinary words it removes every wrong match (6 → 0).
   - On minimal pairs, 7 of the 49 unique matches are still wrong, whenever the twin's letter shares a hole byte (for example Á/Í/Ï/Ð/Ý in windows-1252).
@@ -49,7 +49,7 @@ Counts are distinct lossy values, summed over the grid.
 - **`?` has no marker of its own.**
   - In Cyrillic, Greek and similar text exported to latin-1, every letter becomes `?`. A value like `????` matches any intact four-letter word.
   - Values that are clean but contain a literal `?` (13 in the Spanish set, such as `¿qué?`) are indistinguishable from lossy ones.
-- **A0 turned into a space is already handled per value.**
+- **A0 turned into a space is already handled per value** (measured on the four Western languages under windows-1252 only).
   - `fix_text()` repairs 1,696 of 1,888 rows.
   - Of the 99 distinct values it leaves unrepaired, 95 are ordinary misses unrelated to A0, mostly all-caps values. The dominant-plan replay handles those.
   - Only 4 involve an A0 byte. All four end in `à`, at the end of the value or followed by punctuation.

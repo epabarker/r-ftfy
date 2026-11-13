@@ -99,7 +99,7 @@ def match(lossy, marker, intact, H=None):
     return out
 
 
-def run(kind, label, pool, codec, rng, tally, examples):
+def run(kind, label, pool, codec, rng, tally, examples, wrong):
     H = holes(codec) if kind == "fffd" else None
     for n in (100, 1000):
         for p in (0.1, 0.5, 0.9):
@@ -146,7 +146,9 @@ def run(kind, label, pool, codec, rng, tally, examples):
                     else:
                         r = "several (truth in)" if s in m else "several (truth out)"
                     tally[key][f"{vname}: {r}"] += 1
-                    if r in ("unique WRONG", "several (truth in)") and len(examples) < 400:
+                    if r == "unique WRONG":
+                        wrong.append((key, vname, s, o, m[0]))
+                    elif r == "several (truth in)" and len(examples) < 400:
                         examples.append((key, vname, s, o, m[:4]))
 
 
@@ -155,6 +157,7 @@ def main():
     print(f"ftfy {ftfy.__version__}; python {sys.version.split()[0]}")
     tally = {}
     examples = []
+    wrong = []
     jobs = []
     for lang, (group, words) in LANGS.items():
         base = list(dict.fromkeys(build_values(words)))
@@ -172,7 +175,7 @@ def main():
     jobs.append(("qmark", "pairs", pairs_pool, "ascii"))
     for kind, label, pool, codec in jobs:
         tally.setdefault((kind, label, codec), Counter())
-        run(kind, label, pool, codec, rng, tally, examples)
+        run(kind, label, pool, codec, rng, tally, examples, wrong)
 
     print("\n== per column family (distinct lossy values, summed over n in {100,1000}, p in {.1,.5,.9})")
     agg = {}
@@ -187,7 +190,10 @@ def main():
         print(fam)
         for k, v in sorted(c.items()):
             print(f"    {k:28s} {v}")
-    print("\n== examples (wrong or ambiguous)")
+    print("\n== every unique wrong match (key, variant, truth, lossy, matched)")
+    for e in sorted(set(wrong), key=repr):
+        print(repr(e))
+    print("\n== other examples (ambiguous, unreachable, a0 left)")
     seen = set()
     for e in examples:
         t = repr(e)
