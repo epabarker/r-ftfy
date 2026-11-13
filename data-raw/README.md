@@ -1,0 +1,29 @@
+# data-raw
+
+Everything the package takes from the reference version (ftfy 6.3.1 on Python 3.13) is generated here in two stages. Nothing in this directory is shipped in the package.
+
+## Stage 1: Python writes committed text files
+
+```
+python -m pip install --require-hashes --no-deps -r data-raw/requirements.txt
+python data-raw/regenerate.py
+```
+
+`regenerate.py` runs every script in `generators/` whose name does not start with an underscore, in name order. Each script stops unless it is running under the reference version. The outputs are ASCII-only text files, committed and never edited by hand. The docstring at the top of each script names the file it writes and what it reads from the reference version:
+
+- `pattern_*.py` writes one ICU pattern to `patterns/<NAME>.txt`. Python's `\s`, `\w` and `\d` are written in as the code-point sets observed on CPython 3.13 (Unicode 15.1).
+- `snapshot_*.py` writes one snapshot of reference behaviour to `tests/testthat/reference/`.
+
+The `reference` workflow runs the two commands above and fails if any committed file changes.
+
+To add a generated file, add one script to `generators/` that writes one file. Nothing lists the scripts, so there is nothing else to edit. Shared code goes in a file whose name starts with an underscore.
+
+## Stage 2: R builds internal package data
+
+```
+Rscript data-raw/build.R
+```
+
+`build.R` runs every script in `sysdata/` and saves the objects they define to `R/sysdata.rda`, then rebuilds `NAMESPACE` and `man/` with roxygen2. It needs no Python. `Rscript data-raw/build.R --check` fails if `R/sysdata.rda` does not match its sources.
+
+`R/sysdata.rda`, `NAMESPACE` and `man/` are never edited or merged by hand. On a merge conflict in any of them, take either side and run `build.R`.

@@ -1,0 +1,5 @@
+# The reference version's Python packages. Python itself is 3.13.
+# After a change here, rebuild requirements.txt with:
+#   uv pip compile --generate-hashes --universal --python-version 3.13 data-raw/requirements.in -o data-raw/requirements.txt
+ftfy==6.3.1
+wcwidth==0.9.4

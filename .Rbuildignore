@@ -1,0 +1,12 @@
+^LICENSE$
+^GLOSSARY\.md$
+^docs$
+^data-raw$
+^\.github$
+^\.claude$
+^\.git$
+^\.gitattributes$
+^.*\.Rcheck$
+^.*\.tar\.gz$
+^.*\.Rproj$
+^\.Rproj\.user$
