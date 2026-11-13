@@ -10,7 +10,7 @@
 plan_actions <- c("encode", "decode", "transcode", "apply", "normalize")
 
 # The closed set of 13 codecs (ADR 0003), each under its one name: the ten
-# upstream tries, in the order of `CHARMAP_ENCODINGS` (ftfy/chardata.py:17),
+# upstream tries, in the order of `CHARMAP_ENCODINGS` (ftfy/chardata.py:15),
 # then `windows-1252` (ftfy/__init__.py:565), `utf-8` and `utf-8-variants`.
 # An `encode` or `decode` step names one of these.
 plan_codecs <- c(

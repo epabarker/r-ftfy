@@ -390,7 +390,7 @@ test_that("table() counts plans, with `none` as a level and NA left out", {
 test_that("plans are a column of a data frame", {
   plan <- ftfy_plan(c("none", "encode latin-1 > decode utf-8", NA))
 
-  expect_no_warning(frame <- data.frame(text = c("a", "b", NA), plan = plan))
+  expect_warning(frame <- data.frame(text = c("a", "b", NA), plan = plan), NA)
 
   expect_identical(names(frame), c("text", "plan"))
   expect_identical(dim(frame), c(3L, 2L))
