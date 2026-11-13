@@ -2,7 +2,7 @@
 
 `fix_and_explain()` and `fix_encoding_and_explain()` return a data frame with one row per input and two columns: `text` and `plan`, where `plan` is a vector of class `ftfy_plan` holding one plan per element. Upstream returns one `(text, list of (action, parameter) pairs)` tuple for one string; R works on whole vectors, and a plan that is a single value can be printed on one line, compared with `==`, counted with `table()` and passed straight to `apply_plan()`, which is also what column-aware repair in v0.2 needs to find a column's dominant plan.
 
-Each plan has a text form, `encode latin-1 > decode utf-8`, that is a documented, stable format: `as.character()` returns it and `ftfy_plan()` turns it back into the same plan. How the class stores a plan is not part of the contract. Every plan converts to and from upstream's list of pairs without loss.
+Each plan has a text form, `encode latin-1 > decode utf-8`, that is a documented, stable format: `as.character()` returns it and `ftfy_plan()` turns it back into the same plan. A plan with no steps is written `none`, not the empty string, because CSV readers commonly read an empty field as missing and a missing plan is a different thing. How the class stores a plan is not part of the contract. Every plan converts to and from upstream's list of pairs without loss.
 
 Decided in https://github.com/epabarker/r-ftfy/issues/9.
 
