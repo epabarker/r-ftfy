@@ -1,0 +1,28 @@
+BADNESS_RE (26419 chars): 1000 x length-1 calls 0.461s | 1 call on length-1000 0.0010s
+small class pattern:        1000 x length-1 calls 0.002s | 1 call on length-1000 0.0000s
+encoding regex (850 chars):  1000 x length-1 calls 0.008s
+UTF8_DETECTOR (4056 chars):   1000 x length-1 calls 0.033s
+fix_text_vec on one mojibake string: 1653 us per call
+fix_text_vec on one clean non-ASCII string: 601 us per call
+fix_text_vec on one ASCII string (fast path): 4 us per call
+  n=1       1593.5 us per value
+  n=2        801.5 us per value
+  n=5        322.5 us per value
+  n=10       163.0 us per value
+  n=20        88.5 us per value
+  n=50        39.5 us per value
+  n=100       23.0 us per value
+  n=1000       8.0 us per value
+
+== pass-throughs through strategy D
+   a      b      c     
+r1 "café" "ok"   ""    
+r2 NA     "café" "x\né"
+dim kept TRUE, dimnames kept TRUE, NA kept TRUE
+     a      b      c 
+"café"     NA "café" 
+names kept TRUE
+grepl(fixed = TRUE) sees a leading U+FEFF: TRUE
+python one string 'FranÃ§ois MÃ¼ller' 16.5 us
+python one string 'François' 6.4 us
+python one string 'Patient 12' 5.3 us
