@@ -1,0 +1,3564 @@
+[
+ {
+  "lang": "French",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8": 45,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8": 57,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8": 45,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8": 70,
+    "none": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 174,
+    "none": 1,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 199,
+    "none": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 14,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 157,
+    "none": 16,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 2,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 15,
+   "noenc": 15,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 158
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 170,
+    "none": 16,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 14
+   },
+   "missed": 15,
+   "noenc": 15,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 171
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "none": 128,
+    "apply uncurl_quotes": 4,
+    "encode sloppy-windows-1251 > decode utf-8": 43,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 127,
+   "noenc": 131,
+   "altered": 4,
+   "noops": {},
+   "out_eq_clean": 44
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 132,
+    "encode sloppy-windows-1251 > decode utf-8": 56,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 131,
+   "noenc": 131,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 57
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 36,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "none": 109,
+    "encode sloppy-windows-1253 > decode utf-8": 53,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 22,
+    "apply uncurl_quotes": 4,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 108,
+   "noenc": 112,
+   "altered": 4,
+   "noops": {},
+   "out_eq_clean": 54
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 113,
+    "encode sloppy-windows-1253 > decode utf-8": 53,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 34
+   },
+   "missed": 112,
+   "noenc": 112,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 54
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 13,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8": 45,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8": 57,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 166,
+    "none": 10,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 24
+   },
+   "missed": 9,
+   "noenc": 9,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 167
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 190,
+    "none": 10
+   },
+   "missed": 9,
+   "noenc": 9,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 191
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 168,
+    "none": 7,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 6,
+   "noenc": 6,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 169
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 193,
+    "none": 7
+   },
+   "missed": 6,
+   "noenc": 6,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 194
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 45,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 57,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 45,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 129,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 70,
+    "none": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 77,
+    "encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 89,
+    "encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 77,
+    "encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 102,
+    "encode latin-1 > decode utf-8": 97,
+    "none": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 174,
+    "none": 1,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 199,
+    "none": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 12,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 110,
+    "none": 65,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 64,
+   "noenc": 64,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 111
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 123,
+    "none": 65,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 64,
+   "noenc": 64,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 124
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "none": 99,
+    "encode sloppy-windows-1251 > decode utf-8": 71,
+    "apply uncurl_quotes": 5,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 98,
+   "noenc": 103,
+   "altered": 5,
+   "noops": {},
+   "out_eq_clean": 72
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 104,
+    "encode sloppy-windows-1251 > decode utf-8": 84,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 103,
+   "noenc": 103,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 85
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 71,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "none": 78,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 50,
+    "encode sloppy-windows-1253 > decode utf-8": 55,
+    "apply uncurl_quotes": 5,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 77,
+   "noenc": 82,
+   "altered": 5,
+   "noops": {},
+   "out_eq_clean": 56
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 83,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 62,
+    "encode sloppy-windows-1253 > decode utf-8": 55
+   },
+   "missed": 82,
+   "noenc": 82,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 56
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 13,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 77,
+    "encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 89,
+    "encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 110,
+    "none": 71,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 19
+   },
+   "missed": 70,
+   "noenc": 70,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 111
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 129,
+    "none": 71
+   },
+   "missed": 70,
+   "noenc": 70,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 130
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 151,
+    "none": 24,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 152
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 176,
+    "none": 24
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 177
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 77,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 89,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 199,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 77,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 97,
+    "none": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 102,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 97,
+    "none": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 21,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 7,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8": 34,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 168
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 21,
+    "encode sloppy-windows-1252 > decode utf-8": 45
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 179
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 137,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25,
+    "encode sloppy-windows-1252 > decode utf-8": 38
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 137,
+    "encode sloppy-windows-1252 > decode utf-8": 63
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 175,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 200
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 16,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 126,
+    "none": 45,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 4,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 45,
+   "noenc": 45,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 126
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 139,
+    "none": 45,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 16
+   },
+   "missed": 45,
+   "noenc": 45,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 139
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > decode utf-8": 38,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 137,
+   "noenc": 137,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 38
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8": 51,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 137,
+   "noenc": 137,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 51
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 32,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "none": 133,
+    "encode sloppy-windows-1253 > decode utf-8": 37,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 18,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 133,
+   "noenc": 133,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 37
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 133,
+    "encode sloppy-windows-1253 > decode utf-8": 37,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 30
+   },
+   "missed": 133,
+   "noenc": 133,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 37
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 21,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 7,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8": 34,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 168
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 21,
+    "encode sloppy-windows-1252 > decode utf-8": 45
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 179
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "none": 73,
+    "encode cp437 > decode utf-8": 112,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 15
+   },
+   "missed": 73,
+   "noenc": 73,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 112
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 73,
+    "encode cp437 > decode utf-8": 127
+   },
+   "missed": 73,
+   "noenc": 73,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 127
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 152,
+    "none": 23,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 152
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 177,
+    "none": 23
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 177
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 21,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 134,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 7,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 34,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 168
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 134,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 21,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 45
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 179
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 137,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 38
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 137,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 63
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8": 38,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13,
+    "encode sloppy-windows-1252 > decode utf-8": 50
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25,
+    "encode sloppy-windows-1252 > decode utf-8": 38
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > decode utf-8": 63
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 172,
+    "none": 3,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 197,
+    "none": 3
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 12,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "none": 62,
+    "encode sloppy-windows-1250 > decode utf-8": 113,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 59,
+   "noenc": 59,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 116
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 62,
+    "encode sloppy-windows-1250 > decode utf-8": 126,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 59,
+   "noenc": 59,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 129
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "none": 134,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > decode utf-8": 41,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 131,
+   "noenc": 131,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 44
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 134,
+    "encode sloppy-windows-1251 > decode utf-8": 54,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 131,
+   "noenc": 131,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 57
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 41,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "none": 122,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 29,
+    "encode sloppy-windows-1253 > decode utf-8": 37,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 119,
+   "noenc": 119,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 40
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 122,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 41,
+    "encode sloppy-windows-1253 > decode utf-8": 37
+   },
+   "missed": 119,
+   "noenc": 119,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 40
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 13,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8": 38,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13,
+    "encode sloppy-windows-1252 > decode utf-8": 50
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 151,
+    "none": 25,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 24
+   },
+   "missed": 22,
+   "noenc": 22,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 154
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 175,
+    "none": 25
+   },
+   "missed": 22,
+   "noenc": 22,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 178
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "none": 39,
+    "encode macroman > decode utf-8": 136,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 36,
+   "noenc": 36,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 139
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 39,
+    "encode macroman > decode utf-8": 161
+   },
+   "missed": 36,
+   "noenc": 36,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 164
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 38,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 50
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 187
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 197,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 38
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 134,
+    "none": 3,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 63
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 46,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 78,
+    "none": 23,
+    "encode latin-1 > decode utf-8": 44,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 30,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 16,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 9
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 141
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 87,
+    "none": 23,
+    "encode latin-1 > decode utf-8": 44,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 46
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 150
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 95,
+    "none": 23,
+    "encode latin-1 > decode utf-8": 57,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 171
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 120,
+    "none": 23,
+    "encode latin-1 > decode utf-8": 57
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 196
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 155,
+    "none": 20,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 1,
+   "noenc": 1,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 174
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 180,
+    "none": 20
+   },
+   "missed": 1,
+   "noenc": 1,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 199
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 21,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 99,
+    "none": 54,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 8,
+    "encode sloppy-windows-1252 > decode utf-8": 14,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 12,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 1
+   },
+   "missed": 35,
+   "noenc": 35,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 132
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 111,
+    "none": 54,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 20,
+    "encode sloppy-windows-1252 > decode utf-8": 14,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 1
+   },
+   "missed": 35,
+   "noenc": 35,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 144
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 17,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > decode utf-8": 37,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 1,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 118,
+   "noenc": 118,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 56
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 14,
+    "encode sloppy-windows-1251 > decode utf-8": 49
+   },
+   "missed": 118,
+   "noenc": 118,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 68
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 75,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "none": 126,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 36,
+    "encode sloppy-windows-1253 > decode utf-8": 25,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 1
+   },
+   "missed": 107,
+   "noenc": 107,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 44
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 126,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 48,
+    "encode sloppy-windows-1253 > decode utf-8": 25,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 1
+   },
+   "missed": 107,
+   "noenc": 107,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 44
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 46,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 78,
+    "none": 23,
+    "encode latin-1 > decode utf-8": 44,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 30,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 16,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 9
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 141
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 87,
+    "none": 23,
+    "encode latin-1 > decode utf-8": 44,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 46
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 150
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 124,
+    "none": 55,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 21
+   },
+   "missed": 36,
+   "noenc": 36,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 143
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 145,
+    "none": 55
+   },
+   "missed": 36,
+   "noenc": 36,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 164
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "none": 44,
+    "encode macroman > decode utf-8": 131,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 25,
+   "noenc": 25,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 150
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 44,
+    "encode macroman > decode utf-8": 156
+   },
+   "missed": 25,
+   "noenc": 25,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 46,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 73,
+    "encode sloppy-windows-1252 > decode utf-8": 4,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 44,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 30,
+    "apply uncurl_quotes": 5,
+    "none": 19,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 16,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 9
+   },
+   "missed": 0,
+   "noenc": 5,
+   "altered": 5,
+   "noops": {},
+   "out_eq_clean": 136
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 82,
+    "encode sloppy-windows-1252 > decode utf-8": 4,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 44,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 46,
+    "none": 24
+   },
+   "missed": 5,
+   "noenc": 5,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 145
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 181,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 90,
+    "encode sloppy-windows-1252 > decode utf-8": 4,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 57,
+    "apply uncurl_quotes": 5,
+    "none": 19,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 5,
+   "altered": 5,
+   "noops": {},
+   "out_eq_clean": 166
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 115,
+    "encode sloppy-windows-1252 > decode utf-8": 4,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 57,
+    "none": 24
+   },
+   "missed": 5,
+   "noenc": 5,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 191
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 18,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 4,
+    "encode latin-1 > decode utf-8": 16,
+    "encode sloppy-windows-1252 > decode utf-8": 119,
+    "none": 36,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 7,
+   "noenc": 7,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 164
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 18,
+    "encode latin-1 > decode utf-8": 16,
+    "encode sloppy-windows-1252 > decode utf-8": 130,
+    "none": 36
+   },
+   "missed": 7,
+   "noenc": 7,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 19,
+    "encode sloppy-windows-1252 > decode utf-8": 120,
+    "none": 36,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 7,
+   "noenc": 7,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 168
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 19,
+    "encode sloppy-windows-1252 > decode utf-8": 145,
+    "none": 36
+   },
+   "missed": 7,
+   "noenc": 7,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 193
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 146,
+    "none": 29,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 171,
+    "none": 29
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 19,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 4,
+    "none": 52,
+    "encode sloppy-windows-1250 > decode utf-8": 96,
+    "encode sloppy-windows-1252 > decode utf-8": 22,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 10,
+    "encode latin-1 > decode utf-8": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 1
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 148
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 18,
+    "none": 52,
+    "encode sloppy-windows-1250 > decode utf-8": 106,
+    "encode sloppy-windows-1252 > decode utf-8": 22,
+    "encode latin-1 > decode utf-8": 1,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 1
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 158
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "none": 88,
+    "apply uncurl_quotes": 49,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > decode utf-8": 38,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 59,
+   "noenc": 108,
+   "altered": 49,
+   "noops": {},
+   "out_eq_clean": 67
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8": 51,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 108,
+   "noenc": 108,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 80
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 35,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "none": 88,
+    "apply uncurl_quotes": 49,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 15,
+    "encode sloppy-windows-1253 > decode utf-8": 36,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 59,
+   "noenc": 108,
+   "altered": 49,
+   "noops": {},
+   "out_eq_clean": 65
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 27,
+    "encode sloppy-windows-1253 > decode utf-8": 36
+   },
+   "missed": 108,
+   "noenc": 108,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 65
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 18,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 4,
+    "encode latin-1 > decode utf-8": 16,
+    "encode sloppy-windows-1252 > decode utf-8": 119,
+    "none": 36,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 7,
+   "noenc": 7,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 164
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 18,
+    "encode latin-1 > decode utf-8": 16,
+    "encode sloppy-windows-1252 > decode utf-8": 130,
+    "none": 36
+   },
+   "missed": 7,
+   "noenc": 7,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 111,
+    "none": 67,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 22
+   },
+   "missed": 38,
+   "noenc": 38,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 140
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 133,
+    "none": 67
+   },
+   "missed": 38,
+   "noenc": 38,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 162
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 126,
+    "none": 49,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 20,
+   "noenc": 20,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 155
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 151,
+    "none": 49
+   },
+   "missed": 20,
+   "noenc": 20,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 180
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 18,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 4,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 16,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 119,
+    "none": 29,
+    "encode sloppy-windows-1252 > decode utf-8": 7,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 164
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 18,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 16,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 130,
+    "none": 29,
+    "encode sloppy-windows-1252 > decode utf-8": 7
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 171,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 19,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 120,
+    "none": 29,
+    "encode sloppy-windows-1252 > decode utf-8": 7,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 168
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 19,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 145,
+    "none": 29,
+    "encode sloppy-windows-1252 > decode utf-8": 7
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 193
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 17,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 70,
+    "encode latin-1 > decode utf-8": 72,
+    "none": 30,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 172
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 81,
+    "encode latin-1 > decode utf-8": 72,
+    "none": 30,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 17
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 183
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 71,
+    "encode latin-1 > decode utf-8": 74,
+    "none": 30,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 96,
+    "encode latin-1 > decode utf-8": 74,
+    "none": 30
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 145,
+    "none": 30,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 170,
+    "none": 30
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 15,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 124,
+    "none": 43,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 3,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode latin-1 > decode utf-8": 2,
+    "encode sloppy-windows-1252 > decode utf-8": 3,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 11,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 1
+   },
+   "missed": 13,
+   "noenc": 13,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 159
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 137,
+    "none": 43,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 14,
+    "encode latin-1 > decode utf-8": 2,
+    "encode sloppy-windows-1252 > decode utf-8": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 1
+   },
+   "missed": 13,
+   "noenc": 13,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 172
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "apply uncurl_quotes": 26,
+    "none": 111,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > decode utf-8": 38,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 81,
+   "noenc": 107,
+   "altered": 26,
+   "noops": {},
+   "out_eq_clean": 68
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8": 51,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 107,
+   "noenc": 107,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 81
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 28,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "apply uncurl_quotes": 26,
+    "none": 111,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 14,
+    "encode sloppy-windows-1253 > decode utf-8": 37,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 81,
+   "noenc": 107,
+   "altered": 26,
+   "noops": {},
+   "out_eq_clean": 67
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 26,
+    "encode sloppy-windows-1253 > decode utf-8": 37
+   },
+   "missed": 107,
+   "noenc": 107,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 67
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 17,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 70,
+    "encode latin-1 > decode utf-8": 72,
+    "none": 30,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 3,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 172
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 81,
+    "encode latin-1 > decode utf-8": 72,
+    "none": 30,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 17
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 183
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 123,
+    "none": 56,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 21
+   },
+   "missed": 26,
+   "noenc": 26,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 153
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 144,
+    "none": 56
+   },
+   "missed": 26,
+   "noenc": 26,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 174
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 122,
+    "none": 53,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 152
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 147,
+    "none": 53
+   },
+   "missed": 23,
+   "noenc": 23,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 177
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 17,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 70,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 72,
+    "none": 30,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 3,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 11
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 172
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 81,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 72,
+    "none": 30,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 17
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 183
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 170,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 71,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 74,
+    "none": 30,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 96,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 74,
+    "none": 30
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 99,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 79,
+    "encode sloppy-windows-1252 > decode utf-8": 88,
+    "encode latin-1 > decode utf-8": 8,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 20,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 96
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 99,
+    "encode sloppy-windows-1252 > decode utf-8": 93,
+    "encode latin-1 > decode utf-8": 8
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 101
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 155,
+    "encode latin-1 > decode utf-8": 20,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 180,
+    "encode latin-1 > decode utf-8": 20
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 175,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 200
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 108,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 87,
+    "encode sloppy-windows-1250 > decode utf-8": 87,
+    "none": 1,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 21,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 4
+   },
+   "missed": 1,
+   "noenc": 1,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 87
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 108,
+    "encode sloppy-windows-1250 > decode utf-8": 91,
+    "none": 1
+   },
+   "missed": 1,
+   "noenc": 1,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 91
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 21,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "none": 28,
+    "encode sloppy-windows-1251 > decode utf-8": 140,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 7,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 11,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 14
+   },
+   "missed": 28,
+   "noenc": 28,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 140
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 28,
+    "encode sloppy-windows-1251 > decode utf-8": 151,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 21
+   },
+   "missed": 28,
+   "noenc": 28,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 151
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 142,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "none": 91,
+    "apply uncurl_quotes": 46,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 41,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12,
+    "encode sloppy-windows-1253 > decode utf-8": 10
+   },
+   "missed": 91,
+   "noenc": 137,
+   "altered": 46,
+   "noops": {},
+   "out_eq_clean": 10
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 53,
+    "encode sloppy-windows-1253 > decode utf-8": 10
+   },
+   "missed": 137,
+   "noenc": 137,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 10
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 107,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8": 87,
+    "encode sloppy-windows-1254 > decode utf-8": 88,
+    "encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 20,
+    "encode sloppy-windows-1254 > decode utf-8 > apply uncurl_quotes": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 88
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8": 107,
+    "encode sloppy-windows-1254 > decode utf-8": 93
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 93
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 165,
+    "none": 10,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 10,
+   "noenc": 10,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 165
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 190,
+    "none": 10
+   },
+   "missed": 10,
+   "noenc": 10,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 190
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "none": 124,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25,
+    "encode macroman > decode utf-8": 51
+   },
+   "missed": 124,
+   "noenc": 124,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 51
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 124,
+    "encode macroman > decode utf-8": 76
+   },
+   "missed": 124,
+   "noenc": 124,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 76
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 200,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 87,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 47,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8": 31,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8 > apply uncurl_quotes": 35
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 0
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 134,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8": 66
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 0
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 154,
+    "encode latin-1 > decode utf-8 > encode latin-1 > decode utf-8": 12,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 8,
+    "encode latin-1 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 1,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 179,
+    "encode latin-1 > decode utf-8 > encode latin-1 > decode utf-8": 12,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 8,
+    "encode latin-1 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 1
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 106,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 84,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 86,
+    "encode latin-1 > decode utf-8": 5,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 20,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 89
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 89,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 106,
+    "encode latin-1 > decode utf-8": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 94
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 169,
+    "encode latin-1 > decode utf-8": 6,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 194,
+    "encode latin-1 > decode utf-8": 6
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 175,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 200
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 139,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 58,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 117,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 22,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 3
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 58
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1250 > decode utf-8": 61,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 139
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 61
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 18,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "apply uncurl_quotes": 79,
+    "none": 58,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 2,
+    "encode sloppy-windows-1251 > decode utf-8": 36,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 58,
+   "noenc": 137,
+   "altered": 79,
+   "noops": {},
+   "out_eq_clean": 36
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8": 49,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 14
+   },
+   "missed": 137,
+   "noenc": 137,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 49
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 148,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1253 > decode utf-8": 48,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 136,
+    "none": 4,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 48
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1253 > decode utf-8": 48,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 148,
+    "none": 4
+   },
+   "missed": 4,
+   "noenc": 4,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 48
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 111,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 79,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 91,
+    "encode latin-1 > decode utf-8": 5,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 20,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 84
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8": 84,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 111,
+    "encode latin-1 > decode utf-8": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 89
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 173,
+    "none": 2,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 2,
+   "noenc": 2,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 173
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode cp437 > decode utf-8": 198,
+    "none": 2
+   },
+   "missed": 2,
+   "noenc": 2,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 198
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 175,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 200
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 190,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 5,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8": 63,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8 > apply uncurl_quotes": 110,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 5,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 2,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 5,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 8,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 2
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 10
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 5,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8": 173,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 7,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 10,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 5
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 10
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 200,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 169,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 6,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 194,
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 6
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 45,
+    "none": 50,
+    "encode sloppy-windows-1252 > decode utf-8": 80,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 14,
+   "noenc": 14,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 161
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 45,
+    "none": 50,
+    "encode sloppy-windows-1252 > decode utf-8": 92,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 14,
+   "noenc": 14,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 173
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 45,
+    "none": 50,
+    "encode sloppy-windows-1252 > decode utf-8": 80,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 14,
+   "noenc": 14,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 161
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 45,
+    "none": 50,
+    "encode sloppy-windows-1252 > decode utf-8": 105
+   },
+   "missed": 14,
+   "noenc": 14,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 186
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "latin-1",
+  "n": 200,
+  "lossy": 0,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 139,
+    "none": 36,
+    "encode latin-1 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 175
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 164,
+    "none": 36
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 200
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1250",
+  "n": 200,
+  "lossy": 12,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 23,
+    "none": 71,
+    "encode sloppy-windows-1250 > decode utf-8": 70,
+    "encode sloppy-windows-1250 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8": 11,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 5,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 7
+   },
+   "missed": 35,
+   "noenc": 35,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 140
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 23,
+    "none": 71,
+    "encode sloppy-windows-1250 > decode utf-8": 83,
+    "encode sloppy-windows-1252 > decode utf-8": 11,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 5,
+    "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8": 7
+   },
+   "missed": 35,
+   "noenc": 35,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 153
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1251",
+  "n": 200,
+  "lossy": 12,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1251 > decode utf-8": 38,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 101,
+   "noenc": 101,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 74
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 137,
+    "encode sloppy-windows-1251 > decode utf-8": 51,
+    "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8": 12
+   },
+   "missed": 101,
+   "noenc": 101,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 87
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1253",
+  "n": 200,
+  "lossy": 88,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "none": 106,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 64,
+    "encode sloppy-windows-1253 > decode utf-8": 18,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 70,
+   "noenc": 70,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 54
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 106,
+    "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8": 76,
+    "encode sloppy-windows-1253 > decode utf-8": 18
+   },
+   "missed": 70,
+   "noenc": 70,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 54
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1254",
+  "n": 200,
+  "lossy": 24,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 45,
+    "none": 48,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 11,
+    "encode sloppy-windows-1252 > decode utf-8": 71,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 12,
+   "noenc": 12,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 152
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode latin-1 > decode utf-8": 45,
+    "none": 48,
+    "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 24,
+    "encode sloppy-windows-1252 > decode utf-8": 83
+   },
+   "missed": 12,
+   "noenc": 12,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 164
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "cp437",
+  "n": 200,
+  "lossy": 0,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "none": 97,
+    "encode cp437 > decode utf-8": 90,
+    "encode cp437 > decode utf-8 > apply uncurl_quotes": 13
+   },
+   "missed": 61,
+   "noenc": 61,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 126
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "none": 97,
+    "encode cp437 > decode utf-8": 103
+   },
+   "missed": 61,
+   "noenc": 61,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 139
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "mac_roman",
+  "n": 200,
+  "lossy": 0,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 138,
+    "none": 37,
+    "encode macroman > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 1,
+   "noenc": 1,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 174
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode macroman > decode utf-8": 163,
+    "none": 37
+   },
+   "missed": 1,
+   "noenc": 1,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 199
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "double-windows-1252",
+  "n": 200,
+  "lossy": 13,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 45,
+    "none": 36,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 80,
+    "encode sloppy-windows-1252 > decode utf-8": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply uncurl_quotes": 13,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 12
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 161
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 45,
+    "none": 36,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 92,
+    "encode sloppy-windows-1252 > decode utf-8": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8": 13
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 173
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "double-sloppy-windows-1252(ftfy codec, supplementary)",
+  "n": 200,
+  "lossy": 0,
+  "changed": 164,
+  "fix_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 45,
+    "none": 36,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 80,
+    "encode sloppy-windows-1252 > decode utf-8": 14,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8 > apply uncurl_quotes": 25
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 161
+  },
+  "fix_encoding_and_explain": {
+   "plans": {
+    "encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8": 45,
+    "none": 36,
+    "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8": 105,
+    "encode sloppy-windows-1252 > decode utf-8": 14
+   },
+   "missed": 0,
+   "noenc": 0,
+   "altered": 0,
+   "noops": {},
+   "out_eq_clean": 186
+  }
+ }
+]

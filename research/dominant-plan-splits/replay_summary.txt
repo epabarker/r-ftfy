@@ -1,0 +1,115 @@
+Czech (Central) / double-windows-1252: n=200, | encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8' flags={'NBSP': 4} | DOM-> 44: ran 44, same-as-own-fix 44, errors {}
+Czech (Central) / double-windows-1252: n=200, | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 46: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 46}
+Czech (Central) / double-windows-1252: n=200, | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 1} | DOM-> 4: ran 4, same-as-own-fix 0, errors {}
+Czech (Central) / sloppy-windows-1252(ftfy co | encode latin-1 > decode utf-8' flags={'NBSP': 5, 'C1 U+008D': 12, 'C1 U+008F': 1} | DOM-> 57: ran 57, same-as-own-fix 57, errors {}
+Czech (Central) / windows-1250: n=200, corrup | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 20, 'NBSP': 3} | DOM-> 20: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 20}
+Czech (Central) / windows-1250: n=200, corrup | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 5} | DOM-> 14: ran 14, same-as-own-fix 14, errors {}
+Czech (Central) / windows-1250: n=200, corrup | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 1} | DOM-> 1: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 1}
+Czech (Central) / windows-1251: n=200, corrup | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 14, 'NBSP': 1} | DOM-> 14: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 14}
+Czech (Central) / windows-1252: n=200, corrup | encode latin-1 > decode utf-8' flags={'NBSP': 4} | DOM-> 44: ran 44, same-as-own-fix 44, errors {}
+Czech (Central) / windows-1252: n=200, corrup | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 46, 'NBSP': 4} | DOM-> 46: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 46}
+Czech (Central) / windows-1253: n=200, corrup | encode sloppy-windows-1253 > decode utf-8' flags={'NBSP': 12} | DOM-> 25: ran 25, same-as-own-fix 25, errors {}
+Czech (Central) / windows-1253: n=200, corrup | encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > t | DOM-> 1: ran 1, same-as-own-fix 1, errors {}
+Czech (Central) / windows-1254: n=200, corrup | encode latin-1 > decode utf-8' flags={'NBSP': 4} | DOM-> 44: ran 44, same-as-own-fix 44, errors {}
+Czech (Central) / windows-1254: n=200, corrup | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 46, 'NBSP': 4} | DOM-> 46: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 46}
+French (Western) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 13} | DOM-> 57: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 57}
+French (Western) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+French (Western) / sloppy-windows-1252(ftfy c | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:“(U+201C)': 19, 'not-in-latin-1:ˆ(U+02C6) | DOM-> 70: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 70}
+French (Western) / windows-1250: n=200, corru | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 14} | DOM-> 14: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 14}
+French (Western) / windows-1251: n=200, corru | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+French (Western) / windows-1252: n=200, corru | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:“(U+201C)': 19, 'not-in-latin-1:ˆ(U+02C6) | DOM-> 57: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 57}
+French (Western) / windows-1252: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13, 'not-in-la | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+French (Western) / windows-1253: n=200, corru | encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 34, 'NBSP': 4} | DOM-> 34: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 34}
+French (Western) / windows-1254: n=200, corru | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:“(U+201C)': 19, 'not-in-latin-1:ˆ(U+02C6) | DOM-> 57: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 57}
+French (Western) / windows-1254: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13, 'not-in-la | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+German (Western) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 17} | DOM-> 89: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 89}
+German (Western) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+German (Western) / sloppy-windows-1252(ftfy c | encode latin-1 > decode utf-8' flags={'NBSP': 8} | DOM-> 97: ran 97, same-as-own-fix 97, errors {}
+German (Western) / windows-1250: n=200, corru | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+German (Western) / windows-1251: n=200, corru | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+German (Western) / windows-1252: n=200, corru | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:Ÿ(U+0178)': 47, 'not-in-latin-1:œ(U+0153)' | DOM-> 89: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 89}
+German (Western) / windows-1252: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13, 'not-in-la | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+German (Western) / windows-1253: n=200, corru | encode sloppy-windows-1253 > decode utf-8' flags={'NBSP': 12} | DOM-> 55: ran 55, same-as-own-fix 55, errors {}
+German (Western) / windows-1254: n=200, corru | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:Ÿ(U+0178)': 47, 'not-in-latin-1:œ(U+0153)' | DOM-> 89: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 89}
+German (Western) / windows-1254: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13, 'not-in-la | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+Greek (Greek) / double-windows-1252: n=200, c | encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8' flags={} | DOM-> 5: ran 5, same-as-own-fix 0, errors {}
+Greek (Greek) / double-windows-1252: n=200, c | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8' flags={} | DOM-> 5: ran 5, same-as-own-fix 0, errors {}
+Greek (Greek) / double-windows-1252: n=200, c | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > encode sloppy-windows-1252 > t | DOM-> 7: ran 7, same-as-own-fix 5, errors {}
+Greek (Greek) / double-windows-1252: n=200, c | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 10, 'NBSP': 3} | DOM-> 10: ran 10, same-as-own-fix 10, errors {}
+Greek (Greek) / sloppy-windows-1252(ftfy code | encode latin-1 > decode utf-8' flags={'C1 U+0081': 1} | DOM-> 6: ran 6, same-as-own-fix 6, errors {}
+Greek (Greek) / windows-1250: n=200, corrupte | encode sloppy-windows-1250 > decode utf-8' flags={'NBSP': 9} | DOM-> 61: ran 61, same-as-own-fix 61, errors {}
+Greek (Greek) / windows-1251: n=200, corrupte | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 14, 'NBSP': 1} | DOM-> 14: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 14}
+Greek (Greek) / windows-1252: n=200, corrupte | encode latin-1 > decode utf-8' flags={} | DOM-> 5: ran 5, same-as-own-fix 5, errors {}
+Greek (Greek) / windows-1252: n=200, corrupte | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 17} | DOM-> 89: ran 89, same-as-own-fix 89, errors {}
+Greek (Greek) / windows-1253: n=200, corrupte | encode sloppy-windows-1253 > decode utf-8' flags={'NBSP': 7} | DOM-> 48: ran 48, same-as-own-fix 48, errors {}
+Greek (Greek) / windows-1254: n=200, corrupte | encode latin-1 > decode utf-8' flags={} | DOM-> 5: ran 5, same-as-own-fix 5, errors {}
+Greek (Greek) / windows-1254: n=200, corrupte | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 15} | DOM-> 84: ran 84, same-as-own-fix 84, errors {}
+Hungarian (Central) / double-windows-1252: n= | encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 72: ran 72, same-as-own-fix 72, errors {}
+Hungarian (Central) / double-windows-1252: n= | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 17: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 17}
+Hungarian (Central) / sloppy-windows-1252(ftf | encode latin-1 > decode utf-8' flags={'C1 U+0081': 1, 'C1 U+0090': 1, 'NBSP': 7} | DOM-> 74: ran 74, same-as-own-fix 74, errors {}
+Hungarian (Central) / windows-1250: n=200, co | encode latin-1 > decode utf-8' flags={'NBSP': 2} | DOM-> 2: ran 2, same-as-own-fix 2, errors {}
+Hungarian (Central) / windows-1250: n=200, co | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 14} | DOM-> 14: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 14}
+Hungarian (Central) / windows-1250: n=200, co | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 2} | DOM-> 3: ran 3, same-as-own-fix 3, errors {}
+Hungarian (Central) / windows-1250: n=200, co | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 1} | DOM-> 1: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 1}
+Hungarian (Central) / windows-1251: n=200, co | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+Hungarian (Central) / windows-1252: n=200, co | encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 72: ran 72, same-as-own-fix 72, errors {}
+Hungarian (Central) / windows-1252: n=200, co | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 17} | DOM-> 17: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 17}
+Hungarian (Central) / windows-1253: n=200, co | encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 26} | DOM-> 26: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 26}
+Hungarian (Central) / windows-1254: n=200, co | encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 72: ran 72, same-as-own-fix 72, errors {}
+Hungarian (Central) / windows-1254: n=200, co | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 17} | DOM-> 17: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 17}
+Polish (Central) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8' flags={'NBSP': 1} | DOM-> 16: ran 16, same-as-own-fix 16, errors {}
+Polish (Central) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 18: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 18}
+Polish (Central) / double-windows-1252: n=200 | encode sloppy-windows-1252 > decode utf-8' flags={} | DOM-> 7: ran 7, same-as-own-fix 0, errors {}
+Polish (Central) / sloppy-windows-1252(ftfy c | encode latin-1 > decode utf-8' flags={'C1 U+0081': 3, 'NBSP': 1} | DOM-> 19: ran 19, same-as-own-fix 19, errors {}
+Polish (Central) / windows-1250: n=200, corru | encode latin-1 > decode utf-8' flags={'NBSP': 1} | DOM-> 1: ran 1, same-as-own-fix 1, errors {}
+Polish (Central) / windows-1250: n=200, corru | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 18} | DOM-> 18: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 18}
+Polish (Central) / windows-1250: n=200, corru | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 5} | DOM-> 22: ran 22, same-as-own-fix 22, errors {}
+Polish (Central) / windows-1250: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 1} | DOM-> 1: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 1}
+Polish (Central) / windows-1251: n=200, corru | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+Polish (Central) / windows-1252: n=200, corru | encode latin-1 > decode utf-8' flags={'NBSP': 1} | DOM-> 16: ran 16, same-as-own-fix 16, errors {}
+Polish (Central) / windows-1252: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 18} | DOM-> 18: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 18}
+Polish (Central) / windows-1253: n=200, corru | encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 27} | DOM-> 27: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 27}
+Polish (Central) / windows-1254: n=200, corru | encode latin-1 > decode utf-8' flags={'NBSP': 1} | DOM-> 16: ran 16, same-as-own-fix 16, errors {}
+Polish (Central) / windows-1254: n=200, corru | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 18} | DOM-> 18: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 18}
+Portuguese (Western) / double-windows-1252: n | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 12} | DOM-> 50: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 50}
+Portuguese (Western) / double-windows-1252: n | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+Portuguese (Western) / sloppy-windows-1252(ft | encode sloppy-windows-1252 > decode utf-8' flags={'C1 U+009D': 13, 'not-in-latin-1:œ(U+0153)': 13, 'not-in-la | DOM-> 63: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 63}
+Portuguese (Western) / windows-1250: n=200, c | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+Portuguese (Western) / windows-1251: n=200, c | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+Portuguese (Western) / windows-1252: n=200, c | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:€(U+20AC)': 38, 'not-in-latin-1:“(U+201C | DOM-> 50: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 50}
+Portuguese (Western) / windows-1252: n=200, c | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13, 'not-in-la | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+Portuguese (Western) / windows-1253: n=200, c | encode sloppy-windows-1253 > decode utf-8' flags={'NBSP': 14} | DOM-> 37: ran 37, same-as-own-fix 37, errors {}
+Portuguese (Western) / windows-1254: n=200, c | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:€(U+20AC)': 38, 'not-in-latin-1:“(U+201C | DOM-> 50: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 50}
+Portuguese (Western) / windows-1254: n=200, c | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13, 'not-in-la | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 13}
+Russian (Cyrillic) / double-windows-1252: n=2 | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8 | DOM-> 66: ran 66, same-as-own-fix 0, errors {}
+Russian (Cyrillic) / sloppy-windows-1252(ftfy | encode latin-1 > decode utf-8' flags={'C1 U+009D': 3, 'C1 U+0081': 7, 'C1 U+008F': 5, 'C1 U+0090': 3} | DOM-> 20: ran 20, same-as-own-fix 20, errors {}
+Russian (Cyrillic) / windows-1250: n=200, cor | encode sloppy-windows-1250 > decode utf-8' flags={'NBSP': 12} | DOM-> 91: ran 91, same-as-own-fix 91, errors {}
+Russian (Cyrillic) / windows-1251: n=200, cor | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 21, 'NBSP': 1} | DOM-> 21: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 21}
+Russian (Cyrillic) / windows-1252: n=200, cor | encode latin-1 > decode utf-8' flags={} | DOM-> 8: ran 8, same-as-own-fix 8, errors {}
+Russian (Cyrillic) / windows-1252: n=200, cor | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 11} | DOM-> 93: ran 93, same-as-own-fix 93, errors {}
+Russian (Cyrillic) / windows-1253: n=200, cor | encode sloppy-windows-1253 > decode utf-8' flags={'NBSP': 4} | DOM-> 10: ran 10, same-as-own-fix 10, errors {}
+Russian (Cyrillic) / windows-1254: n=200, cor | encode sloppy-windows-1254 > decode utf-8' flags={'NBSP': 9} | DOM-> 93: ran 93, same-as-own-fix 93, errors {}
+Spanish (Western) / double-windows-1252: n=20 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 11} | DOM-> 45: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 45}
+Spanish (Western) / double-windows-1252: n=20 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 21: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 21}
+Spanish (Western) / sloppy-windows-1252(ftfy  | encode sloppy-windows-1252 > decode utf-8' flags={'C1 U+009D': 13, 'not-in-latin-1:œ(U+0153)': 13, 'not-in-la | DOM-> 63: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 63}
+Spanish (Western) / windows-1250: n=200, corr | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 16, 'NBSP': 1} | DOM-> 16: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 16}
+Spanish (Western) / windows-1251: n=200, corr | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+Spanish (Western) / windows-1252: n=200, corr | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:€(U+20AC)': 34, 'not-in-latin-1:“(U+201C | DOM-> 45: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 45}
+Spanish (Western) / windows-1252: n=200, corr | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 21, 'not-in-la | DOM-> 21: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 21}
+Spanish (Western) / windows-1253: n=200, corr | encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 30, 'NBSP': 1} | DOM-> 30: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 30}
+Spanish (Western) / windows-1254: n=200, corr | encode sloppy-windows-1252 > decode utf-8' flags={'not-in-latin-1:€(U+20AC)': 34, 'not-in-latin-1:“(U+201C | DOM-> 45: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 45}
+Spanish (Western) / windows-1254: n=200, corr | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 21, 'not-in-la | DOM-> 21: ran 0, same-as-own-fix 0, errors {'UnicodeEncodeError': 21}
+Turkish (Turkish) / double-windows-1252: n=20 | encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 45: ran 45, same-as-own-fix 45, errors {}
+Turkish (Turkish) / double-windows-1252: n=20 | encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > d | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 13}
+Turkish (Turkish) / double-windows-1252: n=20 | encode sloppy-windows-1252 > decode utf-8' flags={} | DOM-> 14: ran 14, same-as-own-fix 0, errors {}
+Turkish (Turkish) / sloppy-windows-1252(ftfy  | encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 45: ran 45, same-as-own-fix 45, errors {}
+Turkish (Turkish) / windows-1250: n=200, corr | encode latin-1 > decode utf-8' flags={'NBSP': 5} | DOM-> 23: ran 23, same-as-own-fix 23, errors {}
+Turkish (Turkish) / windows-1250: n=200, corr | encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 7} | DOM-> 7: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 7}
+Turkish (Turkish) / windows-1250: n=200, corr | encode sloppy-windows-1252 > decode utf-8' flags={'NBSP': 3} | DOM-> 11: ran 11, same-as-own-fix 11, errors {}
+Turkish (Turkish) / windows-1250: n=200, corr | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 5} | DOM-> 5: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 5}
+Turkish (Turkish) / windows-1251: n=200, corr | encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 12} | DOM-> 12: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 12}
+Turkish (Turkish) / windows-1252: n=200, corr | encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 45: ran 45, same-as-own-fix 45, errors {}
+Turkish (Turkish) / windows-1252: n=200, corr | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 13} | DOM-> 13: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 13}
+Turkish (Turkish) / windows-1253: n=200, corr | encode sloppy-windows-1253 > decode utf-8' flags={'NBSP': 6} | DOM-> 18: ran 18, same-as-own-fix 18, errors {}
+Turkish (Turkish) / windows-1254: n=200, corr | encode latin-1 > decode utf-8' flags={'NBSP': 7} | DOM-> 45: ran 45, same-as-own-fix 45, errors {}
+Turkish (Turkish) / windows-1254: n=200, corr | encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8' flags={'U+FFFD': 24, 'NBSP': 2} | DOM-> 24: ran 0, same-as-own-fix 0, errors {'UnicodeDecodeError': 24}
