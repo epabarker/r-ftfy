@@ -1,6 +1,6 @@
 # Derived from python-ftfy v6.3.1, ftfy/__init__.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
 
-# Upstream doctest of fix_encoding_and_explain(), ftfy/__init__.py:403.
+# Upstream doctest of fix_encoding_and_explain(), ftfy/__init__.py:437.
 test_that("fix_encoding() repairs a one-layer mix-up", {
   expect_identical(fix_encoding("s\u00c3\u00b3"), "s\u00f3")
   expect_identical(fix_encoding("\u00e2\u20ac\u2122"), "\u2019")

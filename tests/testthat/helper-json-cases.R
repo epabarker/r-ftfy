@@ -87,7 +87,7 @@ fix_text_encoding_only <- function(x) {
 same_text <- function(a, b) !is.na(a) & !is.na(b) & a == b
 
 json_checks <- list(
-  # tests/test_examples_in_json.py:47, test_json_example(), for the cases
+  # tests/test_examples_in_json.py:48, test_json_example(), for the cases
   # marked "pass".
   "pass-1-fix-text" = list(expect = "pass", run = function(cases) {
     agrees_with_reference("fix_text", cases$original,
@@ -125,7 +125,7 @@ json_checks <- list(
     )
   }),
 
-  # tests/test_examples_in_json.py:92, test_failing_json_example(), for the
+  # tests/test_examples_in_json.py:94, test_failing_json_example(), for the
   # cases marked "fail". Upstream only asserts that these are not repaired;
   # here they must equal the reference version's texts and plans (ADR 0009).
   "fail-fix-text" = list(expect = "fail", run = function(cases) {

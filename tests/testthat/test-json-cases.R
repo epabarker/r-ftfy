@@ -17,7 +17,7 @@ test_that("the JSON cases are upstream's file, byte for byte", {
   )
 })
 
-# tests/test_examples_in_json.py:42, test_well_formed_example()
+# tests/test_examples_in_json.py:43, test_well_formed_example()
 test_that("there are 161 cases, 151 marked pass and 10 marked fail, identified by index", {
   cases <- read_json_cases()
 
@@ -44,8 +44,8 @@ test_that("the duplicate record runs twice", {
   expect_identical(sum(results$index == 10L), 7L)
 })
 
-# tests/test_examples_in_json.py:47, test_json_example(), and
-# tests/test_examples_in_json.py:92, test_failing_json_example()
+# tests/test_examples_in_json.py:48, test_json_example(), and
+# tests/test_examples_in_json.py:94, test_failing_json_example()
 test_that("every check on every JSON case passes, apart from the not-yet-passing list", {
   results <- run_json_checks(read_json_cases())
 

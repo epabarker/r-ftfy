@@ -70,7 +70,7 @@ repair_encoding_step <- function(x) {
   status <- rep("same", length(x))
 
   # Empty, ASCII and not-bad text is returned unchanged.
-  todo <- which(nzchar(x) & !stringi::stri_enc_isascii(x))
+  todo <- which(!stringi::stri_enc_isascii(x))
   todo <- todo[regex_detect(x[todo], patterns[["BADNESS_RE"]])]
 
   # Was the text meant to be UTF-8, but decoded with a single-byte codec?

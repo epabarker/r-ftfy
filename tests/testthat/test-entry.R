@@ -24,11 +24,14 @@ test_that("a leading U+FEFF is data, not something to strip", {
 })
 
 test_that("fix_encoding() keeps a leading U+FEFF", {
-  # U+FEFF is in neither codec, so the mix-up after it is not repaired yet;
-  # what matters is that the character is still there, and still first.
   x <- c("\ufeffplain", "\ufeffcaf\u00e9", "\ufeffcaf\u00c3\u00a9")
 
-  expect_identical(fix_encoding(x), x)
+  result <- fix_encoding(x)
+
+  expect_identical(result[1:2], x[1:2])
+  # The reference version repairs the third to "\ufeffcaf\u00e9", by a part
+  # of the heuristic that is not built yet. Either way U+FEFF stays first.
+  expect_true(result[[3]] %in% c(x[[3]], "\ufeffcaf\u00e9"))
 })
 
 test_that("anything but a character vector is an error suggesting as.character()", {
