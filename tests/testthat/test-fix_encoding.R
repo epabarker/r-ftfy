@@ -30,11 +30,9 @@ read_encoding_snapshot <- function() {
   out
 }
 
-# The plans the repair records inside itself, which ticket #37 exports
-# through fix_encoding_and_explain(). Until then they are read here.
+# The encoding plans in their text form, through the export.
 internal_plans <- function(x, ...) {
-  repaired <- ftfy:::repair_encoding(x, ftfy_config(...))
-  ftfy:::encoding_plan_text(repaired, x)
+  as.character(fix_encoding_and_explain(x, ...)$plan)
 }
 
 # The rows on which the package departs from the reference version, by

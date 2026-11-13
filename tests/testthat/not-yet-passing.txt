@@ -1,13 +1,3 @@
-fail-encoding-plan	51
-fail-encoding-plan	61
-fail-encoding-plan	107
-fail-encoding-plan	108
-fail-encoding-plan	110
-fail-encoding-plan	111
-fail-encoding-plan	112
-fail-encoding-plan	113
-fail-encoding-plan	123
-fail-encoding-plan	158
 fail-fix-and-explain	51
 fail-fix-and-explain	61
 fail-fix-and-explain	107
