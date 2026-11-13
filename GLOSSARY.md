@@ -51,3 +51,13 @@ _Avoid_: golden file, expected output, live comparison
 **Departure**:
 A deliberate, recorded difference from reference behaviour, which must not be changed back to match.
 _Avoid_: known bug, divergence, deviation
+
+## Evaluating column-aware repair
+
+**Reachable target**:
+The text a repair of one value can be expected to produce: its clean value, except that each character destroyed by the corruption stays as the replacement the corruption left. It equals the clean value when nothing was lost.
+_Avoid_: expected output, best possible output
+
+**New false positive**:
+A value that per-value `fix_text()` leaves at, or repairs to, its reachable target but that column-aware repair turns into anything else.
+_Avoid_: regression, false fix
