@@ -74,6 +74,18 @@ _Avoid_: votes, count, frequency
 The plan a column's repair is built on: the plan with the most support, provided its support reaches a minimum number of flagged values and more than half of them. A column may have no dominant plan.
 _Avoid_: column plan, majority plan, commonest plan
 
+**Diagnosis**:
+The judgement about a column that a cause report states: its dominant plan, or that it has none. Evaluation scores the diagnosis, never the report's wording.
+_Avoid_: cause report (that is the whole account, of which the diagnosis is one part), verdict
+
 **New false positive**:
 A value that column-aware repair does worse on than per-value `fix_text()`: either `fix_text()` gives its reachable target and column-aware repair gives anything else, or `fix_text()` leaves it unrepaired and column-aware repair changes it to anything other than its reachable target.
 _Avoid_: regression, false fix
+
+**Override**:
+A value to which column-aware repair gives different text from per-value `fix_text()`. An override may be a new repair or a new false positive; only ground truth tells which.
+_Avoid_: departure (that is a difference from reference behaviour), divergence, deviation, column fix
+
+**Cause report**:
+What column-aware repair tells the user about a column's encoding damage: whether a dominant plan was found, what mix-up it describes (which codec the text was in and which it was read as), whether characters were lost, and how many flagged values support it. It states what detection found, never that a column is clean.
+_Avoid_: diagnosis (that is the judgement the report states, not the whole report), explanation (that is upstream's word for a plan), cause (on its own)
