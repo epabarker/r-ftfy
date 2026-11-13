@@ -13,7 +13,7 @@ Research for issue #3. Feeds #7 (v0.1 public surface), #14 (test harness and CI 
 
 1. `tests/test_cases.json` is one JSON array of 161 objects. Each has `label`, `original`, `fixed`, `expect`; 33 also have `fixed-encoding`; 60 also have `comment`.
 2. `expect` is the only marker. It is `"pass"` on 151 records and `"fail"` on 10. There is no other skip or known-wrong mechanism.
-3. A pass case must satisfy seven distinct assertions, covering `fix_text`, `fix_encoding_and_explain`, plan replay through `apply_plan`, a config-disabled `fix_text`, and a re-mojibaked input.
+3. A pass case must satisfy seven assert statements, six of them distinct, covering `fix_text`, `fix_encoding_and_explain`, plan replay through `apply_plan`, a config-disabled `fix_text`, and a re-mojibaked input.
 4. A fail case is a strict expected failure of one assertion only: the encoding-only fix must *not* equal the expected text. The file does not record what Python actually outputs for those 10.
 5. There is no unit-test file for width or for files. Width is tested only by doctests in `ftfy/formatting.py`. `fix_file` is tested only through the command-line tests.
 6. Upstream has no CI workflow that runs the tests; the only workflow publishes to PyPI.
@@ -114,7 +114,8 @@ With `orig = original` and `fixed = fixed`, in order:
 Details that matter for a port:
 
 - **Assertion 2 and 3 are self-consistency checks only.** The plan is never compared with any expected plan. The JSON file contains no expected plans. `fixed_output` from `fix_and_explain` is also never compared with `fixed`; only its replay is.
-- **Assertion 4** turns off `unescape_html`, `remove_terminal_escapes`, `fix_character_width`, `fix_latin_ligatures`, `uncurl_quotes`, `fix_line_breaks`, `fix_surrogates`, `remove_control_chars`, and sets `normalization=None` (`:70-78`). It leaves on, by default, `fix_encoding`, `restore_byte_a0`, `replace_lossy_sequences`, `decode_inconsistent_utf8` and `fix_c1_controls` (`ftfy/__init__.py:214-218`). So the R port needs these as separately switchable options to replicate the check.
+- **Assertion 4** turns off `unescape_html`, `remove_terminal_escapes`, `fix_character_width`, `fix_latin_ligatures`, `uncurl_quotes`, `fix_line_breaks`, `fix_surrogates`, `remove_control_chars`, and sets `normalization=None` (`:70-78`). It leaves on, by default, `fix_encoding`, `restore_byte_a0`, `replace_lossy_sequences`, `decode_inconsistent_utf8` and `fix_c1_controls` (`ftfy/__init__.py:214-218`). To replicate the check, the R port must be able to turn off those nine options individually.
+- **The four encoding sub-options are ignored when explanations are off.** With `explain=False`, `fix_and_explain` calls `fix_encoding(text)` without passing the config (`ftfy/__init__.py:394-396`). `fix_text` and `fix_text_segment` default to `explain=False` (`:341`, `:617`), so on that path `restore_byte_a0`, `replace_lossy_sequences`, `decode_inconsistent_utf8` and `fix_c1_controls` inside the encoding fixer always take their defaults. `fix_encoding=False` is still honoured (`:394`). Source-derived, not observed; no upstream test covers it.
 - **Assertion 7** maps each UTF-8 byte of the input to the codepoint U+00NN, including the C1 range U+0080 to U+009F. It demands that one extra layer of UTF-8-read-as-Latin-1 mojibake is always undone, for all 151 cases, including the 37 that must otherwise be left unchanged.
 - `fix_text` and `fix_and_explain` treat `unescape_html="auto"` as off when the segment contains `<` (`ftfy/__init__.py:356-357`, `:380-381`). One pass original contains `<`.
 
@@ -131,7 +132,7 @@ So `expect: "fail"` means exactly: *in Python, the encoding-only fix of `origina
 
 The 10 fail records (index, line of the opening brace):
 
-| Index | Line | What it is (paraphrase) |
+| Index | Line | What it is (short description based on the upstream label) |
 | --- | --- | --- |
 | 51 | 323 | Synthetic incomplete UTF-8 / Windows-1252 mix-up in Arabic |
 | 61 | 386 | Two levels of inconsistent mojibake |
@@ -188,7 +189,7 @@ Mapping to the surfaces named in the issue:
 
 - `test_guess_bytes` (`:17-27`), 5 strings × 3 encodings (`utf-16`, `utf-8`, `sloppy-windows-1252`): encode, then `guess_bytes` must return both the original string and the same encoding name. For strings containing `\n`, a MacRoman round trip with `\r` is also checked, text only.
 - `test_guess_bytes_null` (`:30-34`): bytes `C0 80` must decode to a string containing U+0000, with encoding name `utf-8-variants`.
-- `test_incomplete_sequences` (`:37-50`): feeds a byte string to the incremental decoder split at every position; the result must contain an astral character and U+0000. This tests a Python codec class, not a top-level function.
+- `test_incomplete_sequences` (`:37-50`): feeds a 29-byte string to the incremental decoder in two pieces, for split offsets 0 to 23; the result must contain an astral character and U+0000. The loop bound is the length of the 23-character expected string (`:43`), not of the byte string, so the splits fall inside the CESU-8 surrogate sequence but never inside the final `C0 80`. This tests a Python codec class, not a top-level function.
 
 `tests/test_characters.py`
 
@@ -237,7 +238,7 @@ Notes:
 
 - Width has two meanings upstream. `fix_character_width` (`ftfy/fixes.py:186`) converts fullwidth and halfwidth characters and is part of `fix_text`. `ftfy/formatting.py` measures display width and depends on the third-party `wcwidth` package (`ftfy/formatting.py:11`, `pyproject.toml:8`). Its expected values are whatever the installed `wcwidth` returns.
 - `explain_unicode` is tested only by its doctest, which pins Unicode character names, categories and display padding (`ftfy/__init__.py:776-788`).
-- Functions with no direct test of their own: `fix_file`, `restore_byte_a0`, `replace_lossy_sequences`, `decode_inconsistent_utf8`, `fix_c1_controls`, `badness`, `is_bad`. They are exercised only through the JSON cases.
+- Functions with no direct test of their own: `restore_byte_a0`, `replace_lossy_sequences`, `decode_inconsistent_utf8`, `fix_c1_controls`, `badness`, `is_bad`. They are exercised only indirectly, mainly through the JSON cases. `fix_file` also has no direct test and is reached only through the command-line tests.
 
 ### Derived size of a full upstream run
 
@@ -267,7 +268,7 @@ These are inferences for the decision tickets, not upstream facts.
 For #14 (harness and CI):
 
 - The parity bar as worded ("every JSON case that passes in Python passes in R") needs an observed pass set. The JSON gives a declared one. A CI job that runs Python ftfy 6.3.1 over the file is the only way to get the observed set, and the only source of target outputs for the 10 fail records.
-- An R runner that replicates upstream needs seven checks per pass case, not one. Checks 2 and 3 need an R `apply_plan` equivalent. Check 4 needs per-fixer switches. Check 7 needs UTF-8 bytes re-read as Latin-1.
+- An R runner that replicates upstream needs six distinct checks per pass case, not one. Checks 2 and 3 need an R `apply_plan` equivalent. Check 4 needs the ability to turn off the nine listed options. Check 7 needs UTF-8 bytes re-read as Latin-1.
 - Replicating strict expected failure in R means asserting that the encoding-only fix differs from `fixed` for the 10 fail records. A stricter and more useful check is equality with captured Python output.
 - Plans are not pinned by the JSON. If R plans should match Python plans, the comparison job has to capture them too.
 - Deduplicate or keep the duplicate record deliberately; identify cases by index, since labels are not unique.
@@ -284,7 +285,7 @@ For #17 (vendoring):
 - Candidate files: `tests/test_cases.json` (48,962 bytes, hash above) and `tests/face.txt` (35 bytes, hash above).
 - `test_cases.json` is UTF-8 with 2,153 raw non-ASCII characters and no trailing newline. Any tooling that rewrites the file will change its hash.
 - `LICENSE.txt` at the tag is 552 bytes: the Apache-2.0 notice header with "Copyright 2023 Robyn Speer", not the full licence text (SHA-256 `a0bfc5020bc2e1e820551a0625c70c95faa898c15e737100ff4880aa10197857`). The repository root has no `NOTICE` file.
-- `MANIFEST.in:1` grafts `tests` into the source distribution, so the same files ship in the PyPI sdist.
+- The build backend is hatchling (`pyproject.toml:22-24`), and its sdist exclude list (`pyproject.toml:26-27`) does not exclude `tests/`, so the same files probably ship in the PyPI sdist. The sdist itself was not inspected. `MANIFEST.in:1` also says `graft tests`, but that is a setuptools file and may be a leftover.
 - The upstream changelog says the JSON file exists partly to "ease porting to other languages" (`CHANGELOG.md:267-268`).
 
 ## References
