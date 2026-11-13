@@ -1,0 +1,18 @@
+Id: regex-overflow
+Title: A regex that overflows the backtracking limit is an error
+Input: Text so long, and of such a shape, that matching one of the
+ package's patterns needs more than the 1e9 bytes of backtracking stack
+ that every regex call allows, in a call to any exported function. For
+ example one string of 50,000,000 characters that is U+00C3 U+00A9
+ repeated 25,000,000 times, searched with UTF8_DETECTOR_RE (measured on
+ stringi 1.8.7 with ICU 71.1: 40,000,000 characters are matched and
+ 50,000,000 overflow). Only input tens of millions of characters long,
+ in one string, gets near the limit.
+Reference: Python's re has no backtracking limit. Run on ftfy 6.3.1 with
+ Python 3.13: chardata.UTF8_DETECTOR_RE.search('\u00c3\u00a9' * 25_000_000)
+ returns a match with span (0, 50000000), in about half a second.
+R: An error of class ftfy_regex_overflow. The message names the exported
+ function that was called, says how many strings the input holds and the
+ length in characters of the longest, and says to split the text into
+ shorter strings. No result is returned for any element of the input.
+Decided: docs/adr/0005-regex-and-unicode-data-are-generated-from-a-reference-python.md
