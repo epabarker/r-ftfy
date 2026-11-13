@@ -11,11 +11,13 @@ is_bad(x)
 }
 \arguments{
 \item{x}{A character vector. Anything else is an error, as is a string
-that is not valid UTF-8.}
+that is not valid UTF-8 or is marked as bytes. A logical vector that
+is all \code{NA} is taken as missing strings.}
 }
 \value{
 \code{badness()} returns an integer vector and \code{is_bad()} a logical
-vector, each as long as \code{x}. A missing string gives \code{NA}.
+vector, each as long as \code{x} and with its \code{names}, \code{dim} and \code{dimnames}.
+A missing string gives \code{NA}.
 }
 \description{
 \code{badness()} counts the character sequences in each string that are far

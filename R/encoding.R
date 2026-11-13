@@ -28,9 +28,10 @@
 #' fix_encoding(x)
 #' @export
 fix_encoding <- function(x, ..., config = ftfy_config()) {
+  shape <- entry_shape(x)
   x <- entry_step(x)
   config <- resolve_config(..., config = config)
-  repair_encoding(x, config)$text
+  exit_step(repair_encoding(x, config)$text, shape)
 }
 
 # The codecs a mix-up is looked for in, in the order upstream tries them
