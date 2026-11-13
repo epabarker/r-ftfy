@@ -1,0 +1,16 @@
+Id: apply-plan-replays-normalize
+Title: apply_plan() replays normalize steps
+Input: A plan that holds a normalize step, replayed with apply_plan().
+ fix_and_explain() records such a step whenever normalisation changes
+ the text, for example the plan 'normalize NFC' for 'e\u0301'. None of
+ the upstream JSON cases gives a plan with this step.
+Reference: An error. Run on ftfy 6.3.1 with Python 3.13:
+ fix_and_explain('e\u0301') returns the text '\xe9' with the plan
+ [('normalize', 'NFC')], and apply_plan('e\u0301', [('normalize', 'NFC')])
+ raises ValueError: Unknown plan step: normalize. So the reference
+ version cannot replay every plan it returns.
+R: The step is replayed: the text is normalised in the form the step
+ names, NFC, NFD, NFKC or NFKD, with the Unicode data of the ICU library
+ that stringi was built with. apply_plan('e\u0301', 'normalize NFC')
+ gives '\u00e9'. Every plan the package returns can be replayed.
+Decided: docs/adr/0002-plans-are-a-vector-class-in-a-data-frame.md

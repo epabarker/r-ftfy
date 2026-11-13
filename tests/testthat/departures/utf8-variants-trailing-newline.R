@@ -2,7 +2,7 @@
 # version read a final newline as the last byte of a sequence cut short,
 # C0 or the first five bytes of a six-byte surrogate pair, and R did not.
 #
-# It matches at two levels.
+# It matches at three levels.
 #
 # - The decoder: `fun` is "decode utf-8-variants", `input` is a byte string
 #   that ends in such a sequence and a newline, the reference version
@@ -13,6 +13,9 @@
 #   These are the snapshot rows of reference/fix_encoding.tsv that show
 #   the departure. A text that reaches these bytes only after a first
 #   repair is not matched: no snapshot row needs it.
+# - apply_plan(): `input` is such a text, the reference version's text has
+#   lost the newline, and the replay of the reference version's plan failed
+#   in R, so that `actual` is `NA` (what the unexported replay gives).
 #
 # Ticket #41 widens it to fix_text().
 function(difference) {
@@ -37,12 +40,22 @@ function(difference) {
   if (identical(difference$fun, "decode utf-8-variants")) {
     return(is.na(actual) && ends_cut_short(input))
   }
-  if (!identical(difference$fun, "fix_encoding")) {
+  if (!difference$fun %in% c("fix_encoding", "apply_plan")) {
     return(FALSE)
   }
   # A reference text that holds U+0000 is still escaped, newline and all.
   newline_lost <- !endsWith(reference, "\n") && !endsWith(reference, "\\u000A")
-  if (is.na(actual) || !endsWith(actual, "\n") || !newline_lost) {
+  if (!newline_lost) {
+    return(FALSE)
+  }
+  if (identical(difference$fun, "apply_plan")) {
+    # The replay of the reference version's own plan failed: `actual` is
+    # `NA`, as the unexported replay gives it. Which plan it was is not in
+    # a difference, so the bytes are looked for as for fix_encoding().
+    if (!is.na(actual)) {
+      return(FALSE)
+    }
+  } else if (is.na(actual) || !endsWith(actual, "\n")) {
     return(FALSE)
   }
   for (codec in ftfy:::charmap_codecs()) {

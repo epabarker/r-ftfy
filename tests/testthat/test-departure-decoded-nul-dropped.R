@@ -87,3 +87,18 @@ test_that("the registry entry matches the difference in fix_encoding()", {
                               reference = reference[[i]], actual = text[[i]])))
   }
 })
+
+# apply_plan() (ticket #39). The reference version's plan for this text is
+# `encode sloppy-windows-1252 > decode utf-8-variants`, and its apply_plan()
+# replays it to 'null\\x00separated' (run on ftfy 6.3.1 with Python 3.13).
+test_that("apply_plan() puts nothing in place of a decoded C0 80", {
+  text <- "null\u00c0\u20acseparated"
+  plan <- "encode sloppy-windows-1252 > decode utf-8-variants"
+
+  expect_identical(apply_plan(text, plan), "nullseparated")
+  expect_identical(apply_plan(text, fix_encoding_and_explain(text)$plan), "nullseparated")
+  expect_true(departure_matchers()[["decoded-nul-dropped"]](list(
+    fun = "apply_plan", input = text,
+    reference = unescape_reference("null\\u0000separated"), actual = apply_plan(text, plan)
+  )))
+})

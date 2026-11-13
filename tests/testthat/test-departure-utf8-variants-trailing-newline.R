@@ -145,3 +145,45 @@ test_that("the registry entry matches the difference in fix_encoding() and no ot
                               reference = "x", actual = other)))
   }
 })
+
+# apply_plan() (ticket #39). The plan the reference version gives for each
+# of these texts is `encode latin-1 > decode utf-8-variants` (run on ftfy
+# 6.3.1 with Python 3.13), and its own apply_plan() replays it to the
+# texts of `cut_short_reference()`. Here that replay fails.
+cut_short_plan <- "encode latin-1 > decode utf-8-variants"
+
+test_that("apply_plan() fails on the reference version's plan for these texts", {
+  text <- cut_short_texts()
+
+  expect_identical(ftfy:::replay_plan(text, cut_short_plan), rep(NA_character_, 4L))
+  expect_error(
+    apply_plan(text, cut_short_plan),
+    "failed in 4 of 4 elements.*In element 1, step 2 .*`decode utf-8-variants`, met bytes that the codec cannot decode",
+    class = "ftfy_replay_failed"
+  )
+  # With anything after the newline the reference version fails too.
+  expect_error(apply_plan(paste0(text[[1]], "x"), cut_short_plan), class = "ftfy_replay_failed")
+  # The package's own plan for the same texts replays to its own text.
+  explained <- fix_encoding_and_explain(text)
+  expect_identical(apply_plan(text, explained$plan), explained$text)
+})
+
+test_that("the registry entry matches the failed replay in apply_plan() and no other", {
+  matcher <- departure_matchers()[["utf8-variants-trailing-newline"]]
+  text <- cut_short_texts()
+  reference <- cut_short_reference()
+
+  for (i in seq_along(text)) {
+    expect_true(matcher(list(fun = "apply_plan", input = text[[i]],
+                             reference = reference[[i]], actual = NA_character_)))
+    # A replay that gave a text is not this departure.
+    expect_false(matcher(list(fun = "apply_plan", input = text[[i]],
+                              reference = reference[[i]], actual = text[[i]])))
+    # Nor is a reference text that kept the newline.
+    expect_false(matcher(list(fun = "apply_plan", input = text[[i]],
+                              reference = text[[i]], actual = NA_character_)))
+  }
+  # A failed replay on a text that does not reach these bytes.
+  expect_false(matcher(list(fun = "apply_plan", input = "caf\u00e9\n",
+                            reference = "caf", actual = NA_character_)))
+})
