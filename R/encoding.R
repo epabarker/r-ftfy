@@ -29,20 +29,12 @@ fix_encoding <- function(x) {
 }
 
 # The codecs a mix-up is looked for in, in the order upstream tries them
-# (`chardata.CHARMAP_ENCODINGS`). The order decides which repair is found
-# first, so it is held here and never taken from the shipped tables.
-charmap_codecs <- c(
-  "latin-1",
-  "sloppy-windows-1252",
-  "sloppy-windows-1251",
-  "sloppy-windows-1250",
-  "sloppy-windows-1253",
-  "sloppy-windows-1254",
-  "sloppy-windows-1257",
-  "iso-8859-2",
-  "macroman",
-  "cp437"
-)
+# (`chardata.CHARMAP_ENCODINGS`): the first ten of `plan_codecs`, which is
+# the only copy of the codec names. The order decides which repair is found
+# first, so it is never taken from the shipped tables.
+charmap_codecs <- function() {
+  plan_codecs[1:10]
+}
 
 # The encoding repair of a whole vector of valid UTF-8 strings and `NA`s:
 # upstream's `fix_encoding_and_explain()`. Returns a list, of which `text`
@@ -82,7 +74,7 @@ repair_encoding_step <- function(x) {
   todo <- todo[regex_detect(x[todo], patterns[["BADNESS_RE"]])]
 
   # Was the text meant to be UTF-8, but decoded with a single-byte codec?
-  for (codec in charmap_codecs) {
+  for (codec in charmap_codecs()) {
     if (length(todo) == 0L) {
       break
     }

@@ -16,6 +16,14 @@ test_that("the two codecs the tracer needs are shipped", {
   expect_true(all(c("latin-1", "sloppy-windows-1252") %in% codec_names()))
 })
 
+test_that("every shipped table is for a codec a plan may name", {
+  # Ticket #33 ships the rest; this then becomes expect_setequal() against
+  # the eleven single-byte codecs of `plan_codecs`.
+  expect_true(all(codec_names() %in% ftfy:::plan_codecs))
+  expect_identical(ftfy:::charmap_codecs(), ftfy:::plan_codecs[1:10])
+  expect_identical(ftfy:::charmap_codecs()[1:2], c("latin-1", "sloppy-windows-1252"))
+})
+
 test_that("every codec table is 256 code points or holes", {
   for (codec in codec_names()) {
     table <- ftfy:::codec_tables[[codec]]
