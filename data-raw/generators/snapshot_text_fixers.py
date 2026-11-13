@@ -11,6 +11,11 @@ pattern. The inputs are seeded, so a rerun gives the same file byte for
 byte. A row whose input or output holds U+0000 or a surrogate, which an R
 string cannot hold, is left out.
 
+The inputs for numeric HTML references are taken from the edges of the
+ranges in data-raw/tables/html_numeric.txt, which table_html_numeric.py
+writes. regenerate.py runs this script before that one, so after a change
+to that table it must be run twice.
+
 Every character is written here by its number, never as a literal or an
 escape, so that the file stays ASCII whatever tool edits it.
 """
@@ -162,7 +167,7 @@ def html_inputs(rng):
         out.append("&#" + "0" * length + "65;")
         out.append("&#x" + "0" * length + "41;")
         out.append("&#x" + "f" * length + ";")
-    out += [name for name in names if len(name) > 24]
+    out += [name for name in names if len(name) > 26]
 
     # Numeric references: both sides of every range of the table of
     # exceptions, in every way of writing a number.

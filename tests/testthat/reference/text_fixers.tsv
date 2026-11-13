@@ -761,10 +761,7 @@ unescape_html	&#111111111111111111111111111111111;	&#111111111111111111111111111
 unescape_html	&#00000000000000000000000000000000065;	&#00000000000000000000000000000000065;
 unescape_html	&#x00000000000000000000000000000000041;	&#x00000000000000000000000000000000041;
 unescape_html	&#xfffffffffffffffffffffffffffffffff;	&#xfffffffffffffffffffffffffffffffff;
-unescape_html	&ClockwiseContourIntegral;	\u2232
 unescape_html	&CounterClockwiseContourIntegral;	&CounterClockwiseContourIntegral;
-unescape_html	&DoubleLongLeftRightArrow;	\u27FA
-unescape_html	&NotNestedGreaterGreater;	\u2AA2\u0338
 unescape_html	&#0; &#x0; &#X0; &#000; &#x000; &#0 &#x0;	\uFFFD \uFFFD \uFFFD \uFFFD \uFFFD &#0 \uFFFD
 unescape_html	&#1; &#x1; &#X1; &#001; &#x001; &#1 &#x1;	     &#1 
 unescape_html	&#8; &#x8; &#X8; &#008; &#x008; &#8 &#x8;	     &#8 

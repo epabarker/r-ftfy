@@ -133,7 +133,7 @@ remove_control_chars <- function(x) {
 
 # --- The fixers alone ------------------------------------------------------
 
-# Upstream's `unescape_html()` (ftfy/fixes.py:89): every match of
+# Upstream's `unescape_html()` (ftfy/fixes.py:94): every match of
 # `HTML_ENTITY_RE` is replaced by what `unescape_entities()` makes of it.
 fixer_unescape_html <- function(x) {
   # `grepl()` gives FALSE for `NA`, so a missing string is never searched.
@@ -172,7 +172,7 @@ fixer_fix_line_breaks <- function(x) {
   x
 }
 
-# Upstream's `remove_control_chars()` (ftfy/fixes.py:290).
+# Upstream's `remove_control_chars()` (ftfy/fixes.py:297).
 fixer_remove_control_chars <- function(x) {
   regex_replace_all(x, code_point_class(control_chars), "")
 }

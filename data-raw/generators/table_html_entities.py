@@ -6,7 +6,7 @@ data-raw/tables/html_entities.txt.
 Columns, tab separated: entity (as written in text, from the ampersand to
 the semicolon; ASCII) and replacement (the code points of the text it
 becomes, in hexadecimal, separated by spaces). In order of entity. Every
-entry is written, including the few whose name is longer than
+entry is written, including the one whose name is longer than
 HTML_ENTITY_RE can match."""
 
 import os

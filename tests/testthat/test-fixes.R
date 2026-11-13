@@ -5,12 +5,12 @@
 # order.
 #
 # Not ported, by the resolution of issue #14: the doctests of
-# `fix_surrogates` (ftfy/fixes.py:263; its inputs are lone surrogates,
-# which no R string holds), `remove_bom` (ftfy/fixes.py:326) and
-# `decode_escapes` (ftfy/fixes.py:355), none of which is ported.
-# `remove_control_chars` (ftfy/fixes.py:290) has no doctest.
+# `fix_surrogates` (ftfy/fixes.py:279; its inputs are lone surrogates,
+# which no R string holds), `remove_bom` (ftfy/fixes.py:335) and
+# `decode_escapes` (ftfy/fixes.py:369), none of which is ported.
+# `remove_control_chars` (ftfy/fixes.py:297) has no doctest.
 
-# ftfy/fixes.py:112 to :131
+# ftfy/fixes.py:118 to :136
 test_that("unescape_html doctest", {
   expect_identical(unescape_html("&lt;tag&gt;"), "<tag>")
   expect_identical(
@@ -48,7 +48,7 @@ test_that("fix_latin_ligatures doctest", {
   expect_identical(fix_latin_ligatures("\ufb02u\ufb03e\ufb06"), "fluffiest")
 })
 
-# ftfy/fixes.py:198 to :201
+# ftfy/fixes.py:198 to :200
 test_that("fix_character_width doctest", {
   expect_identical(
     fix_character_width(
@@ -63,7 +63,7 @@ test_that("fix_character_width doctest", {
   )
 })
 
-# ftfy/fixes.py:226 to :248
+# ftfy/fixes.py:225 to :246
 test_that("fix_line_breaks doctest", {
   expect_identical(
     fix_line_breaks(paste0(

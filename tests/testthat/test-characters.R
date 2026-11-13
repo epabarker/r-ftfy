@@ -5,18 +5,18 @@
 #
 # Not ported, by the resolution of issue #14:
 #
-# - tests/test_characters.py:10, test_possible_encoding: `possible_encoding`
+# - tests/test_characters.py:13, test_possible_encoding: `possible_encoding`
 #   is internal here. (It also runs over U+0000, which no R string holds.)
-# - tests/test_characters.py:44, test_surrogates: `fix_surrogates` is not
+# - tests/test_characters.py:45 and :46, test_surrogates: `fix_surrogates` is not
 #   ported, and its inputs are lone surrogates, which no R string holds.
 #
 # Ported by the tickets that deliver the functions they call:
 #
-# - tests/test_characters.py:16, test_byte_order_mark: `fix_encoding()`.
-# - tests/test_characters.py:36, test_ohio_flag: `fix_text()`.
-# - tests/test_characters.py:49, test_color_escapes: `fix_and_explain()`.
+# - tests/test_characters.py:17, test_byte_order_mark: `fix_encoding()`.
+# - tests/test_characters.py:41, test_ohio_flag: `fix_text()`.
+# - tests/test_characters.py:50 to :56, test_color_escapes: `fix_and_explain()`.
 
-# tests/test_characters.py:20
+# tests/test_characters.py:20 (the assertion is line 26)
 test_that("test_control_chars", {
   text <- paste0(
     "\ufeffSometimes, \ufffcbad ideas \u007f\ufffalike these characters\ufffb ",
@@ -26,7 +26,7 @@ test_that("test_control_chars", {
   expect_identical(remove_control_chars(text), fixed)
 })
 
-# tests/test_characters.py:29
+# tests/test_characters.py:29 (the assertion is line 33)
 test_that("test_welsh_flag", {
   # ftfy used to remove "tag characters", but they have been repurposed in
   # the "Flag of England", "Flag of Scotland", and "Flag of Wales" emoji
