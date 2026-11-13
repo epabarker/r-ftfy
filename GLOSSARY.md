@@ -31,3 +31,11 @@ _Avoid_: gap, unassigned byte, undefined byte
 **Sloppy codec**:
 A codec with no holes, made from a Windows codec by giving each hole the character with the same number as the byte. It decodes any bytes without failing.
 _Avoid_: lenient codec, permissive codec
+
+**Reference behaviour**:
+What Python ftfy 6.3.1 does when run on the reference Python. The package's correctness is judged against it.
+_Avoid_: upstream behaviour, Python behaviour
+
+**Departure**:
+A deliberate, recorded difference from reference behaviour, which must not be changed back to match.
+_Avoid_: known bug, divergence, deviation
