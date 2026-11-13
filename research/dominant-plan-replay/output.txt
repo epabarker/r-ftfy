@@ -1,0 +1,490 @@
+ftfy 6.3.1; python 3.13.5
+clean pool: 1790 non-ASCII clean values
+French     windows-1252                 flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+French     sloppy-windows-1252          flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+French     latin-1                      flagged 199 missed   0  dom[199] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+French     windows-1250                 flagged 184 missed  15  dom[184] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 15}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+French     windows-1251                 flagged  68 missed 131  dom[68] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 131}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+French     windows-1253                 flagged  87 missed 112  dom[87] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 110, 'other': 2}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+French     windows-1254                 flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+French     cp437                        flagged 190 missed   9  dom[190] encode cp437 > decode utf-8
+    missed: {'exact': 9}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+French     mac_roman                    flagged 193 missed   6  dom[193] encode macroman > decode utf-8
+    missed: {'exact': 6}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+French     double-windows-1252          flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+French     double-sloppy-windows-1252   flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+German     windows-1252                 flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+German     sloppy-windows-1252          flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+German     latin-1                      flagged 199 missed   0  dom[199] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+German     windows-1250                 flagged 135 missed  64  dom[135] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 64}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+German     windows-1251                 flagged  96 missed 103  dom[96] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 103}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+German     windows-1253                 flagged 117 missed  82  dom[117] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'other': 9, 'exact': 73}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+German     windows-1254                 flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+German     cp437                        flagged 129 missed  70  dom[129] encode cp437 > decode utf-8
+    missed: {'exact': 70}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+German     mac_roman                    flagged 176 missed  23  dom[176] encode macroman > decode utf-8
+    missed: {'exact': 23}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+German     double-windows-1252          flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+German     double-sloppy-windows-1252   flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Spanish    windows-1252                 flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Spanish    sloppy-windows-1252          flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Spanish    latin-1                      flagged 199 missed   0  dom[199] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Spanish    windows-1250                 flagged 154 missed  45  dom[154] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 45}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Spanish    windows-1251                 flagged  63 missed 136  dom[63] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 136}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Spanish    windows-1253                 flagged  67 missed 132  dom[67] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 130, 'other': 2}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Spanish    windows-1254                 flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Spanish    cp437                        flagged 127 missed  72  dom[127] encode cp437 > decode utf-8
+    missed: {'exact': 72}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Spanish    mac_roman                    flagged 176 missed  23  dom[176] encode macroman > decode utf-8
+    missed: {'exact': 23}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Spanish    double-windows-1252          flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Spanish    double-sloppy-windows-1252   flagged 199 missed   0  dom[199] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Portuguese windows-1252                 flagged 174 missed   0  dom[174] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Portuguese sloppy-windows-1252          flagged 174 missed   0  dom[174] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Portuguese latin-1                      flagged 174 missed   0  dom[174] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Portuguese windows-1250                 flagged 119 missed  55  dom[119] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 55}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Portuguese windows-1251                 flagged  57 missed 117  dom[57] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 117}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Portuguese windows-1253                 flagged  68 missed 106  dom[68] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 106}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Portuguese windows-1254                 flagged 174 missed   0  dom[174] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Portuguese cp437                        flagged 153 missed  21  dom[153] encode cp437 > decode utf-8
+    missed: {'exact': 21}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Portuguese mac_roman                    flagged 140 missed  34  dom[140] encode macroman > decode utf-8
+    missed: {'exact': 34}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Portuguese double-windows-1252          flagged 174 missed   0  dom[174] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Portuguese double-sloppy-windows-1252   flagged 174 missed   0  dom[174] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Czech      windows-1252                 flagged 168 missed   3  dom[168] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 3}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Czech      sloppy-windows-1252          flagged 168 missed   3  dom[168] encode sloppy-windows-1252 > decode utf-8
+    missed: {'exact': 3}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Czech      latin-1                      flagged 170 missed   1  dom[170] encode latin-1 > decode utf-8
+    missed: {'exact': 1}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Czech      windows-1250                 flagged 139 missed  32  dom[139] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 32}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Czech      windows-1251                 flagged  63 missed 108  dom[63] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 106, 'other': 2}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Czech      windows-1253                 flagged  74 missed  97  dom[74] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 74, 'other': 23}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Czech      windows-1254                 flagged 168 missed   3  dom[168] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 3}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Czech      cp437                        flagged 137 missed  34  dom[137] encode cp437 > decode utf-8
+    missed: {'exact': 34}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Czech      mac_roman                    flagged 151 missed  20  dom[151] encode macroman > decode utf-8
+    missed: {'exact': 20}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Czech      double-windows-1252          flagged 166 missed   5  dom[163] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 5}
+    non-supporting: {'replay exact, own fix not': 3}
+    clean pool: {'fail': 1790}
+Czech      double-sloppy-windows-1252   flagged 166 missed   5  dom[163] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {'exact': 5}
+    non-supporting: {'replay exact, own fix not': 3}
+    clean pool: {'fail': 1790}
+Polish     windows-1252                 flagged 151 missed   7  dom[151] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 7}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Polish     sloppy-windows-1252          flagged 151 missed   7  dom[151] encode sloppy-windows-1252 > decode utf-8
+    missed: {'exact': 7}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Polish     latin-1                      flagged 158 missed   0  dom[158] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Polish     windows-1250                 flagged 137 missed  21  dom[137] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 21}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Polish     windows-1251                 flagged  63 missed  95  dom[63] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 95}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Polish     windows-1253                 flagged  63 missed  95  dom[63] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'other': 6, 'exact': 89}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Polish     windows-1254                 flagged 151 missed   7  dom[151] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 7}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Polish     cp437                        flagged 124 missed  34  dom[124] encode cp437 > decode utf-8
+    missed: {'exact': 34}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Polish     mac_roman                    flagged 141 missed  17  dom[141] encode macroman > decode utf-8
+    missed: {'exact': 17}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Polish     double-windows-1252          flagged 158 missed   0  dom[151] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {'replay exact, own fix not': 7}
+    clean pool: {'fail': 1790}
+Polish     double-sloppy-windows-1252   flagged 158 missed   0  dom[151] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {'replay exact, own fix not': 7}
+    clean pool: {'fail': 1790}
+Hungarian  windows-1252                 flagged 157 missed   0  dom[157] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Hungarian  sloppy-windows-1252          flagged 157 missed   0  dom[157] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Hungarian  latin-1                      flagged 157 missed   0  dom[157] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Hungarian  windows-1250                 flagged 146 missed  11  dom[146] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 11}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Hungarian  windows-1251                 flagged  63 missed  94  dom[63] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 94}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Hungarian  windows-1253                 flagged  63 missed  94  dom[63] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 92, 'other': 2}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Hungarian  windows-1254                 flagged 157 missed   0  dom[157] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Hungarian  cp437                        flagged 133 missed  24  dom[133] encode cp437 > decode utf-8
+    missed: {'exact': 24}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Hungarian  mac_roman                    flagged 138 missed  19  dom[138] encode macroman > decode utf-8
+    missed: {'exact': 19}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Hungarian  double-windows-1252          flagged 157 missed   0  dom[157] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Hungarian  double-sloppy-windows-1252   flagged 157 missed   0  dom[157] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Russian    windows-1252                 flagged 190 missed   0  dom[190] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Russian    sloppy-windows-1252          flagged 190 missed   0  dom[190] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Russian    latin-1                      flagged 190 missed   0  dom[190] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Russian    windows-1250                 flagged 189 missed   1  dom[189] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 1}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Russian    windows-1251                 flagged 167 missed  23  dom[167] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 23}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Russian    windows-1253                 flagged  63 missed 127  dom[63] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'other': 81, 'exact': 46}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Russian    windows-1254                 flagged 190 missed   0  dom[190] encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Russian    cp437                        flagged 180 missed  10  dom[180] encode cp437 > decode utf-8
+    missed: {'exact': 10}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Russian    mac_roman                    flagged  76 missed 114  dom[76] encode macroman > decode utf-8
+    missed: {'exact': 114}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Russian    double-windows-1252          flagged 190 missed   0  dom[190] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Russian    double-sloppy-windows-1252   flagged 190 missed   0  dom[190] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Greek      windows-1252                 flagged 144 missed   0  dom[144] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Greek      sloppy-windows-1252          flagged 144 missed   0  dom[144] encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Greek      latin-1                      flagged 144 missed   0  dom[144] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Greek      windows-1250                 flagged 144 missed   0  dom[144] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Greek      windows-1251                 flagged  45 missed  99  dom[45] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 97, 'other': 2}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Greek      windows-1253                 flagged 141 missed   3  dom[141] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 3}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Greek      windows-1254                 flagged 144 missed   0  dom[144] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Greek      cp437                        flagged 142 missed   2  dom[142] encode cp437 > decode utf-8
+    missed: {'exact': 2}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Greek      mac_roman                    flagged 144 missed   0  dom[144] encode macroman > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Greek      double-windows-1252          flagged 144 missed   0  dom[136] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8
+    missed: {}
+    non-supporting: {'replay other, own exact': 7, 'both wrong': 1}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Greek      double-sloppy-windows-1252   flagged 144 missed   0  dom[144] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Turkish    windows-1252                 flagged 148 missed  14  dom[148] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 14}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Turkish    sloppy-windows-1252          flagged 148 missed  14  dom[148] encode sloppy-windows-1252 > decode utf-8
+    missed: {'exact': 14}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Turkish    latin-1                      flagged 162 missed   0  dom[162] encode latin-1 > decode utf-8
+    missed: {}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Turkish    windows-1250                 flagged 127 missed  35  dom[127] encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 35}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Turkish    windows-1251                 flagged  63 missed  99  dom[63] encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 99}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Turkish    windows-1253                 flagged  94 missed  68  dom[94] encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 56, 'other': 12}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Turkish    windows-1254                 flagged 150 missed  12  dom[150] encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {'exact': 12}
+    non-supporting: {}
+    clean pool: {'fail': 1787, 'CHANGED': 3}
+Turkish    cp437                        flagged 103 missed  59  dom[103] encode cp437 > decode utf-8
+    missed: {'exact': 59}
+    non-supporting: {}
+    clean pool: {'fail': 1790}
+Turkish    mac_roman                    flagged 161 missed   1  dom[161] encode macroman > decode utf-8
+    missed: {'exact': 1}
+    non-supporting: {}
+    clean pool: {'fail': 1789, 'CHANGED': 1}
+Turkish    double-windows-1252          flagged 162 missed   0  dom[148] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8
+    missed: {}
+    non-supporting: {'replay exact, own fix not': 14}
+    clean pool: {'fail': 1790}
+Turkish    double-sloppy-windows-1252   flagged 162 missed   0  dom[148] encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8
+    missed: {}
+    non-supporting: {'replay exact, own fix not': 14}
+    clean pool: {'fail': 1790}
+
+=== TOTALS: missed corrupted values, replay of dominant plan
+  exact: 2732
+  other: 141
+  ('G0_changed', False): 141
+  ('G0_changed', True): 2732
+  ('G1_badness_not_worse', False): 116
+  ('G1_badness_not_worse', True): 2732
+  ('G4_out_stable', False): 140
+  ('G4_out_stable', True): 2732
+
+=== TOTALS: non-supporting flagged values
+  both wrong: 1
+  replay exact, own fix not: 48
+  replay other, own exact: 7
+  ('G0_changed', False): 8
+  ('G0_changed', True): 48
+  ('G1_badness_not_worse', True): 48
+  ('G3_input_is_bad', False): 1
+  ('G4_out_stable', False): 1
+  ('G4_out_stable', True): 48
+
+=== TOTALS: clean pool replays (per column x clean value)
+  CHANGED: 126
+  G0_changed: 126
+  G1_badness_not_worse: 126
+  G2_badness_drops: 126
+  G3_input_is_bad: 126
+  G4_out_stable: 126
+  G5_drop_and_stable: 126
+  fail: 196774
+
+=== clean values changed by a replay (distinct value, plan)
+  [control] 'Ã©' -> 'é' under encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'â€™' -> '’' under encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ãœber' -> 'Über' under encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ã©' -> 'é' under encode sloppy-windows-1252 > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'â€™' -> '’' under encode sloppy-windows-1252 > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ãœber' -> 'Über' under encode sloppy-windows-1252 > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ã©' -> 'é' under encode latin-1 > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'â€™' -> '’' under encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ã©' -> '̩' under encode macroman > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ã©' -> 'é' under encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'â€™' -> '’' under encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ãœber' -> 'Über' under encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ã©' -> 'é' under encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'â€™' -> '’' under encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']
+  [control] 'Ãœber' -> 'Über' under encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8; passes ['G0_changed', 'G1_badness_not_worse', 'G2_badness_drops', 'G3_input_is_bad', 'G4_out_stable', 'G5_drop_and_stable']

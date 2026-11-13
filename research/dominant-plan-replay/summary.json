@@ -1,0 +1,2241 @@
+[
+ {
+  "lang": "French",
+  "mix": "windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "sloppy-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "latin-1",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1250",
+  "flagged": 184,
+  "missed": 15,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 184,
+  "missed_outcomes": {
+   "exact": 15,
+   "('G0_changed', True)": 15,
+   "('G1_badness_not_worse', True)": 15,
+   "('G4_out_stable', True)": 15
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1251",
+  "flagged": 68,
+  "missed": 131,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 68,
+  "missed_outcomes": {
+   "exact": 131,
+   "('G0_changed', True)": 131,
+   "('G1_badness_not_worse', True)": 131,
+   "('G4_out_stable', True)": 131
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1253",
+  "flagged": 87,
+  "missed": 112,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 87,
+  "missed_outcomes": {
+   "exact": 110,
+   "('G0_changed', True)": 110,
+   "('G1_badness_not_worse', True)": 110,
+   "('G4_out_stable', True)": 110,
+   "other": 2,
+   "('G0_changed', False)": 2,
+   "('G1_badness_not_worse', False)": 2,
+   "('G4_out_stable', False)": 2
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "windows-1254",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "cp437",
+  "flagged": 190,
+  "missed": 9,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 190,
+  "missed_outcomes": {
+   "exact": 9,
+   "('G0_changed', True)": 9,
+   "('G1_badness_not_worse', True)": 9,
+   "('G4_out_stable', True)": 9
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "mac_roman",
+  "flagged": 193,
+  "missed": 6,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 193,
+  "missed_outcomes": {
+   "exact": 6,
+   "('G0_changed', True)": 6,
+   "('G1_badness_not_worse', True)": 6,
+   "('G4_out_stable', True)": 6
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "double-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "French",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "sloppy-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "latin-1",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1250",
+  "flagged": 135,
+  "missed": 64,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 135,
+  "missed_outcomes": {
+   "exact": 64,
+   "('G0_changed', True)": 64,
+   "('G1_badness_not_worse', True)": 64,
+   "('G4_out_stable', True)": 64
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1251",
+  "flagged": 96,
+  "missed": 103,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 96,
+  "missed_outcomes": {
+   "exact": 103,
+   "('G0_changed', True)": 103,
+   "('G1_badness_not_worse', True)": 103,
+   "('G4_out_stable', True)": 103
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1253",
+  "flagged": 117,
+  "missed": 82,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 117,
+  "missed_outcomes": {
+   "other": 9,
+   "('G0_changed', False)": 9,
+   "('G1_badness_not_worse', False)": 4,
+   "('G4_out_stable', False)": 9,
+   "exact": 73,
+   "('G0_changed', True)": 73,
+   "('G1_badness_not_worse', True)": 73,
+   "('G4_out_stable', True)": 73
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "windows-1254",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "cp437",
+  "flagged": 129,
+  "missed": 70,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 129,
+  "missed_outcomes": {
+   "exact": 70,
+   "('G0_changed', True)": 70,
+   "('G1_badness_not_worse', True)": 70,
+   "('G4_out_stable', True)": 70
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "mac_roman",
+  "flagged": 176,
+  "missed": 23,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 176,
+  "missed_outcomes": {
+   "exact": 23,
+   "('G0_changed', True)": 23,
+   "('G1_badness_not_worse', True)": 23,
+   "('G4_out_stable', True)": 23
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "double-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "German",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "sloppy-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "latin-1",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1250",
+  "flagged": 154,
+  "missed": 45,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 154,
+  "missed_outcomes": {
+   "exact": 45,
+   "('G0_changed', True)": 45,
+   "('G1_badness_not_worse', True)": 45,
+   "('G4_out_stable', True)": 45
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1251",
+  "flagged": 63,
+  "missed": 136,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "exact": 136,
+   "('G0_changed', True)": 136,
+   "('G1_badness_not_worse', True)": 136,
+   "('G4_out_stable', True)": 136
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1253",
+  "flagged": 67,
+  "missed": 132,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 67,
+  "missed_outcomes": {
+   "exact": 130,
+   "('G0_changed', True)": 130,
+   "('G1_badness_not_worse', True)": 130,
+   "('G4_out_stable', True)": 130,
+   "other": 2,
+   "('G0_changed', False)": 2,
+   "('G1_badness_not_worse', False)": 2,
+   "('G4_out_stable', False)": 2
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "windows-1254",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "cp437",
+  "flagged": 127,
+  "missed": 72,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 127,
+  "missed_outcomes": {
+   "exact": 72,
+   "('G0_changed', True)": 72,
+   "('G1_badness_not_worse', True)": 72,
+   "('G4_out_stable', True)": 72
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "mac_roman",
+  "flagged": 176,
+  "missed": 23,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 176,
+  "missed_outcomes": {
+   "exact": 23,
+   "('G0_changed', True)": 23,
+   "('G1_badness_not_worse', True)": 23,
+   "('G4_out_stable', True)": 23
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "double-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Spanish",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 199,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 199,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1252",
+  "flagged": 174,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 174,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "sloppy-windows-1252",
+  "flagged": 174,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 174,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "latin-1",
+  "flagged": 174,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 174,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1250",
+  "flagged": 119,
+  "missed": 55,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 119,
+  "missed_outcomes": {
+   "exact": 55,
+   "('G0_changed', True)": 55,
+   "('G1_badness_not_worse', True)": 55,
+   "('G4_out_stable', True)": 55
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1251",
+  "flagged": 57,
+  "missed": 117,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 57,
+  "missed_outcomes": {
+   "exact": 117,
+   "('G0_changed', True)": 117,
+   "('G1_badness_not_worse', True)": 117,
+   "('G4_out_stable', True)": 117
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1253",
+  "flagged": 68,
+  "missed": 106,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 68,
+  "missed_outcomes": {
+   "exact": 106,
+   "('G0_changed', True)": 106,
+   "('G1_badness_not_worse', True)": 106,
+   "('G4_out_stable', True)": 106
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "windows-1254",
+  "flagged": 174,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 174,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "cp437",
+  "flagged": 153,
+  "missed": 21,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 153,
+  "missed_outcomes": {
+   "exact": 21,
+   "('G0_changed', True)": 21,
+   "('G1_badness_not_worse', True)": 21,
+   "('G4_out_stable', True)": 21
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "mac_roman",
+  "flagged": 140,
+  "missed": 34,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 140,
+  "missed_outcomes": {
+   "exact": 34,
+   "('G0_changed', True)": 34,
+   "('G1_badness_not_worse', True)": 34,
+   "('G4_out_stable', True)": 34
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "double-windows-1252",
+  "flagged": 174,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 174,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Portuguese",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 174,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 174,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1252",
+  "flagged": 168,
+  "missed": 3,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 168,
+  "missed_outcomes": {
+   "exact": 3,
+   "('G0_changed', True)": 3,
+   "('G1_badness_not_worse', True)": 3,
+   "('G4_out_stable', True)": 3
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "sloppy-windows-1252",
+  "flagged": 168,
+  "missed": 3,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 168,
+  "missed_outcomes": {
+   "exact": 3,
+   "('G0_changed', True)": 3,
+   "('G1_badness_not_worse', True)": 3,
+   "('G4_out_stable', True)": 3
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "latin-1",
+  "flagged": 170,
+  "missed": 1,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 170,
+  "missed_outcomes": {
+   "exact": 1,
+   "('G0_changed', True)": 1,
+   "('G1_badness_not_worse', True)": 1,
+   "('G4_out_stable', True)": 1
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1250",
+  "flagged": 139,
+  "missed": 32,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 139,
+  "missed_outcomes": {
+   "exact": 32,
+   "('G0_changed', True)": 32,
+   "('G1_badness_not_worse', True)": 32,
+   "('G4_out_stable', True)": 32
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1251",
+  "flagged": 63,
+  "missed": 108,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "exact": 106,
+   "('G0_changed', True)": 106,
+   "('G1_badness_not_worse', True)": 106,
+   "('G4_out_stable', True)": 106,
+   "other": 2,
+   "('G0_changed', False)": 2,
+   "('G4_out_stable', False)": 2
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1253",
+  "flagged": 74,
+  "missed": 97,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 74,
+  "missed_outcomes": {
+   "exact": 74,
+   "('G0_changed', True)": 74,
+   "('G1_badness_not_worse', True)": 74,
+   "('G4_out_stable', True)": 74,
+   "other": 23,
+   "('G0_changed', False)": 23,
+   "('G1_badness_not_worse', False)": 17,
+   "('G4_out_stable', False)": 23
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "windows-1254",
+  "flagged": 168,
+  "missed": 3,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 168,
+  "missed_outcomes": {
+   "exact": 3,
+   "('G0_changed', True)": 3,
+   "('G1_badness_not_worse', True)": 3,
+   "('G4_out_stable', True)": 3
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "cp437",
+  "flagged": 137,
+  "missed": 34,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 137,
+  "missed_outcomes": {
+   "exact": 34,
+   "('G0_changed', True)": 34,
+   "('G1_badness_not_worse', True)": 34,
+   "('G4_out_stable', True)": 34
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "mac_roman",
+  "flagged": 151,
+  "missed": 20,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 151,
+  "missed_outcomes": {
+   "exact": 20,
+   "('G0_changed', True)": 20,
+   "('G1_badness_not_worse', True)": 20,
+   "('G4_out_stable', True)": 20
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "double-windows-1252",
+  "flagged": 166,
+  "missed": 5,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 163,
+  "missed_outcomes": {
+   "exact": 5,
+   "('G0_changed', True)": 5,
+   "('G1_badness_not_worse', True)": 5,
+   "('G4_out_stable', True)": 5
+  },
+  "nonsupport": {
+   "replay exact, own fix not": 3,
+   "('G0_changed', True)": 3,
+   "('G1_badness_not_worse', True)": 3,
+   "('G4_out_stable', True)": 3
+  },
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Czech",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 166,
+  "missed": 5,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 163,
+  "missed_outcomes": {
+   "exact": 5,
+   "('G0_changed', True)": 5,
+   "('G1_badness_not_worse', True)": 5,
+   "('G4_out_stable', True)": 5
+  },
+  "nonsupport": {
+   "replay exact, own fix not": 3,
+   "('G0_changed', True)": 3,
+   "('G1_badness_not_worse', True)": 3,
+   "('G4_out_stable', True)": 3
+  },
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1252",
+  "flagged": 151,
+  "missed": 7,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 151,
+  "missed_outcomes": {
+   "exact": 7,
+   "('G0_changed', True)": 7,
+   "('G1_badness_not_worse', True)": 7,
+   "('G4_out_stable', True)": 7
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "sloppy-windows-1252",
+  "flagged": 151,
+  "missed": 7,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 151,
+  "missed_outcomes": {
+   "exact": 7,
+   "('G0_changed', True)": 7,
+   "('G1_badness_not_worse', True)": 7,
+   "('G4_out_stable', True)": 7
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "latin-1",
+  "flagged": 158,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 158,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1250",
+  "flagged": 137,
+  "missed": 21,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 137,
+  "missed_outcomes": {
+   "exact": 21,
+   "('G0_changed', True)": 21,
+   "('G1_badness_not_worse', True)": 21,
+   "('G4_out_stable', True)": 21
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1251",
+  "flagged": 63,
+  "missed": 95,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "exact": 95,
+   "('G0_changed', True)": 95,
+   "('G1_badness_not_worse', True)": 95,
+   "('G4_out_stable', True)": 95
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1253",
+  "flagged": 63,
+  "missed": 95,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "other": 6,
+   "('G0_changed', False)": 6,
+   "('G1_badness_not_worse', False)": 6,
+   "('G4_out_stable', False)": 6,
+   "exact": 89,
+   "('G0_changed', True)": 89,
+   "('G1_badness_not_worse', True)": 89,
+   "('G4_out_stable', True)": 89
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "windows-1254",
+  "flagged": 151,
+  "missed": 7,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 151,
+  "missed_outcomes": {
+   "exact": 7,
+   "('G0_changed', True)": 7,
+   "('G1_badness_not_worse', True)": 7,
+   "('G4_out_stable', True)": 7
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "cp437",
+  "flagged": 124,
+  "missed": 34,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 124,
+  "missed_outcomes": {
+   "exact": 34,
+   "('G0_changed', True)": 34,
+   "('G1_badness_not_worse', True)": 34,
+   "('G4_out_stable', True)": 34
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "mac_roman",
+  "flagged": 141,
+  "missed": 17,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 141,
+  "missed_outcomes": {
+   "exact": 17,
+   "('G0_changed', True)": 17,
+   "('G1_badness_not_worse', True)": 17,
+   "('G4_out_stable', True)": 17
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "double-windows-1252",
+  "flagged": 158,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 151,
+  "missed_outcomes": {},
+  "nonsupport": {
+   "replay exact, own fix not": 7,
+   "('G0_changed', True)": 7,
+   "('G1_badness_not_worse', True)": 7,
+   "('G4_out_stable', True)": 7
+  },
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Polish",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 158,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 151,
+  "missed_outcomes": {},
+  "nonsupport": {
+   "replay exact, own fix not": 7,
+   "('G0_changed', True)": 7,
+   "('G1_badness_not_worse', True)": 7,
+   "('G4_out_stable', True)": 7
+  },
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1252",
+  "flagged": 157,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 157,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "sloppy-windows-1252",
+  "flagged": 157,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 157,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "latin-1",
+  "flagged": 157,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 157,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1250",
+  "flagged": 146,
+  "missed": 11,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 146,
+  "missed_outcomes": {
+   "exact": 11,
+   "('G0_changed', True)": 11,
+   "('G1_badness_not_worse', True)": 11,
+   "('G4_out_stable', True)": 11
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1251",
+  "flagged": 63,
+  "missed": 94,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "exact": 94,
+   "('G0_changed', True)": 94,
+   "('G1_badness_not_worse', True)": 94,
+   "('G4_out_stable', True)": 94
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1253",
+  "flagged": 63,
+  "missed": 94,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "exact": 92,
+   "('G0_changed', True)": 92,
+   "('G1_badness_not_worse', True)": 92,
+   "('G4_out_stable', True)": 92,
+   "other": 2,
+   "('G0_changed', False)": 2,
+   "('G1_badness_not_worse', False)": 2,
+   "('G4_out_stable', False)": 2
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "windows-1254",
+  "flagged": 157,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 157,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "cp437",
+  "flagged": 133,
+  "missed": 24,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 133,
+  "missed_outcomes": {
+   "exact": 24,
+   "('G0_changed', True)": 24,
+   "('G1_badness_not_worse', True)": 24,
+   "('G4_out_stable', True)": 24
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "mac_roman",
+  "flagged": 138,
+  "missed": 19,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 138,
+  "missed_outcomes": {
+   "exact": 19,
+   "('G0_changed', True)": 19,
+   "('G1_badness_not_worse', True)": 19,
+   "('G4_out_stable', True)": 19
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "double-windows-1252",
+  "flagged": 157,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 157,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Hungarian",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 157,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 157,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1252",
+  "flagged": 190,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 190,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "sloppy-windows-1252",
+  "flagged": 190,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 190,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "latin-1",
+  "flagged": 190,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 190,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1250",
+  "flagged": 189,
+  "missed": 1,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 189,
+  "missed_outcomes": {
+   "exact": 1,
+   "('G0_changed', True)": 1,
+   "('G1_badness_not_worse', True)": 1,
+   "('G4_out_stable', True)": 1
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1251",
+  "flagged": 167,
+  "missed": 23,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 167,
+  "missed_outcomes": {
+   "exact": 23,
+   "('G0_changed', True)": 23,
+   "('G1_badness_not_worse', True)": 23,
+   "('G4_out_stable', True)": 23
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1253",
+  "flagged": 63,
+  "missed": 127,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "other": 81,
+   "('G0_changed', False)": 81,
+   "('G1_badness_not_worse', False)": 72,
+   "('G4_out_stable', False)": 80,
+   "exact": 46,
+   "('G0_changed', True)": 46,
+   "('G1_badness_not_worse', True)": 46,
+   "('G4_out_stable', True)": 46
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "windows-1254",
+  "flagged": 190,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1254 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 190,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "cp437",
+  "flagged": 180,
+  "missed": 10,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 180,
+  "missed_outcomes": {
+   "exact": 10,
+   "('G0_changed', True)": 10,
+   "('G1_badness_not_worse', True)": 10,
+   "('G4_out_stable', True)": 10
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "mac_roman",
+  "flagged": 76,
+  "missed": 114,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 76,
+  "missed_outcomes": {
+   "exact": 114,
+   "('G0_changed', True)": 114,
+   "('G1_badness_not_worse', True)": 114,
+   "('G4_out_stable', True)": 114
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "double-windows-1252",
+  "flagged": 190,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8",
+  "support": 190,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Russian",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 190,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 190,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1252",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "sloppy-windows-1252",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "latin-1",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1250",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1251",
+  "flagged": 45,
+  "missed": 99,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 45,
+  "missed_outcomes": {
+   "exact": 97,
+   "('G0_changed', True)": 97,
+   "('G1_badness_not_worse', True)": 97,
+   "('G4_out_stable', True)": 97,
+   "other": 2,
+   "('G0_changed', False)": 2,
+   "('G1_badness_not_worse', False)": 2,
+   "('G4_out_stable', False)": 2
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1253",
+  "flagged": 141,
+  "missed": 3,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 141,
+  "missed_outcomes": {
+   "exact": 3,
+   "('G0_changed', True)": 3,
+   "('G1_badness_not_worse', True)": 3,
+   "('G4_out_stable', True)": 3
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "windows-1254",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "cp437",
+  "flagged": 142,
+  "missed": 2,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 142,
+  "missed_outcomes": {
+   "exact": 2,
+   "('G0_changed', True)": 2,
+   "('G1_badness_not_worse', True)": 2,
+   "('G4_out_stable', True)": 2
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "mac_roman",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "double-windows-1252",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8 > apply decode_inconsistent_utf8",
+  "support": 136,
+  "missed_outcomes": {},
+  "nonsupport": {
+   "replay other, own exact": 7,
+   "('G0_changed', False)": 8,
+   "both wrong": 1,
+   "('G3_input_is_bad', False)": 1,
+   "('G4_out_stable', False)": 1
+  },
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Greek",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 144,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 144,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1252",
+  "flagged": 148,
+  "missed": 14,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 148,
+  "missed_outcomes": {
+   "exact": 14,
+   "('G0_changed', True)": 14,
+   "('G1_badness_not_worse', True)": 14,
+   "('G4_out_stable', True)": 14
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "sloppy-windows-1252",
+  "flagged": 148,
+  "missed": 14,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8",
+  "support": 148,
+  "missed_outcomes": {
+   "exact": 14,
+   "('G0_changed', True)": 14,
+   "('G1_badness_not_worse', True)": 14,
+   "('G4_out_stable', True)": 14
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "latin-1",
+  "flagged": 162,
+  "missed": 0,
+  "dominant": "encode latin-1 > decode utf-8",
+  "support": 162,
+  "missed_outcomes": {},
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1250",
+  "flagged": 127,
+  "missed": 35,
+  "dominant": "encode sloppy-windows-1250 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 127,
+  "missed_outcomes": {
+   "exact": 35,
+   "('G0_changed', True)": 35,
+   "('G1_badness_not_worse', True)": 35,
+   "('G4_out_stable', True)": 35
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1251",
+  "flagged": 63,
+  "missed": 99,
+  "dominant": "encode sloppy-windows-1251 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 63,
+  "missed_outcomes": {
+   "exact": 99,
+   "('G0_changed', True)": 99,
+   "('G1_badness_not_worse', True)": 99,
+   "('G4_out_stable', True)": 99
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1253",
+  "flagged": 94,
+  "missed": 68,
+  "dominant": "encode sloppy-windows-1253 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 94,
+  "missed_outcomes": {
+   "exact": 56,
+   "('G0_changed', True)": 56,
+   "('G1_badness_not_worse', True)": 56,
+   "('G4_out_stable', True)": 56,
+   "other": 12,
+   "('G0_changed', False)": 12,
+   "('G1_badness_not_worse', False)": 9,
+   "('G4_out_stable', False)": 12
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "windows-1254",
+  "flagged": 150,
+  "missed": 12,
+  "dominant": "encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 150,
+  "missed_outcomes": {
+   "exact": 12,
+   "('G0_changed', True)": 12,
+   "('G1_badness_not_worse', True)": 12,
+   "('G4_out_stable', True)": 12
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1787,
+   "CHANGED": 3,
+   "G0_changed": 3,
+   "G1_badness_not_worse": 3,
+   "G2_badness_drops": 3,
+   "G3_input_is_bad": 3,
+   "G4_out_stable": 3,
+   "G5_drop_and_stable": 3
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "cp437",
+  "flagged": 103,
+  "missed": 59,
+  "dominant": "encode cp437 > decode utf-8",
+  "support": 103,
+  "missed_outcomes": {
+   "exact": 59,
+   "('G0_changed', True)": 59,
+   "('G1_badness_not_worse', True)": 59,
+   "('G4_out_stable', True)": 59
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "mac_roman",
+  "flagged": 161,
+  "missed": 1,
+  "dominant": "encode macroman > decode utf-8",
+  "support": 161,
+  "missed_outcomes": {
+   "exact": 1,
+   "('G0_changed', True)": 1,
+   "('G1_badness_not_worse', True)": 1,
+   "('G4_out_stable', True)": 1
+  },
+  "nonsupport": {},
+  "clean_outcomes": {
+   "fail": 1789,
+   "CHANGED": 1,
+   "G0_changed": 1,
+   "G1_badness_not_worse": 1,
+   "G2_badness_drops": 1,
+   "G3_input_is_bad": 1,
+   "G4_out_stable": 1,
+   "G5_drop_and_stable": 1
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "double-windows-1252",
+  "flagged": 162,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > transcode replace_lossy_sequences > decode utf-8",
+  "support": 148,
+  "missed_outcomes": {},
+  "nonsupport": {
+   "replay exact, own fix not": 14,
+   "('G0_changed', True)": 14,
+   "('G1_badness_not_worse', True)": 14,
+   "('G4_out_stable', True)": 14
+  },
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ },
+ {
+  "lang": "Turkish",
+  "mix": "double-sloppy-windows-1252",
+  "flagged": 162,
+  "missed": 0,
+  "dominant": "encode sloppy-windows-1252 > decode utf-8 > encode sloppy-windows-1252 > decode utf-8",
+  "support": 148,
+  "missed_outcomes": {},
+  "nonsupport": {
+   "replay exact, own fix not": 14,
+   "('G0_changed', True)": 14,
+   "('G1_badness_not_worse', True)": 14,
+   "('G4_out_stable', True)": 14
+  },
+  "clean_outcomes": {
+   "fail": 1790
+  }
+ }
+]
