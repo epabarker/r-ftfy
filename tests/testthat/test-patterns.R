@@ -1,3 +1,5 @@
+# Derived from python-ftfy v6.3.1, ftfy/. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+
 # The generated patterns (ADR 0005), checked below the exported functions:
 # each of the ten must match exactly where the reference version's pattern
 # matches. The span fixture is written by

@@ -1,3 +1,5 @@
+# Derived from python-ftfy v6.3.1, ftfy/. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+
 # Long input (ADR 0005): two generated patterns on one string of 4,000,000
 # characters, shaped so that the whole string is one match and the regex
 # engine must keep state for all of it. The expected spans were checked
