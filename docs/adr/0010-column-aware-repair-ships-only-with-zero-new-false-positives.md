@@ -6,6 +6,6 @@ Column-aware repair is evaluated on synthetic columns, not real data. Each colum
 
 - **Synthetic, so generated with outside code.** The corpus is corrupted with CPython's codecs and ftfy's sloppy codecs, never the package's own tables, so a wrong table entry can't corrupt and repair consistently and go unnoticed.
 - **Outside text, licence-gated.** Source text comes from outside lists under public-domain, CC0, permissive or attribution-only licences only, downloaded at pinned checksums. Only the generated columns are committed. Self-written lists are allowed for categorical values alone.
-- **Lossy rows are scored against what is reachable**, not against the lost original, unless lost-character recovery is switched on.
+- **Lossy rows are scored against what is reachable**, not against the lost original. Amended in https://github.com/epabarker/r-ftfy/issues/22: lost-character recovery is out of scope, so there is no option under which the lost original becomes the target. The corpus still stores both.
 - **A miss turned into wrong text counts too.** Amended in https://github.com/epabarker/r-ftfy/issues/21: at runtime a value `fix_text()` misses looks the same as a clean one, so a row `fix_text()` leaves unrepaired that column-aware repair changes to anything but its reachable target blocks release like any other new false positive.
 - **Real data never decides a release.** An optional local script reports aggregate counts on real columns. It commits no values.
