@@ -1,3 +1,8 @@
 # Generated files are compared byte for byte, so line ends are never converted.
 * text=auto eol=lf
 *.rda binary
+# The upstream JSON cases are kept byte for byte.
+tests/testthat/upstream/test_cases.json -text
+# Two branches may each delete lines from this list. A union merge never
+# conflicts; run the shrink command afterwards (see data-raw/README.md).
+tests/testthat/not-yet-passing.txt merge=union

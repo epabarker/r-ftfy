@@ -1,0 +1,9 @@
+test_cases.json is tests/test_cases.json from python-ftfy v6.3.1 (commit
+5340af6, https://github.com/rspeer/python-ftfy), copied byte for byte.
+Copyright 2023 Robyn Speer. Apache-2.0.
+
+It is never edited. A test pins its md5. It is the one file in the package
+that is not ASCII: it is UTF-8.
+
+What the reference version gives for each case is in
+../reference/json_cases.tsv.

@@ -13,6 +13,7 @@ python data-raw/regenerate.py
 
 - `pattern_*.py` writes one ICU pattern to `patterns/<NAME>.txt`. Python's `\s`, `\w` and `\d` are written in as the code-point sets observed on CPython 3.13 (Unicode 15.1).
 - `snapshot_*.py` writes one snapshot of reference behaviour to `tests/testthat/reference/`.
+- `codec_<name>.py` writes one codec table to `codecs/<name>.txt`: each of the 256 bytes with the code point the reference version decodes it to, or `hole`. A new codec is a copy of `codec_latin-1.py` with the name changed.
 
 The `reference` workflow runs the two commands above and fails if any committed file changes.
 
@@ -26,4 +27,22 @@ Rscript data-raw/build.R
 
 `build.R` runs every script in `sysdata/` and saves the objects they define to `R/sysdata.rda`, then rebuilds `NAMESPACE` and `man/` with roxygen2. It needs no Python. `Rscript data-raw/build.R --check` fails if `R/sysdata.rda` does not match its sources.
 
+`sysdata/patterns.R` reads every file in `patterns/` into the internal vector `patterns`, and `sysdata/codecs.R` reads every file in `codecs/` into the internal list `codec_tables`. Neither lists its files. Only decode tables are shipped: the encode side of each codec is built from its table when the package is loaded.
+
 `R/sysdata.rda`, `NAMESPACE` and `man/` are never edited or merged by hand. On a merge conflict in any of them, take either side and run `build.R`.
+
+## The upstream JSON cases and the not-yet-passing list
+
+`tests/testthat/upstream/test_cases.json` is upstream's file, byte for byte. `generators/snapshot_json_cases.py` reads it and writes what the reference version gives for each case to `tests/testthat/reference/json_cases.tsv`.
+
+`tests/testthat/not-yet-passing.txt` names every check on those cases that the package cannot pass yet, one line per check and case index. The list may only shrink. When a change makes listed checks pass, the test fails until they are removed; remove them with:
+
+```
+FTFY_SHRINK_NOT_YET_PASSING=true Rscript -e 'pkgload::load_all(".", quiet = TRUE); testthat::test_file("tests/testthat/test-json-cases.R")'
+```
+
+This only deletes lines. Never add a line by hand. The file merges with git's union driver, so two branches that delete different lines do not conflict; after any merge that touches it, run the command above and commit the result.
+
+## The departure registry
+
+`inst/departures/` holds one file per departure, `<id>.dcf`, with the fields `Id`, `Title`, `Input`, `Reference`, `R` and `Decided`. Each entry also has `tests/testthat/test-departure-<id>.R`, which asserts R's behaviour, and `tests/testthat/departures/<id>.R`, the function that says whether a difference from a snapshot is this departure. All three are found by name; nothing lists them.

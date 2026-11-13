@@ -7,17 +7,28 @@ test_that("a missing string gives NA of the result's type", {
   expect_identical(is_bad(x), c(TRUE, NA, FALSE, NA))
   expect_identical(badness(NA_character_), NA_integer_)
   expect_identical(is_bad(NA_character_), NA)
+  expect_identical(fix_encoding(x), c("caf\u00e9", NA, "plain", NA))
+  expect_identical(fix_encoding(NA_character_), NA_character_)
 })
 
 test_that("a zero-length character vector gives a zero-length result", {
   expect_identical(badness(character()), integer())
   expect_identical(is_bad(character()), logical())
+  expect_identical(fix_encoding(character()), character())
 })
 
 test_that("a leading U+FEFF is data, not something to strip", {
   # "\u00c2 " at the true start is bad; after U+FEFF it is not at the start.
   expect_identical(badness(c("\u00c2 x", "\ufeff\u00c2 x")), c(1L, 0L))
   expect_identical(is_bad(c("\u00c2 x", "\ufeff\u00c2 x")), c(TRUE, FALSE))
+})
+
+test_that("fix_encoding() keeps a leading U+FEFF", {
+  # U+FEFF is in neither codec, so the mix-up after it is not repaired yet;
+  # what matters is that the character is still there, and still first.
+  x <- c("\ufeffplain", "\ufeffcaf\u00e9", "\ufeffcaf\u00c3\u00a9")
+
+  expect_identical(fix_encoding(x), x)
 })
 
 test_that("anything but a character vector is an error suggesting as.character()", {
@@ -28,6 +39,7 @@ test_that("anything but a character vector is an error suggesting as.character()
   for (x in rejected) {
     expect_error(badness(x), "as.character()", fixed = TRUE)
     expect_error(is_bad(x), "as.character()", fixed = TRUE)
+    expect_error(fix_encoding(x), "as.character()", fixed = TRUE)
   }
 })
 
@@ -37,4 +49,5 @@ test_that("invalid UTF-8 is an error naming the first offending elements", {
 
   expect_error(badness(x), "invalid UTF-8.*first at: 2, 4.*wrong codec")
   expect_error(is_bad(x), "invalid UTF-8.*first at: 2, 4.*wrong codec")
+  expect_error(fix_encoding(x), "invalid UTF-8.*first at: 2, 4.*wrong codec")
 })
