@@ -32,6 +32,10 @@ _Avoid_: gap, unassigned byte, undefined byte
 A codec with no holes, made from a Windows codec by giving each hole the character with the same number as the byte. It decodes any bytes without failing.
 _Avoid_: lenient codec, permissive codec
 
+**Mark**:
+The declaration R attaches to a string saying how its bytes are to be read: UTF-8, latin1, bytes, or none (the session's native encoding, or plain ASCII). A mark is a claim about the bytes, not a guarantee that they are valid.
+_Avoid_: encoding (for the mark), declared encoding
+
 **Reference behaviour**:
 What Python ftfy 6.3.1 does when run on the reference Python. The package's correctness is judged against it.
 _Avoid_: upstream behaviour, Python behaviour
