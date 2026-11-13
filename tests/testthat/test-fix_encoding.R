@@ -24,16 +24,16 @@ test_that("fix_encoding() leaves quotes, ligatures and line breaks alone", {
   expect_identical(fix_encoding(x), x)
 })
 
-# The reach of this ticket: one layer between `latin-1` or
-# `sloppy-windows-1252` and `utf-8`, ending in text that is not bad. Ticket
-# #36 completes the heuristic; it deletes `in_reach()` and compares every
-# row exactly.
+# The reach so far: one layer between a single-byte codec and `utf-8`,
+# ending in text that is not bad. `macroman` is left out: it is tried
+# ninth, and some of its texts are answered "unsure" on the way there,
+# by a codec whose bytes an absent step could have rewritten. Ticket #36
+# completes the heuristic; it deletes `in_reach()` and compares every row
+# exactly.
 in_reach <- function(snapshot) {
-  snapshot$plan %in% c(
-    "none",
-    "encode latin-1 > decode utf-8",
-    "encode sloppy-windows-1252 > decode utf-8"
-  ) & !is_bad(snapshot$fixed)
+  codecs <- setdiff(ftfy:::charmap_codecs(), "macroman")
+  snapshot$plan %in% c("none", paste0("encode ", codecs, " > decode utf-8")) &
+    !is_bad(snapshot$fixed)
 }
 
 test_that("fix_encoding() gives the reference version's text for every snapshot input in reach", {

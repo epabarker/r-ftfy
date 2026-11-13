@@ -1,0 +1,23 @@
+Id: utf8-variants-trailing-newline
+Title: A sequence cut short by a final newline is undecodable
+Input: Bytes decoded with the codec utf-8-variants that end in C0 0A, or
+ in the first five bytes of a six-byte surrogate pair followed by 0A
+ (ED, a byte from A0 to AF, a byte from 80 to BF, ED, a byte from B0 to
+ BF, then 0A), for example ED A0 BD ED B8 0A. They are reached from
+ text that ends in a newline, such as 'sch\u00c3\u00b6n \u00c0\n' and
+ '\u00ed\u00a0\u00bd\u00ed\u00b8\n', and so from any such line given to
+ fix_text().
+Reference: The newline is read as the missing last byte of the sequence
+ and is lost. Run on ftfy 6.3.1 with Python 3.13:
+ b'abc\xc0\n'.decode('utf-8-variants') returns 'abc\x00' and
+ b'\xed\xa0\xbd\xed\xb8\n'.decode('utf-8-variants') returns
+ '\U0001f60a'; with any byte after the newline, or without the newline,
+ both raise UnicodeDecodeError. fix_encoding('sch\u00c3\u00b6n \u00c0\n')
+ returns 'sch\xf6n \x00' with the plan encode latin-1, decode
+ utf-8-variants, and fix_text() of it returns 'sch\xf6n '.
+ fix_encoding('\u00ed\u00a0\u00bd\u00ed\u00b8\n') and fix_text() of it
+ return '\U0001f60a'.
+R: Decoding fails, as it does in the reference version when anything
+ other than a final newline follows, so this decoding repairs nothing and
+ the newline is kept.
+Decided: docs/adr/0004-utf-8-variants-does-not-copy-upstreams-trailing-newline-behaviour.md

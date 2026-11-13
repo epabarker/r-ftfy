@@ -27,3 +27,8 @@ tests/testthat/helper-entry-step.R	The entry-step test set; this package's own m
 tests/testthat/helper-regex-lint.R	The regex lint; this package's own machinery (ADR 0005).
 tests/testthat/test-regex-lint.R	Tests of the regex lint and of the options every regex call passes: R-only behaviour.
 tests/testthat/test-departure-regex-overflow.R	Test of a departure: R-only behaviour.
+tests/testthat/helper-decoder-corpus.R	Readers for the decoder corpus and byte strings; this package's own machinery.
+tests/testthat/test-decoder-corpus.R	Compares the decoders with a committed snapshot only; no upstream test is translated.
+tests/testthat/test-utf8-validity.R	Compares strict UTF-8 validity with the Unicode standard's table; nothing from upstream.
+tests/testthat/test-departure-decoded-nul-dropped.R	Test of a departure: R-only behaviour.
+tests/testthat/test-departure-utf8-variants-trailing-newline.R	Test of a departure: R-only behaviour.
