@@ -26,7 +26,7 @@ assert len(entities) == 3501
 lines = ["entity\treplacement\n"]
 for entity in sorted(entities):
     replacement = entities[entity]
-    assert entity.isascii() and entity.isalnum() is False
+    assert entity.isascii()
     assert entity.startswith("&") and entity.endswith(";") and entity[1:-1].isalnum()
     assert replacement and storable(replacement)
     lines.append("%s\t%s\n" % (entity, code_points(replacement)))
