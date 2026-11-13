@@ -1,0 +1,488 @@
+ftfy 6.3.1; python 3.13.5
+
+== per column family (distinct lossy values, summed over n in {100,1000}, p in {.1,.5,.9})
+('fffd', 'French', 'windows-1252') {'holes: none': 18, 'holes: unique right': 3, 'lossy': 21, 'plain: none': 18, 'plain: unique right': 3}
+('fffd', 'French', 'windows-1250') {'holes: none': 19, 'holes: unique right': 16, 'lossy': 35, 'plain: none': 19, 'plain: unique right': 16}
+('fffd', 'French', 'windows-1251') {'holes: none': 13, 'holes: unique right': 6, 'lossy': 19, 'plain: none': 13, 'plain: unique right': 6}
+('fffd', 'French', 'windows-1253') {'holes: none': 59, 'holes: unique right': 30, 'lossy': 89, 'not reachable target': 9, 'plain: none': 59, 'plain: unique right': 30}
+('fffd', 'French', 'windows-1254') {'holes: none': 27, 'holes: unique right': 9, 'lossy': 36, 'plain: none': 27, 'plain: unique right': 9}
+('qmark', 'French', 'ascii') {'lossy': 501, 'plain: none': 294, 'plain: unique right': 207}
+('a0', 'French', 'windows-1252') {'a0 fix_text repairs': 455, 'a0 left': 47, 'a0 rows': 502}
+('fffd', 'German', 'windows-1252') {'holes: none': 12, 'holes: unique right': 6, 'lossy': 18, 'plain: none': 12, 'plain: unique right': 6}
+('fffd', 'German', 'windows-1250') {'holes: none': 12, 'holes: unique right': 10, 'lossy': 22, 'plain: none': 12, 'plain: unique right': 10}
+('fffd', 'German', 'windows-1251') {'holes: none': 13, 'holes: unique right': 13, 'lossy': 26, 'plain: none': 13, 'plain: unique right': 13}
+('fffd', 'German', 'windows-1253') {'holes: none': 114, 'holes: unique right': 55, 'lossy': 169, 'not reachable target': 15, 'plain: none': 114, 'plain: unique right': 55}
+('fffd', 'German', 'windows-1254') {'holes: none': 18, 'holes: unique right': 8, 'lossy': 26, 'plain: none': 18, 'plain: unique right': 8}
+('qmark', 'German', 'ascii') {'lossy': 501, 'plain: none': 293, 'plain: unique WRONG': 1, 'plain: unique right': 207}
+('a0', 'German', 'windows-1252') {'a0 fix_text repairs': 412, 'a0 left': 45, 'a0 rows': 457}
+('fffd', 'Spanish', 'windows-1252') {'holes: none': 62, 'holes: unique right': 37, 'lossy': 99, 'not reachable target': 4, 'plain: none': 62, 'plain: unique right': 37}
+('fffd', 'Spanish', 'windows-1250') {'holes: none': 36, 'holes: unique right': 26, 'lossy': 62, 'plain: none': 36, 'plain: unique right': 26}
+('fffd', 'Spanish', 'windows-1251') {'holes: none': 15, 'holes: unique right': 10, 'lossy': 25, 'plain: none': 15, 'plain: unique right': 10}
+('fffd', 'Spanish', 'windows-1253') {'holes: none': 77, 'holes: unique right': 49, 'lossy': 126, 'not reachable target': 11, 'plain: none': 77, 'plain: unique right': 49}
+('fffd', 'Spanish', 'windows-1254') {'holes: none': 58, 'holes: unique right': 40, 'lossy': 98, 'not reachable target': 4, 'plain: none': 58, 'plain: unique right': 40}
+('qmark', 'Spanish', 'ascii') {'literal ? values': 13, 'lossy': 487, 'plain: none': 291, 'plain: unique right': 196}
+('a0', 'Spanish', 'windows-1252') {'a0 fix_text repairs': 430, 'a0 left': 50, 'a0 rows': 480}
+('fffd', 'Portuguese', 'windows-1252') {'holes: none': 38, 'holes: unique right': 27, 'lossy': 65, 'plain: none': 38, 'plain: unique right': 27}
+('fffd', 'Portuguese', 'windows-1250') {'holes: none': 82, 'holes: unique right': 58, 'lossy': 140, 'not reachable target': 30, 'plain: none': 82, 'plain: unique right': 58}
+('fffd', 'Portuguese', 'windows-1251') {'holes: none': 13, 'holes: unique right': 12, 'lossy': 25, 'plain: none': 13, 'plain: unique right': 12}
+('fffd', 'Portuguese', 'windows-1253') {'holes: none': 62, 'holes: unique right': 58, 'lossy': 120, 'not reachable target': 3, 'plain: none': 62, 'plain: unique right': 58}
+('fffd', 'Portuguese', 'windows-1254') {'holes: none': 36, 'holes: unique right': 31, 'lossy': 67, 'plain: none': 36, 'plain: unique right': 31}
+('qmark', 'Portuguese', 'ascii') {'lossy': 455, 'plain: none': 261, 'plain: several (truth in)': 1, 'plain: unique right': 193}
+('a0', 'Portuguese', 'windows-1252') {'a0 fix_text repairs': 399, 'a0 left': 50, 'a0 rows': 449}
+('fffd', 'Czech', 'windows-1252') {'holes: none': 85, 'holes: unique right': 41, 'lossy': 126, 'not reachable target': 7, 'plain: none': 85, 'plain: unique right': 41}
+('fffd', 'Czech', 'windows-1250') {'holes: none': 47, 'holes: unique right': 33, 'lossy': 80, 'not reachable target': 6, 'plain: none': 47, 'plain: unique right': 33}
+('fffd', 'Czech', 'windows-1251') {'holes: none': 40, 'holes: unique right': 17, 'lossy': 57, 'not reachable target': 8, 'plain: none': 40, 'plain: unique right': 17}
+('fffd', 'Czech', 'windows-1253') {'holes: none': 140, 'holes: unique right': 45, 'lossy': 185, 'not reachable target': 45, 'plain: none': 140, 'plain: unique right': 45}
+('fffd', 'Czech', 'windows-1254') {'holes: none': 87, 'holes: unique right': 41, 'lossy': 128, 'not reachable target': 6, 'plain: none': 87, 'plain: unique right': 41}
+('qmark', 'Czech', 'latin-1') {'lossy': 336, 'plain: none': 185, 'plain: unique right': 151}
+('qmark', 'Czech', 'windows-1252') {'lossy': 287, 'plain: none': 177, 'plain: unique right': 110}
+('fffd', 'Polish', 'windows-1252') {'holes: none': 41, 'holes: unique right': 31, 'lossy': 72, 'plain: none': 41, 'plain: unique right': 31}
+('fffd', 'Polish', 'windows-1250') {'holes: none': 65, 'holes: unique right': 42, 'lossy': 107, 'not reachable target': 4, 'plain: none': 65, 'plain: unique right': 42}
+('fffd', 'Polish', 'windows-1251') {'holes: none': 28, 'holes: unique right': 18, 'lossy': 46, 'not reachable target': 1, 'plain: none': 28, 'plain: unique right': 18}
+('fffd', 'Polish', 'windows-1253') {'holes: none': 96, 'holes: unique right': 40, 'lossy': 136, 'not reachable target': 23, 'plain: none': 96, 'plain: unique right': 40}
+('fffd', 'Polish', 'windows-1254') {'holes: none': 45, 'holes: unique right': 29, 'lossy': 74, 'plain: none': 45, 'plain: unique right': 29}
+('qmark', 'Polish', 'latin-1') {'lossy': 385, 'plain: none': 230, 'plain: unique right': 155}
+('qmark', 'Polish', 'windows-1252') {'lossy': 369, 'plain: none': 205, 'plain: unique right': 164}
+('fffd', 'Hungarian', 'windows-1252') {'holes: none': 59, 'holes: unique right': 61, 'lossy': 120, 'plain: none': 59, 'plain: unique right': 61}
+('fffd', 'Hungarian', 'windows-1250') {'holes: none': 62, 'holes: unique right': 49, 'lossy': 111, 'plain: none': 62, 'plain: unique right': 49}
+('fffd', 'Hungarian', 'windows-1251') {'holes: none': 13, 'holes: unique right': 11, 'lossy': 24, 'plain: none': 13, 'plain: unique right': 11}
+('fffd', 'Hungarian', 'windows-1253') {'holes: none': 86, 'holes: unique right': 64, 'lossy': 150, 'not reachable target': 7, 'plain: none': 85, 'plain: unique WRONG': 1, 'plain: unique right': 64}
+('fffd', 'Hungarian', 'windows-1254') {'holes: none': 70, 'holes: unique right': 60, 'lossy': 130, 'plain: none': 70, 'plain: several (truth in)': 1, 'plain: unique right': 59}
+('qmark', 'Hungarian', 'latin-1') {'lossy': 239, 'plain: none': 130, 'plain: several (truth in)': 1, 'plain: unique WRONG': 1, 'plain: unique right': 107}
+('qmark', 'Hungarian', 'windows-1252') {'lossy': 111, 'plain: none': 65, 'plain: several (truth in)': 1, 'plain: unique right': 45}
+('fffd', 'Russian', 'windows-1252') {'holes: none': 170, 'holes: unique right': 99, 'lossy': 269, 'plain: none': 168, 'plain: several (truth in)': 3, 'plain: several (truth out)': 1, 'plain: unique WRONG': 1, 'plain: unique right': 96}
+('fffd', 'Russian', 'windows-1250') {'holes: none': 159, 'holes: unique right': 102, 'lossy': 261, 'plain: none': 157, 'plain: unique WRONG': 2, 'plain: unique right': 102}
+('fffd', 'Russian', 'windows-1251') {'holes: none': 53, 'holes: unique right': 35, 'lossy': 88, 'plain: none': 53, 'plain: unique right': 35}
+('fffd', 'Russian', 'windows-1253') {'holes: none': 322, 'holes: unique right': 48, 'lossy': 370, 'not reachable target': 269, 'plain: none': 320, 'plain: unique WRONG': 2, 'plain: unique right': 48}
+('fffd', 'Russian', 'windows-1254') {'holes: none': 175, 'holes: several (truth in)': 2, 'holes: unique right': 114, 'lossy': 291, 'plain: none': 174, 'plain: several (truth in)': 4, 'plain: several (truth out)': 1, 'plain: unique right': 112}
+('qmark', 'Russian', 'latin-1') {'lossy': 198, 'plain: none': 79, 'plain: several (truth in)': 43, 'plain: several (truth out)': 13, 'plain: unique WRONG': 9, 'plain: unique right': 54}
+('fffd', 'Greek', 'windows-1252') {'holes: none': 120, 'holes: unique right': 116, 'lossy': 236, 'plain: none': 120, 'plain: unique right': 116}
+('fffd', 'Greek', 'windows-1250') {'holes: none': 130, 'holes: unique right': 93, 'lossy': 223, 'plain: none': 130, 'plain: unique right': 93}
+('fffd', 'Greek', 'windows-1251') {'holes: none': 32, 'holes: unique right': 10, 'lossy': 42, 'not reachable target': 16, 'plain: none': 32, 'plain: unique right': 10}
+('fffd', 'Greek', 'windows-1253') {'holes: none': 212, 'holes: unique right': 165, 'lossy': 377, 'plain: none': 212, 'plain: several (truth in)': 1, 'plain: unique right': 164}
+('fffd', 'Greek', 'windows-1254') {'holes: none': 129, 'holes: unique right': 116, 'lossy': 245, 'plain: none': 129, 'plain: unique right': 116}
+('qmark', 'Greek', 'latin-1') {'lossy': 189, 'plain: none': 72, 'plain: several (truth in)': 43, 'plain: several (truth out)': 12, 'plain: unique WRONG': 14, 'plain: unique right': 48}
+('fffd', 'Turkish', 'windows-1252') {'holes: none': 16, 'holes: unique right': 5, 'lossy': 21, 'plain: none': 16, 'plain: unique right': 5}
+('fffd', 'Turkish', 'windows-1250') {'holes: none': 11, 'holes: unique right': 8, 'lossy': 19, 'plain: none': 11, 'plain: unique right': 8}
+('fffd', 'Turkish', 'windows-1251') {'holes: none': 14, 'holes: unique right': 6, 'lossy': 20, 'plain: none': 14, 'plain: unique right': 6}
+('fffd', 'Turkish', 'windows-1253') {'holes: none': 134, 'holes: unique right': 84, 'lossy': 218, 'not reachable target': 25, 'plain: none': 134, 'plain: unique right': 84}
+('fffd', 'Turkish', 'windows-1254') {'holes: none': 58, 'holes: unique right': 34, 'lossy': 92, 'plain: none': 58, 'plain: unique right': 34}
+('qmark', 'Turkish', 'latin-1') {'lossy': 285, 'plain: none': 166, 'plain: unique right': 119}
+('fffd', 'pairs', 'windows-1252') {'holes: none': 11, 'holes: several (truth in)': 3, 'holes: unique WRONG': 1, 'holes: unique right': 11, 'lossy': 26, 'plain: none': 8, 'plain: several (truth in)': 11, 'plain: unique WRONG': 4, 'plain: unique right': 3}
+('fffd', 'pairs', 'windows-1250') {'holes: none': 6, 'holes: unique right': 15, 'lossy': 21, 'plain: none': 4, 'plain: several (truth in)': 8, 'plain: unique WRONG': 2, 'plain: unique right': 7}
+('fffd', 'pairs', 'windows-1253') {'holes: none': 15, 'holes: several (truth in)': 7, 'holes: unique WRONG': 5, 'holes: unique right': 5, 'lossy': 32, 'not reachable target': 14, 'plain: none': 12, 'plain: several (truth in)': 9, 'plain: unique WRONG': 8, 'plain: unique right': 3}
+('fffd', 'pairs', 'windows-1254') {'holes: none': 5, 'holes: several (truth in)': 5, 'holes: unique WRONG': 1, 'holes: unique right': 11, 'lossy': 22, 'plain: none': 3, 'plain: several (truth in)': 12, 'plain: unique WRONG': 3, 'plain: unique right': 4}
+('qmark', 'pairs', 'ascii') {'lossy': 110, 'plain: none': 20, 'plain: several (truth in)': 41, 'plain: unique WRONG': 8, 'plain: unique right': 41}
+
+== totals
+('a0', 'words')
+    a0 fix_text repairs          1696
+    a0 left                      192
+    a0 rows                      1888
+('fffd', 'pairs')
+    holes: none                  37
+    holes: several (truth in)    15
+    holes: unique WRONG          7
+    holes: unique right          42
+    lossy                        101
+    not reachable target         14
+    plain: none                  27
+    plain: several (truth in)    40
+    plain: unique WRONG          17
+    plain: unique right          17
+('fffd', 'words')
+    holes: none                  3483
+    holes: several (truth in)    2
+    holes: unique right          2121
+    lossy                        5606
+    not reachable target         493
+    plain: none                  3475
+    plain: several (truth in)    9
+    plain: several (truth out)   2
+    plain: unique WRONG          6
+    plain: unique right          2114
+('qmark', 'pairs')
+    lossy                        110
+    plain: none                  20
+    plain: several (truth in)    41
+    plain: unique WRONG          8
+    plain: unique right          41
+('qmark', 'words')
+    literal ? values             13
+    lossy                        4343
+    plain: none                  2448
+    plain: several (truth in)    89
+    plain: several (truth out)   25
+    plain: unique WRONG          25
+    plain: unique right          1756
+
+== examples (wrong or ambiguous)
+(('fffd', 'French', 'windows-1253'), 'unreachable', 'Ève', 'Γ�ve', '�ve')
+(('fffd', 'French', 'windows-1253'), 'unreachable', 'Ève reçu', 'Γ�ve reΓ§u', '�ve reçu')
+(('fffd', 'French', 'windows-1253'), 'unreachable', 'ÎLE', 'Γ�LE', '�LE')
+(('fffd', 'French', 'windows-1253'), 'unreachable', 'ÈVE', 'Γ�VE', '�VE')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“très voilà”', 'â€œtrÃ¨s voilÃ â€\x9d', '"très voilà "')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘élégant’ qualité', 'â€˜Ã©lÃ©gantâ€™ qualitÃ©', "'élégant' qualité")
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘dîner’ Cécile', 'â€˜dÃ®nerâ€™ CÃ©cile', "'dîner' Cécile")
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘Bézier’ pâté', 'â€˜BÃ©zierâ€™ pÃ¢tÃ©', "'Bézier' pâté")
+(('a0', 'French', 'windows-1252'), 'a0 left', 'DÎNER', 'DÃŽNER', 'DÃŽNER')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“référence hôpital”', 'â€œrÃ©fÃ©rence hÃ´pitalâ€\x9d', '"référence hôpital"')
+(('a0', 'French', 'windows-1252'), 'a0 left', 'NÎMES', 'NÃŽMES', 'NÃŽMES')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘Côte’ où', 'â€˜CÃ´teâ€™ oÃ¹', "'Côte' où")
+(('a0', 'French', 'windows-1252'), 'a0 left', 'ŒUVRE', 'Å’UVRE', "Å'UVRE")
+(('a0', 'French', 'windows-1252'), 'a0 left', 'CŒUR', 'CÅ’UR', "CÅ'UR")
+(('a0', 'French', 'windows-1252'), 'a0 left', '“Raphaël Gaëlle”', 'â€œRaphaÃ«l GaÃ«lleâ€\x9d', '"Raphaël Gaëlle"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“forêt août”', 'â€œforÃªt aoÃ»tâ€\x9d', '"forêt août"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“fenêtre décor”', 'â€œfenÃªtre dÃ©corâ€\x9d', '"fenêtre décor"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“Besançon Clément”', 'â€œBesanÃ§on ClÃ©mentâ€\x9d', '"Besançon Clément"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘société’ purée', 'â€˜sociÃ©tÃ©â€™ purÃ©e', "'société' purée")
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘Théo’ épée', 'â€˜ThÃ©oâ€™ Ã©pÃ©e', "'Théo' épée")
+(('a0', 'French', 'windows-1252'), 'a0 left', 'déjà', 'dÃ©jÃ ', 'déjà ')
+(('a0', 'French', 'windows-1252'), 'a0 left', 'BENOÎT', 'BENOÃŽT', 'BENOÃŽT')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“été brûlée”', 'â€œÃ©tÃ© brÃ»lÃ©eâ€\x9d', '"été brûlée"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“bâton Évian”', 'â€œbÃ¢ton Ã‰vianâ€\x9d', '"bâton Évian"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘français’ Noémie', 'â€˜franÃ§aisâ€™ NoÃ©mie', "'français' Noémie")
+(('a0', 'French', 'windows-1252'), 'a0 left', '“début soupçon”', 'â€œdÃ©but soupÃ§onâ€\x9d', '"début soupçon"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘leçon’ Nîmes', 'â€˜leÃ§onâ€™ NÃ®mes', "'leçon' Nîmes")
+(('a0', 'French', 'windows-1252'), 'a0 left', 'voilà', 'voilÃ ', 'voilà ')
+(('a0', 'French', 'windows-1252'), 'a0 left', '“égoïste âme”', 'â€œÃ©goÃ¯ste Ã¢meâ€\x9d', '"égoïste âme"')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘aïeul’ Rémi', 'â€˜aÃ¯eulâ€™ RÃ©mi', "'aïeul' Rémi")
+(('a0', 'French', 'windows-1252'), 'a0 left', 'crêpe – déjà', 'crÃªpe â€“ dÃ©jÃ ', 'crêpe – déjà ')
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘résumé’ Angoulême', 'â€˜rÃ©sumÃ©â€™ AngoulÃªme', "'résumé' Angoulême")
+(('a0', 'French', 'windows-1252'), 'a0 left', '‘Jérôme’ élève', 'â€˜JÃ©rÃ´meâ€™ Ã©lÃ¨ve', "'Jérôme' élève")
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'Überraschung', 'Γ�berraschung', '�berraschung')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'Gößling', 'GΓ¶Γ�ling', 'Gö�ling')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'ÜBUNG', 'Γ�BUNG', '�BUNG')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'Grüße', 'GrΓΌΓ�e', 'Grü�e')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'fühlen süß', 'fΓΌhlen sΓΌΓ�', 'fühlen sü�')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'ÜBER', 'Γ�BER', '�BER')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'süß', 'sΓΌΓ�', 'sü�')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'Größe', 'GrΓ¶Γ�e', 'Grö�e')
+(('fffd', 'German', 'windows-1253'), 'unreachable', 'ÜBERRASCHUNG', 'Γ�BERRASCHUNG', '�BERRASCHUNG')
+(('qmark', 'German', 'ascii'), 'plain', 'GRÜSSE', 'GR?SSE', ['GRÖSSE'])
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Kröte Straße”', 'â€œKrÃ¶te StraÃŸeâ€\x9d', '"Kröte Straße"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Väter Fußball”', 'â€œVÃ¤ter FuÃŸballâ€\x9d', '"Väter Fußball"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Gemüse Fräulein”', 'â€œGemÃ¼se FrÃ¤uleinâ€\x9d', '"Gemüse Fräulein"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘hören’ Mönchengladbach', 'â€˜hÃ¶renâ€™ MÃ¶nchengladbach', "'hören' Mönchengladbach")
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Tür Nürnberg”', 'â€œTÃ¼r NÃ¼rnbergâ€\x9d', '"Tür Nürnberg"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Dörte’ Größe', 'â€˜DÃ¶rteâ€™ GrÃ¶ÃŸe', "'Dörte' Größe")
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Lübeck’ bloß', 'â€˜LÃ¼beckâ€™ bloÃŸ', "'Lübeck' bloß")
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Bäckerei’ Glück', 'â€˜BÃ¤ckereiâ€™ GlÃ¼ck', "'Bäckerei' Glück")
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Öl Gebäude”', 'â€œÃ–l GebÃ¤udeâ€\x9d', '"Öl Gebäude"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '“während groß”', 'â€œwÃ¤hrend groÃŸâ€\x9d', '"während groß"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Gießen’ Bär', 'â€˜GieÃŸenâ€™ BÃ¤r', "'Gießen' Bär")
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Grüße’ über', 'â€˜GrÃ¼ÃŸeâ€™ Ã¼ber', "'Grüße' über")
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Überraschung’ Füße', 'â€˜Ãœberraschungâ€™ FÃ¼ÃŸe', "'Überraschung' Füße")
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Gruß’ Schlüssel', 'â€˜GruÃŸâ€™ SchlÃ¼ssel', "'Gruß' Schlüssel")
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Zürich außen”', 'â€œZÃ¼rich auÃŸenâ€\x9d', '"Zürich außen"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '“bloß Schwäne”', 'â€œbloÃŸ SchwÃ¤neâ€\x9d', '"bloß Schwäne"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Bäume für”', 'â€œBÃ¤ume fÃ¼râ€\x9d', '"Bäume für"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘zurück’ Rüdiger', 'â€˜zurÃ¼ckâ€™ RÃ¼diger', "'zurück' Rüdiger")
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Größe Müller”', 'â€œGrÃ¶ÃŸe MÃ¼llerâ€\x9d', '"Größe Müller"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Würzburg Bücher”', 'â€œWÃ¼rzburg BÃ¼cherâ€\x9d', '"Würzburg Bücher"')
+(('a0', 'German', 'windows-1252'), 'a0 left', '‘Köln’ Göttingen', 'â€˜KÃ¶lnâ€™ GÃ¶ttingen', "'Köln' Göttingen")
+(('a0', 'German', 'windows-1252'), 'a0 left', '“Bärbel hören”', 'â€œBÃ¤rbel hÃ¶renâ€\x9d', '"Bärbel hören"')
+(('fffd', 'Spanish', 'windows-1252'), 'unreachable', 'COMPAÑÍA', 'COMPA�A', 'COMPAÑ�A')
+(('fffd', 'Spanish', 'windows-1252'), 'unreachable', 'LINGÜÍSTICA', 'LING�STICA', 'LINGÜ�STICA')
+(('fffd', 'Spanish', 'windows-1253'), 'unreachable', 'ÁRBOL', 'Γ�RBOL', '�RBOL')
+(('fffd', 'Spanish', 'windows-1253'), 'unreachable', 'ÁVILA', 'Γ�VILA', '�VILA')
+(('fffd', 'Spanish', 'windows-1253'), 'unreachable', 'COMPAÑÍA', 'COMPA�A', 'COMPAÑ�A')
+(('fffd', 'Spanish', 'windows-1253'), 'unreachable', 'ÚLTIMO', 'Γ�LTIMO', '�LTIMO')
+(('fffd', 'Spanish', 'windows-1253'), 'unreachable', 'Álvaro', 'Γ�lvaro', '�lvaro')
+(('fffd', 'Spanish', 'windows-1253'), 'unreachable', 'ÁLVARO', 'Γ�LVARO', '�LVARO')
+(('fffd', 'Spanish', 'windows-1254'), 'unreachable', 'LINGÜÍSTICA', 'LING�STICA', 'LINGÜ�STICA')
+(('fffd', 'Spanish', 'windows-1254'), 'unreachable', 'COMPAÑÍA', 'COMPA�A', 'COMPAÑ�A')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘mañana’ Málaga', 'â€˜maÃ±anaâ€™ MÃ¡laga', "'mañana' Málaga")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘vergüenza’ cañón', 'â€˜vergÃ¼enzaâ€™ caÃ±Ã³n', "'vergüenza' cañón")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘Álvaro’ ¡olé!', 'â€˜Ã\x81lvaroâ€™ Â¡olÃ©!', "'Álvaro' ¡olé!")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘allí’ jardín', 'â€˜allÃ\xadâ€™ jardÃ\xadn', "'allí' jardín")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘jardín’ Cáceres', 'â€˜jardÃ\xadnâ€™ CÃ¡ceres', "'jardín' Cáceres")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“NIÑO SEÑOR”', 'â€œNIÃ‘O SEÃ‘ORâ€\x9d', '"NIÑO SEÑOR"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘Logroño’ Fernández', 'â€˜LogroÃ±oâ€™ FernÃ¡ndez', "'Logroño' Fernández")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“José ilusión”', 'â€œJosÃ© ilusiÃ³nâ€\x9d', '"José ilusión"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“montaña algodón”', 'â€œmontaÃ±a algodÃ³nâ€\x9d', '"montaña algodón"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“limón cigüeña”', 'â€œlimÃ³n cigÃ¼eÃ±aâ€\x9d', '"limón cigüeña"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘Muñoz’ baño', 'â€˜MuÃ±ozâ€™ baÃ±o', "'Muñoz' baño")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘Fernández’ también', 'â€˜FernÃ¡ndezâ€™ tambiÃ©n', "'Fernández' también")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“Córdoba público”', 'â€œCÃ³rdoba pÃºblicoâ€\x9d', '"Córdoba público"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘pájaro’ Sofía', 'â€˜pÃ¡jaroâ€™ SofÃ\xada', "'pájaro' Sofía")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“Gómez Gómez”', 'â€œGÃ³mez GÃ³mezâ€\x9d', '"Gómez Gómez"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“fácil araña”', 'â€œfÃ¡cil araÃ±aâ€\x9d', '"fácil araña"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“corazón música”', 'â€œcorazÃ³n mÃºsicaâ€\x9d', '"corazón música"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘dueño’ teléfono', 'â€˜dueÃ±oâ€™ telÃ©fono', "'dueño' teléfono")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“Bogotá León”', 'â€œBogotÃ¡ LeÃ³nâ€\x9d', '"Bogotá León"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '‘público’ señora', 'â€˜pÃºblicoâ€™ seÃ±ora', "'público' señora")
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“político María”', 'â€œpolÃ\xadtico MarÃ\xadaâ€\x9d', '"político María"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“niño señor”', 'â€œniÃ±o seÃ±orâ€\x9d', '"niño señor"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“Begoña Inés”', 'â€œBegoÃ±a InÃ©sâ€\x9d', '"Begoña Inés"')
+(('a0', 'Spanish', 'windows-1252'), 'a0 left', '“ilusión Peña”', 'â€œilusiÃ³n PeÃ±aâ€\x9d', '"ilusión Peña"')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'INFORMAÇÃO', 'INFORMA�O', 'INFORMAÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'SOLUÇÃO', 'SOLU�O', 'SOLUÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'CANÇÃO', 'CAN�O', 'CANÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'ASSUNÇÃO', 'ASSUN�O', 'ASSUNÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'EDUCAÇÃO', 'EDUCA�O', 'EDUCAÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'OPÇÃO', 'OP�O', 'OPÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'ESTAÇÃO', 'ESTA�O', 'ESTAÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'MAÇÃ', 'MA�', 'MAÇ�')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'CONCEIÇÃO', 'CONCEI�O', 'CONCEIÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'AÇÃO', 'A�O', 'AÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'INFORMAÇÃO PARÁ', 'INFORMA�O PAR�', 'INFORMAÇ�O PAR�')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'ATÉ\xa0CANÇÃO', 'ATɠCAN�O', 'ATÉ\xa0CANÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'ATENÇÃO', 'ATEN�O', 'ATENÇ�O')
+(('fffd', 'Portuguese', 'windows-1250'), 'unreachable', 'CORAÇÃO', 'CORA�O', 'CORAÇ�O')
+(('fffd', 'Portuguese', 'windows-1253'), 'unreachable', 'ÁRVORE', 'Γ�RVORE', '�RVORE')
+(('qmark', 'Portuguese', 'ascii'), 'plain', 'avó', 'av?', ['avó', 'avô'])
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘Gonçalves’ informação', 'â€˜GonÃ§alvesâ€™ informaÃ§Ã£o', "'Gonçalves' informação")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“ÔNIBUS SÓ”', 'â€œÃ”NIBUS SÃ“â€\x9d', '"ÔNIBUS SÓ"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“Paraná Estêvão”', 'â€œParanÃ¡ EstÃªvÃ£oâ€\x9d', '"Paraná Estêvão"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘Pará’ lã', 'â€˜ParÃ¡â€™ lÃ£', "'Pará' lã")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘Maceió’ vêm', 'â€˜MaceiÃ³â€™ vÃªm', "'Maceió' vêm")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘número’ não', 'â€˜nÃºmeroâ€™ nÃ£o', "'número' não")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘nação’ Goiânia', 'â€˜naÃ§Ã£oâ€™ GoiÃ¢nia', "'nação' Goiânia")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“avô Ceará”', 'â€œavÃ´ CearÃ¡â€\x9d', '"avô Ceará"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“São coração”', 'â€œSÃ£o coraÃ§Ã£oâ€\x9d', '"São coração"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘NAÇÃO’ GOIÂNIA', 'â€˜NAÃ‡ÃƒOâ€™ GOIÃ‚NIA', "'NAÇÃO' GOIÂNIA")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘quilômetro’ Niterói', 'â€˜quilÃ´metroâ€™ NiterÃ³i', "'quilômetro' Niterói")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“solução câmara”', 'â€œsoluÃ§Ã£o cÃ¢maraâ€\x9d', '"solução câmara"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘questão’ Magalhães', 'â€˜questÃ£oâ€™ MagalhÃ£es', "'questão' Magalhães")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“também Brasília”', 'â€œtambÃ©m BrasÃ\xadliaâ€\x9d', '"também Brasília"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“SÃO CORAÇÃO”', 'â€œSÃƒO CORAÃ‡ÃƒOâ€\x9d', '"SÃO CORAÇÃO"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“Jéssica porém”', 'â€œJÃ©ssica porÃ©mâ€\x9d', '"Jéssica porém"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“mãe região”', 'â€œmÃ£e regiÃ£oâ€\x9d', '"mãe região"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“máquina café”', 'â€œmÃ¡quina cafÃ©â€\x9d', '"máquina café"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“ônibus só”', 'â€œÃ´nibus sÃ³â€\x9d', '"ônibus só"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘Cecília’ Mônica', 'â€˜CecÃ\xadliaâ€™ MÃ´nica', "'Cecília' Mônica")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘têm’ atenção', 'â€˜tÃªmâ€™ atenÃ§Ã£o', "'têm' atenção")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘órfã’ Sônia', 'â€˜Ã³rfÃ£â€™ SÃ´nia', "'órfã' Sônia")
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '“Luíza cidadão”', 'â€œLuÃ\xadza cidadÃ£oâ€\x9d', '"Luíza cidadão"')
+(('a0', 'Portuguese', 'windows-1252'), 'a0 left', '‘Inês’ música', 'â€˜InÃªsâ€™ mÃºsica', "'Inês' música")
+(('fffd', 'Czech', 'windows-1252'), 'unreachable', 'JIŘÍ', 'JI�', 'JIŘ�')
+(('fffd', 'Czech', 'windows-1252'), 'unreachable', 'DVOŘÁK', 'DVO�K', 'DVOŘ�K')
+(('fffd', 'Czech', 'windows-1252'), 'unreachable', 'PŘÍTEL', 'P�TEL', 'PŘ�TEL')
+(('fffd', 'Czech', 'windows-1250'), 'unreachable', 'KROMĚŘÍŽ', 'KROM�͎', 'KROMĚ�ÍŽ')
+(('fffd', 'Czech', 'windows-1250'), 'unreachable', 'KŘÍŽ', 'K�͎', 'K�ÍŽ')
+(('fffd', 'Czech', 'windows-1251'), 'unreachable', 'KROMĚŘÍŽ', 'KROMДљЕ�ГЌЕЅ', 'KROMĚ�ÍŽ')
+(('fffd', 'Czech', 'windows-1251'), 'unreachable', 'ŘEKA', 'Е�EKA', '�EKA')
+(('fffd', 'Czech', 'windows-1251'), 'unreachable', 'Říha', 'Е�Г\xadha', '�íha')
+(('fffd', 'Czech', 'windows-1251'), 'unreachable', 'Dvořák\xa0Říha', 'DvoЕ™ГЎkВ\xa0Е�Г\xadha', 'Dvořák\xa0�íha')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ďábelské', 'Δ�Γ΅belskΓ©', '�ábelské')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'čeština', 'Δ�eΕ΅tina', '�eština')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ČAPEK', 'Δ�APEK', '�APEK')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Horák čeština', 'HorΓ΅k Δ�eΕ΅tina', 'Horák �eština')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'kůň', 'kΕ―Ε�', 'ků�')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'České', 'Δ�eskΓ©', '�eské')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Černý\xa0zmrzlina', 'Δ�ernΓ½Β\xa0zmrzlina', '�erný\xa0zmrzlina')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', '‘KŘÍŽ’ TŘEBÍČ', '�K��ޒ T�EB��', '�K��Ž’ T�EB��')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Třebíč hruška', 'TΕ™ebΓ\xadΔ� hruΕ΅ka', 'Třebí� hruška')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Černý', 'Δ�ernΓ½', '�erný')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Česko úpěl', 'Δ�esko ΓΊpΔ›l', '�esko úpěl')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Ústí', 'Γ�stΓ\xad', '�stí')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Hradec České', 'Hradec Δ�eskΓ©', 'Hradec �eské')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ČESKO', 'Δ�ESKO', '�ESKO')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ČAJ', 'Δ�AJ', '�AJ')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ČAS', 'Δ�AS', '�AS')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Dvořák\xa0Říha', 'DvoΕ™Γ΅kΒ\xa0Ε�Γ\xadha', 'Dvořák\xa0�íha')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'čaj', 'Δ�aj', '�aj')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Říha', 'Ε�Γ\xadha', '�íha')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ŘÍHA', 'Ε�Γ�HA', '��HA')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'čtyři\xa0Matěj', 'Δ�tyΕ™iΒ\xa0MatΔ›j', '�tyři\xa0Matěj')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Třebíč', 'TΕ™ebΓ\xadΔ�', 'Třebí�')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'čtvrť', 'Δ�tvrΕ¥', '�tvrť')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'ŘEKA', 'Ε�EKA', '�EKA')
+(('fffd', 'Czech', 'windows-1253'), 'unreachable', 'Česko', 'Δ�esko', '�esko')
+(('fffd', 'Czech', 'windows-1254'), 'unreachable', 'PŘÍTEL', 'P�TEL', 'PŘ�TEL')
+(('fffd', 'Czech', 'windows-1254'), 'unreachable', 'DVOŘÁK', 'DVO�K', 'DVOŘ�K')
+(('fffd', 'Czech', 'windows-1254'), 'unreachable', 'ŘÍHA', '�HA', 'Ř�HA')
+(('fffd', 'Czech', 'windows-1254'), 'unreachable', 'HŘÍCH', 'H�CH', 'HŘ�CH')
+(('fffd', 'Polish', 'windows-1250'), 'unreachable', 'JAŹŃ', 'JA�', 'JAŹ�')
+(('fffd', 'Polish', 'windows-1251'), 'unreachable', 'WAŁĘSA', 'WAЕЃД�SA', 'WAŁ�SA')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'ZAŻÓŁĆ', 'ZAΕ»Γ“Ε�Δ†', 'ZAŻÓ�Ć')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'babcia\xa0Świnoujście', 'babciaΒ\xa0Ε�winoujΕ›cie', 'babcia\xa0�winoujście')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'Łukasz', 'Ε�ukasz', '�ukasz')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'Świnoujście', 'Ε�winoujΕ›cie', '�winoujście')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'Śląsk', 'Ε�lΔ…sk', '�ląsk')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'ŻÓŁW', 'Ε»Γ“Ε�W', 'ŻÓ�W')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'ŁĄKA', 'Ε�Δ„KA', '�ĄKA')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'Śląsk\xa0żona', 'Ε�lΔ…skΒ\xa0ΕΌona', '�ląsk\xa0żona')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'ŁUKASZ', 'Ε�UKASZ', '�UKASZ')
+(('fffd', 'Polish', 'windows-1253'), 'unreachable', 'ŁÓDŹ', 'Ε�Γ“DΕΉ', '�ÓDŹ')
+(('fffd', 'Hungarian', 'windows-1253'), 'unreachable', 'Őrség', 'Ε�rsΓ©g', '�rség')
+(('fffd', 'Hungarian', 'windows-1253'), 'unreachable', 'ÜDVÖZLÖM', 'Γ�DVΓ–ZLΓ–M', '�DVÖZLÖM')
+(('fffd', 'Hungarian', 'windows-1253'), 'plain', 'TŐ', 'T�', ['TŰ'])
+(('fffd', 'Hungarian', 'windows-1253'), 'unreachable', 'ŐSZIBARACK', 'Ε�SZIBARACK', '�SZIBARACK')
+(('fffd', 'Hungarian', 'windows-1253'), 'unreachable', 'Ágnes', 'Γ�gnes', '�gnes')
+(('fffd', 'Hungarian', 'windows-1254'), 'plain', 'TŐ', 'T�', ['TŰ', 'TŐ'])
+(('qmark', 'Hungarian', 'latin-1'), 'plain', 'tő', 't?', ['tű', 'tő'])
+(('qmark', 'Hungarian', 'latin-1'), 'plain', 'TŐ', 'T?', ['TŰ'])
+(('qmark', 'Hungarian', 'windows-1252'), 'plain', 'tő', 't?', ['tű', 'tő'])
+(('fffd', 'Russian', 'windows-1252'), 'plain', 'АННА', '����', ['Иван', 'АННА', 'ИВАН', 'ЭТИХ'])
+(('fffd', 'Russian', 'windows-1252'), 'plain', 'ДА', 'Д�', ['ДА', 'ДО'])
+(('fffd', 'Russian', 'windows-1252'), 'plain', 'АННА', '����', ['Иван', 'АННА', 'Анна', 'ЭТИХ'])
+(('fffd', 'Russian', 'windows-1252'), 'plain', 'ДА', 'Д�', ['ДО'])
+(('fffd', 'Russian', 'windows-1250'), 'plain', 'ДА', 'Д�', ['ДО'])
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'объём', 'ΠΎΠ±Ρ�Ρ‘ΠΌ', 'об�ём')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Омск', 'Π�ΠΌΡ�ΠΊ', '�м�к')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Иван', 'Π�Π²Π°Π½', '�ван')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Кузнецов\xa0Иван', 'Π�ΡƒΠ·Π½ΠµΡ†ΠΎΠ²Β\xa0Π�Π²Π°Π½', '�узнецов\xa0�ван')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ГОРОД', 'Π“Π�Π\xa0Π�Π”', 'Г�Р�Д')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'объём пожалуйста', 'ΠΎΠ±Ρ�Ρ‘ΠΌ ΠΏΠΎΠ¶Π°Π»ΡƒΠΉΡ�Ρ‚Π°', 'об�ём пожалуй�та')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'вьюга\xa0объём', 'Π²Ρ�Ρ�Π³Π°Β\xa0ΠΎΠ±Ρ�Ρ‘ΠΌ', 'в��га\xa0об�ём')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Юлия этих', 'Π®Π»ΠΈΡ� Ρ�Ρ‚ΠΈΡ…', 'Юли� �тих')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Юлия', 'Π®Π»ΠΈΡ�', 'Юли�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ВЫПЕЙ', 'Π’Π«Π�Π•Π™', 'ВЫ�ЕЙ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ХОРОШО', 'Π¥Π�Π\xa0Π�Π¨Π�', 'Х�Р�Ш�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'вьюга', 'Π²Ρ�Ρ�Π³Π°', 'в��га')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Михайлов', 'Π�ΠΈΡ…Π°ΠΉΠ»ΠΎΠ²', '�ихайлов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Москва\xa0Екатеринбург', 'Π�ΠΎΡ�ΠΊΠ²Π°Β\xa0Π•ΠΊΠ°Ρ‚ΠµΡ€ΠΈΠ½Π±ΡƒΡ€Π³', '�о�ква\xa0Екатеринбург')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Иван Новгород', 'Π�Π²Π°Π½ Π�ΠΎΠ²Π³ΠΎΡ€ΠΎΠ΄', '�ван �овгород')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ПОДЪЕЗД', 'Π�Π�Π”Π�Π•Π—Π”', '��Д�ЕЗД')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ОБЪЁМ', 'Π�Π‘Π�Π�Π�', '�Б���')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СПАСИБО', 'Π΅Π�Π�Π΅Π�Π‘Π�', 'С��С�Б�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'мягких', 'ΠΌΡ�Π³ΠΊΠΈΡ…', 'м�гких')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ПОПОВ', 'Π�Π�Π�Π�Π’', '����В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ДО', 'Π”Π�', 'Д�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СЪЕШЬ', 'Π΅Π�Π•Π¨Π¬', 'С�ЕШЬ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ПРИВЕТ', 'Π�Π\xa0Π�Π’Π•ΠΆ', '�Р�ВЕТ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'жизнь подъезд', 'Π¶ΠΈΠ·Π½Ρ� ΠΏΠΎΠ΄Ρ�ΠµΠ·Π΄', 'жизн� под�езд')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'АЛЕКСЕЙ', 'Π�Π›Π•Π�Π΅Π•Π™', '�ЛЕ�СЕЙ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'НОВГОРОД ИРИНА', 'Π�Π�Π’Π“Π�Π\xa0Π�Π” Π�Π\xa0Π�Π�Π�', '��ВГ�Р�Д �Р���')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Александр', 'Π�Π»ΠµΠΊΡ�Π°Π½Π΄Ρ€', '�лек�андр')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'АННА', 'Π�Π�Π�Π�', '����')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'пожалуйста', 'ΠΏΠΎΠ¶Π°Π»ΡƒΠΉΡ�Ρ‚Π°', 'пожалуй�та')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЧЕЛЯБИНСК', 'Π§Π•Π›Π―Π‘Π�Π�Π΅Π�', 'ЧЕЛЯБ��С�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ДМИТРИЙ', 'Π”Π�Π�ΠΆΠ\xa0Π�Π™', 'Д��ТР�Й')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Ростов\xa0семья', 'Π\xa0ΠΎΡ�Ρ‚ΠΎΠ²Β\xa0Ρ�ΠµΠΌΡ�Ρ�', 'Ро�тов\xa0�ем��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЁЛКА', 'Π�Π›Π�Π�', '�Л��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'АЛЕКСЕЕВ', 'Π�Π›Π•Π�Π΅Π•Π•Π’', '�ЛЕ�СЕЕВ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ёж Ольга', 'Ρ‘Π¶ Π�Π»Ρ�Π³Π°', 'ёж �л�га')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Нижний', 'Π�ΠΈΠ¶Π½ΠΈΠΉ', '�ижний')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Новгород', 'Π�ΠΎΠ²Π³ΠΎΡ€ΠΎΠ΄', '�овгород')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'молоко Омск', 'ΠΌΠΎΠ»ΠΎΠΊΠΎ Π�ΠΌΡ�ΠΊ', 'молоко �м�к')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СЕМЬЯ', 'Π΅Π•Π�Π¬Π―', 'СЕ�ЬЯ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЕГОРОВ', 'Π•Π“Π�Π\xa0Π�Π’', 'ЕГ�Р�В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Казань Егоров', 'Π�Π°Π·Π°Π½Ρ� Π•Π³ΠΎΡ€ΠΎΠ²', '�азан� Егоров')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Васильев', 'Π’Π°Ρ�ΠΈΠ»Ρ�ΠµΠ²', 'Ва�ил�ев')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Наталья', 'Π�Π°Ρ‚Π°Π»Ρ�Ρ�', '�атал��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Морозов', 'Π�ΠΎΡ€ΠΎΠ·ΠΎΠ²', '�орозов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Красноярск', 'Π�Ρ€Π°Ρ�Π½ΠΎΡ�Ρ€Ρ�ΠΊ', '�ра�но�р�к')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'НОВОСИБИРСК\xa0СМИРНОВ', 'Π�Π�Π’Π�Π΅Π�Π‘Π�Π\xa0Π΅Π�Β\xa0Π΅Π�Π�Π\xa0Π�Π�Π’', '��В�С�Б�РС�\xa0С��Р��В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'НОВГОРОД', 'Π�Π�Π’Π“Π�Π\xa0Π�Π”', '��ВГ�Р�Д')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Новосибирск', 'Π�ΠΎΠ²ΠΎΡ�ΠΈΠ±ΠΈΡ€Ρ�ΠΊ', '�ово�ибир�к')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МОРОЗОВ', 'Π�Π�Π\xa0Π�Π—Π�Π’', '��Р�З�В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'мягких работа', 'ΠΌΡ�Π³ΠΊΠΈΡ… Ρ€Π°Π±ΠΎΡ‚Π°', 'м�гких работа')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Егоров Михаил', 'Π•Π³ΠΎΡ€ΠΎΠ² Π�ΠΈΡ…Π°ΠΈΠ»', 'Егоров �ихаил')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'КУЗНЕЦОВ', 'Π�Π£Π—Π�Π•Π¦Π�Π’', '�УЗ�ЕЦ�В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МОЛОКО', 'Π�Π�Π›Π�Π�Π�', '��Л���')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ВОЛКОВ', 'Π’Π�Π›Π�Π�Π’', 'В�Л��В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СЕМЁНОВ', 'Π΅Π•Π�Π�Π�Π�Π’', 'СЕ����В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'УЛИЦА', 'Π£Π›Π�Π¦Π�', 'УЛ�Ц�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Ростов', 'Π\xa0ΠΎΡ�Ρ‚ΠΎΠ²', 'Ро�тов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'САМАРА', 'Π΅Π�Π�Π�Π\xa0Π�', 'С���Р�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'УЧИТЕЛЬ', 'Π£Π§Π�ΠΆΠ•Π›Π¬', 'УЧ�ТЕЛЬ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЖИЗНЬ', 'Π–Π�Π—Π�Π¬', 'Ж�З�Ь')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Алексеев', 'Π�Π»ΠµΠΊΡ�ΠµΠµΠ²', '�лек�еев')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'КАЗАНЬ', 'Π�Π�Π—Π�Π�Π¬', '��З��Ь')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЕЛЕНА', 'Π•Π›Π•Π�Π�', 'ЕЛЕ��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'жизнь', 'Π¶ΠΈΠ·Π½Ρ�', 'жизн�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Евгений страна', 'Π•Π²Π³ΠµΠ½ΠΈΠΉ Ρ�Ρ‚Ρ€Π°Π½Π°', 'Евгений �трана')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'подъезд', 'ΠΏΠΎΠ΄Ρ�ΠµΠ·Π΄', 'под�езд')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЁЖ', 'Π�Π–', '�Ж')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Новгород Ирина', 'Π�ΠΎΠ²Π³ΠΎΡ€ΠΎΠ΄ Π�Ρ€ΠΈΠ½Π°', '�овгород �рина')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЩУКА', 'Π©Π£Π�Π�', 'ЩУ��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МИР', 'Π�Π�Π\xa0', '��Р')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'АЛЕКСАНДР', 'Π�Π›Π•Π�Π΅Π�Π�Π”Π\xa0', '�ЛЕ�С��ДР')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ПЕТРОВ', 'Π�Π•ΠΆΠ\xa0Π�Π’', '�ЕТР�В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЧЕЛОВЕК', 'Π§Π•Π›Π�Π’Π•Π�', 'ЧЕЛ�ВЕ�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ПЛОХО', 'Π�Π›Π�Π¥Π�', '�Л�Х�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СТРАНА', 'Π΅ΠΆΠ\xa0Π�Π�Π�', 'СТР���')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Санкт-Петербург', 'Π΅Π°Π½ΠΊΡ‚-Π�ΠµΡ‚ΠµΡ€Π±ΡƒΡ€Π³', 'Санкт-�етербург')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МАКСИМ', 'Π�Π�Π�Π΅Π�Π�', '���С��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЕКАТЕРИНБУРГ', 'Π•Π�Π�ΠΆΠ•Π\xa0Π�Π�Π‘Π£Π\xa0Π“', 'Е��ТЕР��БУРГ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МЯГКИХ', 'Π�Π―Π“Π�Π�Π¥', '�ЯГ��Х')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'учитель', 'ΡƒΡ‡ΠΈΡ‚ΠµΠ»Ρ�', 'учител�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЧАЩОБА', 'Π§Π�Π©Π�Π‘Π�', 'Ч�Щ�Б�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Новосибирск\xa0Смирнов', 'Π�ΠΎΠ²ΠΎΡ�ΠΈΠ±ΠΈΡ€Ρ�ΠΊΒ\xa0Π΅ΠΌΠΈΡ€Π½ΠΎΠ²', '�ово�ибир�к\xa0Смирнов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЭТИХ', 'Π\xadΠΆΠ�Π¥', 'ЭТ�Х')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'РОСТОВ', 'Π\xa0Π�Π΅ΠΆΠ�Π’', 'Р�СТ�В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СМИРНОВ', 'Π΅Π�Π�Π\xa0Π�Π�Π’', 'С��Р��В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Новиков', 'Π�ΠΎΠ²ΠΈΠΊΠΎΠ²', '�овиков')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЕВГЕНИЙ', 'Π•Π’Π“Π•Π�Π�Π™', 'ЕВГЕ��Й')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'этих хлеб', 'Ρ�Ρ‚ΠΈΡ… Ρ…Π»ΠµΠ±', '�тих хлеб')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Морозов\xa0Нижний', 'Π�ΠΎΡ€ΠΎΠ·ΠΎΠ²Β\xa0Π�ΠΈΠ¶Π½ΠΈΠΉ', '�орозов\xa0�ижний')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МИХАЙЛОВ', 'Π�Π�Π¥Π�Π™Π›Π�Π’', '��Х�ЙЛ�В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Волгоград Кузнецов', 'Π’ΠΎΠ»Π³ΠΎΠ³Ρ€Π°Π΄ Π�ΡƒΠ·Π½ΠµΡ†ΠΎΠ²', 'Волгоград �узнецов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ФРАНЦУЗСКИХ', 'Π¤Π\xa0Π�Π�Π¦Π£Π—Π΅Π�Π�Π¥', 'ФР��ЦУЗС��Х')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'вода Иванов', 'Π²ΠΎΠ΄Π° Π�Π²Π°Π½ΠΎΠ²', 'вода �ванов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МИХАИЛ', 'Π�Π�Π¥Π�Π�Π›', '��Х��Л')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Анна', 'Π�Π½Π½Π°', '�нна')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЕЩЁ', 'Π•Π©Π�', 'ЕЩ�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ДОМ', 'Π”Π�Π�', 'Д��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Иванов', 'Π�Π²Π°Π½ΠΎΠ²', '�ванов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'НИЖНИЙ', 'Π�Π�Π–Π�Π�Π™', '��Ж��Й')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'СВИДАНИЯ', 'Π΅Π’Π�Π”Π�Π�Π�Π―', 'СВ�Д���Я')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'КРАСНОЯРСК', 'Π�Π\xa0Π�Π΅Π�Π�Π―Π\xa0Π΅Π�', '�Р�С��ЯРС�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'МОСКВА', 'Π�Π�Π΅Π�Π’Π�', '��С�В�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ВОЛГОГРАД', 'Π’Π�Π›Π“Π�Π“Π\xa0Π�Π”', 'В�ЛГ�ГР�Д')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ПЕРМЬ', 'Π�Π•Π\xa0Π�Π¬', '�ЕР�Ь')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Нижний Евгений', 'Π�ΠΈΠ¶Π½ΠΈΠΉ Π•Π²Π³ΠµΠ½ΠΈΠΉ', '�ижний Евгений')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'школа', 'Ρ�ΠΊΠΎΠ»Π°', '�кола')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ВАСИЛЬЕВ', 'Π’Π�Π΅Π�Π›Π¬Π•Π’', 'В�С�ЛЬЕВ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЮЛИЯ', 'Π®Π›Π�Π―', 'ЮЛ�Я')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'французских', 'Ρ„Ρ€Π°Π½Ρ†ΡƒΠ·Ρ�ΠΊΠΈΡ…', 'француз�ких')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Михаил', 'Π�ΠΈΡ…Π°ΠΈΠ»', '�ихаил')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Михайлов вьюга', 'Π�ΠΈΡ…Π°ΠΉΠ»ΠΎΠ² Π²Ρ�Ρ�Π³Π°', '�ихайлов в��га')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Ольга', 'Π�Π»Ρ�Π³Π°', '�л�га')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'город\xa0спасибо', 'Π³ΠΎΡ€ΠΎΠ΄Β\xa0Ρ�ΠΏΠ°Ρ�ΠΈΠ±ΠΎ', 'город\xa0�па�ибо')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ТАТЬЯНА', 'ΠΆΠ�ΠΆΠ¬Π―Π�Π�', 'Т�ТЬЯ��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'РАБОТА', 'Π\xa0Π�Π‘Π�ΠΆΠ�', 'Р�Б�Т�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Кузнецов', 'Π�ΡƒΠ·Π½ΠµΡ†ΠΎΠ²', '�узнецов')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ИВАНОВ', 'Π�Π’Π�Π�Π�Π’', '�В���В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЧЕЛЯБИНСК ДО', 'Π§Π•Π›Π―Π‘Π�Π�Π΅Π� Π”Π�', 'ЧЕЛЯБ��С� Д�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Петров', 'Π�ΠµΡ‚Ρ€ΠΎΠ²', '�етров')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ЗДРАВСТВУЙТЕ', 'Π—Π”Π\xa0Π�Π’Π΅ΠΆΠ’Π£Π™ΠΆΠ•', 'ЗДР�ВСТВУЙТЕ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'время', 'Π²Ρ€ΠµΠΌΡ�', 'врем�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Андрей', 'Π�Π½Π΄Ρ€ΠµΠΉ', '�ндрей')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Татьяна', 'ΠΆΠ°Ρ‚Ρ�Ρ�Π½Π°', 'Тат��на')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Алексей', 'Π�Π»ΠµΠΊΡ�ΠµΠΉ', '�лек�ей')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Ирина', 'Π�Ρ€ΠΈΠ½Π°', '�рина')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'САНКТ-ПЕТЕРБУРГ', 'Π΅Π�Π�Π�ΠΆ-Π�Π•ΠΆΠ•Π\xa0Π‘Π£Π\xa0Π“', 'С���Т-�ЕТЕРБУРГ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Самара\xa0съешь', 'Π΅Π°ΠΌΠ°Ρ€Π°Β\xa0Ρ�Ρ�ΠµΡ�Ρ�', 'Самара\xa0��е��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'НОВИКОВ', 'Π�Π�Π’Π�Π�Π�Π’', '��В���В')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'Челябинск', 'Π§ΠµΠ»Ρ�Π±ΠΈΠ½Ρ�ΠΊ', 'Чел�бин�к')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'БУЛОК', 'Π‘Π£Π›Π�Π�', 'БУЛ��')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'НОВОСИБИРСК', 'Π�Π�Π’Π�Π΅Π�Π‘Π�Π\xa0Π΅Π�', '��В�С�Б�РС�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'плохо Алексеев', 'ΠΏΠ»ΠΎΡ…ΠΎ Π�Π»ΠµΠΊΡ�ΠµΠµΠ²', 'плохо �лек�еев')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ВОРОНЕЖ', 'Π’Π�Π\xa0Π�Π�Π•Π–', 'В�Р��ЕЖ')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'спасибо', 'Ρ�ΠΏΠ°Ρ�ΠΈΠ±ΠΎ', '�па�ибо')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'чаю', 'Ρ‡Π°Ρ�', 'ча�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ОМСК', 'Π�Π�Π΅Π�', '��С�')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'ВРЕМЯ', 'Π’Π\xa0Π•Π�Π―', 'ВРЕ�Я')
+(('fffd', 'Russian', 'windows-1253'), 'unreachable', 'хорошо Петров', 'Ρ…ΠΎΡ€ΠΎΡ�ΠΎ Π�ΠµΡ‚Ρ€ΠΎΠ²', 'хоро�о �етров')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΔΗΜΗΤΡΊΟΥ\xa0ΕΛΕΥΘΕΡΊΑ', 'О”О—ОњО—О¤ОЎОЉОџОҐВ\xa0О•О›О•ОҐО�О•ОЎОЉО‘', 'ΔΗΜΗΤΡΊΟΥ\xa0ΕΛΕΥ�ΕΡΊΑ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΑΘΉΝΑ', 'О‘О�О‰ОќО‘', 'Α�ΉΝΑ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΘΆΛΑΣΣΑ', 'О�О†О›О‘ОЈОЈО‘', '�ΆΛΑΣΣΑ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΨΥΧΟΦΘΌΡΑ', 'ОЁОҐО§ОџО¦О�ОЊОЎО‘', 'ΨΥΧΟΦ�ΌΡΑ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'Θεσσαλονίκη', 'О�ОµПѓПѓО±О»ОїОЅОЇОєО·', '�εσσαλονίκη')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΕΛΕΥΘΕΡΊΑ', 'О•О›О•ОҐО�О•ОЎОЉО‘', 'ΕΛΕΥ�ΕΡΊΑ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΜΑΘΗΤΉΣ', 'ОњО‘О�О—О¤О‰ОЈ', 'ΜΑ�ΗΤΉΣ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΘΕΣΣΑΛΟΝΊΚΗ', 'О�О•ОЈОЈО‘О›ОџОќОЉОљО—', '�ΕΣΣΑΛΟΝΊΚΗ')
+(('fffd', 'Greek', 'windows-1251'), 'unreachable', 'ΚΈΡΚΥΡΑ\xa0ΘΕΣΣΑΛΟΝΊΚΗ', 'ОљО€ОЎОљОҐОЎО‘В\xa0О�О•ОЈОЈО‘О›ОџОќОЉОљО—', 'ΚΈΡΚΥΡΑ\xa0�ΕΣΣΑΛΟΝΊΚΗ')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'ŞEHIR', 'Ε�EHIR', '�EHIR')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'kış', 'kΔ±Ε�', 'kı�')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'pijamalı\xa0kış', 'pijamalΔ±Β\xa0kΔ±Ε�', 'pijamalı\xa0kı�')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'ÖĞRETMEN', 'Γ–Δ�RETMEN', 'Ö�RETMEN')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'öğrenci', 'Γ¶Δ�renci', 'ö�renci')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'ÖĞRENCI', 'Γ–Δ�RENCI', 'Ö�RENCI')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'Şanlıurfa', 'Ε�anlΔ±urfa', '�anlıurfa')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'Şükrü', 'Ε�ΓΌkrΓΌ', '�ükrü')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'Şahin', 'Ε�ahin', '�ahin')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'kitap\xa0Şahin', 'kitapΒ\xa0Ε�ahin', 'kitap\xa0�ahin')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'ŞANLIURFA', 'Ε�ANLIURFA', '�ANLIURFA')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'ŞAHIN', 'Ε�AHIN', '�AHIN')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'ÜLKE', 'Γ�LKE', '�LKE')
+(('fffd', 'Turkish', 'windows-1253'), 'unreachable', 'şoföre', 'Ε�ofΓ¶re', '�oföre')
+(('fffd', 'pairs', 'windows-1253'), 'unreachable', 'Ýmir', 'Γ�mir', '�mir')
+(('fffd', 'pairs', 'windows-1253'), 'unreachable', 'ÁLVARO', 'Γ�LVARO', '�LVARO')
+(('fffd', 'pairs', 'windows-1253'), 'unreachable', 'Łódż', 'Ε�Γ³dΕΌ', '�ódż')
+(('fffd', 'pairs', 'windows-1253'), 'unreachable', 'Ümir', 'Γ�mir', '�mir')
+(('fffd', 'pairs', 'windows-1253'), 'unreachable', 'Łódź', 'Ε�Γ³dΕΊ', '�ódź')

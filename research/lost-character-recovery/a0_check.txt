@@ -1,0 +1,5 @@
+a0 rows left unrepaired by fix_text: 99; of these, with an A0 byte: 4
+('crêpe – déjà', 'crÃªpe â€“ dÃ©jÃ ', 'crêpe – déjà ')
+('déjà', 'dÃ©jÃ ', 'déjà ')
+('voilà', 'voilÃ ', 'voilà ')
+('“très voilà”', 'â€œtrÃ¨s voilÃ â€\x9d', '"très voilà "')
