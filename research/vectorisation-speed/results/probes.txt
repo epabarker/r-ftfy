@@ -1,0 +1,43 @@
+== 1. Load-time cost of building encode tables and patterns
+init_proto(): 0.006s (includes reading data.json)
+encode tables only (11 chartr strings from 256-entry decode tables): 0.0010s
+
+== 2. Encode lookup: chartr vs integer lookup (sloppy-windows-1252)
+13386 strings encodable in sloppy-windows-1252
+identical results: TRUE
+chartr          0.0050s  (0.37 us/value)
+per-string int  0.0230s  (1.72 us/value)
+unlist int      0.0160s  (1.20 us/value)
+bytes->UTF-8 (iconv to latin1, re-mark, stri_enc_isutf8): 0.0030s (0.22 us/value)
+
+== 3. U+FEFF safety of hot-path functions
+  stri_detect_regex('^\x{feff}')                          keeps
+  stri_replace_all_regex                                  keeps
+  stri_replace_all_regex(vectorize_all = FALSE)           keeps
+  stri_replace_all_fixed                                  LOSES/differs
+  stri_locate_all_regex positions count U+FEFF            keeps
+  stri_split_regex('(?<=\n)')                             LOSES/differs
+  stri_trans_nfc                                          keeps
+  stri_enc_isascii (FALSE expected)                       keeps
+  stri_enc_isutf8 on bytes EF BB BF                       keeps
+  stri_sub(s, 1, -1)                                      LOSES/differs
+  stri_join_list                                          LOSES/differs
+  base chartr                                             keeps
+  base substring                                          keeps
+  base nchar                                              keeps
+  base paste0 / split+paste                               keeps
+  base iconv UTF-8 -> UTF-8                               keeps
+  base gsub(fixed = TRUE)                                 keeps
+  prototype fix_text_vec keeps none (remove_control_chars drops all U+FEFF) keeps
+  prototype splice() with a match after U+FEFF            keeps
+
+== 4. Locate, compute, splice vs a plain regex replace (same pattern)
+splice(entity, compute)    0.2110s (2.11 us/value)
+stri_replace_all_regex(..) 0.0200s (0.20 us/value)  [lower bound, constant replacement]
+splice on a 10%-hit column  0.0190s (0.19 us/value)
+
+== 5. U+FEFF end to end with remove_control_chars off (prototype)
+  ﻿ab                                    -> ﻿ab                          U+FEFF in 1, out 1
+  ﻿ab\n﻿c                              -> ﻿ab\n﻿c                    U+FEFF in 2, out 2
+  ﻿Ã©tÃ©                             -> ﻿été                       U+FEFF in 1, out 1
+  x\n﻿Ã©                               -> x\n﻿é                       U+FEFF in 1, out 1

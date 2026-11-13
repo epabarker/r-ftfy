@@ -1,0 +1,65 @@
+{
+ "names_n1e4": {
+  "n": 10000,
+  "clean": 0.95,
+  "unique": 0.2,
+  "seconds": 0.09185462499590358,
+  "changed": 1095
+ },
+ "names_n1e5": {
+  "n": 100000,
+  "clean": 0.95,
+  "unique": 0.2,
+  "seconds": 0.9011754580060369,
+  "changed": 10875
+ },
+ "names_n1e6": {
+  "n": 1000000,
+  "clean": 0.95,
+  "unique": 0.2,
+  "seconds": 9.75533070799429,
+  "changed": 107570
+ },
+ "names_clean100_u20": {
+  "n": 100000,
+  "clean": 1.0,
+  "unique": 0.2,
+  "seconds": 0.925691291995463,
+  "changed": 6675
+ },
+ "names_clean50_u20": {
+  "n": 100000,
+  "clean": 0.5,
+  "unique": 0.2,
+  "seconds": 1.3053822920046514,
+  "changed": 48160
+ },
+ "names_clean95_u1": {
+  "n": 100000,
+  "clean": 0.95,
+  "unique": 0.01,
+  "seconds": 0.8665127499989467,
+  "changed": 12100
+ },
+ "names_clean95_u100": {
+  "n": 100000,
+  "clean": 0.95,
+  "unique": 1.0,
+  "seconds": 1.00768891700136,
+  "changed": 10972
+ },
+ "ascii_n1e5": {
+  "n": 100000,
+  "clean": 1.0,
+  "unique": 0.2,
+  "seconds": 0.5503711659985129,
+  "changed": 0
+ },
+ "notes_n1e4": {
+  "n": 10000,
+  "clean": 0.95,
+  "unique": 1.0,
+  "seconds": 0.9151323330006562,
+  "changed": 6985
+ }
+}

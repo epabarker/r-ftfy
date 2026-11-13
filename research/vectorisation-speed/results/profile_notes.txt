@@ -1,0 +1,38 @@
+column notes_n1e4, 10000 values, 3 runs
+
+== by self time
+                         self.time self.pct total.time total.pct
+"stri_detect_regex"          1.016    73.09      1.016     73.09
+"FUN"                        0.050     3.60      0.054      3.88
+"stri_replace_all_regex"     0.040     2.88      0.040      2.88
+"stri_trans_nfc"             0.034     2.45      0.034      2.45
+"substring"                  0.028     2.01      0.028      2.01
+"grepl"                      0.026     1.87      0.026      1.87
+"stri_locate_all_regex"      0.024     1.73      0.024      1.73
+"lapply"                     0.018     1.29      0.034      2.45
+"findCenvVar"                0.018     1.29      0.024      1.73
+"fix_segments"               0.014     1.01      1.172     84.32
+"vapply"                     0.014     1.01      0.056      4.03
+"grep"                       0.012     0.86      0.012      0.86
+"fix_encoding_one_step"      0.006     0.43      0.872     62.73
+"which"                      0.006     0.43      0.188     13.53
+"chartr"                     0.006     0.43      0.006      0.43
+
+== by total time (selected prototype functions)
+                        total.time total.pct self.time self.pct
+"fix_text_vec"               1.390    100.00     0.002     0.14
+"fix_segments"               1.172     84.32     0.014     1.01
+"det"                        1.016     73.09     0.000     0.00
+"fix_encoding_explain"       0.876     63.02     0.000     0.00
+"fix_encoding_one_step"      0.872     62.73     0.006     0.43
+"only_if"                    0.208     14.96     0.002     0.14
+"vapply"                     0.056      4.03     0.014     1.01
+"rep_all"                    0.044      3.17     0.002     0.14
+"stri_trans_nfc"             0.034      2.45     0.034     2.45
+"substring"                  0.028      2.01     0.028     2.01
+"stri_locate_all_regex"      0.024      1.73     0.024     1.73
+"unescape_html"              0.012      0.86     0.000     0.00
+"chartr"                     0.006      0.43     0.006     0.43
+"bytes_to_utf8"              0.006      0.43     0.002     0.14
+"encode_chars"               0.006      0.43     0.000     0.00
+"split"                      0.004      0.29     0.000     0.00
