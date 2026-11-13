@@ -218,7 +218,8 @@ test_that("the repair returns its steps as a long table over the elements it was
 test_that("one call on the whole vector gives the same texts as one call per element", {
   snapshot <- read_encoding_snapshot()
   x <- c(snapshot$text, NA, snapshot$text[1:200], NA)
-  x <- x[withr::with_seed(36, sample(length(x)))]
+  # A fixed shuffle, so that duplicates and `NA`s are not next to each other.
+  x <- x[order((seq_along(x) * 7919) %% 2503, seq_along(x))]
   names(x) <- paste0("n", seq_along(x))
 
   whole <- fix_encoding(x)
