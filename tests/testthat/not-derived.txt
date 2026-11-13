@@ -24,3 +24,6 @@ tests/testthat/test-entry.R	Tests of the shared entry step: R-only behaviour.
 tests/testthat/test-plan.R	Tests of the ftfy_plan class, an R-only design (ADR 0002); no upstream test is translated.
 tests/testthat/entry-step/	Registrations for the entry-step test set, one for each export: R-only behaviour.
 tests/testthat/helper-entry-step.R	The entry-step test set; this package's own machinery.
+tests/testthat/helper-regex-lint.R	The regex lint; this package's own machinery (ADR 0005).
+tests/testthat/test-regex-lint.R	Tests of the regex lint and of the options every regex call passes: R-only behaviour.
+tests/testthat/test-departure-regex-overflow.R	Test of a departure: R-only behaviour.

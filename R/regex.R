@@ -48,7 +48,8 @@ regex_locate_all <- function(x, pattern) {
 # becomes an error of class `ftfy_regex_overflow` naming the exported
 # function the user called and the length of the input (the departure
 # `regex-overflow`, ADR 0005). `x` is the text this call was matching,
-# which inside a fixer may be part of the user's input or a form of it. Any other error passes through unchanged.
+# which inside a fixer may be part of the user's input or a form of it.
+# Any other error passes through unchanged.
 regex_guard <- function(expr, x) {
   tryCatch(
     expr,
