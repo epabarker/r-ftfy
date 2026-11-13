@@ -1,0 +1,4273 @@
+[
+ {
+  "index": 0,
+  "label": "Messy language names: Czech",
+  "expect": "pass",
+  "original": "ÄŒeÅ¡tina",
+  "fix_text": "Čeština",
+  "fix_and_explain_text": "Čeština",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Čeština",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 1,
+  "label": "Messy language names: Gaelic",
+  "expect": "pass",
+  "original": "GÃ idhlig",
+  "fix_text": "Gàidhlig",
+  "fix_and_explain_text": "Gàidhlig",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Gàidhlig",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 2,
+  "label": "Messy language names: Lithuanian",
+  "expect": "pass",
+  "original": "LietuviÅ³",
+  "fix_text": "Lietuvių",
+  "fix_and_explain_text": "Lietuvių",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Lietuvių",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 3,
+  "label": "Messy language names: Slovak",
+  "expect": "pass",
+  "original": "SlovenÄ�ina",
+  "fix_text": "Sloven�ina",
+  "fix_and_explain_text": "Sloven�ina",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Sloven�ina",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 4,
+  "label": "Messy language names: Vietnamese",
+  "expect": "pass",
+  "original": "Tiáº¿ng Viá»‡t",
+  "fix_text": "Tiếng Việt",
+  "fix_and_explain_text": "Tiếng Việt",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Tiếng Việt",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 5,
+  "label": "Messy language names: Greek",
+  "expect": "pass",
+  "original": "Î•Î»Î»Î·Î½Î¹ÎºÎ¬",
+  "fix_text": "Ελληνικά",
+  "fix_and_explain_text": "Ελληνικά",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Ελληνικά",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 6,
+  "label": "Messy language names: Bulgarian",
+  "expect": "pass",
+  "original": "Ð±ÑŠÐ»Ð³Ð°Ñ€Ñ�ÐºÐ¸ ÐµÐ·Ð¸Ðº",
+  "fix_text": "българ�ки език",
+  "fix_and_explain_text": "българ�ки език",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "българ�ки език",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 7,
+  "label": "Messy language names: Russian",
+  "expect": "pass",
+  "original": "Ð ÑƒÑ�Ñ�ÐºÐ¸Ð¹",
+  "fix_text": "Ру��кий",
+  "fix_and_explain_text": "Ру��кий",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Ру��кий",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 8,
+  "label": "Messy language names: Serbian [Cyrillic]",
+  "expect": "pass",
+  "original": "CÑ€Ð¿Ñ�ÐºÐ¸ [Ñ›Ð¸Ñ€Ð¸Ð»Ð¸Ñ†Ð¾Ð¼]",
+  "fix_text": "Cрп�ки [ћирилицом]",
+  "fix_and_explain_text": "Cрп�ки [ћирилицом]",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Cрп�ки [ћирилицом]",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 9,
+  "label": "Messy language names: Hebrew",
+  "expect": "pass",
+  "original": "×¢×‘×¨×™×ª",
+  "fix_text": "עברית",
+  "fix_and_explain_text": "עברית",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "עברית",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 10,
+  "label": "Messy language names: Russian",
+  "expect": "pass",
+  "original": "Ð ÑƒÑ�Ñ�ÐºÐ¸Ð¹",
+  "fix_text": "Ру��кий",
+  "fix_and_explain_text": "Ру��кий",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Ру��кий",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 11,
+  "label": "Messy language names: Hindi",
+  "expect": "pass",
+  "original": "à¤¹à¤¿à¤¨à¥�à¤¦à¥€",
+  "fix_text": "हिन�दी",
+  "fix_and_explain_text": "हिन�दी",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "हिन�दी",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 12,
+  "label": "Messy language names: Tamil",
+  "expect": "pass",
+  "original": "à®¤à®®à®¿à®´à¯�",
+  "fix_text": "தமிழ�",
+  "fix_and_explain_text": "தமிழ�",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "தமிழ�",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 13,
+  "label": "Messy language names: Thai",
+  "expect": "pass",
+  "original": "à¸ à¸²à¸©à¸²à¹„à¸—à¸¢",
+  "fix_text": "ภาษาไทย",
+  "fix_and_explain_text": "ภาษาไทย",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "ภาษาไทย",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 14,
+  "label": "Messy language names: Simplified Chinese",
+  "expect": "pass",
+  "original": "ç®€ä½“ä¸­æ–‡",
+  "fix_text": "简体中文",
+  "fix_and_explain_text": "简体中文",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "简体中文",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 15,
+  "label": "Messy language names: Traditional Chinese",
+  "expect": "pass",
+  "original": "æ­£é«”ä¸­æ–‡",
+  "fix_text": "正體中文",
+  "fix_and_explain_text": "正體中文",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "正體中文",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 16,
+  "label": "Messy language names: Japanese",
+  "expect": "pass",
+  "original": "æ—¥æœ¬èªž",
+  "fix_text": "日本語",
+  "fix_and_explain_text": "日本語",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "日本語",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 17,
+  "label": "Messy language names: Korean",
+  "expect": "pass",
+  "original": "í•œêµ­ì–´",
+  "fix_text": "한국어",
+  "fix_and_explain_text": "한국어",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ],
+  "fix_encoding": "한국어",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ]
+ },
+ {
+  "index": 18,
+  "label": "Synthetic: Messy language name in cp437: Czech",
+  "expect": "pass",
+  "original": "─îe┼ítina",
+  "fix_text": "Čeština",
+  "fix_and_explain_text": "Čeština",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "cp437"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Čeština",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "cp437"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 19,
+  "label": "Synthetic: Messy language name in cp437: Vietnamese",
+  "expect": "pass",
+  "original": "Tiß║┐ng Viß╗çt",
+  "fix_text": "Tiếng Việt",
+  "fix_and_explain_text": "Tiếng Việt",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "cp437"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Tiếng Việt",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "cp437"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 20,
+  "label": "Low-codepoint emoji",
+  "expect": "pass",
+  "original": "He's Justinâ¤",
+  "fix_text": "He's Justin❤",
+  "fix_and_explain_text": "He's Justin❤",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "He's Justin❤",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 21,
+  "label": "UTF-8 / MacRoman mix-up about smurfs",
+  "expect": "pass",
+  "original": "Le Schtroumpf Docteur conseille g√¢teaux et baies schtroumpfantes pour un r√©gime √©quilibr√©.",
+  "fix_text": "Le Schtroumpf Docteur conseille gâteaux et baies schtroumpfantes pour un régime équilibré.",
+  "fix_and_explain_text": "Le Schtroumpf Docteur conseille gâteaux et baies schtroumpfantes pour un régime équilibré.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Le Schtroumpf Docteur conseille gâteaux et baies schtroumpfantes pour un régime équilibré.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 22,
+  "label": "Checkmark that almost looks okay as mojibake",
+  "expect": "pass",
+  "original": "âœ” No problems",
+  "fix_text": "✔ No problems",
+  "fix_and_explain_text": "✔ No problems",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "✔ No problems",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 23,
+  "label": "UTF-8 / Windows-1251 Russian mixup about futbol",
+  "expect": "pass",
+  "original": "РґРѕСЂРѕРіРµ РР·-РїРѕРґ #С„СѓС‚Р±РѕР»",
+  "fix_text": "дороге Из-под #футбол",
+  "fix_and_explain_text": "дороге Из-под #футбол",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "дороге Из-под #футбол",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 24,
+  "label": "Latin-1 / Windows-1252 mixup in German",
+  "expect": "pass",
+  "original": "Handwerk bringt dich überall hin: Von der YOU bis nach Monaco",
+  "fix_text": "\"Handwerk bringt dich überall hin\": Von der YOU bis nach Monaco",
+  "fix_and_explain_text": "\"Handwerk bringt dich überall hin\": Von der YOU bis nach Monaco",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "„Handwerk bringt dich überall hin“: Von der YOU bis nach Monaco",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ]
+  ]
+ },
+ {
+  "index": 25,
+  "label": "Latin-1 / Windows-1252 mixup of the replacement character",
+  "expect": "pass",
+  "original": "Some comments may be republished on the website or in the newspaper ï¿½ email addresses will not be published.",
+  "fix_text": "Some comments may be republished on the website or in the newspaper � email addresses will not be published.",
+  "fix_and_explain_text": "Some comments may be republished on the website or in the newspaper � email addresses will not be published.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Some comments may be republished on the website or in the newspaper � email addresses will not be published.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 26,
+  "label": "CESU-8 / Windows-1252 emoji",
+  "expect": "pass",
+  "original": "Hi guys í ½í¸",
+  "fix_text": "Hi guys 😍",
+  "fix_and_explain_text": "Hi guys 😍",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ],
+  "fix_encoding": "Hi guys 😍",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ]
+ },
+ {
+  "index": 27,
+  "label": "CESU-8 / Latin-1 emoji",
+  "expect": "pass",
+  "original": "hihi RT username: âºí ½í¸",
+  "fix_text": "hihi RT username: ☺😘",
+  "fix_and_explain_text": "hihi RT username: ☺😘",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ],
+  "fix_encoding": "hihi RT username: ☺😘",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ]
+ },
+ {
+  "index": 28,
+  "label": "Latin-1 / Windows-1252 mixup in Turkish",
+  "expect": "pass",
+  "original": "Beta Haber: HÄ±rsÄ±zÄ± BÃ¼yÃ¼ Korkuttu",
+  "fix_text": "Beta Haber: Hırsızı Büyü Korkuttu",
+  "fix_and_explain_text": "Beta Haber: Hırsızı Büyü Korkuttu",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Beta Haber: Hırsızı Büyü Korkuttu",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 29,
+  "label": "Latin-1 / Windows-1252 mixup in İstanbul (issue #192)",
+  "expect": "pass",
+  "original": "Ä°stanbul",
+  "fix_text": "İstanbul",
+  "fix_and_explain_text": "İstanbul",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "İstanbul",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 30,
+  "label": "Latin-1 / Windows-1252 mixup in German (issue #188)",
+  "expect": "pass",
+  "original": "RUF MICH ZURÃœCK",
+  "fix_text": "RUF MICH ZURÜCK",
+  "fix_and_explain_text": "RUF MICH ZURÜCK",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "RUF MICH ZURÜCK",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 31,
+  "label": "Latin-1 / Windows-1252 mixup in Rīga (issue #192)",
+  "expect": "pass",
+  "original": "RÄ«ga",
+  "fix_text": "Rīga",
+  "fix_and_explain_text": "Rīga",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Rīga",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 32,
+  "label": "UTF-8 / Windows-1251 mixed up twice in Russian",
+  "expect": "pass",
+  "original": "Р С—РЎР‚Р С‘РЎРЏРЎвЂљР Р…Р С•РЎРѓРЎвЂљР С‘. РІСњВ¤",
+  "fix_text": "приятности. ❤",
+  "fix_and_explain_text": "приятности. ❤",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "приятности. ❤",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 33,
+  "label": "UTF-8 / Windows-1252 mixed up twice in Malay",
+  "expect": "pass",
+  "original": "Kayanya laptopku error deh, soalnya tiap mau ngetik deket-deket kamu font yg keluar selalu Times New Ã¢â‚¬Å“ RomanceÃ¢â‚¬Â.",
+  "fix_text": "Kayanya laptopku error deh, soalnya tiap mau ngetik deket-deket kamu font yg keluar selalu Times New \" Romance\".",
+  "fix_and_explain_text": "Kayanya laptopku error deh, soalnya tiap mau ngetik deket-deket kamu font yg keluar selalu Times New \" Romance\".",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Kayanya laptopku error deh, soalnya tiap mau ngetik deket-deket kamu font yg keluar selalu Times New “ Romance”.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 34,
+  "label": "UTF-8 / Windows-1252 mixed up twice in naming Iggy Pop",
+  "expect": "pass",
+  "original": "Iggy Pop (nÃƒÂ© Jim Osterberg)",
+  "fix_text": "Iggy Pop (né Jim Osterberg)",
+  "fix_and_explain_text": "Iggy Pop (né Jim Osterberg)",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Iggy Pop (né Jim Osterberg)",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 35,
+  "label": "Left quote is UTF-8, right quote is Latin-1, both encoded in Windows-1252",
+  "expect": "pass",
+  "original": "Direzione Pd, ok âsenza modifiche all'Italicum.",
+  "fix_text": "Direzione Pd, ok \"senza modifiche\" all'Italicum.",
+  "fix_and_explain_text": "Direzione Pd, ok \"senza modifiche\" all'Italicum.",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Direzione Pd, ok “senza modifiche” all'Italicum.",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ]
+  ]
+ },
+ {
+  "index": 36,
+  "label": "UTF-8 / sloppy Windows-1252 mixed up twice in a triumphant emoticon",
+  "expect": "pass",
+  "original": "selamat berpuasa sob (Ã Â¸â€¡'ÃŒâ‚¬Ã¢Å’Â£'ÃŒÂ)Ã Â¸â€¡",
+  "fix_text": "selamat berpuasa sob (ง'̀⌣'́)ง",
+  "fix_and_explain_text": "selamat berpuasa sob (ง'̀⌣'́)ง",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "selamat berpuasa sob (ง'̀⌣'́)ง",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 37,
+  "label": "UTF-8 / Windows-1252 mixed up three times",
+  "expect": "pass",
+  "original": "The Mona Lisa doesnÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢t have eyebrows.",
+  "fix_text": "The Mona Lisa doesn't have eyebrows.",
+  "fix_and_explain_text": "The Mona Lisa doesn't have eyebrows.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "The Mona Lisa doesn’t have eyebrows.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 38,
+  "label": "UTF-8 / Codepage 437 mixup in Russian",
+  "expect": "pass",
+  "original": "#╨┐╤Ç╨░╨▓╨╕╨╗╤î╨╜╨╛╨╡╨┐╨╕╤é╨░╨╜╨╕╨╡",
+  "fix_text": "#правильноепитание",
+  "fix_and_explain_text": "#правильноепитание",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "cp437"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "#правильноепитание",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "cp437"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 39,
+  "label": "UTF-8 / Windows-1252 mixup in French",
+  "expect": "pass",
+  "original": "HÃ´tel de Police",
+  "fix_text": "Hôtel de Police",
+  "fix_and_explain_text": "Hôtel de Police",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Hôtel de Police",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 40,
+  "label": "UTF-8 / Windows-1250 mixup in French",
+  "expect": "pass",
+  "original": "LiĂ¨ge Avenue de l'HĂ´pital",
+  "fix_text": "Liège Avenue de l'Hôpital",
+  "fix_and_explain_text": "Liège Avenue de l'Hôpital",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Liège Avenue de l'Hôpital",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 41,
+  "label": "UTF-8 / Windows-1252 mixup in Vietnamese",
+  "expect": "pass",
+  "original": "Táº¡i sao giÃ¡ háº¡t sáº§u riÃªng láº¡i lÃªn giÃ¡?",
+  "fix_text": "Tại sao giá hạt sầu riêng lại lên giá?",
+  "fix_and_explain_text": "Tại sao giá hạt sầu riêng lại lên giá?",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Tại sao giá hạt sầu riêng lại lên giá?",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 42,
+  "label": "Negative: using diaereses as quotation marks in Greek",
+  "expect": "pass",
+  "original": "Η ¨ανατροφή¨ δυστυχώς από τους προπονητές",
+  "fix_text": "Η ¨ανατροφή¨ δυστυχώς από τους προπονητές",
+  "fix_and_explain_text": "Η ¨ανατροφή¨ δυστυχώς από τους προπονητές",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Η ¨ανατροφή¨ δυστυχώς από τους προπονητές",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 43,
+  "label": "Science! Mid-word Greek letter gets fixed correctly",
+  "expect": "pass",
+  "original": "Humanized HLA-DR4.RagKO.IL2RÎ³cKO.NOD (DRAG) mice sustain the complex vertebrate life cycle of Plasmodium falciparum malaria.",
+  "fix_text": "Humanized HLA-DR4.RagKO.IL2RγcKO.NOD (DRAG) mice sustain the complex vertebrate life cycle of Plasmodium falciparum malaria.",
+  "fix_and_explain_text": "Humanized HLA-DR4.RagKO.IL2RγcKO.NOD (DRAG) mice sustain the complex vertebrate life cycle of Plasmodium falciparum malaria.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Humanized HLA-DR4.RagKO.IL2RγcKO.NOD (DRAG) mice sustain the complex vertebrate life cycle of Plasmodium falciparum malaria.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 44,
+  "label": "Negative: More science! Don't fix a multiplication symbol in quotes",
+  "expect": "pass",
+  "original": "higher values (“+” and “×” curves) in the superficial region",
+  "fix_text": "higher values (\"+\" and \"×\" curves) in the superficial region",
+  "fix_and_explain_text": "higher values (\"+\" and \"×\" curves) in the superficial region",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "higher values (“+” and “×” curves) in the superficial region",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 45,
+  "label": "For goodness' sake. We can come close to fixing this, but fail in the last step",
+  "expect": "pass",
+  "original": "ItÃ?Â¢â?¬â?¢s classic. ItÃ?Â¢â?¬â?¢s epic. ItÃ?Â¢â?¬â?¢s ELIZABETH BENNET for goodnessÃ?Â¢â?¬â?¢ sake!",
+  "fix_text": "It�¢��s classic. It�¢��s epic. It�¢��s ELIZABETH BENNET for goodness�¢�� sake!",
+  "fix_and_explain_text": "It�¢��s classic. It�¢��s epic. It�¢��s ELIZABETH BENNET for goodness�¢�� sake!",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "It�¢��s classic. It�¢��s epic. It�¢��s ELIZABETH BENNET for goodness�¢�� sake!",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 46,
+  "label": "lossy UTF-8 / Windows-1250 mixup in Spanish",
+  "expect": "pass",
+  "original": "Europa, Asia, Ă�frica, Norte, AmĂ©rica Central y del Sur, Australia y OceanĂ­a",
+  "fix_text": "Europa, Asia, �frica, Norte, América Central y del Sur, Australia y Oceanía",
+  "fix_and_explain_text": "Europa, Asia, �frica, Norte, América Central y del Sur, Australia y Oceanía",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Europa, Asia, �frica, Norte, América Central y del Sur, Australia y Oceanía",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 47,
+  "label": "UTF-8 / sloppy Windows-1250 mixup in English",
+  "expect": "pass",
+  "original": "It was namedÂ â€žscarsÂ´ stonesâ€ś after the rock-climbers who got hurt while climbing on it.",
+  "fix_text": "It was named \"scars´ stones\" after the rock-climbers who got hurt while climbing on it.",
+  "fix_and_explain_text": "It was named \"scars´ stones\" after the rock-climbers who got hurt while climbing on it.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "It was named „scars´ stones“ after the rock-climbers who got hurt while climbing on it.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 48,
+  "label": "The same text as above, but as a UTF-8 / ISO-8859-2 mixup",
+  "expect": "pass",
+  "original": "It was namedÂ âscarsÂ´ stonesâ after the rock-climbers who got hurt while climbing on it.",
+  "fix_text": "It was named \"scars´ stones\" after the rock-climbers who got hurt while climbing on it.",
+  "fix_and_explain_text": "It was named \"scars´ stones\" after the rock-climbers who got hurt while climbing on it.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "It was named „scars´ stones“ after the rock-climbers who got hurt while climbing on it.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 49,
+  "label": "UTF-8 / ISO-8859-2 mixup in Czech",
+  "expect": "pass",
+  "original": "MĂĄm dost tĹetĂ­ho tisĂ­ciletĂ­",
+  "fix_text": "Mám dost třetího tisíciletí",
+  "fix_and_explain_text": "Mám dost třetího tisíciletí",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "iso-8859-2"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Mám dost třetího tisíciletí",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "iso-8859-2"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 50,
+  "label": "UTF-8 / Windows-1252 mixup in mixed French and Arabic",
+  "expect": "pass",
+  "original": "Ã€ tous mes frÃ¨res et soeurs dans la syriennetÃ© comme dans l’humanitÃ©, sans discrimination aucune, je vous souhaite bonne fÃªte Ø¹ÙŠØ¯ Ø³Ø¹ÙŠØ¯.Que la paix, la libertÃ©, l’Ã©galitÃ©, la fraternitÃ© et la dignitÃ© soient avec vous.Pardonnez ce ton un peu ecclÃ©siastique.",
+  "fix_text": "À tous mes frères et soeurs dans la syrienneté comme dans l'humanité, sans discrimination aucune, je vous souhaite bonne fête عيد سعيد.Que la paix, la liberté, l'égalité, la fraternité et la dignité soient avec vous.Pardonnez ce ton un peu ecclésiastique.",
+  "fix_and_explain_text": "À tous mes frères et soeurs dans la syrienneté comme dans l'humanité, sans discrimination aucune, je vous souhaite bonne fête عيد سعيد.Que la paix, la liberté, l'égalité, la fraternité et la dignité soient avec vous.Pardonnez ce ton un peu ecclésiastique.",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "À tous mes frères et soeurs dans la syrienneté comme dans l’humanité, sans discrimination aucune, je vous souhaite bonne fête عيد سعيد.Que la paix, la liberté, l’égalité, la fraternité et la dignité soient avec vous.Pardonnez ce ton un peu ecclésiastique.",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 51,
+  "label": "Synthetic: Incomplete UTF-8 / Windows-1252 mixup in Arabic",
+  "expect": "fail",
+  "original": "أكثر Ù…Ù† Ù Ù Ù¡ Ø¨Ù„Ø¯",
+  "fix_text": "أكثر من Ù Ù Ù¡ بلد",
+  "fix_and_explain_text": "أكثر من Ù Ù Ù¡ بلد",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ],
+  "fix_encoding": "أكثر من Ù Ù Ù¡ بلد",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 52,
+  "label": "UTF-8 / sloppy Windows-1250 mixup in Romanian",
+  "expect": "pass",
+  "original": "vedere Ă®nceĹŁoĹźatÄ",
+  "fix_text": "vedere înceţoşată",
+  "fix_and_explain_text": "vedere înceţoşată",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "vedere înceţoşată",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 53,
+  "label": "UTF-8 / Windows-1250 mixup in Slovak",
+  "expect": "pass",
+  "original": "NapĂ­Ĺˇte nĂˇm !",
+  "fix_text": "Napíšte nám !",
+  "fix_and_explain_text": "Napíšte nám !",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Napíšte nám !",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 54,
+  "label": "UTF-8 / Windows-1252 mixup in Spanish",
+  "expect": "pass",
+  "original": "DOS AÃ‘OS",
+  "fix_text": "DOS AÑOS",
+  "fix_and_explain_text": "DOS AÑOS",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "DOS AÑOS",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 55,
+  "label": "UTF-8 / Windows-1252 followed by UTF-8 / Windows-1251",
+  "expect": "pass",
+  "original": "a bigger-than-expected Г‚ВЈ5.8bn rights issue to satisfy the new banking regulator",
+  "fix_text": "a bigger-than-expected £5.8bn rights issue to satisfy the new banking regulator",
+  "fix_and_explain_text": "a bigger-than-expected £5.8bn rights issue to satisfy the new banking regulator",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "a bigger-than-expected £5.8bn rights issue to satisfy the new banking regulator",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 56,
+  "label": "fancy Unicode crossing-out, but mojibaked",
+  "expect": "pass",
+  "original": "hotel $49 $Ì¶6Ì¶3Ì¶ updated 2018",
+  "fix_text": "hotel $49 $̶6̶3̶ updated 2018",
+  "fix_and_explain_text": "hotel $49 $̶6̶3̶ updated 2018",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "hotel $49 $̶6̶3̶ updated 2018",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 57,
+  "label": "A face with UTF-8 / sloppy Windows-1252 mixed up twice",
+  "expect": "pass",
+  "original": "Ã¢â€â€™(Ã¢Å’Â£Ã‹â€ºÃ¢Å’Â£)Ã¢â€Å½",
+  "fix_text": "┒(⌣˛⌣)┎",
+  "fix_and_explain_text": "┒(⌣˛⌣)┎",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "┒(⌣˛⌣)┎",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 58,
+  "label": "We can mostly decode the face above when we lose the character U+009D",
+  "expect": "pass",
+  "original": "Ã¢â€�â€™(Ã¢Å’Â£Ã‹â€ºÃ¢Å’Â£)Ã¢â€�Å½",
+  "fix_text": "�(⌣˛⌣)�",
+  "fix_and_explain_text": "�(⌣˛⌣)�",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "�(⌣˛⌣)�",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 59,
+  "label": "Lossy decoding can have plain ASCII question marks, as well",
+  "expect": "pass",
+  "original": "The ICR has been upgraded to â€œbb+â€? from â€œbbâ€?",
+  "fix_text": "The ICR has been upgraded to \"bb+� from \"bb�",
+  "fix_and_explain_text": "The ICR has been upgraded to \"bb+� from \"bb�",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "The ICR has been upgraded to “bb+� from “bb�",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 60,
+  "label": "CESU-8 / Latin-1 mixup over several emoji",
+  "expect": "pass",
+  "original": "I just figured out how to tweet emojis! â½í ½í¸í ½í¸í ½í¸í ½í¸í ½í¸í ½í¸í ½í¸í ½í¸",
+  "fix_text": "I just figured out how to tweet emojis! ⚽😀😁😂😆😎😎😎😎",
+  "fix_and_explain_text": "I just figured out how to tweet emojis! ⚽😀😁😂😆😎😎😎😎",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ],
+  "fix_encoding": "I just figured out how to tweet emojis! ⚽😀😁😂😆😎😎😎😎",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8-variants"
+   ]
+  ]
+ },
+ {
+  "index": 61,
+  "label": "Two levels of inconsistent mojibake",
+  "expect": "fail",
+  "original": "Arsenal v Wolfsburg: pre-season friendly ââ live!",
+  "fix_text": "Arsenal v Wolfsburg: pre-season friendly â€â€œ live!",
+  "fix_and_explain_text": "Arsenal v Wolfsburg: pre-season friendly â€â€œ live!",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ]
+  ],
+  "fix_encoding": "Arsenal v Wolfsburg: pre-season friendly â€â€œ live!",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ]
+  ]
+ },
+ {
+  "index": 62,
+  "label": "An absolutely hopeless garble",
+  "expect": "pass",
+  "original": "ã†â€™ãƒâ€ ã¢â‚¬â„¢ãƒæ’ã‚â¢ãƒâ¢ã¢â‚¬å¡ã‚â¬ãƒâ€šã‚â",
+  "fix_text": "ã†â€™ãƒâ€ ã¢â'¬â\"¢ãƒæ'ã'â¢ãƒâ¢ã¢â'¬å¡ã'â¬ãƒâ€šã'â",
+  "fix_and_explain_text": "ã†â€™ãƒâ€ ã¢â'¬â\"¢ãƒæ'ã'â¢ãƒâ¢ã¢â'¬å¡ã'â¬ãƒâ€šã'â",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "ã†â€™ãƒâ€ ã¢â‚¬â„¢ãƒæ’ã‚â¢ãƒâ¢ã¢â‚¬å¡ã‚â¬ãƒâ€šã‚â",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 63,
+  "label": "Inconsistent UTF-8 / Latin-1 mojibake",
+  "expect": "pass",
+  "original": "Ecuadorâs âpurely political decision on Assangeâ is likely result of âUS pressureâ",
+  "fix_text": "Ecuador's 'purely political decision on Assange' is likely result of 'US pressure'…",
+  "fix_and_explain_text": "Ecuador's 'purely political decision on Assange' is likely result of 'US pressure'…",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Ecuador’s ‘purely political decision on Assange’ is likely result of ‘US pressure’…",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ]
+  ]
+ },
+ {
+  "index": 64,
+  "label": "Inconsistent UTF-8 / Latin-1 mojibake with an ellipsis from the Windows-1252 character set",
+  "expect": "pass",
+  "original": "Ecuadorâs âpurely political decision on Assangeâ is likely result of âUS pressureâ…",
+  "fix_text": "Ecuador's 'purely political decision on Assange' is likely result of 'US pressure'…",
+  "fix_and_explain_text": "Ecuador's 'purely political decision on Assange' is likely result of 'US pressure'…",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Ecuador’s ‘purely political decision on Assange’ is likely result of ‘US pressure’…",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 65,
+  "label": "Inconsistent mojibake in Portuguese",
+  "expect": "pass",
+  "original": "Campeonatos > III DivisÃ£o - SÃ©rie F > Jornadas Classificação",
+  "fix_text": "Campeonatos > III Divisão - Série F > Jornadas Classificação",
+  "fix_and_explain_text": "Campeonatos > III Divisão - Série F > Jornadas Classificação",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ],
+  "fix_encoding": "Campeonatos > III Divisão - Série F > Jornadas Classificação",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 66,
+  "label": "Handle Afrikaans 'n character",
+  "expect": "pass",
+  "original": "ŉ Chloroplas is ŉ organel wat in fotosinterende plante voorkom.",
+  "fix_text": "'n Chloroplas is 'n organel wat in fotosinterende plante voorkom.",
+  "fix_and_explain_text": "'n Chloroplas is 'n organel wat in fotosinterende plante voorkom.",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "fix_latin_ligatures"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "ŉ Chloroplas is ŉ organel wat in fotosinterende plante voorkom.",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 67,
+  "label": "Handle Croatian single-codepoint digraphs",
+  "expect": "pass",
+  "original": "izum „bootstrap load“ koji je korišteǌem polisilicijskog sloja proizveo dovoǉno dobre kondenzatore na čipu",
+  "fix_text": "izum \"bootstrap load\" koji je korištenjem polisilicijskog sloja proizveo dovoljno dobre kondenzatore na čipu",
+  "fix_and_explain_text": "izum \"bootstrap load\" koji je korištenjem polisilicijskog sloja proizveo dovoljno dobre kondenzatore na čipu",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "fix_latin_ligatures"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "izum „bootstrap load“ koji je korišteǌem polisilicijskog sloja proizveo dovoǉno dobre kondenzatore na čipu",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 68,
+  "label": "A with an acute accent, in isolation",
+  "expect": "pass",
+  "original": "NicolÃ¡s",
+  "fix_text": "Nicolás",
+  "fix_and_explain_text": "Nicolás",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Nicolás",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 69,
+  "label": "sharp S, in isolation, via MacRoman encoding",
+  "expect": "pass",
+  "original": "wei√ü",
+  "fix_text": "weiß",
+  "fix_and_explain_text": "weiß",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "weiß",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 70,
+  "label": "Sort of negative: this inconsistent mojibake could be Latin-1 or MacRoman, and it was meant to be Latin-1, but it's safest to not decode it as either",
+  "expect": "pass",
+  "original": "Bremer/Mccoy – DrÃ¥ber",
+  "fix_text": "Bremer/Mccoy – DrÃ¥ber",
+  "fix_and_explain_text": "Bremer/Mccoy – DrÃ¥ber",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Bremer/Mccoy – DrÃ¥ber",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 71,
+  "label": "Negative: 'è' preceded by a non-breaking space is not a small capital Y",
+  "expect": "pass",
+  "original": "Con il corpo e lo spirito ammaccato, è come se nel cuore avessi un vetro conficcato.",
+  "fix_text": "Con il corpo e lo spirito ammaccato, è come se nel cuore avessi un vetro conficcato.",
+  "fix_and_explain_text": "Con il corpo e lo spirito ammaccato, è come se nel cuore avessi un vetro conficcato.",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Con il corpo e lo spirito ammaccato, è come se nel cuore avessi un vetro conficcato.",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 72,
+  "label": "Negative: multiplication sign and ellipsis",
+  "expect": "pass",
+  "original": "4288×…",
+  "fix_text": "4288×…",
+  "fix_and_explain_text": "4288×…",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "4288×…",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 73,
+  "label": "Negative: accents are sometimes used as quotes",
+  "expect": "pass",
+  "original": "``toda produzida pronta pra assa aí´´",
+  "fix_text": "``toda produzida pronta pra assa aí´´",
+  "fix_and_explain_text": "``toda produzida pronta pra assa aí´´",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "``toda produzida pronta pra assa aí´´",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 74,
+  "label": "Negative: 'Õ' followed by an ellipsis",
+  "expect": "pass",
+  "original": "HUHLL Õ…",
+  "fix_text": "HUHLL Õ…",
+  "fix_and_explain_text": "HUHLL Õ…",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "HUHLL Õ…",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 75,
+  "label": "Negative: 'Ê' followed by an ellipsis",
+  "expect": "pass",
+  "original": "RETWEET SE VOCÊ…",
+  "fix_text": "RETWEET SE VOCÊ…",
+  "fix_and_explain_text": "RETWEET SE VOCÊ…",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "RETWEET SE VOCÊ…",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 76,
+  "label": "Negative: 'É' followed by an ellipsis",
+  "expect": "pass",
+  "original": "PARCE QUE SUR LEURS PLAQUES IL Y MARQUÉ…",
+  "fix_text": "PARCE QUE SUR LEURS PLAQUES IL Y MARQUÉ…",
+  "fix_and_explain_text": "PARCE QUE SUR LEURS PLAQUES IL Y MARQUÉ…",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "PARCE QUE SUR LEURS PLAQUES IL Y MARQUÉ…",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 77,
+  "label": "Negative: 'Ó' followed by an ellipsis",
+  "expect": "pass",
+  "original": "TEM QUE SEGUIR, SDV SÓ…",
+  "fix_text": "TEM QUE SEGUIR, SDV SÓ…",
+  "fix_and_explain_text": "TEM QUE SEGUIR, SDV SÓ…",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "TEM QUE SEGUIR, SDV SÓ…",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 78,
+  "label": "Negative: 'É' followed by a curly apostrophe",
+  "expect": "pass",
+  "original": "Join ZZAJÉ’s Official Fan List and receive news, events, and more!",
+  "fix_text": "Join ZZAJÉ's Official Fan List and receive news, events, and more!",
+  "fix_and_explain_text": "Join ZZAJÉ's Official Fan List and receive news, events, and more!",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Join ZZAJÉ’s Official Fan List and receive news, events, and more!",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 79,
+  "label": "Negative: 'é' preceded by curly apostrophe",
+  "expect": "pass",
+  "original": "L’épisode 8 est trop fou ouahh",
+  "fix_text": "L'épisode 8 est trop fou ouahh",
+  "fix_and_explain_text": "L'épisode 8 est trop fou ouahh",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "L’épisode 8 est trop fou ouahh",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 80,
+  "label": "Negative: three raised eyebrows or something?",
+  "expect": "pass",
+  "original": "Ôôô VIDA MINHA",
+  "fix_text": "Ôôô VIDA MINHA",
+  "fix_and_explain_text": "Ôôô VIDA MINHA",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Ôôô VIDA MINHA",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 81,
+  "label": "Negative: copyright sign preceded by non-breaking space",
+  "expect": "pass",
+  "original": "[x] ©",
+  "fix_text": "[x] ©",
+  "fix_and_explain_text": "[x] ©",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "[x] ©",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 82,
+  "label": "Negative: en dash and infinity sign",
+  "expect": "pass",
+  "original": "2012—∞",
+  "fix_text": "2012—∞",
+  "fix_and_explain_text": "2012—∞",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "2012—∞",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 83,
+  "label": "Negative: This Е is a Ukrainian letter, but nothing else is wrong",
+  "expect": "pass",
+  "original": "SENSЕ - Oleg Tsedryk",
+  "fix_text": "SENSЕ - Oleg Tsedryk",
+  "fix_and_explain_text": "SENSЕ - Oleg Tsedryk",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "SENSЕ - Oleg Tsedryk",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 84,
+  "label": "Negative: angry face",
+  "expect": "pass",
+  "original": "OK??:(   `¬´    ):",
+  "fix_text": "OK??:(   `¬´    ):",
+  "fix_and_explain_text": "OK??:(   `¬´    ):",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "OK??:(   `¬´    ):",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 85,
+  "label": "Negative, synthetic: face with glasses and a raised eyebrow",
+  "expect": "pass",
+  "original": "( o¬ô )",
+  "fix_text": "( o¬ô )",
+  "fix_and_explain_text": "( o¬ô )",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "( o¬ô )",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 86,
+  "label": "Negative: triangle and degree sign",
+  "expect": "pass",
+  "original": "∆°",
+  "fix_text": "∆°",
+  "fix_and_explain_text": "∆°",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "∆°",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 87,
+  "label": "Negative: Portuguese with inverted question mark",
+  "expect": "pass",
+  "original": "ESSE CARA AI QUEM É¿",
+  "fix_text": "ESSE CARA AI QUEM É¿",
+  "fix_and_explain_text": "ESSE CARA AI QUEM É¿",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "ESSE CARA AI QUEM É¿",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 88,
+  "label": "Negative: Portuguese with acute accents as quotation marks",
+  "expect": "pass",
+  "original": "``hogwarts nao existe, voce nao vai pegar o trem pra lá´´",
+  "fix_text": "``hogwarts nao existe, voce nao vai pegar o trem pra lá´´",
+  "fix_and_explain_text": "``hogwarts nao existe, voce nao vai pegar o trem pra lá´´",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "``hogwarts nao existe, voce nao vai pegar o trem pra lá´´",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 89,
+  "label": "Negative: Finnish Ä followed by a non-breaking space",
+  "expect": "pass",
+  "original": "SELKÄ EDELLÄ MAAHAN via @YouTube",
+  "fix_text": "SELKÄ EDELLÄ MAAHAN via @YouTube",
+  "fix_and_explain_text": "SELKÄ EDELLÄ MAAHAN via @YouTube",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "SELKÄ EDELLÄ MAAHAN via @YouTube",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 90,
+  "label": "Negative: multiplying by currency",
+  "expect": "pass",
+  "original": "Offering 5×£35 pin ups",
+  "fix_text": "Offering 5×£35 pin ups",
+  "fix_and_explain_text": "Offering 5×£35 pin ups",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Offering 5×£35 pin ups",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 91,
+  "label": "Negative: registered chocolate brand name",
+  "expect": "pass",
+  "original": "NESTLÉ® requiere contratar personal para diferentes areas a nivel nacional e internacional",
+  "fix_text": "NESTLÉ® requiere contratar personal para diferentes areas a nivel nacional e internacional",
+  "fix_and_explain_text": "NESTLÉ® requiere contratar personal para diferentes areas a nivel nacional e internacional",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "NESTLÉ® requiere contratar personal para diferentes areas a nivel nacional e internacional",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 92,
+  "label": "Negative: it looks like Windows-1257 mojibake but someone writes their name this way",
+  "expect": "pass",
+  "original": "Connect with Āø on Facebook",
+  "fix_text": "Connect with Āø on Facebook",
+  "fix_and_explain_text": "Connect with Āø on Facebook",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Connect with Āø on Facebook",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 93,
+  "label": "Mostly negative: we only need to fix C1 control characters",
+  "expect": "pass",
+  "original": "C'est vrai que nous n'en avons pas encore beaucoup parlé Tu sais, ça fait de nombreuses années",
+  "fix_text": "C'est vrai que nous n'en avons pas encore beaucoup parlé… Tu sais, ça fait de nombreuses années",
+  "fix_and_explain_text": "C'est vrai que nous n'en avons pas encore beaucoup parlé… Tu sais, ça fait de nombreuses années",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ],
+  "fix_encoding": "C'est vrai que nous n'en avons pas encore beaucoup parlé… Tu sais, ça fait de nombreuses années",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 94,
+  "label": "French example containing non-breaking spaces",
+  "expect": "pass",
+  "original": "ART TRIP Ã  l'office de tourisme",
+  "fix_text": "ART TRIP à l'office de tourisme",
+  "fix_and_explain_text": "ART TRIP à l'office de tourisme",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "ART TRIP à l'office de tourisme",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 95,
+  "label": "English example in UTF-8 / Windows-1251 with a ligature",
+  "expect": "pass",
+  "original": "This is signiп¬Ѓcantly lower than the respective share",
+  "fix_text": "This is significantly lower than the respective share",
+  "fix_and_explain_text": "This is significantly lower than the respective share",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "fix_latin_ligatures"
+   ]
+  ],
+  "fix_encoding": "This is signiﬁcantly lower than the respective share",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 96,
+  "label": "Synthetic: we can recognize Ã in some cases when it's the only mojibake",
+  "expect": "pass",
+  "original": "voilÃ  le travail",
+  "fix_text": "voilà le travail",
+  "fix_and_explain_text": "voilà le travail",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "voilà le travail",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 97,
+  "label": "Synthetic: we can recognize Ã at the end of a word when it absorbs a following space",
+  "expect": "pass",
+  "original": "voilÃ le travail",
+  "fix_text": "voilà le travail",
+  "fix_and_explain_text": "voilà le travail",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "voilà le travail",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 98,
+  "label": "Negative: We don't fix Ã in all contexts",
+  "expect": "pass",
+  "original": "C O N C L U S Ã O",
+  "fix_text": "C O N C L U S Ã O",
+  "fix_and_explain_text": "C O N C L U S Ã O",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "C O N C L U S Ã O",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 99,
+  "label": "'à' remains its own word, even if spaces after it get coalesced into one",
+  "expect": "pass",
+  "original": "Ã perturber la rÃ©flexion des thÃ©ologiens jusqu'Ã nos jours",
+  "fix_text": "à perturber la réflexion des théologiens jusqu'à nos jours",
+  "fix_and_explain_text": "à perturber la réflexion des théologiens jusqu'à nos jours",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "à perturber la réflexion des théologiens jusqu'à nos jours",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 100,
+  "label": "Fix 'à' in inconsistent mojibake",
+  "expect": "pass",
+  "original": "Le barÃ¨me forfaitaire permet l’Ã©valuation des frais de dÃ©placement relatifs Ã l’utilisation",
+  "fix_text": "Le barème forfaitaire permet l'évaluation des frais de déplacement relatifs à l'utilisation",
+  "fix_and_explain_text": "Le barème forfaitaire permet l'évaluation des frais de déplacement relatifs à l'utilisation",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Le barème forfaitaire permet l’évaluation des frais de déplacement relatifs à l’utilisation",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 101,
+  "label": "The Portuguese word 'às' does not become 'à s' due to the French fix",
+  "expect": "pass",
+  "original": "com especial atenÃ§Ã£o Ã s crianÃ§as",
+  "fix_text": "com especial atenção às crianças",
+  "fix_and_explain_text": "com especial atenção às crianças",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "com especial atenção às crianças",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 102,
+  "label": "This is why we require a space after the 's' in 'às'",
+  "expect": "pass",
+  "original": "TroisiÃ¨me Ã©dition pour ce festival qui persiste et signe Ã s'Ã©loigner des grands axes pour prendre les contre-allÃ©es en 16 concerts dans 7 villes de 2 pays voisins.",
+  "fix_text": "Troisième édition pour ce festival qui persiste et signe à s'éloigner des grands axes pour prendre les contre-allées en 16 concerts dans 7 villes de 2 pays voisins.",
+  "fix_and_explain_text": "Troisième édition pour ce festival qui persiste et signe à s'éloigner des grands axes pour prendre les contre-allées en 16 concerts dans 7 villes de 2 pays voisins.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Troisième édition pour ce festival qui persiste et signe à s'éloigner des grands axes pour prendre les contre-allées en 16 concerts dans 7 villes de 2 pays voisins.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 103,
+  "label": "We can fix 'à' in windows-1251 sometimes as well",
+  "expect": "pass",
+  "original": "La rГ©gion de Dnepropetrovsk se trouve Г lвЂ™ouest de lвЂ™Ukraine",
+  "fix_text": "La région de Dnepropetrovsk se trouve à l'ouest de l'Ukraine",
+  "fix_and_explain_text": "La région de Dnepropetrovsk se trouve à l'ouest de l'Ukraine",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "La région de Dnepropetrovsk se trouve à l’ouest de l’Ukraine",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 104,
+  "label": "'Ã quele' is the Portuguese word 'àquele', not 'à quele'",
+  "expect": "pass",
+  "original": "eliminado o antÃ­geno e mantidos os nÃ­veis de anticorpos, surgem as condiÃ§Ãµes necessÃ¡rias ao estabelecimento do granuloma, semelhante Ã quele observado nas lesÃµes por imunocomplexo em excesso de anticorpos",
+  "fix_text": "eliminado o antígeno e mantidos os níveis de anticorpos, surgem as condições necessárias ao estabelecimento do granuloma, semelhante àquele observado nas lesões por imunocomplexo em excesso de anticorpos",
+  "fix_and_explain_text": "eliminado o antígeno e mantidos os níveis de anticorpos, surgem as condições necessárias ao estabelecimento do granuloma, semelhante àquele observado nas lesões por imunocomplexo em excesso de anticorpos",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "eliminado o antígeno e mantidos os níveis de anticorpos, surgem as condições necessárias ao estabelecimento do granuloma, semelhante àquele observado nas lesões por imunocomplexo em excesso de anticorpos",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 105,
+  "label": "A complex, lossy pile-up of mojibake in Portuguese",
+  "expect": "pass",
+  "original": "â € ðŸ“�Â Regulamento: â € âš ï¸� As pessoas que marcarem nos comentÃ¡rios perfis empresariais e/ou de marcas, personalidades ou fake serÃ£o desclassificadas. âš ï¸� Podem participar pessoas residentes em Petrolina/PE ou Juazeiro/BA, desde que se comprometam a retirar o prÃªmio em nosso endereÃ§o. FuncionÃ¡rios estÃ£o vetados. âš ï¸� SerÃ£o vÃ¡lidos os comentÃ¡rios postados atÃ© 16h, do dia 31/03/2018. E o resultado serÃ¡ divulgado atÃ© Ã s 19h do mesmo dia em uma nova publicaÃ§Ã£o em nosso instagram. â € Boa sorte!!!Â ðŸ˜€ðŸ�°",
+  "fix_text": "⠀ � Regulamento: ⠀ ⚠� As pessoas que marcarem nos comentários perfis empresariais e/ou de marcas, personalidades ou fake serão desclassificadas. ⚠� Podem participar pessoas residentes em Petrolina/PE ou Juazeiro/BA, desde que se comprometam a retirar o prêmio em nosso endereço. Funcionários estão vetados. ⚠� Serão válidos os comentários postados até 16h, do dia 31/03/2018. E o resultado será divulgado até às 19h do mesmo dia em uma nova publicação em nosso instagram. ⠀ Boa sorte!!! 😀�",
+  "fix_and_explain_text": "⠀ � Regulamento: ⠀ ⚠� As pessoas que marcarem nos comentários perfis empresariais e/ou de marcas, personalidades ou fake serão desclassificadas. ⚠� Podem participar pessoas residentes em Petrolina/PE ou Juazeiro/BA, desde que se comprometam a retirar o prêmio em nosso endereço. Funcionários estão vetados. ⚠� Serão válidos os comentários postados até 16h, do dia 31/03/2018. E o resultado será divulgado até às 19h do mesmo dia em uma nova publicação em nosso instagram. ⠀ Boa sorte!!! 😀�",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "⠀ � Regulamento: ⠀ ⚠� As pessoas que marcarem nos comentários perfis empresariais e/ou de marcas, personalidades ou fake serão desclassificadas. ⚠� Podem participar pessoas residentes em Petrolina/PE ou Juazeiro/BA, desde que se comprometam a retirar o prêmio em nosso endereço. Funcionários estão vetados. ⚠� Serão válidos os comentários postados até 16h, do dia 31/03/2018. E o resultado será divulgado até às 19h do mesmo dia em uma nova publicação em nosso instagram. ⠀ Boa sorte!!! 😀�",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 106,
+  "label": "UTF-8 / Windows-1252 mixup in Gaelic involving non-breaking spaces",
+  "expect": "pass",
+  "original": "CÃ nan nan GÃ idheal",
+  "fix_text": "Cànan nan Gàidheal",
+  "fix_and_explain_text": "Cànan nan Gàidheal",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Cànan nan Gàidheal",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 107,
+  "label": "Misleading mix-up in Spanish",
+  "expect": "fail",
+  "original": "tiene demora y está próximo a resolverse",
+  "fix_text": "tiene demora y está \"próximo a resolverse\"",
+  "fix_and_explain_text": "tiene demora y está \"próximo a resolverse\"",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "tiene demora y está “próximo a resolverse”",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ]
+  ]
+ },
+ {
+  "index": 108,
+  "label": "A-with-grave in Vietnamese",
+  "expect": "fail",
+  "original": "Xem clip hĂ i, phim hĂ i má»›i hay nháşĄt",
+  "fix_text": "Xem clip hà i, phim hà i mới hay nhất",
+  "fix_and_explain_text": "Xem clip hà i, phim hà i mới hay nhất",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Xem clip hà i, phim hà i mới hay nhất",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 109,
+  "label": "Punctuation pile-up should actually be musical notes",
+  "expect": "pass",
+  "original": "Engkau masih yg terindah, indah di dalam hatikuâ™«~",
+  "fix_text": "Engkau masih yg terindah, indah di dalam hatiku♫~",
+  "fix_and_explain_text": "Engkau masih yg terindah, indah di dalam hatiku♫~",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Engkau masih yg terindah, indah di dalam hatiku♫~",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 110,
+  "label": "Latin-1 / MacRoman mixup in Spanish",
+  "expect": "fail",
+  "original": "Deja dos heridos hundimiento de barco turstico en Acapulco.",
+  "fix_text": "Deja dos heridos hundimiento de barco tur'stico en Acapulco.",
+  "fix_and_explain_text": "Deja dos heridos hundimiento de barco tur'stico en Acapulco.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Deja dos heridos hundimiento de barco tur’stico en Acapulco.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ]
+  ]
+ },
+ {
+  "index": 111,
+  "label": "subtle UTF-8 / codepage 437 mixup in Spanish",
+  "expect": "fail",
+  "original": "┬┐que diferencia hay?",
+  "fix_text": "┬┐que diferencia hay?",
+  "fix_and_explain_text": "┬┐que diferencia hay?",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "┬┐que diferencia hay?",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 112,
+  "label": "Latin-1 / MacRoman mixup in Spanish, 2 characters",
+  "expect": "fail",
+  "original": "Habitantes de Coatln confan en proyecto de edil electo independiente",
+  "fix_text": "Habitantes de Coatl‡n conf'an en proyecto de edil electo independiente",
+  "fix_and_explain_text": "Habitantes de Coatl‡n conf'an en proyecto de edil electo independiente",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "Habitantes de Coatl‡n conf’an en proyecto de edil electo independiente",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "windows-1252"
+   ]
+  ]
+ },
+ {
+  "index": 113,
+  "label": "An example with 'à' in windows-1251 where we need our heuristic to be bolder",
+  "expect": "fail",
+  "original": "faites attention Г bien vous renseigner avant sur le mГ©dicament",
+  "fix_text": "faites attention Г bien vous renseigner avant sur le mГ©dicament",
+  "fix_and_explain_text": "faites attention Г bien vous renseigner avant sur le mГ©dicament",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "faites attention Г bien vous renseigner avant sur le mГ©dicament",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 114,
+  "label": "UTF-8 / Windows-1251 mixup in tweet spam",
+  "expect": "pass",
+  "original": "Blog Traffic Tip 2 вЂ“ Broadcast Email Your Blog",
+  "fix_text": "Blog Traffic Tip 2 – Broadcast Email Your Blog",
+  "fix_and_explain_text": "Blog Traffic Tip 2 – Broadcast Email Your Blog",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Blog Traffic Tip 2 – Broadcast Email Your Blog",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 115,
+  "label": "UTF-8 / Windows-1251 mixup",
+  "expect": "pass",
+  "original": "S&P Confirms UkrsotsbankвЂ™s вЂњB-вЂњ Rating",
+  "fix_text": "S&P Confirms Ukrsotsbank's \"B-\" Rating",
+  "fix_and_explain_text": "S&P Confirms Ukrsotsbank's \"B-\" Rating",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "S&P Confirms Ukrsotsbank’s “B-“ Rating",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1251"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 116,
+  "label": "Dutch example with ë",
+  "expect": "pass",
+  "original": "ongeÃ«venaard",
+  "fix_text": "ongeëvenaard",
+  "fix_and_explain_text": "ongeëvenaard",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "ongeëvenaard",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 117,
+  "label": "HTML entity on top of UTF-8 / Latin-1",
+  "expect": "pass",
+  "original": "10Î&frac14;s",
+  "fix_text": "10μs",
+  "fix_and_explain_text": "10μs",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "unescape_html"
+   ],
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "10Î&frac14;s",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 118,
+  "label": "Negative: Two concatenated strings",
+  "expect": "pass",
+  "original": "Oborzos, per. Vahbarz, frataraká§ 141",
+  "fix_text": "Oborzos, per. Vahbarz, frataraká§ 141",
+  "fix_and_explain_text": "Oborzos, per. Vahbarz, frataraká§ 141",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Oborzos, per. Vahbarz, frataraká§ 141",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 119,
+  "label": "Negative: Indonesian leetspeak",
+  "expect": "pass",
+  "original": "MÄ£ÄM ÌÑÌ Q £ÄGÌ GÄLÄW ÑÍCH SÖÄ£ ÑÝÄ $ÚÄMÌ Q £ÄGÌ GÄK ÉÑÄK BÄDÄÑ....?????????,                     ......JÄDÍ...",
+  "fix_text": "MÄ£ÄM ÌÑÌ Q £ÄGÌ GÄLÄW ÑÍCH SÖÄ£ ÑÝÄ $ÚÄMÌ Q £ÄGÌ GÄK ÉÑÄK BÄDÄÑ....?????????,                     ......JÄDÍ...",
+  "fix_and_explain_text": "MÄ£ÄM ÌÑÌ Q £ÄGÌ GÄLÄW ÑÍCH SÖÄ£ ÑÝÄ $ÚÄMÌ Q £ÄGÌ GÄK ÉÑÄK BÄDÄÑ....?????????,                     ......JÄDÍ...",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "MÄ£ÄM ÌÑÌ Q £ÄGÌ GÄLÄW ÑÍCH SÖÄ£ ÑÝÄ $ÚÄMÌ Q £ÄGÌ GÄK ÉÑÄK BÄDÄÑ....?????????,                     ......JÄDÍ...",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 120,
+  "label": "Three layers of UTF-8 / MacRoman mixup in French",
+  "expect": "pass",
+  "original": "Merci de t‚Äö√†√∂¬¨¬©l‚Äö√†√∂¬¨¬©charger le plug-in Flash Player 8",
+  "fix_text": "Merci de télécharger le plug-in Flash Player 8",
+  "fix_and_explain_text": "Merci de télécharger le plug-in Flash Player 8",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Merci de télécharger le plug-in Flash Player 8",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 121,
+  "label": "UTF-8 / MacRoman mixup in French",
+  "expect": "pass",
+  "original": "Merci de bien vouloir activiter le Javascript dans votre navigateur web afin d'en profiter‚Ä¶",
+  "fix_text": "Merci de bien vouloir activiter le Javascript dans votre navigateur web afin d'en profiter…",
+  "fix_and_explain_text": "Merci de bien vouloir activiter le Javascript dans votre navigateur web afin d'en profiter…",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Merci de bien vouloir activiter le Javascript dans votre navigateur web afin d'en profiter…",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 122,
+  "label": "Italian UTF-8 / MacRoman example with ò",
+  "expect": "pass",
+  "original": "Le Vigne di Zam√≤",
+  "fix_text": "Le Vigne di Zamò",
+  "fix_and_explain_text": "Le Vigne di Zamò",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Le Vigne di Zamò",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 123,
+  "label": "Italian UTF-8 / MacRoman mojibake that looks like math",
+  "expect": "fail",
+  "original": "Sarai ricontattato dal nostro Esperto al pi√π presto.",
+  "fix_text": "Sarai ricontattato dal nostro Esperto al pi√π presto.",
+  "fix_and_explain_text": "Sarai ricontattato dal nostro Esperto al pi√π presto.",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Sarai ricontattato dal nostro Esperto al pi√π presto.",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 124,
+  "label": "Latvian UTF-8 / Windows-1257 mojibake",
+  "expect": "pass",
+  "original": "Å veices baÅ†Ä·ieri gaida konkrÄ“tus investÄ«ciju projektus",
+  "fix_text": "Šveices baņķieri gaida konkrētus investīciju projektus",
+  "fix_and_explain_text": "Šveices baņķieri gaida konkrētus investīciju projektus",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Šveices baņķieri gaida konkrētus investīciju projektus",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 125,
+  "label": "Latvian UTF-8 / MacRoman mojibake",
+  "expect": "pass",
+  "original": "SaeimƒÅ ievƒìlƒìtƒÅs partijas \"Progresƒ´vie\" lƒ´dzvadƒ´tƒÅja Anto≈Üina ≈Öena≈°eva atbild uz ≈æurnƒÅlistu jautƒÅjumiem pƒìc partijas tik≈°anƒÅs ar Valsts prezidentu Rƒ´gas pilƒ´,",
+  "fix_text": "Saeimā ievēlētās partijas \"Progresīvie\" līdzvadītāja Antoņina Ņenaševa atbild uz žurnālistu jautājumiem pēc partijas tikšanās ar Valsts prezidentu Rīgas pilī,",
+  "fix_and_explain_text": "Saeimā ievēlētās partijas \"Progresīvie\" līdzvadītāja Antoņina Ņenaševa atbild uz žurnālistu jautājumiem pēc partijas tikšanās ar Valsts prezidentu Rīgas pilī,",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Saeimā ievēlētās partijas \"Progresīvie\" līdzvadītāja Antoņina Ņenaševa atbild uz žurnālistu jautājumiem pēc partijas tikšanās ar Valsts prezidentu Rīgas pilī,",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 126,
+  "label": "Lithuanian UTF-8 / Windows-1257 mojibake",
+  "expect": "pass",
+  "original": "Å iaip ÄÆdomu, kaip ÄÆsivaizduoji. VisÅ³ pirma tam reikia laiko.",
+  "fix_text": "Šiaip įdomu, kaip įsivaizduoji. Visų pirma tam reikia laiko.",
+  "fix_and_explain_text": "Šiaip įdomu, kaip įsivaizduoji. Visų pirma tam reikia laiko.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1257"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Šiaip įdomu, kaip įsivaizduoji. Visų pirma tam reikia laiko.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1257"
+   ],
+   [
+    "transcode",
+    "restore_byte_a0"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 127,
+  "label": "Lithuanian UTF-8 / Windows-1250 mojibake",
+  "expect": "pass",
+  "original": "Lietuva pagrÄŻstai gali paklausti: Ĺ˝inoma, kad ne.",
+  "fix_text": "Lietuva pagrįstai gali paklausti: Žinoma, kad ne.",
+  "fix_and_explain_text": "Lietuva pagrįstai gali paklausti: Žinoma, kad ne.",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "Lietuva pagrįstai gali paklausti: Žinoma, kad ne.",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 128,
+  "label": "Hebrew UTF-8 / Windows-1252 mojibake",
+  "expect": "pass",
+  "original": "×‘×”×•×“×¢×”",
+  "fix_text": "בהודעה",
+  "fix_and_explain_text": "בהודעה",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "בהודעה",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 129,
+  "label": "Wide comma in UTF-8 / Windows-1252",
+  "expect": "pass",
+  "original": "Ningboï¼ŒChina",
+  "fix_text": "Ningbo,China",
+  "fix_and_explain_text": "Ningbo,China",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "fix_character_width"
+   ]
+  ],
+  "fix_encoding": "Ningbo，China",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 130,
+  "label": "Synthetic: Hebrew UTF-8 / Windows-1250 mojibake",
+  "expect": "pass",
+  "original": "×‘×”×•×“×˘×”",
+  "fix_text": "בהודעה",
+  "fix_and_explain_text": "בהודעה",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "בהודעה",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 131,
+  "label": "Synthetic: Hebrew UTF-8 / MacRoman mojibake",
+  "expect": "pass",
+  "original": "◊ë◊î◊ï◊ì◊¢◊î",
+  "fix_text": "בהודעה",
+  "fix_and_explain_text": "בהודעה",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "בהודעה",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 132,
+  "label": "Synthetic: Hebrew UTF-8 / Latin-1 mojibake",
+  "expect": "pass",
+  "original": "××××",
+  "fix_text": "אבבא",
+  "fix_and_explain_text": "אבבא",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "אבבא",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 133,
+  "label": "Synthetic: Arabic UTF-8 / Windows-1252 mojibake",
+  "expect": "pass",
+  "original": "Ø±Ø³Ø§Ù„Ø©",
+  "fix_text": "رسالة",
+  "fix_and_explain_text": "رسالة",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "رسالة",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 134,
+  "label": "Synthetic: Arabic UTF-8 / Windows-1250 mojibake",
+  "expect": "pass",
+  "original": "Ř±ŘłŘ§Ů„Ř©",
+  "fix_text": "رسالة",
+  "fix_and_explain_text": "رسالة",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "رسالة",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1250"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 135,
+  "label": "Synthetic: Arabic UTF-8 / MacRoman mojibake",
+  "expect": "pass",
+  "original": "ÿ±ÿ≥ÿßŸÑÿ©",
+  "fix_text": "رسالة",
+  "fix_and_explain_text": "رسالة",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "رسالة",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "macroman"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 136,
+  "label": "Negative: math in Unicode",
+  "expect": "pass",
+  "original": "(-1/2)! = √π",
+  "fix_text": "(-1/2)! = √π",
+  "fix_and_explain_text": "(-1/2)! = √π",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "(-1/2)! = √π",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 137,
+  "label": "Negative: Leet line-art",
+  "expect": "pass",
+  "original": "├┤a┼┐a┼┐a┼┐a┼┐a",
+  "fix_text": "├┤a┼┐a┼┐a┼┐a┼┐a",
+  "fix_and_explain_text": "├┤a┼┐a┼┐a┼┐a┼┐a",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "├┤a┼┐a┼┐a┼┐a┼┐a",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 138,
+  "label": "Synthetic, negative: Brontë's name does not end with a Korean syllable",
+  "expect": "pass",
+  "original": "I'm not such a fan of Charlotte Brontë…”",
+  "fix_text": "I'm not such a fan of Charlotte Brontë…\"",
+  "fix_and_explain_text": "I'm not such a fan of Charlotte Brontë…\"",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "I'm not such a fan of Charlotte Brontë…”",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 139,
+  "label": "Synthetic, negative: hypothetical Swedish product name",
+  "expect": "pass",
+  "original": "AHÅ™, the new sofa from IKEA",
+  "fix_text": "AHÅ™, the new sofa from IKEA",
+  "fix_and_explain_text": "AHÅ™, the new sofa from IKEA",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "AHÅ™, the new sofa from IKEA",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 140,
+  "label": "Synthetic, negative: Ukrainian capital letters",
+  "expect": "pass",
+  "original": "ВІКІ is Ukrainian for WIKI",
+  "fix_text": "ВІКІ is Ukrainian for WIKI",
+  "fix_and_explain_text": "ВІКІ is Ukrainian for WIKI",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "ВІКІ is Ukrainian for WIKI",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 141,
+  "label": "Synthetic, negative: don't leak our internal use of byte 0x1A",
+  "expect": "pass",
+  "original": "These control characters \u001a are apparently intentional ",
+  "fix_text": "These control characters  are apparently intentional ",
+  "fix_and_explain_text": "These control characters  are apparently intentional ",
+  "fix_and_explain_plan": [
+   [
+    "transcode",
+    "fix_c1_controls"
+   ],
+   [
+    "apply",
+    "remove_control_chars"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ]
+  ],
+  "fix_encoding": "These control characters \u001a are apparently intentional ",
+  "fix_encoding_plan": [
+   [
+    "transcode",
+    "fix_c1_controls"
+   ]
+  ]
+ },
+ {
+  "index": 142,
+  "label": "Synthetic, negative: U+1A on its own",
+  "expect": "pass",
+  "original": "Here's a control character: \u001a",
+  "fix_text": "Here's a control character: ",
+  "fix_and_explain_text": "Here's a control character: ",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "remove_control_chars"
+   ]
+  ],
+  "fix_encoding": "Here's a control character: \u001a",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 143,
+  "label": "Synthetic, negative: A-with-circle as an Angstrom sign",
+  "expect": "pass",
+  "original": "a radius of 10 Å—",
+  "fix_text": "a radius of 10 Å—",
+  "fix_and_explain_text": "a radius of 10 Å—",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "a radius of 10 Å—",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 144,
+  "label": "Synthetic, negative: Spanish with exclamation points on the wrong sides",
+  "expect": "pass",
+  "original": "!YO SÉ¡",
+  "fix_text": "!YO SÉ¡",
+  "fix_and_explain_text": "!YO SÉ¡",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "!YO SÉ¡",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 145,
+  "label": "Synthetic: fix text with backslashes in it",
+  "expect": "pass",
+  "original": "<40\\% vs â¥40\\%",
+  "fix_text": "<40\\% vs ≥40\\%",
+  "fix_and_explain_text": "<40\\% vs ≥40\\%",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "<40\\% vs ≥40\\%",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 146,
+  "label": "Synthetic: curly quotes with mismatched encoding glitches in Latin-1",
+  "expect": "pass",
+  "original": "âmismatched quotes",
+  "fix_text": "\"mismatched quotes…\"",
+  "fix_and_explain_text": "\"mismatched quotes…\"",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "“mismatched quotes…”",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "transcode",
+    "fix_c1_controls"
+   ]
+  ]
+ },
+ {
+  "index": 147,
+  "label": "Synthetic: curly quotes with mismatched encoding glitches in Windows-1252",
+  "expect": "pass",
+  "original": "â€œmismatched quotesâ€¦”",
+  "fix_text": "\"mismatched quotes…\"",
+  "fix_and_explain_text": "\"mismatched quotes…\"",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "“mismatched quotes…”",
+  "fix_encoding_plan": [
+   [
+    "apply",
+    "decode_inconsistent_utf8"
+   ]
+  ]
+ },
+ {
+  "index": 148,
+  "label": "Synthetic: lossy decoding in sloppy-windows-1252",
+  "expect": "pass",
+  "original": "â€œlossy decodingâ€�",
+  "fix_text": "\"lossy decoding�",
+  "fix_and_explain_text": "\"lossy decoding�",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ],
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "“lossy decoding�",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "transcode",
+    "replace_lossy_sequences"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 149,
+  "label": "Synthetic: French word for August in windows-1252",
+  "expect": "pass",
+  "original": "aoÃ»t",
+  "fix_text": "août",
+  "fix_and_explain_text": "août",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "août",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 150,
+  "label": "Synthetic: French word for hotel in all-caps windows-1252",
+  "expect": "pass",
+  "original": "HÃ”TEL",
+  "fix_text": "HÔTEL",
+  "fix_and_explain_text": "HÔTEL",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "HÔTEL",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 151,
+  "label": "Synthetic: Scottish Gaelic word for 'subject' in all-caps windows-1252",
+  "expect": "pass",
+  "original": "CÃ™IS",
+  "fix_text": "CÙIS",
+  "fix_and_explain_text": "CÙIS",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "CÙIS",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 152,
+  "label": "Synthetic, negative: Romanian word before a non-breaking space",
+  "expect": "pass",
+  "original": "NICIODATĂ ",
+  "fix_text": "NICIODATĂ ",
+  "fix_and_explain_text": "NICIODATĂ ",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "NICIODATĂ ",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 153,
+  "label": "Synthetic, negative: Be careful around curly apostrophes",
+  "expect": "pass",
+  "original": "There are a lot of Ã’s in mojibake text",
+  "fix_text": "There are a lot of Ã's in mojibake text",
+  "fix_and_explain_text": "There are a lot of Ã's in mojibake text",
+  "fix_and_explain_plan": [
+   [
+    "apply",
+    "uncurl_quotes"
+   ]
+  ],
+  "fix_encoding": "There are a lot of Ã’s in mojibake text",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 154,
+  "label": "Synthetic, negative: Romanian word before a trademark sign",
+  "expect": "pass",
+  "original": "NICIODATĂ™",
+  "fix_text": "NICIODATĂ™",
+  "fix_and_explain_text": "NICIODATĂ™",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "NICIODATĂ™",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 155,
+  "label": "Synthetic, negative: Lithuanian word before a trademark sign",
+  "expect": "pass",
+  "original": "TRANSFORMATORIŲ™",
+  "fix_text": "TRANSFORMATORIŲ™",
+  "fix_and_explain_text": "TRANSFORMATORIŲ™",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "TRANSFORMATORIŲ™",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 156,
+  "label": "Synthetic, negative: Norwegian capitalized sentence",
+  "expect": "pass",
+  "original": "HÅØYA ER BLÅØYD",
+  "fix_text": "HÅØYA ER BLÅØYD",
+  "fix_and_explain_text": "HÅØYA ER BLÅØYD",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "HÅØYA ER BLÅØYD",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 157,
+  "label": "Synthetic, negative: raised eyebrow kaomoji",
+  "expect": "pass",
+  "original": "Ō¬o",
+  "fix_text": "Ō¬o",
+  "fix_and_explain_text": "Ō¬o",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "Ō¬o",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 158,
+  "label": "Synthetic, false positive: the title of a manga, in weird capitalized romaji, with a non-breaking space",
+  "expect": "fail",
+  "original": "MISUTÂ AJIKKO",
+  "fix_text": "MISUT AJIKKO",
+  "fix_and_explain_text": "MISUT AJIKKO",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "MISUT AJIKKO",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "latin-1"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ },
+ {
+  "index": 159,
+  "label": "Synthetic, negative: Camel-cased Serbian that looks like a UTF-8 / Windows-1251 mixup",
+  "expect": "pass",
+  "original": "ПоздравЂаво",
+  "fix_text": "ПоздравЂаво",
+  "fix_and_explain_text": "ПоздравЂаво",
+  "fix_and_explain_plan": [],
+  "fix_encoding": "ПоздравЂаво",
+  "fix_encoding_plan": []
+ },
+ {
+  "index": 160,
+  "label": "Synthetic: mojibake with trademark sign at the end of a word",
+  "expect": "pass",
+  "original": "OÃ™ ET QUAND?",
+  "fix_text": "OÙ ET QUAND?",
+  "fix_and_explain_text": "OÙ ET QUAND?",
+  "fix_and_explain_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ],
+  "fix_encoding": "OÙ ET QUAND?",
+  "fix_encoding_plan": [
+   [
+    "encode",
+    "sloppy-windows-1252"
+   ],
+   [
+    "decode",
+    "utf-8"
+   ]
+  ]
+ }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "input": "'caf\\x81 \\x85 \\x91x\\x92'",
+  "fix_text default": "\"caf\\x81 \\u2026 'x'\"",
+  "fix_text kwarg off": "\"caf\\x81 \\u2026 'x'\"",
+  "fix_text config off (explain=True default)": "'caf\\x81 \\n \\x91x\\x92'",
+  "fix_text config off, explain=False": "\"caf\\x81 \\u2026 'x'\"",
+  "fix_and_explain kwarg off": "('caf\\x81 \\n \\x91x\\x92', [('apply', 'fix_line_breaks')])",
+  "fix_and_explain default": "(\"caf\\x81 \\u2026 'x'\", [('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls'), ('apply', 'uncurl_quotes'), ('transcode', 'fix_c1_controls')])",
+  "fix_and_explain kwarg off, fix_encoding=False": "('caf\\x81 \\n \\x91x\\x92', [('apply', 'fix_line_breaks')])",
+  "fix_and_explain fix_encoding=False only": "(\"caf\\x81 \\u2026 'x'\", [('apply', 'fix_c1_controls'), ('apply', 'uncurl_quotes')])",
+  "fix_encoding default": "'caf\\x81 \\u2026 \\u2018x\\u2019'",
+  "fix_encoding kwarg off": "'caf\\x81 \\x85 \\x91x\\x92'",
+  "fix_encoding_and_explain default": "('caf\\x81 \\u2026 \\u2018x\\u2019', [('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls')])"
+ },
+ {
+  "input": "'\\x81\\x85'",
+  "fix_text default": "'\\x81\\u2026'",
+  "fix_text kwarg off": "'\\x81\\u2026'",
+  "fix_text config off (explain=True default)": "'\\x81\\n'",
+  "fix_text config off, explain=False": "'\\x81\\u2026'",
+  "fix_and_explain kwarg off": "('\\x81\\n', [('apply', 'fix_line_breaks')])",
+  "fix_and_explain default": "('\\x81\\u2026', [('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls')])",
+  "fix_and_explain kwarg off, fix_encoding=False": "('\\x81\\n', [('apply', 'fix_line_breaks')])",
+  "fix_and_explain fix_encoding=False only": "('\\x81\\u2026', [('apply', 'fix_c1_controls')])",
+  "fix_encoding default": "'\\x81\\u2026'",
+  "fix_encoding kwarg off": "'\\x81\\x85'",
+  "fix_encoding_and_explain default": "('\\x81\\u2026', [('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls')])"
+ },
+ {
+  "input": "'na\\xefve \\x81 \\x93quote\\x94'",
+  "fix_text default": "'na\\xefve \\x81 \"quote\"'",
+  "fix_text kwarg off": "'na\\xefve \\x81 \"quote\"'",
+  "fix_text config off (explain=True default)": "'na\\xefve \\x81 \\x93quote\\x94'",
+  "fix_text config off, explain=False": "'na\\xefve \\x81 \"quote\"'",
+  "fix_and_explain kwarg off": "('na\\xefve \\x81 \\x93quote\\x94', [])",
+  "fix_and_explain default": "('na\\xefve \\x81 \"quote\"', [('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls'), ('apply', 'uncurl_quotes'), ('transcode', 'fix_c1_controls')])",
+  "fix_and_explain kwarg off, fix_encoding=False": "('na\\xefve \\x81 \\x93quote\\x94', [])",
+  "fix_and_explain fix_encoding=False only": "('na\\xefve \\x81 \"quote\"', [('apply', 'fix_c1_controls'), ('apply', 'uncurl_quotes')])",
+  "fix_encoding default": "'na\\xefve \\x81 \\u201cquote\\u201d'",
+  "fix_encoding kwarg off": "'na\\xefve \\x81 \\x93quote\\x94'",
+  "fix_encoding_and_explain default": "('na\\xefve \\x81 \\u201cquote\\u201d', [('transcode', 'fix_c1_controls'), ('transcode', 'fix_c1_controls')])"
+ }
+]
