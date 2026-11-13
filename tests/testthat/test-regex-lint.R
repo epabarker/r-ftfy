@@ -40,6 +40,35 @@ test_that("the lint reads the package: it finds the calls that are there", {
   expect_match(regex_lint(unguarded), "outside regex_guard")
 })
 
+test_that("the lint over a namespace reports a bad call under its object's name", {
+  namespace <- new.env()
+  namespace$fine <- function(x) nchar(x)
+  namespace$has_base_regex <- function(x) grepl("a", x)
+  namespace$table <- list(1, inner = function(x) stringi::stri_detect_regex(x, "a"))
+  namespace$text <- "grepl"
+
+  found <- regex_lint_namespace(namespace)
+
+  expect_length(found, 3L)
+  expect_match(found[[1]], "^has_base_regex: a base regex call")
+  expect_match(found[2:3], "^table: a regex call")
+})
+
+test_that("the lint over source files reports a bad call under its file's name", {
+  file <- tempfile(fileext = ".R")
+  on.exit(unlink(file))
+  writeLines(c(
+    "ok <- function(x) strsplit(x, ' ', fixed = TRUE)",
+    "at_top_level <- sub('a', 'b', letters)"
+  ), file)
+
+  found <- regex_lint_files(file)
+
+  expect_length(found, 1L)
+  expect_match(found, basename(file), fixed = TRUE)
+  expect_match(found, "a base regex call")
+})
+
 test_that("the lint knows the regex functions of stringi and base", {
   sets <- regex_lint_sets()
 

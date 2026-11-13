@@ -47,7 +47,8 @@ regex_locate_all <- function(x, pattern) {
 # regex that needs more stops with ICU's U_REGEX_STACK_OVERFLOW. That
 # becomes an error of class `ftfy_regex_overflow` naming the exported
 # function the user called and the length of the input (the departure
-# `regex-overflow`, ADR 0005). Any other error passes through unchanged.
+# `regex-overflow`, ADR 0005). `x` is the text this call was matching,
+# which inside a fixer may be part of the user's input or a form of it. Any other error passes through unchanged.
 regex_guard <- function(expr, x) {
   tryCatch(
     expr,
@@ -65,7 +66,7 @@ regex_overflow <- function(x) {
   longest <- max(0L, nchar(x, type = "chars", allowNA = TRUE), na.rm = TRUE)
   where <- if (is.null(caller)) "" else paste0(caller$name, "(): ")
   message <- paste0(
-    where, "the regular expression engine ran out of stack on an input of ",
+    where, "the regular expression engine ran out of stack while matching ",
     length(x), " ", if (length(x) == 1L) "string" else "strings",
     ", the longest of ", format(longest, big.mark = ",", scientific = FALSE),
     " characters. Its limit is 1e9 bytes, and Python ftfy has none. ",

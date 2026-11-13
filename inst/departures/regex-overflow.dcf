@@ -12,7 +12,7 @@ Reference: Python's re has no backtracking limit. Run on ftfy 6.3.1 with
  Python 3.13: chardata.UTF8_DETECTOR_RE.search('\u00c3\u00a9' * 25_000_000)
  returns a match with span (0, 50000000), in about half a second.
 R: An error of class ftfy_regex_overflow. The message names the exported
- function that was called, says how many strings the input holds and the
- length in characters of the longest, and says to split the text into
- shorter strings. No result is returned for any element of the input.
+ function that was called, says how many strings were being matched and
+ the length in characters of the longest, and says to split the text
+ into shorter strings. No result is returned for any element of the input.
 Decided: docs/adr/0005-regex-and-unicode-data-are-generated-from-a-reference-python.md
