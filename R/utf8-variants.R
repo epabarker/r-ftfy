@@ -15,7 +15,7 @@
 # cut short and a C0 followed by anything but 80 are undecodable.
 #
 # The two patterns below are the only hand-written patterns in the package
-# (ADR 0005). Upstream's (utf8_variants.py:58 and :82) also match a
+# (ADR 0005). Upstream's (utf8_variants.py:58 and :81) also match a
 # sequence cut short by the end of the input, written with `$`, which in
 # Python matches before a final newline as well. That is what makes
 # upstream read C0 0A and ED A0 BD ED B8 0A at the end of the input as
@@ -64,7 +64,7 @@ decode_utf8_variants <- function(bytes) {
 }
 
 # Rewrite every six-byte surrogate pair as the four bytes of the character
-# it stands for (utf8_variants.py:214). `bytes` holds byte strings that
+# it stands for (utf8_variants.py:217). `bytes` holds byte strings that
 # each hold a pair, and no `NA`.
 #
 # The strings are joined into one, with a character that is not a byte

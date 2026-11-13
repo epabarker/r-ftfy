@@ -71,9 +71,9 @@ def sequences():
             seen.add(seq)
             out.append(seq)
 
-    # Upstream's own examples: the doctest at utf8_variants.py:13, and
-    # tests/test_encodings.py:9, tests/test_encodings.py:15,
-    # tests/test_bytes.py:31 and tests/test_bytes.py:38.
+    # Upstream's own examples: the doctest at utf8_variants.py:14, and
+    # tests/test_encodings.py:4, tests/test_encodings.py:14,
+    # tests/test_bytes.py:30 and tests/test_bytes.py:37.
     add(b"here comes a null! \xc0\x80")
     add(b"\xed\xa6\x9d\xed\xbd\xb7 is an unassigned character, and \xc0\x80 is null")
     add(b"\xe8\xed\xe2\xe5\xed\xf2\xe0\xf0\xe8\xe7\xe0\xf6\xe8\xff ")

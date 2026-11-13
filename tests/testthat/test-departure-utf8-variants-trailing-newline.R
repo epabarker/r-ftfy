@@ -77,7 +77,10 @@ test_that("the registry entry matches this difference and no other", {
                             reference = "x", actual = NA_character_)))
 })
 
-test_that("the registry entry matches a text with such a line, for ticket #36", {
+test_that("the registry entry excuses no difference in an exported function yet", {
+  # No exported function reaches these bytes until ticket #36, so a text
+  # with such a line is no excuse for a difference. Ticket #36 replaces
+  # this test with the assertions through fix_encoding().
   matcher <- departure_matchers()[["utf8-variants-trailing-newline"]]
   text <- c("sch\u00c3\u00b6n \u00c0\n", "\u00ed\u00a0\u00bd\u00ed\u00b8\n",
             "one \u00c0\ntwo", "\u0421\u0440\u0410\n")
@@ -86,16 +89,9 @@ test_that("the registry entry matches a text with such a line, for ticket #36", 
   )
 
   for (i in seq_along(text)) {
-    expect_true(matcher(list(fun = "fix_encoding", input = text[[i]],
-                             reference = reference[[i]], actual = text[[i]])))
+    expect_false(matcher(list(fun = "fix_encoding", input = text[[i]],
+                              reference = reference[[i]], actual = text[[i]])))
+    expect_false(matcher(list(fun = "fix_text", input = text[[i]],
+                              reference = reference[[i]], actual = NA_character_)))
   }
-  # No line ends in such a sequence, or R raised an error.
-  expect_false(matcher(list(fun = "fix_encoding", input = "sch\u00c3\u00b6n \u00c0",
-                            reference = "x", actual = "y")))
-  expect_false(matcher(list(fun = "fix_encoding", input = "sch\u00c3\u00b6n\n\u00c0",
-                            reference = "x", actual = "y")))
-  expect_false(matcher(list(fun = "fix_encoding", input = "caf\u00c3\u00a9\n",
-                            reference = "caf\u00e9\n", actual = "caf\u00c3\u00a9\n")))
-  expect_false(matcher(list(fun = "fix_encoding", input = text[[1]],
-                            reference = reference[[1]], actual = simpleError("no"))))
 })

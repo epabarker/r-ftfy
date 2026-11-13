@@ -3,7 +3,7 @@
 # Upstream's doctests and tests of its own codecs, at the decoder level.
 # Bytes are held as text: byte b is the character U+00b.
 
-# Upstream doctest, ftfy/bad_codecs/utf8_variants.py:13. The reference
+# Upstream doctest, ftfy/bad_codecs/utf8_variants.py:14. The reference
 # version gives U+0000 for C0 80; an R string cannot hold it, so nothing
 # stands in its place (departure `decoded-nul-dropped`).
 test_that("utf-8-variants decodes Java's null", {
@@ -12,7 +12,7 @@ test_that("utf-8-variants decodes Java's null", {
   expect_identical(ftfy:::codec_decode(bytes, "utf-8-variants"), "here comes a null! ")
 })
 
-# Upstream doctest, ftfy/bad_codecs/sloppy.py:57.
+# Upstream doctest, ftfy/bad_codecs/sloppy.py:58.
 test_that("sloppy-windows-1252 merges Windows-1252 with Latin-1", {
   some_bytes <- "\u0080\u0081\u0082"
 

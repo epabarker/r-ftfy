@@ -77,7 +77,7 @@ test_that("byte 1A decodes to U+FFFD in every sloppy codec, and to itself elsewh
 })
 
 test_that("every codec decodes the other ASCII bytes to themselves", {
-  # Upstream's `_build_regexes()` (ftfy/chardata.py:53) relies on this.
+  # Upstream's `_build_regexes()` (ftfy/chardata.py:54) relies on this.
   ascii <- setdiff(0x00:0x7F, 0x1A)
   for (codec in codec_names()) {
     expect_identical(ftfy:::codec_tables[[codec]][ascii + 1L], ascii, info = codec)
@@ -171,7 +171,7 @@ test_that("the characters a codec can encode are exactly the ones in its table",
 })
 
 test_that("the characters a trial codec can encode are the ones upstream lists", {
-  # ftfy/chardata.py:42: ASCII without 1A, and what the bytes 80 to FF and
+  # ftfy/chardata.py:46: ASCII without 1A, and what the bytes 80 to FF and
   # 1A decode to.
   for (codec in ftfy:::charmap_codecs()) {
     table <- ftfy:::codec_tables[[codec]]
