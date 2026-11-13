@@ -149,7 +149,7 @@ Each named fixer runs only if its config field is truthy (`_try_fix`, `:280`).
 
 Why the loop matters: later fixers unlock earlier ones on the next pass. `docs/index.rst:54-57` gives mojibake that "cannot be consistently decoded until the quotes are uncurled", and `docs/explain.rst:24-29` shows three `unescape_html` steps before the encoding steps for a triply escaped string.
 
-Changelog discrepancy: `CHANGELOG.md:310-311` (v4.4.0) says the entities fixer "is now applied after `fix_encoding`". At 6.3.1 `unescape_html` runs first. No changelog entry records the change back; with the loop, both orders reach the same fixed point in the documented examples, but the explanation order differs.
+Changelog discrepancy: `CHANGELOG.md:310-311` (v4.4.0) says the entities fixer "is now applied after `fix_encoding`". At 6.3.1 `unescape_html` runs first. No changelog entry records the change back. For the port, the source order at 6.3.1 is the one to follow, since it determines the order of steps in an explanation.
 
 ### 4.1 Inside the encoding stage
 
