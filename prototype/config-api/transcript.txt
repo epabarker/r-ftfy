@@ -1,0 +1,140 @@
+
+======================================================================
+1. Defaults
+======================================================================
+
+[A  plain arguments only]
+> fix_text(x)
+   fix_text ran with all defaults
+
+[B  config object only]
+> fix_text(x)
+   fix_text ran with all defaults
+
+[C  both: named arguments override a config]
+> fix_text(x)
+   fix_text ran with all defaults
+
+======================================================================
+2. Keep curly quotes
+======================================================================
+
+[A  plain arguments only]
+> fix_text(x, uncurl_quotes = FALSE)
+   fix_text ran with uncurl_quotes = FALSE
+
+[B  config object only]
+> fix_text(x, ftfy_config(uncurl_quotes = FALSE))
+   fix_text ran with uncurl_quotes = FALSE
+
+[C  both: named arguments override a config]
+> fix_text(x, uncurl_quotes = FALSE)
+   fix_text ran with uncurl_quotes = FALSE
+
+======================================================================
+3. Same cautious settings for two calls
+======================================================================
+
+[A  plain arguments only]
+> fix_text(x, uncurl_quotes = FALSE, fix_character_width = FALSE, normalization = NULL)
+   fix_text ran with fix_character_width = FALSE, uncurl_quotes = FALSE, normalization = NULL
+> fix_and_explain(y, uncurl_quotes = FALSE, fix_character_width = FALSE, normalization = NULL)
+   fix_and_explain ran with fix_character_width = FALSE, uncurl_quotes = FALSE, normalization = NULL
+
+[B  config object only]
+> cautious <- ftfy_config(uncurl_quotes = FALSE, fix_character_width = FALSE, normalization = NULL)
+> fix_text(x, cautious)
+   fix_text ran with fix_character_width = FALSE, uncurl_quotes = FALSE, normalization = NULL
+> fix_and_explain(y, cautious)
+   fix_and_explain ran with fix_character_width = FALSE, uncurl_quotes = FALSE, normalization = NULL
+
+[C  both: named arguments override a config]
+> cautious <- ftfy_config(uncurl_quotes = FALSE, fix_character_width = FALSE, normalization = NULL)
+> fix_text(x, config = cautious)
+   fix_text ran with fix_character_width = FALSE, uncurl_quotes = FALSE, normalization = NULL
+> fix_and_explain(y, config = cautious)
+   fix_and_explain ran with fix_character_width = FALSE, uncurl_quotes = FALSE, normalization = NULL
+
+======================================================================
+4. Saved settings, one change for one call
+======================================================================
+
+[A  plain arguments only]
+> # no saved settings to start from; spell everything out again
+> fix_text(x, uncurl_quotes = FALSE, fix_character_width = FALSE, unescape_html = FALSE)
+   fix_text ran with unescape_html = FALSE, fix_character_width = FALSE, uncurl_quotes = FALSE
+
+[B  config object only]
+> cautious <- ftfy_config(uncurl_quotes = FALSE, fix_character_width = FALSE)
+> # no way to tweak a config; build a second one
+> fix_text(x, ftfy_config(uncurl_quotes = FALSE, fix_character_width = FALSE, unescape_html = FALSE))
+   fix_text ran with unescape_html = FALSE, fix_character_width = FALSE, uncurl_quotes = FALSE
+
+[C  both: named arguments override a config]
+> cautious <- ftfy_config(uncurl_quotes = FALSE, fix_character_width = FALSE)
+> fix_text(x, unescape_html = FALSE, config = cautious)
+   fix_text ran with unescape_html = FALSE, fix_character_width = FALSE, uncurl_quotes = FALSE
+
+======================================================================
+5. Typo in an option name
+======================================================================
+
+[A  plain arguments only]
+> fix_text(x, uncurl_quote = FALSE)
+   fix_text ran with uncurl_quotes = FALSE
+
+[B  config object only]
+> fix_text(x, ftfy_config(uncurl_quote = FALSE))
+    Error: unknown option `uncurl_quote`; did you mean `uncurl_quotes`?
+
+[C  both: named arguments override a config]
+> fix_text(x, uncurl_quote = FALSE)
+    Error: unknown option `uncurl_quote`; did you mean `uncurl_quotes`?
+
+======================================================================
+6. Wrong value
+======================================================================
+
+[A  plain arguments only]
+> fix_text(x, normalization = "nfc")
+    Error: `normalization` has an invalid value: "nfc"
+
+[B  config object only]
+> fix_text(x, ftfy_config(normalization = "nfc"))
+    Error: `normalization` has an invalid value: "nfc"
+
+[C  both: named arguments override a config]
+> fix_text(x, normalization = "nfc")
+    Error: `normalization` has an invalid value: "nfc"
+
+======================================================================
+7. Second argument passed by position
+======================================================================
+
+[A  plain arguments only]
+> fix_text(x, FALSE)   # silently means unescape_html = FALSE
+   fix_text ran with unescape_html = FALSE
+
+[B  config object only]
+> fix_text(x, FALSE)
+    Error: `config` must be made with ftfy_config()
+
+[C  both: named arguments override a config]
+> fix_text(x, FALSE)
+    Error: options must be named
+
+======================================================================
+8. What the signature shows (args / autocomplete)
+======================================================================
+
+[A  plain arguments only]
+> cat("   ", length(formals(fix_text)), "arguments:", paste(names(formals(fix_text)), collapse = ", "), "\n")
+    15 arguments: x, unescape_html, remove_terminal_escapes, fix_encoding, restore_byte_a0, replace_lossy_sequences, decode_inconsistent_utf8, fix_c1_controls, fix_latin_ligatures, fix_character_width, uncurl_quotes, fix_line_breaks, remove_control_chars, normalization, max_decode_length 
+
+[B  config object only]
+> cat("   ", length(formals(fix_text)), "arguments:", paste(names(formals(fix_text)), collapse = ", "), "\n")
+    2 arguments: x, config 
+
+[C  both: named arguments override a config]
+> cat("   ", length(formals(fix_text)), "arguments:", paste(names(formals(fix_text)), collapse = ", "), "\n")
+    3 arguments: x, ..., config 
