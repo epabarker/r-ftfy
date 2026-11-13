@@ -15,6 +15,10 @@
 #'
 #' @param x A character vector. Anything else is an error, as is a string
 #'   that is not valid UTF-8.
+#' @param ... Options to change for this call, each given by its full
+#'   name, such as `restore_byte_a0 = FALSE`. They override `config`. See
+#'   [ftfy_config()] for the options.
+#' @param config A set of options made by [ftfy_config()].
 #'
 #' @return A character vector as long as `x`, marked as UTF-8. A missing
 #'   string gives `NA`.
@@ -23,9 +27,11 @@
 #' x <- c("caf\u00c3\u00a9", "it\u00e2\u20ac\u2122s", "caf\u00e9", NA)
 #' fix_encoding(x)
 #' @export
-fix_encoding <- function(x) {
+fix_encoding <- function(x, ..., config = ftfy_config()) {
+  shape <- entry_shape(x)
   x <- entry_step(x)
-  repair_encoding(x)$text
+  config <- resolve_config(..., config = config)
+  exit_step(repair_encoding(x, config)$text, shape)
 }
 
 # The codecs a mix-up is looked for in, in the order upstream tries them
@@ -47,7 +53,15 @@ charmap_codecs <- function() {
 # cannot answer for as "unsure", and such an element comes back as it was
 # given, with nothing done to it, because a repair that stops part of the
 # way is a wrong text. When no part is absent nothing is ever unsure.
-repair_encoding <- function(x) {
+#
+# `config` is the resolved `ftfy_config` object (R/config.R), received
+# whole. Only its `fix_encoding` is read so far: the parts of the heuristic
+# that the four options under it control are not built yet (#36).
+repair_encoding <- function(x, config) {
+  if (!config$fix_encoding) {
+    # Upstream returns the text and an empty plan (ftfy/__init__.py:453).
+    return(list(text = x))
+  }
   text <- x
   unsure <- logical(length(x))
   live <- which(!is.na(x))

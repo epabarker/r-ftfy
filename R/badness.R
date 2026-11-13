@@ -13,10 +13,12 @@
 #' cost of about half a millisecond.
 #'
 #' @param x A character vector. Anything else is an error, as is a string
-#'   that is not valid UTF-8.
+#'   that is not valid UTF-8 or is marked as bytes. A logical vector that
+#'   is all `NA` is taken as missing strings.
 #'
 #' @return `badness()` returns an integer vector and `is_bad()` a logical
-#'   vector, each as long as `x`. A missing string gives `NA`.
+#'   vector, each as long as `x` and with its `names`, `dim` and `dimnames`.
+#'   A missing string gives `NA`.
 #'
 #' @examples
 #' x <- c("caf\u00c3\u00a9", "caf\u00e9", NA)
@@ -24,13 +26,15 @@
 #' is_bad(x)
 #' @export
 badness <- function(x) {
+  shape <- entry_shape(x)
   x <- entry_step(x)
-  regex_count(x, patterns[["BADNESS_RE"]])
+  exit_step(regex_count(x, patterns[["BADNESS_RE"]]), shape)
 }
 
 #' @rdname badness
 #' @export
 is_bad <- function(x) {
+  shape <- entry_shape(x)
   x <- entry_step(x)
-  regex_detect(x, patterns[["BADNESS_RE"]])
+  exit_step(regex_detect(x, patterns[["BADNESS_RE"]]), shape)
 }

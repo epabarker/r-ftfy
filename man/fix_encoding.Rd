@@ -4,11 +4,17 @@
 \alias{fix_encoding}
 \title{Repair encoding mix-ups}
 \usage{
-fix_encoding(x)
+fix_encoding(x, ..., config = ftfy_config())
 }
 \arguments{
 \item{x}{A character vector. Anything else is an error, as is a string
 that is not valid UTF-8.}
+
+\item{...}{Options to change for this call, each given by its full
+name, such as \code{restore_byte_a0 = FALSE}. They override \code{config}. See
+\code{\link[=ftfy_config]{ftfy_config()}} for the options.}
+
+\item{config}{A set of options made by \code{\link[=ftfy_config]{ftfy_config()}}.}
 }
 \value{
 A character vector as long as \code{x}, marked as UTF-8. A missing
