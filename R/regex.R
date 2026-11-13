@@ -1,6 +1,6 @@
-# Every regex call the package makes goes through this file, so that each
-# one carries the options ADR 0005 requires: `unix_lines = TRUE` and
-# `stack_limit = 1e9`, and never `comments = TRUE`. Only the stringi
+# Every regex call the package makes passes `opts_regex = regex_opts()`, so
+# that each one carries the options ADR 0005 requires: `unix_lines = TRUE`
+# and `stack_limit = 1e9`, and never `comments = TRUE`. Only the stringi
 # functions that ADR 0008 lists as keeping a leading U+FEFF are used.
 
 regex_opts <- function() {
