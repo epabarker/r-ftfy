@@ -1,0 +1,243 @@
+
+======================================================================
+1. A vector: mostly clean, one NA, two broken
+======================================================================
+x <- c("plain ascii", "G\\u00c3\\u00a0idhlig", "NA", "caf\\u00e9", 
+     "\\u00c4\\u0152e\\u00c5\\u00a1tina")
+
+[A  bare lists (closest port)]
+> res <- fix_and_explain(x)
+> res
+$text
+[1] "plain ascii" "Gàidhlig"    NA            "café"        "Čeština"    
+
+$explanation
+$explanation[[1]]
+list()
+
+$explanation[[2]]
+$explanation[[2]][[1]]
+[1] "encode"  "latin-1"
+
+$explanation[[2]][[2]]
+[1] "decode" "utf-8" 
+
+
+$explanation[[3]]
+NULL
+
+$explanation[[4]]
+list()
+
+$explanation[[5]]
+$explanation[[5]][[1]]
+[1] "encode"              "sloppy-windows-1252"
+
+$explanation[[5]][[2]]
+[1] "decode" "utf-8" 
+
+
+
+
+[B  long data frame of steps]
+> res <- fix_and_explain(x)
+> res
+$text
+[1] "plain ascii" "Gàidhlig"    NA            "café"        "Čeština"    
+
+$steps
+  element step action           parameter
+1       2    1 encode             latin-1
+2       2    2 decode               utf-8
+3       5    1 encode sloppy-windows-1252
+4       5    2 decode               utf-8
+
+
+[C  plan vector class]
+> res <- fix_and_explain(x)
+> res
+         text                                      plan
+1 plain ascii                                <no steps>
+2    Gàidhlig             encode latin-1 > decode utf-8
+3        <NA>                                      <NA>
+4        café                                <no steps>
+5     Čeština encode sloppy-windows-1252 > decode utf-8
+
+======================================================================
+2. One string, two layers of mojibake (upstream case 34)
+======================================================================
+y <- "Iggy Pop (n\\u00c3\\u0192\\u00c2\\u00a9 Jim Osterberg)"
+
+[A  bare lists (closest port)]
+> res <- fix_and_explain(y)
+> res
+$text
+[1] "Iggy Pop (né Jim Osterberg)"
+
+$explanation
+$explanation[[1]]
+$explanation[[1]][[1]]
+[1] "encode"              "sloppy-windows-1252"
+
+$explanation[[1]][[2]]
+[1] "decode" "utf-8" 
+
+$explanation[[1]][[3]]
+[1] "encode"  "latin-1"
+
+$explanation[[1]][[4]]
+[1] "decode" "utf-8" 
+
+
+
+
+[B  long data frame of steps]
+> res <- fix_and_explain(y)
+> res
+$text
+[1] "Iggy Pop (né Jim Osterberg)"
+
+$steps
+  element step action           parameter
+1       1    1 encode sloppy-windows-1252
+2       1    2 decode               utf-8
+3       1    3 encode             latin-1
+4       1    4 decode               utf-8
+
+
+[C  plan vector class]
+> res <- fix_and_explain(y)
+> res
+                         text
+1 Iggy Pop (né Jim Osterberg)
+                                                                       plan
+1 encode sloppy-windows-1252 > decode utf-8 > encode latin-1 > decode utf-8
+
+======================================================================
+3. Replay: one plan on other strings, then a vector of plans element-wise
+======================================================================
+x_latin1 <- "G\\u00c3\\u00a0idhlig"
+others <- c("d\\u00c3\\u00a9j\\u00c3\\u00a0 vu", "na\\u00c3\\u00afve", "plain ascii")
+
+[A  bare lists (closest port)]
+> plan <- fix_and_explain(x_latin1)$explanation[[1]]
+> apply_plan(others, plan)
+[1] "déjà vu"     "naïve"       "plain ascii"
+> res <- fix_and_explain(x[-3])
+> mapply(function(s, p) apply_plan(s, p), x[-3], res$explanation, USE.NAMES = FALSE)
+[1] "plain ascii" "Gàidhlig"    "café"        "Čeština"    
+
+[B  long data frame of steps]
+> res1 <- fix_and_explain(x_latin1)
+> plan <- res1$steps[c("step", "action", "parameter")]
+> apply_plan(others, plan)
+[1] "déjà vu"     "naïve"       "plain ascii"
+> res <- fix_and_explain(x[-3])
+> apply_plan(x[-3], res$steps)
+[1] "plain ascii" "Gàidhlig"    "café"        "Čeština"    
+
+[C  plan vector class]
+> plan <- fix_and_explain(x_latin1)$plan
+> apply_plan(others, plan)
+[1] "déjà vu"     "naïve"       "plain ascii"
+> res <- fix_and_explain(x[-3])
+> apply_plan(x[-3], res$plan)
+[1] "plain ascii" "Gàidhlig"    "café"        "Čeština"    
+
+======================================================================
+4. Plan identity: tabulate the plans of a 161-value column (all upstream originals)
+======================================================================
+
+[A  bare lists (closest port)]
+> res <- fix_and_explain(column)
+> key <- vapply(res$explanation, function(p) paste(vapply(p, paste, "", collapse = " "), collapse = " > "), "")
+> head(sort(table(key), decreasing = TRUE), 4)
+key
+                                                      encode latin-1 > decode utf-8 
+                                       40                                        19 
+encode sloppy-windows-1252 > decode utf-8            encode macroman > decode utf-8 
+                                       16                                         7 
+> identical(res$explanation[[1]], res$explanation[[2]])
+[1] FALSE
+
+[B  long data frame of steps]
+> res <- fix_and_explain(column)
+> key <- tapply(paste(res$steps$action, res$steps$parameter), factor(res$steps$element, seq_along(column)), paste, collapse = " > ")
+> key[is.na(key)] <- ""
+> head(sort(table(key), decreasing = TRUE), 4)
+key
+                                                      encode latin-1 > decode utf-8 
+                                       40                                        19 
+encode sloppy-windows-1252 > decode utf-8            encode macroman > decode utf-8 
+                                       16                                         7 
+
+[C  plan vector class]
+> res <- fix_and_explain(column)
+> head(sort(table(res$plan), decreasing = TRUE), 4)
+
+                                                      encode latin-1 > decode utf-8 
+                                       40                                        19 
+encode sloppy-windows-1252 > decode utf-8            encode macroman > decode utf-8 
+                                       16                                         7 
+> res$plan[1] == res$plan[2]
+[1] FALSE
+> dominant <- res$plan[match("encode latin-1 > decode utf-8", res$plan)]
+> fits <- apply_plan(column, dominant, on_failure = "na")
+> table(dominant_plan_replays = !is.na(fits))
+dominant_plan_replays
+FALSE  TRUE 
+  134    27 
+> head(plan_steps(res$plan[1:3]), 5)
+  element step action           parameter
+1       1    1 encode sloppy-windows-1252
+2       1    2 decode               utf-8
+3       2    1 encode             latin-1
+4       2    2 decode               utf-8
+5       3    1 encode             latin-1
+
+======================================================================
+5. Round trip: upstream pairs -> R plan -> upstream pairs, all 161 captured plans
+======================================================================
+[A  bare lists (closest port)]  161 of 161 identical
+[B  long data frame of steps]  161 of 161 identical
+[C  plan vector class]  161 of 161 identical
+
+======================================================================
+6. Replay failure: the plan does not fit the string
+======================================================================
+Upstream: apply_plan calls str.encode / bytes.decode with strict errors, so it
+raises UnicodeEncodeError or UnicodeDecodeError (read from the source, not run here).
+z <- c("G\\u00c3\\u00a0idhlig", "caf\\u00e9", "price \\u20ac5", "plain ascii")
+plan <- encode latin-1 > decode utf-8
+> apply_plan(z, plan, on_failure = "error")
+   Error: bytes are not valid utf-8
+> apply_plan(z, plan, on_failure = "na")
+[1] "Gàidhlig"    NA            NA            "plain ascii"
+> apply_plan(z, plan, on_failure = "unchanged")
+[1] "Gàidhlig"    "café"        "price €5"    "plain ascii"
+
+======================================================================
+7. The normalize step: upstream emits it, upstream's apply_plan rejects it
+======================================================================
+> res <- fix_and_explain("é")
+> res
+  text          plan
+1    é normalize NFC
+> apply_plan("é", res$plan, allow_normalize = FALSE)
+   Error: Unknown plan step: normalize
+> esc(apply_plan("é", res$plan, allow_normalize = TRUE))
+[1] "\\u00e9"
+
+======================================================================
+8. A step that changes nothing: 'a\u0081b'
+======================================================================
+Upstream returns the text unchanged with a one-step plan. Keep it, or drop it?
+> res <- fix_and_explain("a\u0081b")
+> identical(res$text, "a\u0081b")
+[1] TRUE
+> res$plan
+<ftfy_plan[1]>
+[1] transcode fix_c1_controls
+> ftfy_plan(list(list()))
+<ftfy_plan[1]>
+[1] <no steps>
