@@ -12,9 +12,13 @@
 #
 # Ported by the tickets that deliver the functions they call:
 #
-# - tests/test_characters.py:17, test_byte_order_mark: `fix_encoding()`.
 # - tests/test_characters.py:41, test_ohio_flag: `fix_text()`.
 # - tests/test_characters.py:50 to :56, test_color_escapes: `fix_and_explain()`.
+
+# tests/test_characters.py:16 (the assertion is line 17)
+test_that("test_byte_order_mark", {
+  expect_identical(fix_encoding("\u00ef\u00bb\u00bf"), "\ufeff")
+})
 
 # tests/test_characters.py:20 (the assertion is line 26)
 test_that("test_control_chars", {

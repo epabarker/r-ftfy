@@ -109,13 +109,7 @@ fixer_decode_inconsistent_utf8 <- function(x) {
 # that would otherwise be UTF-8.
 fixer_restore_byte_a0 <- function(bytes) {
   # C3 20, an a with grave accent as a word of its own, keeps its space.
-  bytes <- regex_guard(
-    stringi::stri_replace_all_regex(
-      bytes, patterns[["A_GRAVE_WORD_RE"]], "\u00c3\u00a0 ",
-      opts_regex = regex_opts()
-    ),
-    bytes
-  )
+  bytes <- regex_replace_all(bytes, patterns[["A_GRAVE_WORD_RE"]], "\u00c3\u00a0 ")
   splice_matches(bytes, patterns[["ALTERED_UTF8_RE"]], function(matched, whole) {
     gsub(" ", "\u00a0", matched, fixed = TRUE)
   })
@@ -125,19 +119,19 @@ fixer_restore_byte_a0 <- function(bytes) {
 # held as text: a sequence that would be UTF-8 but for a byte 1A or a "?"
 # in it becomes the three bytes of U+FFFD.
 fixer_replace_lossy_sequences <- function(bytes) {
-  regex_guard(
-    stringi::stri_replace_all_regex(
-      bytes, patterns[["LOSSY_UTF8_RE"]], "\u00ef\u00bf\u00bd",
-      opts_regex = regex_opts()
-    ),
-    bytes
-  )
+  regex_replace_all(bytes, patterns[["LOSSY_UTF8_RE"]], "\u00ef\u00bf\u00bd")
 }
 
 # Locate, compute, splice (ADR 0008): replace every match of `pattern` in
 # `x` by a computed value. `NA` stays `NA`. `compute(matched, whole)`
 # takes every match of the whole vector at once, with the string each came
 # from beside it, and returns their replacements.
+#
+# `replace_matches()` in R/text-fixers.R does the same for a replacement
+# that depends on the matched text alone; this one also gives `compute`
+# the string a match is in, which `decode_inconsistent_utf8` needs, and
+# pastes the pieces of a string in pairs, so that one long string with
+# very many matches costs no more than many short ones.
 #
 # Positions come from `stri_locate_all_regex()` and the pieces are cut
 # with `substring()`, both of which keep a leading U+FEFF. Nothing here

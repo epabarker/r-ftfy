@@ -1,4 +1,7 @@
-# Derived from python-ftfy v6.3.1, ftfy/__init__.py, tests/test_characters.py and README.md. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+# Derived from python-ftfy v6.3.1, ftfy/__init__.py and README.md. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+
+# Upstream's test_byte_order_mark (tests/test_characters.py:17) is in
+# test-characters.R, the mirror of that file.
 
 # The snapshot reference/fix_encoding.tsv, written by
 # data-raw/generators/snapshot_fix_encoding.py. A sparse column is filled
@@ -66,11 +69,6 @@ test_that("fix_encoding() repairs a one-layer mix-up, also across a space that w
     c("encode latin-1 > decode utf-8",
       "encode latin-1 > transcode restore_byte_a0 > decode utf-8")
   )
-})
-
-# tests/test_characters.py:16, test_byte_order_mark()
-test_that("fix_encoding() repairs a mangled byte order mark to U+FEFF and keeps it", {
-  expect_identical(fix_encoding("\u00ef\u00bb\u00bf"), "\ufeff")
 })
 
 # README.md:9
