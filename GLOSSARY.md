@@ -62,6 +62,18 @@ _Avoid_: known bug, divergence, deviation
 The text a repair of one value can be expected to produce: its clean value, except that each character destroyed by the corruption stays as the replacement the corruption left. It equals the clean value when nothing was lost.
 _Avoid_: expected output, best possible output
 
+**Flagged value**:
+A distinct, non-missing value of a column to which per-value encoding repair assigns a plan with at least one step.
+_Avoid_: corrupted value (that is ground truth, not detection), detected value
+
+**Support**:
+The number of flagged values in a column on which replaying a given plan succeeds and gives the same text as the value's own encoding repair. A flagged value can support several plans at once.
+_Avoid_: votes, count, frequency
+
+**Dominant plan**:
+The plan a column's repair is built on: the plan with the most support, provided its support reaches a minimum number of flagged values and more than half of them. A column may have no dominant plan.
+_Avoid_: column plan, majority plan, commonest plan
+
 **New false positive**:
 A value that per-value `fix_text()` leaves at, or repairs to, its reachable target but that column-aware repair turns into anything else.
 _Avoid_: regression, false fix
