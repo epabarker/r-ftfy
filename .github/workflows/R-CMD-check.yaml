@@ -6,7 +6,7 @@ name: R-CMD-check
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, "integration/**"]
   workflow_dispatch:
 
 permissions:
