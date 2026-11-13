@@ -16,6 +16,10 @@ _Avoid_: explanation step, operation
 The ordered sequence of steps that turned one input string into its fixed text. A plan may have no steps, and a missing input has a missing plan, which is not the same as a plan with no steps.
 _Avoid_: explanation, recipe
 
+**Segment**:
+The unit `fix_text()` repairs independently: one line of an input string, keeping its trailing newline, or a piece of at most `max_decode_length` characters when a line is longer. A plan from `fix_and_explain()` covers the whole string as one segment.
+_Avoid_: line, chunk
+
 **Replay**:
 Applying a plan's steps in order to a string, with no detection of what is wrong with it. A replay fails when a step cannot be carried out on that string.
 _Avoid_: re-fix, re-run
