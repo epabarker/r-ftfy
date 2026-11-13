@@ -21,8 +21,9 @@ else, so quotes, ligatures and line breaks are left alone, and text that
 does not look like mojibake comes back unchanged.
 }
 \details{
-This version repairs a mix-up of one layer between UTF-8 and Latin-1 or
-Windows-1252. Any other value comes back unchanged.
+This version repairs a mix-up between UTF-8 and a single-byte codec such
+as Latin-1 or Windows-1252, where decoding the bytes again is the whole
+repair. Any other value comes back unchanged.
 
 Call it on a whole vector, not once per string: each call has a fixed
 cost of about half a millisecond.
