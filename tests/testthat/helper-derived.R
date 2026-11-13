@@ -51,8 +51,10 @@ is_generator_script <- function(file) {
 }
 
 # The list of scripts that are not derived: one line each, the path from the
-# package root, a tab, and the reason. Blank lines and lines starting with
-# `#` are skipped. The order is free, so that branches can each append.
+# package root, a tab, and the reason. A path ending in `/` is a directory
+# and covers every script under it that has no header. Blank lines and lines
+# starting with `#` are skipped. The order is free, so that branches can
+# each append.
 read_not_derived <- function(path) {
   lines <- readLines(path, warn = FALSE, encoding = "UTF-8")
   lines <- lines[nzchar(trimws(lines)) & !startsWith(lines, "#")]
@@ -83,16 +85,23 @@ derived_header_problems <- function(root, not_derived, scope = c("all", "tests")
     USE.NAMES = FALSE
   )
   headed <- is_derived_header(first)
-  listed <- files %in% not_derived$file
   generator <- is_generator_script(files)
 
-  # Under "tests" a listed file outside tests/ cannot be looked for.
-  expected <- if (scope == "tests") {
-    not_derived$file[startsWith(not_derived$file, "tests/")]
-  } else {
-    not_derived$file
+  # A line ending in "/" is a directory: it covers every script under it
+  # that has no header. Under "tests" a line outside tests/ cannot be
+  # looked for.
+  entries <- not_derived$file
+  if (scope == "tests") {
+    entries <- entries[startsWith(entries, "tests/")]
   }
-  gone <- setdiff(expected, files)
+  is_dir <- endsWith(entries, "/")
+  listed <- files %in% entries[!is_dir]
+  covered <- rep(FALSE, length(files))
+  for (dir in entries[is_dir]) {
+    covered <- covered | startsWith(files, dir)
+  }
+  gone <- setdiff(entries[!is_dir], files)
+  empty <- entries[is_dir][!vapply(entries[is_dir], function(dir) any(startsWith(files, dir)), logical(1))]
 
   # paste0() gives one string for an empty vector, so say() guards it.
   say <- function(file, what) if (length(file) > 0L) paste0(file, ": ", what) else character()
@@ -100,13 +109,14 @@ derived_header_problems <- function(root, not_derived, scope = c("all", "tests")
     say(files[generator & !headed], "a generator script must start with the derived-file header"),
     say(files[generator & listed], "a generator script cannot be listed in not-derived.txt"),
     say(
-      files[!generator & !headed & !listed],
+      files[!generator & !headed & !listed & !covered],
       "line 1 is not the derived-file header, and the file is not listed in not-derived.txt"
     ),
     say(
       files[!generator & headed & listed],
       "has the derived-file header and is listed in not-derived.txt, both"
     ),
-    say(gone, "listed in not-derived.txt, but no such file")
+    say(gone, "listed in not-derived.txt, but no such file"),
+    say(empty, "listed in not-derived.txt, but no script is under it")
   )
 }

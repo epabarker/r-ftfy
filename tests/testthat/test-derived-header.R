@@ -116,6 +116,34 @@ test_that("a file listed as not derived, with a reason, needs no header", {
   expect_identical(problems_in(root), character())
 })
 
+test_that("a directory listed as not derived covers the headerless scripts under it, and only those", {
+  root <- fixture_tree(
+    headless = c("tests/testthat/departures/some-id.R", "tests/testthat/test-fixes.R"),
+    not_derived = "tests/testthat/departures/\tDeparture matchers: R-only behaviour."
+  )
+  on.exit(unlink(root, recursive = TRUE))
+  # A file in a listed directory may still be derived and say so.
+  writeLines(good_header, file.path(root, "tests", "testthat", "departures", "ported.R"))
+
+  expect_match(problems_in(root), "^tests/testthat/test-fixes[.]R: .*header")
+  expect_length(problems_in(root), 1L)
+})
+
+test_that("a listed directory with no script under it is a problem, and none covers a generator script", {
+  root <- fixture_tree(not_derived = "tests/testthat/gone/\tWas removed.")
+  expect_match(problems_in(root), "^tests/testthat/gone/: .*no script")
+  unlink(root, recursive = TRUE)
+
+  root <- fixture_tree(
+    headless = c("data-raw/build.R", "data-raw/generators/table_x.py"),
+    not_derived = "data-raw/\tSaid not to be derived."
+  )
+  problems <- problems_in(root)
+  expect_true(any(grepl("^data-raw/generators/table_x[.]py: a generator script must start", problems)))
+  expect_false(any(grepl("^data-raw/build[.]R", problems)))
+  unlink(root, recursive = TRUE)
+})
+
 test_that("a generator script cannot be listed as not derived", {
   for (file in c("data-raw/generators/table_x.py", "data-raw/regenerate.py", "data-raw/sysdata/tables.R")) {
     root <- fixture_tree(headless = file, not_derived = paste0(file, "\tSaid not to be derived."))
