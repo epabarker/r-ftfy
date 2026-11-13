@@ -1,0 +1,114 @@
+ftfy for R is a port of ftfy, the Python package by Robyn Speer
+(https://github.com/rspeer/python-ftfy). The heuristic, its test cases and
+most of its data are her work. The package as a whole is a derivative work
+of python-ftfy v6.3.1 (commit 5340af6) and is distributed under the same
+licence, the Apache License, Version 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+
+python-ftfy carries this notice, which applies to everything listed under
+"Derived from python-ftfy" below:
+
+    Copyright 2023 Robyn Speer
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+python-ftfy has no NOTICE file.
+
+
+Changes
+-------
+
+The material from python-ftfy was translated from Python to R and modified.
+It is not the original. The translation and the modifications are
+
+    Copyright 2026 Ed Barker
+
+under the same licence. The port was written with AI assistance.
+
+Every place where the package knowingly behaves differently from
+python-ftfy v6.3.1 is recorded in the departure registry: one file for each
+departure in the directory `departures` of the installed package
+(`inst/departures/` in the source repository).
+
+Each derived source file starts with a line naming the python-ftfy file it
+came from.
+
+
+Derived from python-ftfy
+------------------------
+
+Source: python-ftfy v6.3.1, https://github.com/rspeer/python-ftfy
+Copyright 2023 Robyn Speer
+Licence: Apache-2.0
+
+1. Copied unchanged
+
+   tests/testthat/upstream/test_cases.json
+       python-ftfy's tests/test_cases.json, byte for byte. The README beside
+       it says where it came from.
+
+2. Translated to R and modified
+
+   R/*.R
+       Translated from the Python modules in python-ftfy's ftfy/
+       directory. The first line of each file names its source. The few
+       files with nothing from python-ftfy have no such line.
+
+   man/*.Rd
+       Documentation, in part adapted from python-ftfy's docstrings and
+       built from the comments in R/*.R.
+
+   tests/testthat/*.R
+       Tests, in part translated from python-ftfy's tests/ and from the
+       doctests in ftfy/. A translated test file starts with the line naming
+       its source, and each translated test names the upstream file and
+       line.
+
+3. Read or generated from python-ftfy by running it
+
+   R/sysdata.rda
+       Internal data read from python-ftfy: the text of its regular
+       expressions, rewritten for the ICU regex engine, and its data
+       tables, among them one decoding table for each single-byte codec it
+       uses. This file carries no notice of its own.
+
+   tests/testthat/reference/*
+       Snapshots of what python-ftfy v6.3.1 returns for the test inputs.
+
+   The scripts that write these files are in the directory `data-raw/` of
+   the source repository, https://github.com/epabarker/r-ftfy, and are not
+   part of the built package. Each starts with the line naming its source,
+   and `data-raw/README.md` gives the exact commands that run them.
+
+
+Other sources
+-------------
+
+The following are named as sources of the data in group 3. They are facts
+about mappings, observed by running python-ftfy v6.3.1 on CPython 3.13
+(Unicode 15.1.0). No source code or data file of CPython or of the Unicode
+Consortium is copied into the package, so they are sources and not
+licensors, and no licence of theirs applies to the package.
+
+   CPython
+       The codec tables give the code point that each byte decodes to
+       under CPython's charmap codecs, which python-ftfy uses and extends.
+       CPython builds those codecs from mapping files published by the
+       Unicode Consortium and by Microsoft. Where the package reproduces
+       how Python resolves an HTML numeric character reference, that was
+       observed from `html.unescape`.
+
+   Unicode data
+       The sets of characters that Python's regex classes \s, \w and \d
+       match are written into the regular expressions as code-point sets,
+       as observed on CPython 3.13 with Unicode 15.1.0.
