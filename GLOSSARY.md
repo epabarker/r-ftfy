@@ -75,5 +75,5 @@ The plan a column's repair is built on: the plan with the most support, provided
 _Avoid_: column plan, majority plan, commonest plan
 
 **New false positive**:
-A value that per-value `fix_text()` leaves at, or repairs to, its reachable target but that column-aware repair turns into anything else.
+A value that column-aware repair does worse on than per-value `fix_text()`: either `fix_text()` gives its reachable target and column-aware repair gives anything else, or `fix_text()` leaves it unrepaired and column-aware repair changes it to anything other than its reachable target.
 _Avoid_: regression, false fix
