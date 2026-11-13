@@ -6,3 +6,5 @@ tests/testthat/upstream/test_cases.json -text
 # Two branches may each delete lines from this list. A union merge never
 # conflicts; run the shrink command afterwards (see data-raw/README.md).
 tests/testthat/not-yet-passing.txt merge=union
+# Branches each append lines to this list; a union merge never conflicts.
+tests/testthat/not-derived.txt merge=union

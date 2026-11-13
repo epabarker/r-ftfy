@@ -11,6 +11,7 @@ Description: Repairs mojibake, text that was decoded with the wrong
     codec, and related damage in character vectors. A port to R of the
     'Python' package 'ftfy' by Robyn Speer.
 License: Apache License (== 2.0)
+Copyright: See file inst/COPYRIGHTS
 URL: https://github.com/epabarker/r-ftfy
 BugReports: https://github.com/epabarker/r-ftfy/issues
 Depends:

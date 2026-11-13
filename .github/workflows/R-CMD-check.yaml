@@ -28,11 +28,23 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, any::pkgload
           needs: check
 
       - name: Internal package data matches its committed sources
         run: Rscript data-raw/build.R --check
+
+      # R CMD check runs the tests away from R/ and data-raw/, so the tests
+      # that read the source tree run here, where a skip is a failure.
+      - name: Derived files carry the header, and the README gives credit
+        env:
+          FTFY_SOURCE_TREE: "true"
+        run: |
+          pkgload::load_all(".", quiet = TRUE)
+          for (file in c("test-derived-header.R", "test-attribution.R")) {
+            testthat::test_file(file.path("tests", "testthat", file), stop_on_failure = TRUE)
+          }
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:

@@ -76,10 +76,7 @@ rewrite_surrogate_pairs <- function(bytes) {
   }
   separator <- "\u0100"
   joined <- paste(bytes, collapse = separator)
-  at <- stringi::stri_locate_all_regex(
-    joined, CESU8_RE,
-    omit_no_match = TRUE, opts_regex = regex_opts()
-  )[[1L]][, 1L]
+  at <- regex_locate_all(joined, CESU8_RE)[[1L]][, 1L]
   b <- utf8ToInt(joined)
 
   code_point <- bitwAnd(b[at + 1L], 0x0FL) * 65536L +

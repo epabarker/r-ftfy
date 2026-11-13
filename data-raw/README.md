@@ -11,7 +11,7 @@ python data-raw/regenerate.py
 
 `regenerate.py` runs every script in `generators/` whose name does not start with an underscore, in name order. Each script stops unless it is running under the reference version. The outputs are ASCII-only text files, committed and never edited by hand. The docstring at the top of each script names the file it writes and what it reads from the reference version:
 
-- `pattern_*.py` writes one ICU pattern to `patterns/<NAME>.txt`. Python's `\s`, `\w` and `\d` are written in as the code-point sets observed on CPython 3.13 (Unicode 15.1).
+- `pattern_*.py` writes one ICU pattern to `patterns/<NAME>.txt`. Python's `\s`, `\w` and `\d` are written in as the code-point sets observed on CPython 3.13 (Unicode 15.1). A bytes pattern is written over the code points U+0000 to U+00FF, to match a byte string held as text with byte `b` as the character U+00`b`. The translator, `_icu.py`, raises an error on any construct it has not been taught. `snapshot_pattern_spans.py` writes the span fixture, which holds where each pattern matches in the reference version; a new pattern must be added to it.
 - `snapshot_*.py` writes one snapshot of reference behaviour to `tests/testthat/reference/`.
 - `codec_<name>.py` writes one codec table to `codecs/<name>.txt`: each of the 256 bytes with the code point the reference version decodes it to, or `hole`. A new codec is a copy of `codec_latin-1.py` with the name changed.
 
