@@ -187,3 +187,19 @@ test_that("the registry entry matches the failed replay in apply_plan() and no o
   expect_false(matcher(list(fun = "apply_plan", input = "caf\u00e9\n",
                             reference = "caf", actual = NA_character_)))
 })
+
+# fix_and_explain() (ticket #40). The reference version gives ('sch\\xf6n ',
+# [('encode', 'latin-1'), ('decode', 'utf-8-variants'), ('apply',
+# 'remove_control_chars')]) for this text: the newline is read as the
+# second byte of C0 80 and the U+0000 is then removed (run on ftfy 6.3.1
+# with Python 3.13). No row of the fix_and_explain() snapshot shows this
+# departure, so the matcher is not widened to it here; ticket #41 widens
+# it to fix_text().
+test_that("fix_and_explain() keeps the newline after a sequence cut short", {
+  text <- "sch\u00c3\u00b6n \u00c0\n"
+  explained <- fix_and_explain(text)
+
+  expect_identical(explained$text, "sch\u00f6n \u00c0\n")
+  expect_identical(as.character(explained$plan), "apply decode_inconsistent_utf8")
+  expect_identical(apply_plan(text, explained$plan), explained$text)
+})

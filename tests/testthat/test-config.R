@@ -195,6 +195,8 @@ test_that("the old parameter name fix_entities is an unknown-option error", {
 
   expect_error(fix_encoding(example, fix_entities = TRUE), message)
   expect_error(fix_encoding(example, fix_entities = FALSE), message)
+  expect_error(fix_and_explain(example, fix_entities = TRUE), message)
+  expect_error(fix_and_explain(example, fix_entities = FALSE), message)
   expect_error(ftfy_config(fix_entities = TRUE), message)
   expect_error(ftfy_config(fix_entities = FALSE), message)
 })

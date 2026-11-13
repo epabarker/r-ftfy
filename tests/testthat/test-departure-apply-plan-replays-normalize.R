@@ -3,9 +3,6 @@
 # replays `normalize` steps, where the reference version's apply_plan()
 # raises `ValueError: Unknown plan step: normalize` for the plans its own
 # fix_and_explain() returns.
-#
-# Ticket #40 adds the assertion that the plan fix_and_explain() gives for
-# such a text replays to its text.
 
 # What the reference version raises (run on ftfy 6.3.1 with Python 3.13).
 reference_error <- "ValueError: Unknown plan step: normalize"
@@ -14,6 +11,25 @@ test_that("apply_plan() replays the plan the reference version records and canno
   # fix_and_explain('e\u0301') gives '\xe9' with the plan [('normalize', 'NFC')].
   expect_identical(apply_plan("e\u0301", "normalize NFC"), "\u00e9")
   expect_identical(apply_plan("e\u0301", ftfy_plan(list(c("normalize", "NFC")))), "\u00e9")
+})
+
+test_that("the plan fix_and_explain() gives for such a text replays to its text", {
+  x <- c("e\u0301", "e\u00cc\u0081 \u201chi\u201d", "\ufb01e\u0301", "\u00e9", NA)
+  explained <- fix_and_explain(x)
+
+  expect_identical(
+    as.character(explained$plan),
+    c("normalize NFC",
+      "apply decode_inconsistent_utf8 > apply uncurl_quotes > normalize NFC",
+      "apply fix_latin_ligatures > normalize NFC", "none", NA)
+  )
+  expect_identical(explained$text, c("\u00e9", "\u00e9 \"hi\"", "fi\u00e9", "\u00e9", NA))
+  expect_identical(apply_plan(x, explained$plan), explained$text)
+  for (form in c("NFD", "NFKC", "NFKD")) {
+    explained <- fix_and_explain(x, normalization = form)
+    expect_true(any(grepl(paste("normalize", form), as.character(explained$plan), fixed = TRUE)))
+    expect_identical(apply_plan(x, explained$plan), explained$text, info = form)
+  }
 })
 
 test_that("each normalisation form is replayed, alone and after other steps", {

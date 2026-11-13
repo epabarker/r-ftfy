@@ -1,14 +1,17 @@
 # Derived from python-ftfy v6.3.1, ftfy/__init__.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
 
 # Upstream doctest of apply_plan(), ftfy/__init__.py:746. Upstream takes
-# the plan from fix_and_explain(); here it is written out, and taken from
-# fix_encoding_and_explain(), which gives the same plan for this text.
-# Ticket #40 adds the line with fix_and_explain() itself.
+# the plan from fix_and_explain(); here it is also written out, and taken
+# from fix_encoding_and_explain(), which gives the same plan for this text.
 test_that("apply_plan() replays the plan of a repair on the text it came from", {
   mojibake <- "sch\u00c3\u00b6n"
 
   expect_identical(apply_plan(mojibake, "encode latin-1 > decode utf-8"), "sch\u00f6n")
   explained <- fix_encoding_and_explain(mojibake)
+  expect_identical(apply_plan(mojibake, explained$plan), "sch\u00f6n")
+  # The doctest as upstream has it.
+  explained <- fix_and_explain(mojibake)
+  expect_identical(as.character(explained$plan), "encode latin-1 > decode utf-8")
   expect_identical(apply_plan(mojibake, explained$plan), "sch\u00f6n")
 })
 

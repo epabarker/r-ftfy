@@ -41,3 +41,16 @@ test_that("test_welsh_flag", {
   )
   expect_identical(remove_control_chars(text), text)
 })
+
+# tests/test_characters.py:49 (the assertions are lines 52 and 53)
+test_that("test_color_escapes", {
+  explained <- fix_and_explain("\001\033[36;44mfoo")
+  expect_identical(explained$text, "foo")
+  expect_identical(
+    explained$plan,
+    ftfy_plan(list(
+      c("apply", "remove_terminal_escapes"),
+      c("apply", "remove_control_chars")
+    ))
+  )
+})

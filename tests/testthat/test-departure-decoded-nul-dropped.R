@@ -2,8 +2,8 @@
 # ADR 0007): C0 80 decoded with `utf-8-variants` gives nothing, where the
 # reference version gives U+0000.
 #
-# Asserted here at the decoder level and through fix_encoding(). Ticket
-# #41 adds the assertions through fix_text().
+# Asserted here at the decoder level, through fix_encoding(), apply_plan()
+# and fix_and_explain(). Ticket #41 adds the assertions through fix_text().
 
 # The bytes of 'null\u00c0\u20acseparated' in sloppy-windows-1252.
 nul_bytes <- function() "null\u00c0\u0080separated"
@@ -101,4 +101,61 @@ test_that("apply_plan() puts nothing in place of a decoded C0 80", {
     fun = "apply_plan", input = text,
     reference = unescape_reference("null\\u0000separated"), actual = apply_plan(text, plan)
   )))
+})
+
+# fix_and_explain() (ticket #40). The reference version gives
+# ('nullseparated', [('encode', 'sloppy-windows-1252'), ('decode',
+# 'utf-8-variants'), ('apply', 'remove_control_chars')]): its fixer
+# remove_control_chars removes the decoded U+0000 and is recorded for it.
+# With remove_control_chars=False it gives 'null\\x00separated' and the
+# first two steps (run on ftfy 6.3.1 with Python 3.13).
+test_that("fix_and_explain() records no step for removing a U+0000 that was never there", {
+  text <- "null\u00c0\u20acseparated"
+  explained <- fix_and_explain(text)
+
+  expect_identical(explained$text, "nullseparated")
+  expect_identical(
+    as.character(explained$plan), "encode sloppy-windows-1252 > decode utf-8-variants"
+  )
+  expect_identical(apply_plan(text, explained$plan), explained$text)
+  expect_identical(fix_and_explain(text, remove_control_chars = FALSE), explained)
+})
+
+test_that("the registry entry matches the plan difference in fix_and_explain() and no other", {
+  matcher <- departure_matchers()[["decoded-nul-dropped"]]
+  text <- "null\u00c0\u20acseparated"
+  difference <- function(...) {
+    utils::modifyList(
+      list(
+        fun = "fix_and_explain", input = text,
+        reference = "encode sloppy-windows-1252 > decode utf-8-variants > apply remove_control_chars",
+        actual = as.character(fix_and_explain(text)$plan)
+      ),
+      list(...)
+    )
+  }
+
+  expect_true(matcher(difference()))
+  # The text with remove_control_chars off, as for fix_encoding().
+  expect_true(matcher(difference(
+    reference = unescape_reference("null\\u0000separated"),
+    actual = fix_and_explain(text, remove_control_chars = FALSE)$text
+  )))
+  # Not this departure: another function, a plan that differs otherwise,
+  # a step missing that is not the removal of control characters or that
+  # comes before the decoding, or an input that does not encode to C0 80.
+  expect_false(matcher(difference(fun = "fix_encoding_and_explain")))
+  expect_false(matcher(difference(actual = "none")))
+  expect_false(matcher(difference(actual = "encode latin-1 > decode utf-8-variants")))
+  expect_false(matcher(difference(
+    reference = "encode sloppy-windows-1252 > decode utf-8-variants > apply uncurl_quotes"
+  )))
+  expect_false(matcher(difference(
+    reference = "apply remove_control_chars > encode sloppy-windows-1252 > decode utf-8-variants"
+  )))
+  expect_false(matcher(difference(
+    reference = "encode sloppy-windows-1252 > decode utf-8 > apply remove_control_chars",
+    actual = "encode sloppy-windows-1252 > decode utf-8"
+  )))
+  expect_false(matcher(difference(input = "caf\u00c3\u00a9\u0007")))
 })

@@ -1,0 +1,25 @@
+Id: normalization-follows-icu
+Title: Normalisation follows the user's ICU
+Input: Text that holds a character with a combining class or a
+ decomposition that one of the two Unicode versions has and the other
+ does not: that of the reference version, Unicode 15.1, and that of
+ the ICU library stringi was built with. It is normalised by
+ fix_text() and fix_and_explain() (the option normalization, in each
+ of the forms NFC, NFD, NFKC and NFKD) and by a normalize step replayed
+ with apply_plan(). For example 'a\U00010EFD\u0301', where U+10EFD
+ ARABIC SMALL LOW WORD SAKTA was assigned in Unicode 15.0 with the
+ combining class 220, and '\U0001E030', MODIFIER LETTER CYRILLIC SMALL
+ A, assigned in Unicode 15.0 with a compatibility decomposition.
+Reference: The normalisation of Unicode 15.1. Run on ftfy 6.3.1 with
+ Python 3.13: fix_and_explain('a\U00010EFD\u0301') returns the text
+ '\xe1\U00010efd' with the plan [('normalize', 'NFC')], and
+ fix_and_explain('\U0001E030', normalization='NFKC') returns '\u0430'
+ with the plan [('normalize', 'NFKC')].
+R: The normalisation of the user's ICU, whatever its version; the
+ package neither checks the version nor warns. With ICU 71.1, which
+ has Unicode 14.0 and does not know these characters, both texts come
+ back unchanged with the plan 'none'. With an ICU that has Unicode
+ 15.0 or later, R gives what the reference version gives. Text whose
+ characters were all assigned before both versions is normalised the
+ same by both.
+Decided: docs/adr/0005-regex-and-unicode-data-are-generated-from-a-reference-python.md
