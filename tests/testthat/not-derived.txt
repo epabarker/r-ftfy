@@ -33,3 +33,5 @@ tests/testthat/test-utf8-validity.R	Compares strict UTF-8 validity with the Unic
 tests/testthat/test-departure-decoded-nul-dropped.R	Test of a departure: R-only behaviour.
 tests/testthat/test-departure-utf8-variants-trailing-newline.R	Test of a departure: R-only behaviour.
 tests/testthat/test-encoding-fixers.R	Compares the two exported encoding fixers with a committed snapshot only; upstream has no test or doctest of either.
+tests/testthat/helper-text-fixers.R	Reader of the text fixers snapshot; this package's own machinery.
+tests/testthat/test-text-fixers.R	Compares with a committed snapshot and tests the generated tables and R-only behaviour; no upstream test is translated.
