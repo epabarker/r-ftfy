@@ -108,3 +108,28 @@ test_that("a string with many sequences is spliced in order", {
     expect_identical(decode_inconsistent_utf8(x), expected, label = paste(n, "sequences"))
   }
 })
+
+test_that("sequences are cut out at the right place among characters of every width", {
+  # One, two, three and four bytes in UTF-8, before and between sequences.
+  wide <- intToUtf8(c(0xFEFF, 0x41, 0xE9, 0x2603, 0x1F600, 0x10348))
+  mangled <- intToUtf8(c(0xC3, 0xA9))
+  x <- c(
+    paste0(wide, mangled, wide, mangled, mangled, " ", wide),
+    "plain",
+    paste0(mangled, wide),
+    NA,
+    paste0(wide, wide, mangled)
+  )
+  fixed <- intToUtf8(0xE9)
+
+  expect_identical(
+    decode_inconsistent_utf8(x),
+    c(
+      paste0(wide, fixed, wide, fixed, fixed, " ", wide),
+      "plain",
+      paste0(fixed, wide),
+      NA,
+      paste0(wide, wide, fixed)
+    )
+  )
+})

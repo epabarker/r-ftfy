@@ -55,7 +55,10 @@ fix_encoding <- function(x, ..., config = ftfy_config()) {
   shape <- entry_shape(x)
   x <- entry_step(x)
   config <- resolve_config(..., config = config)
-  exit_step(repair_encoding(x, config)$text, shape)
+  # Each distinct value is repaired once (ADR 0008).
+  distinct <- unique(x)
+  repaired <- repair_encoding(distinct, config)$text
+  exit_step(repaired[match(x, distinct)], shape)
 }
 
 # The codecs a mix-up is looked for in, in the order upstream tries them

@@ -166,7 +166,11 @@ test_that("with fix_encoding = FALSE nothing is repaired", {
 
 test_that("the steps recorded inside the repair are the reference version's plans", {
   snapshot <- read_encoding_snapshot()
-  departs <- departure_rows(snapshot, fix_encoding(snapshot$text)) != ""
+  # Where a decoded U+0000 is dropped the steps are the reference
+  # version's; where the final newline is not misread they cannot be.
+  departs <- departure_rows(snapshot, fix_encoding(snapshot$text)) ==
+    "utf8-variants-trailing-newline"
+  expect_identical(sum(departs), 4L)
 
   expect_identical(internal_plans(snapshot$text)[!departs], snapshot$plan[!departs])
   for (option in encoding_options) {

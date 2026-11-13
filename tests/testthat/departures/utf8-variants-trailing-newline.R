@@ -48,8 +48,10 @@ function(difference) {
   for (codec in ftfy:::charmap_codecs()) {
     bytes <- ftfy:::codec_try_encode(input, codec)
     if (!is.na(bytes)) {
-      # The first codec that can encode the text is the one whose bytes
-      # the reference version decoded.
+      # Only the first codec that can encode the text is looked at. The
+      # reference version goes on to later codecs when decoding fails, so
+      # this is narrower than the departure, on purpose: every snapshot
+      # row that shows it is of this kind.
       return(ends_cut_short(bytes))
     }
   }

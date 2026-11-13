@@ -93,8 +93,8 @@ fixer_fix_c1_controls <- function(x) {
 # upstream's does: it calls `ftfy.fix_encoding(substr)` with no config
 # (ftfy/fixes.py:494).
 fixer_decode_inconsistent_utf8 <- function(x) {
-  splice_matches(x, patterns[["UTF8_DETECTOR_RE"]], function(matched, whole) {
-    shorter <- nchar(matched, type = "chars") < nchar(whole, type = "chars")
+  splice_matches(x, patterns[["UTF8_DETECTOR_RE"]], function(matched, whole_length) {
+    shorter <- nchar(matched, type = "chars") < whole_length
     repairable <- which(shorter)
     repairable <- repairable[regex_detect(matched[repairable], patterns[["BADNESS_RE"]])]
     distinct <- unique(matched[repairable])
@@ -110,7 +110,7 @@ fixer_decode_inconsistent_utf8 <- function(x) {
 fixer_restore_byte_a0 <- function(bytes) {
   # C3 20, an a with grave accent as a word of its own, keeps its space.
   bytes <- regex_replace_all(bytes, patterns[["A_GRAVE_WORD_RE"]], "\u00c3\u00a0 ")
-  splice_matches(bytes, patterns[["ALTERED_UTF8_RE"]], function(matched, whole) {
+  splice_matches(bytes, patterns[["ALTERED_UTF8_RE"]], function(matched, whole_length) {
     gsub(" ", "\u00a0", matched, fixed = TRUE)
   })
 }
@@ -123,19 +123,29 @@ fixer_replace_lossy_sequences <- function(bytes) {
 }
 
 # Locate, compute, splice (ADR 0008): replace every match of `pattern` in
-# `x` by a computed value. `NA` stays `NA`. `compute(matched, whole)`
-# takes every match of the whole vector at once, with the string each came
-# from beside it, and returns their replacements.
+# `x` by a computed value. `NA` stays `NA`. `compute(matched, whole_length)`
+# takes every match of the whole vector at once, with the length in
+# characters of the string each is in, and returns their replacements.
 #
 # `replace_matches()` in R/text-fixers.R does the same for a replacement
-# that depends on the matched text alone; this one also gives `compute`
-# the string a match is in, which `decode_inconsistent_utf8` needs, and
-# pastes the pieces of a string in pairs, so that one long string with
-# very many matches costs no more than many short ones.
+# that depends on the matched text alone. This one also tells `compute`
+# how long the string around a match is, which `decode_inconsistent_utf8`
+# needs, and its work grows in proportion to the text, however many
+# matches one string holds:
 #
-# Positions come from `stri_locate_all_regex()` and the pieces are cut
-# with `substring()`, both of which keep a leading U+FEFF. Nothing here
-# loops over strings or over matches.
+# - `substring()` finds a character of a UTF-8 string by reading from the
+#   start, so cutting every match out of one long string that way takes
+#   time that grows with the square of its length. Here the positions that
+#   `stri_locate_all_regex()` gives in characters are turned into
+#   positions in bytes, from the widths of all the code points taken
+#   once, and the pieces are cut from the strings marked as bytes, where
+#   `substring()` goes straight to its place. A cut falls only between
+#   characters, so every piece is valid UTF-8 and is marked so again.
+#   Nothing is removed from the text on the way: a leading U+FEFF is three
+#   bytes like any other.
+# - the pieces of a string are pasted in pairs (`paste_runs()`).
+#
+# Nothing here loops over strings or over matches.
 splice_matches <- function(x, pattern, compute) {
   if (anyNA(x)) {
     present <- which(!is.na(x))
@@ -144,31 +154,54 @@ splice_matches <- function(x, pattern, compute) {
   }
   located <- regex_locate_all(x, pattern)
   count <- lengths(located, use.names = FALSE) %/% 2L
-  if (!any(count > 0L)) {
+  spliced <- which(count > 0L)
+  if (length(spliced) == 0L) {
     return(x)
   }
-  # Each matrix unlists as its starts and then its ends.
-  flat <- unlist(located, use.names = FALSE)
+  count <- count[spliced]
+  text <- x[spliced]
+  # Each matrix unlists as its starts and then its ends. `string` is the
+  # place in `spliced` of the string each match is in.
+  flat <- unlist(located[spliced], use.names = FALSE)
   is_start <- sequence(2L * count) <= rep.int(count, 2L * count)
   start <- flat[is_start]
   end <- flat[!is_start]
-  element <- rep.int(seq_along(x), count)
-  matched <- substring(x[element], start, end)
-  replacement <- compute(matched, x[element])
+  string <- rep.int(seq_along(spliced), count)
+
+  # The bytes before each character of the strings joined into one, and
+  # from them the first and last byte of each match within its string.
+  # Doubles, because the bytes of a whole vector can pass 2^31.
+  characters <- nchar(text, type = "chars")
+  code_points <- utf8ToInt(paste(text, collapse = ""))
+  bytes_before <- c(0, cumsum(
+    1 + (code_points >= 0x80L) + (code_points >= 0x800L) + (code_points >= 0x10000L)
+  ))
+  first_character <- (cumsum(as.numeric(characters)) - characters)[string]
+  string_starts <- bytes_before[first_character + 1]
+  first_byte <- bytes_before[first_character + start] - string_starts + 1
+  last_byte <- bytes_before[first_character + end + 1] - string_starts
+
+  as_bytes <- text
+  Encoding(as_bytes) <- "bytes"
+  cut <- function(of, from, to) {
+    piece <- substring(as_bytes[of], from, to)
+    Encoding(piece) <- "UTF-8"
+    piece
+  }
+  replacement <- compute(cut(string, first_byte, last_byte), characters[string])
 
   # A string with matches is its gaps and replacements in turn, then what
   # is left after its last match.
-  first <- !duplicated(element)
-  gap_start <- c(1L, end[-length(end)] + 1L)
-  gap_start[first] <- 1L
-  gap <- substring(x[element], gap_start, start - 1L)
-  spliced <- which(count > 0L)
-  last <- cumsum(count)[spliced]
-  rest <- substring(x[spliced], end[last] + 1L, nchar(x[spliced], type = "chars"))
+  first <- !duplicated(string)
+  gap_start <- c(1, last_byte[-length(last_byte)] + 1)
+  gap_start[first] <- 1
+  gap <- cut(string, gap_start, first_byte - 1)
+  last <- cumsum(count)
+  rest <- cut(seq_along(spliced), last_byte[last] + 1, nchar(text, type = "bytes"))
 
-  match_number <- seq_along(element)
+  match_number <- seq_along(string)
   pieces <- c(gap, replacement, rest)
-  owner <- c(element, element, spliced)
+  owner <- c(string, string, seq_along(spliced))
   place <- order(owner, c(2 * match_number - 1, 2 * match_number, 2 * last + 0.5))
   x[spliced] <- paste_runs(pieces[place], owner[place])
   x
