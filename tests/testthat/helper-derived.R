@@ -95,6 +95,10 @@ derived_header_problems <- function(root, not_derived, scope = c("all", "tests")
     entries <- entries[startsWith(entries, "tests/")]
   }
   is_dir <- endsWith(entries, "/")
+  # A directory line must not switch the check off for a whole tree.
+  too_wide <- entries[is_dir & !grepl("^tests/testthat/[^/]+/", entries)]
+  is_dir <- is_dir & !entries %in% too_wide
+  entries <- entries[!entries %in% too_wide | is_dir]
   listed <- files %in% entries[!is_dir]
   covered <- rep(FALSE, length(files))
   for (dir in entries[is_dir]) {
@@ -116,6 +120,7 @@ derived_header_problems <- function(root, not_derived, scope = c("all", "tests")
       files[!generator & headed & listed],
       "has the derived-file header and is listed in not-derived.txt, both"
     ),
+    say(too_wide, "only a directory below tests/testthat/ can be listed in not-derived.txt"),
     say(gone, "listed in not-derived.txt, but no such file"),
     say(empty, "listed in not-derived.txt, but no script is under it")
   )

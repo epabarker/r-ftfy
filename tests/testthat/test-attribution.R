@@ -44,6 +44,7 @@ test_that("DESCRIPTION points to the copyrights file, and credits Robyn Speer as
   expect_length(speer, 1L)
   expect_identical(speer$given, "Robyn")
   expect_setequal(speer$role, c("aut", "cph"))
+  expect_identical(unname(speer$comment), "Author of Python ftfy, of which this package is a port")
 })
 
 test_that("the copyrights file keeps upstream's copyright line on a line of its own", {
