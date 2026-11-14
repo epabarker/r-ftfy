@@ -6,7 +6,8 @@
 # FTFY_CORPUS_MISMATCHES names the CSV the mismatches are written to; the
 # job uploads it. The script fails when a test fails, when the CSV was not
 # written, or when any test skipped other than the one that says how many
-# rows are newer than the running ICU: FTFY_CORPUS_COMPARISON is set to
+# rows are not compared (tagged newer than the running ICU's Unicode, or
+# unassigned), which skips on every ICU: FTFY_CORPUS_COMPARISON is set to
 # "required" here, so a missing corpus is a failure too.
 
 Sys.setenv(FTFY_CORPUS_COMPARISON = "required")
@@ -28,7 +29,7 @@ results <- as.data.frame(testthat::test_file(
 ))
 minutes <- as.numeric(difftime(Sys.time(), started, units = "mins"))
 
-unicode_test <- "rows tagged with a Unicode version newer than the running ICU's are not compared"
+unicode_test <- "rows tagged newer than the running ICU's Unicode or unassigned are not compared"
 skipped <- results$test[results$skipped & results$test != unicode_test]
 failed <- results$test[results$failed > 0L | results$error]
 written <- file.exists(mismatches)

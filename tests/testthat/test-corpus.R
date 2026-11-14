@@ -79,7 +79,14 @@ expect_family_agrees <- function(family) {
   expect_no_corpus_mismatch(differences, state$inputs, family)
 }
 
-test_that("rows tagged with a Unicode version newer than the running ICU's are not compared", {
+# The rows tagged "unassigned" are left out on every ICU. In each, a
+# result of the reference version holds a code point that Unicode 15.1,
+# the reference version's, has not assigned (category Cn in the reference
+# interpreter, and not a noncharacter; no input holds one). What a function
+# does with such a code point is not reference behaviour: a later Unicode
+# may assign it. So this test always skips, with the counts; the CI script
+# accepts this one skip by its name.
+test_that("rows tagged newer than the running ICU's Unicode or unassigned are not compared", {
   skip_unless_comparing()
   state <- corpus_loaded()
   tag <- state$snapshot$unicode
@@ -89,15 +96,16 @@ test_that("rows tagged with a Unicode version newer than the running ICU's are n
 
   expect_identical(length(state$rows) + newer + unassigned, nrow(state$snapshot))
   expect_identical(sum(tag == "unassigned" & state$inputs$slice == "own"), 80L)
-  if (newer > 0L) {
-    skip(sprintf(
-      paste(
-        "%d of the %d rows of the corpus are tagged with a Unicode version newer",
-        "than this ICU's (%s) and are not compared; %d rows are compared."
-      ),
-      newer, nrow(state$snapshot), icu, length(state$rows)
-    ))
-  }
+  skip(sprintf(
+    paste(
+      "%d of the %d rows of the corpus are compared. Not compared: %d tagged",
+      "with a Unicode version newer than this ICU's (%s), whose characters it",
+      "may not know; and %d tagged unassigned, where a result of the reference",
+      "version holds a code point Unicode 15.1 has not assigned, which is not",
+      "reference behaviour."
+    ),
+    length(state$rows), nrow(state$snapshot), newer, icu, unassigned
+  ))
 })
 
 test_that("badness() and is_bad() give the reference version's values", {
