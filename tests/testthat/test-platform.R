@@ -3,14 +3,16 @@
 #
 # helper-entry-step.R already checks, for every export, that an unmarked
 # string of characters from U+00A0 up is read in the native encoding. The
-# tests here cover the rest of what `enc2utf8()` does at the entry step.
-# Each one runs in the sessions it applies to and is skipped in the others;
-# the check matrix has a job for each: UTF-8 (every default job), Latin-1
-# on Ubuntu, code page 1252 on Windows, and the C locale.
+# tests here cover the rest of what the entry step does with unmarked
+# strings. Each one runs in the sessions it applies to and is skipped in
+# the others; the check matrix runs the suite in each: UTF-8 (every
+# default job), Latin-1 on Ubuntu, code page 1252 on Windows, and the C
+# locale.
 #
-# Two of the behaviours asserted below were MEASURED, NOT DECIDED (the
-# notes of ticket #31): no issue or ADR says the package should behave so.
-# They are asserted so that a platform on which base R does otherwise is
+# Three of the behaviours asserted below were MEASURED, NOT DECIDED (the
+# notes of tickets #31 and #43): they are what base R's `enc2utf8()` does,
+# and no issue or ADR says the package should behave so. They are asserted
+# so that a platform or an R version on which base R does otherwise is
 # seen, not to fix them as the intended behaviour. They are marked
 # "measured" in the test names.
 
@@ -177,10 +179,18 @@ test_that("measured: in a Latin-1 session unmarked bytes 80 to 9F are read as Wi
   expect_identical(fix_c1_controls(marked), fix_c1_controls(as_c1))
 })
 
-test_that("measured: in a Latin-1 session an unmarked hole of Windows-1252 becomes the text <81>", {
+test_that("measured: in a Latin-1 session an unmarked hole of Windows-1252 becomes the text <81>, or on Windows U+0081", {
   skip_if_not(platform_native() == "Latin-1", "The native encoding is not Latin-1.")
   x <- vapply(cp1252_holes, function(byte) unmarked(0x61, byte, 0x62), "")
-  as_text <- sprintf("a<%02x>b", cp1252_holes)
+  # Base R differs by platform here (run 43533766534 of the check matrix).
+  # With code page 1252 on Windows, `enc2utf8()` gives the C1 control of
+  # the same number, as Windows' own conversion does. On Linux and macOS
+  # the conversion refuses the byte and R writes it out as ASCII text.
+  as_text <- if (.Platform$OS.type == "windows") {
+    paste0("a", intToUtf8(cp1252_holes, multiple = TRUE), "b")
+  } else {
+    sprintf("a<%02x>b", cp1252_holes)
+  }
 
   runs <- platform_runs()
   for (export in names(runs)) {
