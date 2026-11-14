@@ -78,7 +78,7 @@ VARIANTS = {
     "json-original": 150,  # the `original` of each upstream JSON case
     "json-fixed": 100,  # their `fixed` and `fixed-encoding` texts: clean
     "json-layer": 250,  # an original under one more layer of mix-up
-    "clean": 2500,  # values that must come back unchanged
+    "clean": 2500,  # values with no mix-up in them
     "column": 2500,  # values of the benchmark columns, as they are
     "mixup-1": 7000,  # one layer: encoded with one codec, decoded with another
     "mixup-2": 5500,  # two layers
