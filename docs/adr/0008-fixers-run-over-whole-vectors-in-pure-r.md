@@ -6,8 +6,12 @@ We chose this because a per-string port is 70 to 100 times slower. Each string p
 
 ## Consequences
 
-- **Speed target.** Per value, on the committed benchmark columns and the same machine, the package is never slower than Python ftfy 6.3.1, with deduplication not counted.
-- **Accepted cost per call.** stringi compiles a pattern on every call, and the frozen badness regex takes about 460 µs to compile. A call on one non-ASCII string therefore costs 0.6 to 1.6 ms, where Python takes 6 to 16 µs. The documentation tells users to call on whole vectors, not per row.
+- **Speed target.** Per value, on the committed benchmark columns and the same machine, the package is never slower than Python ftfy 6.3.1, with deduplication not counted. Amended in https://github.com/epabarker/r-ftfy/issues/27: the target covers `fix_encoding()` as well as `fix_text()`. The first measurement ([#46](https://github.com/epabarker/r-ftfy/issues/46)) has `fix_text()` below 1 on every column. `fix_encoding()` is at or above 1 on three columns, on both the development machine and the CI runner:
+  - on long text, because ICU runs the badness pattern about 1.3 times slower than Python's `re`;
+  - on columns of a few thousand distinct values or fewer, because of the cost per call below.
+
+  For v0.1 the target is met by `fix_text()` alone, and bringing `fix_encoding()` under it follows the release ([#52](https://github.com/epabarker/r-ftfy/issues/52)).
+- **Accepted cost per call.** stringi compiles a pattern on every call, and the frozen badness regex takes about 460 µs to compile. A call on one non-ASCII string therefore costs 0.6 to 1.6 ms, where Python takes 6 to 16 µs. The documentation tells users to call on whole vectors, not per row. Amended in https://github.com/epabarker/r-ftfy/issues/27: as built, one `fix_text()` call makes 41 regex calls, 4 of them the badness pattern. On the development machine it costs 0.8 to 2.1 ms on one non-ASCII string, above the range accepted here, and the documentation states that figure. Bringing it back within the range is [#53](https://github.com/epabarker/r-ftfy/issues/53).
 - **No compiled code in v0.1.** It becomes justified only if one of these holds:
   - the column target is missed;
   - `Rprof` shows R-level code, not ICU, above 50% of runtime on a benchmark column;
@@ -18,4 +22,11 @@ We chose this because a per-string port is 70 to 100 times slower. Each string p
   - base R: `chartr`, `substring`, `nchar`, `paste`, `iconv`, and `gsub` and `grepl` with `fixed = TRUE`.
 
   `stri_replace_all_fixed`, `stri_sub`, `stri_join_list` and `stri_split_regex` are banned on text. Splicing uses positions from `stri_locate_all_regex()` with base `substring()`.
+
+  Amended in https://github.com/epabarker/r-ftfy/issues/27. These changes were made while building v0.1, and each is covered by tests that a leading U+FEFF and astral characters survive:
+  - **Cutting by byte position.** `substring()` by character position is quadratic on one long non-ASCII string. Splicing and cutting into segments therefore take positions from `utf8ToInt()`, turn them into byte offsets, and cut with `substring()` on the string re-marked as bytes ([#36](https://github.com/epabarker/r-ftfy/issues/36), [#41](https://github.com/epabarker/r-ftfy/issues/41)). On 1,000,000 characters with 50,000 matches, a splice went from 44 s to 0.05 s.
+  - **More functions measured safe:** `utf8ToInt`, `intToUtf8`, `stri_trans_nfd`, `stri_trans_nfkc` and `stri_trans_nfkd` on text. `strsplit` and `regexpr` with `fixed = TRUE` are used only on ASCII plan text and on bytes.
+  - **`chartr()` has two weaknesses.**
+    - It refuses text holding U+FFFE or U+FFFF; such text is translated around those two characters ([#44](https://github.com/epabarker/r-ftfy/issues/44)).
+    - In a Latin-1 session it mistranslated ASCII strings when mapping to a character outside Latin-1: byte `1A` to U+FFFD came out empty. Codec tables go through a wrapper that avoids this ([#33](https://github.com/epabarker/r-ftfy/issues/33)).
 - **Plans.** Each element's plan is accumulated inside the same passes. Recording it costs nothing measurable.
