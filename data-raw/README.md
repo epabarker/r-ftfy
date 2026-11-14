@@ -18,6 +18,17 @@ python data-raw/regenerate.py
 
 - `bench_columns.py` writes the benchmark columns to `bench/columns/`: a list, `columns.tsv`, and the distinct values of each column in `<column>.txt.xz`. The values come from `_columns.py`.
 - `corpus_inputs.py` writes the inputs of the larger corpus that are built from our own text to `tests/corpus/inputs/own.tsv.xz`, and `corpus_snapshot.py` writes what the reference version gives for every inputs file there to `tests/corpus/snapshot/<slice>.tsv.xz`. The docstring of each says what its columns are. Another slice of inputs is another file in `tests/corpus/inputs/`. Neither `bench/` nor `tests/corpus/` is in the built package.
+- `corpus_inputs_outside.py` writes the slice of outside natural-language text, `tests/corpus/inputs/outside.tsv.xz`, from the committed values in `outside/values.tsv.xz` (see below). It downloads nothing.
+
+## Outside text
+
+`outside/` holds the outside text of the larger corpus (ticket #45), under the licence rule of the resolution of #15. `outside/SOURCES` names each source with its version, licence and attribution; `outside/pins.tsv` gives the URL and SHA-256 of every file read from them; `outside/values.tsv.xz` is the values selected, committed. The selection script is the only thing here that downloads, and it is run by a maintainer, never by the `reference` workflow:
+
+```
+python data-raw/outside/select.py --downloads <empty directory outside the repo>
+```
+
+It stops, writing nothing, if any downloaded file's checksum is not the one pinned. With `--pin` it downloads every file again and rewrites `pins.tsv`, which is how a source is moved to a new version; review what it downloaded before committing. The Project Gutenberg files are not versioned, so when one is rebuilt upstream its checksum fails and it must be pinned again. Once `values.tsv.xz` changes, run `regenerate.py` to rebuild the slice and its snapshot.
 
 A script that reads a file another script writes has a comment line `# Runs after: <script>.py`, and `regenerate.py` runs it after that script; otherwise the order is by name. One run always suffices.
 
