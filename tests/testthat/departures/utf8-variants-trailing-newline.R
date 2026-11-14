@@ -27,7 +27,115 @@
 #   These are the rows of reference/fix_text.tsv that show the departure;
 #   a line cut by a small `max_decode_length` is not looked at, and no row
 #   needs it.
+#
+# The exact rule. A difference that says which options R was called with
+# (the element `options`, a list; the corpus comparison of ticket #44 gives
+# it) is judged by none of the rules above but by this one: R is run again
+# on the same input with the same options, with its `utf-8-variants`
+# decoder made to read a final newline as the reference version reads it
+# (C0 0A at the end as C0 80; ED, A0 to AF, 80 to BF, ED, B0 to BF, 0A at
+# the end as a pair whose last byte is 8A, since only the low six bits of
+# that byte are used: ftfy/bad_codecs/utf8_variants.py:158 and :207). The
+# difference is this departure when that run met such bytes and gives the
+# reference version's result, and so nothing but the departure lies
+# between the two. It is asked of the function itself, so the codecs
+# tried, the lines and pieces fix_text() cuts and a second layer of repair
+# are all as they are in the package. Further elements of such a
+# difference:
+#
+# - `what`: "text" (the default) or "plan".
+# - `plan`: for `fun = "apply_plan"`, the plan replayed.
+# - `form`: "keyword" when the reference version's result is that of
+#   fix_text() with one option of the encoding repair given as a keyword
+#   argument, which it ignores (the departure encoding-sub-options-honoured):
+#   the reference version's result is then looked for with default options.
+#
+# U+0000 is allowed for as the departure decoded-nul-dropped states it: a
+# reference text is compared without its \u0000, and a reference plan of
+# fix_and_explain() without one `apply remove_control_chars` after a
+# `decode utf-8-variants`.
 function(difference) {
+  exact <- function(difference) {
+    fun <- difference$fun
+    input <- difference$input
+    reference <- difference$reference
+    actual <- difference$actual
+    what <- if (is.null(difference$what)) "text" else difference$what
+    functions <- c("fix_text", "fix_encoding", "fix_encoding_and_explain", "fix_and_explain", "apply_plan")
+    if (!is.character(fun) || !fun %in% functions ||
+        !is.character(input) || is.na(input) ||
+        !is.character(reference) || is.na(reference) || !is.character(actual) ||
+        (fun == "apply_plan") != is.na(actual)) {
+      return(FALSE)
+    }
+    options <- difference$options
+    if (identical(difference$form, "keyword")) {
+      options <- list()
+    }
+
+    # The decoder as the reference version has it.
+    real <- ftfy:::decode_utf8_variants
+    met <- FALSE
+    null_cut <- paste0("\\x{C0}\\x{0A}\\z")
+    pair_cut <- "(\\x{ED}[\\x{A0}-\\x{AF}][\\x{80}-\\x{BF}]\\x{ED}[\\x{B0}-\\x{BF}])\\x{0A}\\z"
+    opts <- stringi::stri_opts_regex(unix_lines = TRUE, stack_limit = 1e9)
+    testthat::local_mocked_bindings(
+      decode_utf8_variants = function(bytes) {
+        cut <- which(
+          stringi::stri_detect_regex(bytes, null_cut, opts_regex = opts) |
+            stringi::stri_detect_regex(bytes, pair_cut, opts_regex = opts)
+        )
+        if (length(cut) > 0L) {
+          met <<- TRUE
+          rewritten <- stringi::stri_replace_all_regex(
+            bytes[cut], null_cut, intToUtf8(c(0xC0L, 0x80L)), opts_regex = opts
+          )
+          bytes[cut] <- stringi::stri_replace_all_regex(
+            rewritten, pair_cut, paste0("$1", intToUtf8(0x8AL)), opts_regex = opts
+          )
+        }
+        real(bytes)
+      },
+      .package = "ftfy"
+    )
+    theirs <- tryCatch(
+      if (fun == "apply_plan") {
+        ftfy::apply_plan(input, difference$plan)
+      } else {
+        result <- do.call(getExportedValue("ftfy", fun), c(list(input), options))
+        if (is.data.frame(result)) {
+          if (what == "plan") as.character(result$plan) else result$text
+        } else {
+          result
+        }
+      },
+      error = function(e) NULL
+    )
+    if (!met || is.null(theirs) || is.na(theirs)) {
+      return(FALSE)
+    }
+    if (what == "plan") {
+      if (identical(reference, theirs)) {
+        return(TRUE)
+      }
+      steps <- strsplit(reference, " > ", fixed = TRUE)[[1L]]
+      decoded <- match("decode utf-8-variants", steps)
+      extra <- which(steps == "apply remove_control_chars")
+      extra <- extra[!is.na(decoded) & extra > decoded]
+      return(fun == "fix_and_explain" && any(vapply(
+        extra, function(at) identical(paste(steps[-at], collapse = " > "), theirs), logical(1L)
+      )))
+    }
+    nul <- "\\u0000"
+    if (grepl(nul, reference, fixed = TRUE)) {
+      reference <- stringi::stri_unescape_unicode(gsub(nul, "", reference, fixed = TRUE))
+    }
+    identical(reference, theirs)
+  }
+  if (!is.null(difference$options)) {
+    return(exact(difference))
+  }
+
   ends_cut_short <- function(bytes) {
     b <- utf8ToInt(bytes)
     n <- length(b)
