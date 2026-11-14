@@ -40,15 +40,18 @@ from a line in another.
 With \code{unescape_html = "auto"}, the default, HTML entities are replaced
 until a segment holds a \code{<}, which is taken to mean that the text is
 HTML: in that segment and in every later segment of the same string
-they are left alone. One string never affects another.
+they are left alone. One string never affects another: Python ftfy's
+\code{fix_file()} carries this from each line of a file to the lines after
+it, and nothing here does the same across the elements of a vector
+(see \link[=ftfy-package]{ftfy}).
 
 \code{fix_text()} does not say what it did. \code{\link[=fix_and_explain]{fix_and_explain()}} does, for
 strings taken whole.
 
 Call it on a whole vector, not once per string: each call on text that
-is not plain ASCII has a fixed cost of one or two milliseconds, and a
-vector is fixed far faster than its strings one by one. A value that
-occurs many times is fixed once.
+is not plain ASCII has a fixed cost of one or two milliseconds,
+however long the vector (see \link[=ftfy-package]{ftfy} for the
+measurements). A value that occurs many times is fixed once.
 }
 \section{Differences from Python ftfy}{
 
@@ -60,13 +63,16 @@ comes in a \code{TextFixerConfig} object.
 
 A line that ends just after the byte C0, or after the first five bytes
 of a six-byte surrogate pair, is not repaired by reading its newline as
-the missing byte, which in Python ftfy loses the newline and the
-character before it. Where the encoding repair decodes the two bytes
+the missing byte, which in Python ftfy loses the newline and joins the
+line to the next. Where the encoding repair decodes the two bytes
 C0 80, which stand for the character U+0000, nothing is put in their
 place. And normalisation is done by the ICU library that stringi was
 built with, so text that holds characters newer than that library's
 version of Unicode can be normalised differently from Python 3.13, which
 has Unicode 15.1.
+
+Every departure from the reference version is listed, with examples,
+on the page \link{ftfy-differences}.
 }
 
 \examples{

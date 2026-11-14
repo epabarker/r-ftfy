@@ -50,6 +50,9 @@ character U+0000, nothing is put in their place, because an R string
 cannot hold U+0000. And a string that ends in a newline just after the
 byte C0, or after the first five bytes of a six-byte surrogate pair, is
 not repaired by reading the newline as the missing byte.
+
+Every departure from the reference version is listed, with examples,
+on the page \link{ftfy-differences}.
 }
 
 \examples{

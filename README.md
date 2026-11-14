@@ -16,6 +16,8 @@ is_bad(c("sÃ³", "só"))
 
 Every function takes a character vector and works on all of it at once.
 
+Call it on the whole vector, or the whole column, and not once per row. Each call has a fixed cost: 0.6 to 1.6 milliseconds on one string that is not plain ASCII, where Python ftfy takes 6 to 16 microseconds. That cost was accepted so that a whole vector could be fixed in one pass with no compiled code; `?ftfy` says where the figures come from.
+
 ## Status
 
 The package is in development and has not been released. Functions are being added one at a time; the ones shown above work today.
@@ -31,7 +33,7 @@ pak::pak("epabarker/r-ftfy")
 
 **The reference version is ftfy 6.3.1**, run on Python 3.13. The package aims to return what that version returns. Its regular expressions, codec tables and other data are read from that version by scripts, not retyped, and the tests compare the package with committed snapshots of that version's output, including all of ftfy's own test cases.
 
-The package has its own version numbers. Where it knowingly behaves differently from the reference version, the difference is recorded in the departure registry (`inst/departures/`).
+The package has its own version numbers. Where it knowingly behaves differently from the reference version, the difference is recorded in the departure registry (`inst/departures/`). The help page `?"ftfy-differences"` is written from the registry and lists every departure, with the reference version's output beside this package's. `NEWS.md` lists every changed default output with an example, and the output of `fix_text()` with default options never changes in a patch release.
 
 **The port was written with AI assistance.** The R code, tests and documentation were written with Anthropic's Claude, under the maintainer's direction. ftfy's author asks that a derived work never obscure where it came from, and names generative AI as a way that happens. So, to be plain: the ideas here are Robyn Speer's, the translation to R was done with an AI model, and any errors in the translation are this package's and not hers.
 

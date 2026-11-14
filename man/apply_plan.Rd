@@ -71,6 +71,9 @@ here it is a failed replay. Where a \verb{decode utf-8-variants} step decodes
 the two bytes C0 80, which stand for the character U+0000, nothing is
 put in their place, because an R string cannot hold U+0000. Codec names
 are accepted in one spelling only.
+
+Every departure from the reference version is listed, with examples,
+on the page \link{ftfy-differences}.
 }
 
 \examples{
