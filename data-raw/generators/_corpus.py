@@ -156,8 +156,10 @@ def read_inputs(relative_path):
     assert lines[-1] == "" and lines[0].split("\t") == INPUT_COLUMNS, relative_path
     rows = []
     for line in lines[1:-1]:
-        row = dict(zip(INPUT_COLUMNS, line.split("\t")))
-        assert len(row) == len(INPUT_COLUMNS) and escape(unescape(row["text"])) == row["text"]
+        fields = line.split("\t")
+        assert len(fields) == len(INPUT_COLUMNS), relative_path
+        row = dict(zip(INPUT_COLUMNS, fields))
+        assert escape(unescape(row["text"])) == row["text"]
         row["text"] = unescape(row["text"])
         rows.append(row)
     return rows

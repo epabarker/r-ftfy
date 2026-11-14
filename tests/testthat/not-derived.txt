@@ -41,3 +41,5 @@ tests/testthat/test-fix_and_explain.R	Compares with a committed snapshot and tes
 tests/testthat/test-departure-normalization-follows-icu.R	Test of a departure: R-only behaviour.
 tests/testthat/helper-fix-text.R	Reader of the fix_text() snapshot; this package's own machinery.
 tests/testthat/test-departure-encoding-sub-options-honoured.R	Test of a departure: R-only behaviour.
+tests/testthat/helper-corpus.R	Readers of the larger corpus; this package's own machinery.
+tests/testthat/test-corpus-data.R	Tests of the generated corpus and benchmark columns as data; no upstream test is translated.

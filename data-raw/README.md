@@ -16,6 +16,15 @@ python data-raw/regenerate.py
 - `codec_<name>.py` writes one codec table to `codecs/<name>.txt`: each of the 256 bytes with the code point the reference version decodes it to, or `hole`. A new codec is a copy of `codec_latin-1.py` with the name changed.
 - `table_<name>.py` writes one data table of the text fixers to `tables/<name>.txt`: the named HTML entities, the ligatures, the width map and the control characters, each read from the reference version, with every character written as its code point in hexadecimal. `table_html_numeric.py` probes the reference version's `unescape_html()` with the numeric reference for every number and writes, as ranges, only the numbers that do not give the character with that number.
 
+- `bench_columns.py` writes the benchmark columns to `bench/columns/`: a list, `columns.tsv`, and the distinct values of each column in `<column>.txt.xz`. The values come from `_columns.py`.
+- `corpus_inputs.py` writes the inputs of the larger corpus that are built from our own text to `tests/corpus/inputs/own.tsv.xz`, and `corpus_snapshot.py` writes what the reference version gives for every inputs file there to `tests/corpus/snapshot/<slice>.tsv.xz`. The docstring of each says what its columns are. Another slice of inputs is another file in `tests/corpus/inputs/`. Neither `bench/` nor `tests/corpus/` is in the built package.
+
+A script that reads a file another script writes has a comment line `# Runs after: <script>.py`, and `regenerate.py` runs it after that script; otherwise the order is by name. One run always suffices.
+
+The files ending in `.xz` are ASCII text compressed with fixed settings (`_xz.py`); R reads them with `xzfile()`. A file that already holds the text to be written is left as it is, so that the bytes do not depend on the version of the compressor.
+
+`unicode/age.txt` is not generated: it is the Unicode Character Database's `DerivedAge-15.1.0.txt` without its comments, from which the corpus rows are tagged with the newest Unicode version among their characters. The reference interpreter has no such property; `_corpus.py` checks the table against the Unicode data it does have.
+
 The `reference` workflow runs the two commands above and fails if any committed file changes.
 
 To add a generated file, add one script to `generators/` that writes one file. Nothing lists the scripts, so there is nothing else to edit. Shared code goes in a file whose name starts with an underscore.

@@ -1,4 +1,5 @@
 # Derived from python-ftfy v6.3.1, ftfy/fixes.py and ftfy/chardata.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+# Runs after: table_html_numeric.py
 """Write the snapshot of seven text fixers from the reference version to
 tests/testthat/reference/text_fixers.tsv: unescape_html,
 remove_terminal_escapes, uncurl_quotes, fix_latin_ligatures,
