@@ -325,14 +325,24 @@ start_corpus_mismatches <- function(path = corpus_mismatch_file()) {
   invisible(path)
 }
 
-# Append the differences that no registry entry matches. Every field is
-# ASCII: texts are escaped as stringi escapes them.
+# Texts escaped as stringi escapes them, so that every field is ASCII. A
+# reference text that holds U+0000 is escaped already (corpus_text()) and
+# is written as it is.
+escape_shown <- function(text) {
+  escaped <- !is.na(text) & grepl("\\u0000", text, fixed = TRUE)
+  out <- ifelse(is.na(text), "NA", stringi::stri_escape_unicode(text))
+  out[escaped] <- text[escaped]
+  out
+}
+
+# Append the differences that no registry entry matches, with their texts
+# escaped by escape_shown().
 write_corpus_mismatches <- function(differences, inputs, path = corpus_mismatch_file()) {
   bad <- differences[is.na(differences$departure), , drop = FALSE]
   if (nrow(bad) == 0L) {
     return(invisible(0L))
   }
-  escape <- function(text) ifelse(is.na(text), "NA", stringi::stri_escape_unicode(text))
+  escape <- escape_shown
   at <- bad$row
   out <- data.frame(
     slice = inputs$slice[at], id = inputs$id[at], variant = inputs$variant[at],
@@ -356,7 +366,7 @@ expect_no_corpus_mismatch <- function(differences, inputs, label) {
     return(invisible(testthat::succeed()))
   }
   shown <- utils::head(bad, 5L)
-  show <- function(text) ifelse(is.na(text), "NA", stringi::stri_escape_unicode(text))
+  show <- escape_shown
   testthat::fail(paste0(
     label, ": ", nrow(bad), " differences from the corpus snapshot in ",
     length(unique(bad$row)), " inputs that no departure registry entry matches (",

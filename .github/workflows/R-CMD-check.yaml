@@ -7,6 +7,10 @@
 # that file is missing, so a job cannot pass without its tests having run
 # in the session it names.
 #
+# The jobs with `corpus` also compare every export with the snapshot of the
+# larger corpus (issue #44): tests/corpus/ is not in the tarball, so that
+# runs from the checkout, and a mismatch fails the job.
+#
 # Marking these jobs as required checks is a repository setting.
 
 name: R-CMD-check
@@ -35,20 +39,21 @@ jobs:
       matrix:
         config:
           # `source-tree`: also runs the checks that need R/ and data-raw/.
-          - {id: ubuntu-release, os: ubuntu-latest, r: release, native: UTF-8, source-tree: true}
+          # `corpus`: also runs the corpus comparison.
+          - {id: ubuntu-release, os: ubuntu-latest, r: release, native: UTF-8, source-tree: true, corpus: true}
           - {id: ubuntu-devel, os: ubuntu-latest, r: devel, native: UTF-8, http-user-agent: release}
           - {id: ubuntu-oldrel, os: ubuntu-latest, r: oldrel-1, native: UTF-8}
           - {id: ubuntu-r-4.2, os: ubuntu-latest, r: "4.2", native: UTF-8}
           # `locale`: generated on the runner and set for the check.
-          - {id: ubuntu-latin1, os: ubuntu-latest, r: release, native: Latin-1, locale: en_US.ISO-8859-1}
+          - {id: ubuntu-latin1, os: ubuntu-latest, r: release, native: Latin-1, locale: en_US.ISO-8859-1, corpus: true}
           # `icu`: stringi is rebuilt from source against that ICU. Its bundled
           # ICU is 74.1 (Unicode 15.1, that of the reference version). The
           # system ICU of Ubuntu 22.04 is 70.1 (Unicode 14.0), so that job
           # exercises the departure `normalization-follows-icu`. The other
           # Ubuntu jobs take stringi as a binary linked to the newer system
           # ICU of ubuntu-latest (78.2, Unicode 17.0, in November 2026).
-          - {id: icu-bundled, os: ubuntu-latest, r: release, native: UTF-8, icu: bundled}
-          - {id: icu-system, os: ubuntu-22.04, r: release, native: UTF-8, icu: system}
+          - {id: icu-bundled, os: ubuntu-latest, r: release, native: UTF-8, icu: bundled, corpus: true}
+          - {id: icu-system, os: ubuntu-22.04, r: release, native: UTF-8, icu: system, corpus: true}
           - {id: macos-release, os: macos-latest, r: release, native: UTF-8}
           - {id: windows-release, os: windows-latest, r: release, native: UTF-8}
     env:
@@ -150,6 +155,24 @@ jobs:
           args: 'c("--no-manual", "--as-cran")'
           error-on: '"warning"'
 
+      # The corpus comparison, from the checkout, in this job's session (in
+      # the Latin-1 job LC_ALL is already set). It writes every difference
+      # no departure registry entry matches to a CSV, uploaded below
+      # whether the step passes or fails.
+      - name: Compare every export with the corpus snapshot
+        if: matrix.config.corpus && !cancelled()
+        env:
+          FTFY_CORPUS_MISMATCHES: ${{ runner.temp }}/corpus-mismatches-${{ matrix.config.id }}.csv
+        run: Rscript .github/scripts/corpus-comparison.R
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.config.corpus && !cancelled()
+        with:
+          name: corpus-mismatches-${{ matrix.config.id }}
+          path: ${{ runner.temp }}/corpus-mismatches-${{ matrix.config.id }}.csv
+          if-no-files-found: error
+          retention-days: 14
+
       - name: The tests ran in the session this job names
         if: ${{ !cancelled() }}
         shell: bash
@@ -173,10 +196,12 @@ jobs:
         if: ${{ !cancelled() }}
         run: Rscript .github/scripts/native-bytes.R
 
+      # The corpus comparison is left to the step above (FTFY_CORPUS_COMPARISON).
       - name: The same tests in the C locale
         if: matrix.config.native == 'Latin-1'
         env:
           LC_ALL: C
+          FTFY_CORPUS_COMPARISON: skip
           FTFY_EXPECT_NATIVE: C
           FTFY_PLATFORM_REPORT: ${{ runner.temp }}/platform-ubuntu-c-locale.txt
         run: Rscript .github/scripts/test-in-session.R
@@ -188,6 +213,7 @@ jobs:
       - name: The same tests with code page 1252 as the native encoding
         if: runner.os == 'Windows'
         env:
+          FTFY_CORPUS_COMPARISON: skip
           FTFY_SET_LC_CTYPE: English_United States.1252
           FTFY_EXPECT_NATIVE: Latin-1
           FTFY_PLATFORM_REPORT: ${{ runner.temp }}/platform-windows-cp1252.txt
