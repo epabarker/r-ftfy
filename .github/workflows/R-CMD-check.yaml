@@ -18,7 +18,7 @@ name: R-CMD-check
 on:
   pull_request:
   push:
-    branches: [main, "integration/**", "ticket/44-corpus-comparison"]
+    branches: [main, "integration/**"]
   workflow_dispatch:
 
 permissions:
