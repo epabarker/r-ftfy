@@ -33,10 +33,10 @@ functions <- c("fix_text", "fix_encoding")
 # not mojibake, Cyrillic that is not mojibake, and two kinds of mojibake.
 inputs <- c(
   ascii = "plain text",
-  accented = "café au lait",
-  cyrillic = "привет",
-  mojibake = "cafÃ©",
-  `mojibake quote` = "itâ€™s"
+  accented = "caf\u00e9 au lait",
+  cyrillic = "\u043f\u0440\u0438\u0432\u0435\u0442",
+  mojibake = "caf\u00c3\u00a9",
+  `mojibake quote` = "it\u00e2\u20ac\u2122s"
 )
 
 # ---------------------------------------------------------------------------
