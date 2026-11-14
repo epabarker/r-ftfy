@@ -127,25 +127,11 @@ fixer_replace_lossy_sequences <- function(bytes) {
 # takes every match of the whole vector at once, with the length in
 # characters of the string each is in, and returns their replacements.
 #
-# `replace_matches()` in R/text-fixers.R does the same for a replacement
-# that depends on the matched text alone. This one also tells `compute`
-# how long the string around a match is, which `decode_inconsistent_utf8`
-# needs, and its work grows in proportion to the text, however many
-# matches one string holds:
-#
-# - `substring()` finds a character of a UTF-8 string by reading from the
-#   start, so cutting every match out of one long string that way takes
-#   time that grows with the square of its length. Here the positions that
-#   `stri_locate_all_regex()` gives in characters are turned into
-#   positions in bytes, from the widths of all the code points taken
-#   once, and the pieces are cut from the strings marked as bytes, where
-#   `substring()` goes straight to its place. A cut falls only between
-#   characters, so every piece is valid UTF-8 and is marked so again.
-#   Nothing is removed from the text on the way: a leading U+FEFF is three
-#   bytes like any other.
-# - the pieces of a string are pasted in pairs (`paste_runs()`).
-#
-# Nothing here loops over strings or over matches.
+# `replace_matches()` in R/text-fixers.R is this for a replacement that
+# depends on the matched text alone. The work grows in proportion to the
+# text, however many matches one string holds: the pieces are cut by
+# `character_cutter()` and the pieces of a string are pasted in pairs
+# (`paste_runs()`). Nothing here loops over strings or over matches.
 splice_matches <- function(x, pattern, compute) {
   if (anyNA(x)) {
     present <- which(!is.na(x))
@@ -168,36 +154,18 @@ splice_matches <- function(x, pattern, compute) {
   end <- flat[!is_start]
   string <- rep.int(seq_along(spliced), count)
 
-  # The bytes before each character of the strings joined into one, and
-  # from them the first and last byte of each match within its string.
-  # Doubles, because the bytes of a whole vector can pass 2^31.
-  characters <- nchar(text, type = "chars")
-  code_points <- utf8ToInt(paste(text, collapse = ""))
-  bytes_before <- c(0, cumsum(
-    1 + (code_points >= 0x80L) + (code_points >= 0x800L) + (code_points >= 0x10000L)
-  ))
-  first_character <- (cumsum(as.numeric(characters)) - characters)[string]
-  string_starts <- bytes_before[first_character + 1]
-  first_byte <- bytes_before[first_character + start] - string_starts + 1
-  last_byte <- bytes_before[first_character + end + 1] - string_starts
-
-  as_bytes <- text
-  Encoding(as_bytes) <- "bytes"
-  cut <- function(of, from, to) {
-    piece <- substring(as_bytes[of], from, to)
-    Encoding(piece) <- "UTF-8"
-    piece
-  }
-  replacement <- compute(cut(string, first_byte, last_byte), characters[string])
+  cutter <- character_cutter(text)
+  cut <- cutter$cut
+  replacement <- compute(cut(string, start, end), cutter$characters[string])
 
   # A string with matches is its gaps and replacements in turn, then what
   # is left after its last match.
   first <- !duplicated(string)
-  gap_start <- c(1, last_byte[-length(last_byte)] + 1)
+  gap_start <- c(1, end[-length(end)] + 1)
   gap_start[first] <- 1
-  gap <- cut(string, gap_start, first_byte - 1)
+  gap <- cut(string, gap_start, start - 1)
   last <- cumsum(count)
-  rest <- cut(seq_along(spliced), last_byte[last] + 1, nchar(text, type = "bytes"))
+  rest <- cut(seq_along(spliced), end[last] + 1, cutter$characters)
 
   match_number <- seq_along(string)
   pieces <- c(gap, replacement, rest)
@@ -205,6 +173,49 @@ splice_matches <- function(x, pattern, compute) {
   place <- order(owner, c(2 * match_number - 1, 2 * match_number, 2 * last + 0.5))
   x[spliced] <- paste_runs(pieces[place], owner[place])
   x
+}
+
+# Cut pieces out of the strings `x` (valid UTF-8, no `NA`) by their
+# positions in characters, in time that grows in proportion to the text
+# and not with how far into a string a piece is. Returns a list:
+#
+# - `cut(of, first, last)`: characters `first` to `last` of each string
+#   `x[of]`, as `substring()` gives them; the empty string where `last` is
+#   `first - 1`. Positions are within each string, from 1.
+# - `characters`: the length in characters of each string;
+# - `code_points`: the code points of the strings joined into one.
+#
+# `substring()` finds a character of a UTF-8 string by reading from the
+# start, so cutting every match out of one long string that way takes time
+# that grows with the square of its length. Here the positions in
+# characters are turned into positions in bytes, from the widths of all the
+# code points taken once (doubles, because the bytes of a whole vector can
+# pass 2^31), and the pieces are cut from the strings marked as bytes,
+# where `substring()` goes straight to its place. A cut falls only between
+# characters, so every piece is valid UTF-8 and is marked so again. Nothing
+# is removed from the text on the way: a leading U+FEFF is three bytes like
+# any other.
+character_cutter <- function(x) {
+  characters <- nchar(x, type = "chars")
+  code_points <- utf8ToInt(paste(x, collapse = ""))
+  bytes_before <- c(0, cumsum(
+    1 + (code_points >= 0x80L) + (code_points >= 0x800L) + (code_points >= 0x10000L)
+  ))
+  characters_before <- cumsum(as.numeric(characters)) - characters
+  as_bytes <- unname(x)
+  Encoding(as_bytes) <- "bytes"
+  cut <- function(of, first, last) {
+    before <- characters_before[of]
+    string_start <- bytes_before[before + 1]
+    piece <- substring(
+      as_bytes[of],
+      bytes_before[before + first] - string_start + 1,
+      bytes_before[before + last + 1] - string_start
+    )
+    Encoding(piece) <- "UTF-8"
+    piece
+  }
+  list(cut = cut, characters = characters, code_points = code_points)
 }
 
 # Paste together the pieces of each run of equal `owner`, giving one string

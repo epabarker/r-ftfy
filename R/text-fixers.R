@@ -222,58 +222,14 @@ translate_characters <- function(x, table) {
 # text)` over a whole vector. Every match of `pattern` in `x` is replaced
 # by what `compute` gives for it. `compute` takes the distinct matched
 # texts as a character vector and returns the replacement of each, marked
-# as UTF-8 where it is not ASCII. `NA` stays `NA`.
-#
-# Positions come from `stri_locate_all_regex()` and the pieces from
-# `substring()` and `paste0()`, which keep a leading U+FEFF. No loop runs
-# over strings: the strings are put together in groups that hold the same
-# number of matches, each group with one `paste0()` over its pieces.
+# as UTF-8 where it is not ASCII. `NA` stays `NA`. The splicing is
+# `splice_matches()` (R/encoding-fixers.R), so no loop runs over strings
+# and the work grows in proportion to the text.
 replace_matches <- function(x, pattern, compute) {
-  found <- regex_locate_all(x, pattern)
-  count <- lengths(found, use.names = FALSE) %/% 2L
-  count[is.na(x)] <- 0L
-  hit <- which(count > 0L)
-  if (length(hit) == 0L) {
-    return(x)
-  }
-  count <- count[hit]
-
-  # Each string's matrix unlists to its starts and then its ends.
-  spans <- unlist(found[hit], use.names = FALSE)
-  is_start <- sequence(2L * count) <= rep.int(count, 2L * count)
-  start <- spans[is_start]
-  end <- spans[!is_start]
-  # `string` is the place in `hit` of the string each match is in.
-  string <- rep.int(seq_along(hit), count)
-  text <- x[hit][string]
-
-  matched <- substring(text, start, end)
-  distinct <- unique(matched)
-  replacement <- compute(distinct)[match(matched, distinct)]
-
-  # A piece for each match: the text between the match before it and this
-  # one, then its replacement. The text after a string's last match is its
-  # tail.
-  first <- c(TRUE, string[-1L] != string[-length(string)])
-  after_previous <- c(1L, end[-length(end)] + 1L)
-  after_previous[first] <- 1L
-  piece <- paste0(substring(text, after_previous, start - 1L), replacement)
-  last <- cumsum(count)
-  tail <- substring(x[hit], end[last] + 1L, nchar(x[hit], type = "chars"))
-
-  spliced <- character(length(hit))
-  match_groups <- split(seq_along(string), count[string])
-  string_groups <- split(seq_along(hit), count)
-  for (group in seq_along(string_groups)) {
-    strings <- string_groups[[group]]
-    k <- count[[strings[[1L]]]]
-    # One column for each string of the group, one row for each match.
-    pieces <- matrix(piece[match_groups[[group]]], nrow = k)
-    rows <- lapply(seq_len(k), function(row) pieces[row, ])
-    spliced[strings] <- do.call(paste0, c(rows, list(tail[strings])))
-  }
-  x[hit] <- spliced
-  x
+  splice_matches(x, pattern, function(matched, whole_length) {
+    distinct <- unique(matched)
+    compute(distinct)[match(matched, distinct)]
+  })
 }
 
 # What each matched HTML entity or numeric reference becomes: upstream's

@@ -144,15 +144,10 @@ segment_batch_bytes <- function() 2^26
 # and no empty string. Returns `segment`, every segment of every string in
 # order, and `owner`, the position in `x` of the string each is cut from.
 #
-# The cuts are located from the code points of the strings joined into
-# one: where the newlines are, and how many bytes come before each
-# character. The pieces are then cut with `substring()` by byte position
-# from the strings marked as bytes, as `splice_matches()` does and for its
-# reason: by character position `substring()` reads a UTF-8 string from
-# its start for every piece, which takes time that grows with the square
-# of the number of lines in one string. A cut falls only between
-# characters, so every piece is valid UTF-8 and is marked so again, and
-# nothing is removed on the way: U+FEFF is three bytes like any other.
+# The cuts are located from where the newlines are among the code points
+# of the strings joined into one, and the pieces are cut by
+# `character_cutter()` (R/encoding-fixers.R), whose time does not grow with
+# the square of the number of lines in one string.
 #
 # The strings are taken in batches of about `segment_batch_bytes()` bytes
 # so that the code points of a large vector are never all held at once and
@@ -176,12 +171,11 @@ cut_segments <- function(x, max_length) {
 }
 
 cut_segments_batch <- function(x, max_length) {
-  characters <- nchar(x, type = "chars")
-  code_points <- utf8ToInt(paste(x, collapse = ""))
+  cutter <- character_cutter(x)
   # Positions are counted in characters of the joined strings, as doubles.
   # A line ends at each newline and at the end of each string.
-  string_end <- cumsum(as.numeric(characters))
-  line_end <- sort(unique(c(which(code_points == 10L), string_end)))
+  string_end <- cumsum(as.numeric(cutter$characters))
+  line_end <- sort(unique(c(which(cutter$code_points == 10L), string_end)))
   line_start <- c(1, line_end[-length(line_end)] + 1)
   # A line longer than `max_length` is cut every `max_length` characters.
   count <- ceiling((line_end - line_start + 1) / max_length)
@@ -189,18 +183,6 @@ cut_segments_batch <- function(x, max_length) {
   start <- line_start[line] + (sequence(count) - 1) * max_length
   end <- pmin(start + max_length - 1, line_end[line])
   owner <- findInterval(start, string_end, left.open = TRUE) + 1L
-
-  bytes_before <- c(0, cumsum(
-    1 + (code_points >= 0x80L) + (code_points >= 0x800L) + (code_points >= 0x10000L)
-  ))
-  string_first_byte <- bytes_before[c(0, string_end[-length(string_end)]) + 1]
-  as_bytes <- x
-  Encoding(as_bytes) <- "bytes"
-  segment <- substring(
-    as_bytes[owner],
-    bytes_before[start] - string_first_byte[owner] + 1,
-    bytes_before[end + 1] - string_first_byte[owner]
-  )
-  Encoding(segment) <- "UTF-8"
-  list(segment = segment, owner = owner)
+  before <- string_end[owner] - cutter$characters[owner]
+  list(segment = cutter$cut(owner, start - before, end - before), owner = owner)
 }
