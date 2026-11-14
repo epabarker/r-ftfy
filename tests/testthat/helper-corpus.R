@@ -1,6 +1,7 @@
 # Readers of the larger corpus under tests/corpus/, which is kept out of
 # the built package: tests/corpus/inputs/<slice>.tsv.xz, written by
-# data-raw/generators/corpus_inputs.py (the slice "own"), and
+# data-raw/generators/corpus_inputs.py (the slice "own") and
+# corpus_inputs_outside.py (the slice "outside", ticket #45), and
 # tests/corpus/snapshot/<slice>.tsv.xz, written by
 # data-raw/generators/corpus_snapshot.py, whose docstring says what every
 # column is and how a cell is written. Base R and stringi only.

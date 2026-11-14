@@ -229,7 +229,7 @@ def emoji_of(annotations):
     selector."""
     return [
         key for key in annotations["annotations"]["annotations"]
-        if any(ord(ch) > 0xFFFF or ch == "️" for ch in key)
+        if any(ord(ch) > 0xFFFF or ch == "\ufe0f" for ch in key)
     ]
 
 
@@ -237,7 +237,7 @@ def book_text(data):
     """The text of a Project Gutenberg file between its start and end
     markers, with LF line ends: nothing of Project Gutenberg's own."""
     text = data.decode("utf-8")
-    text = text.lstrip("﻿").replace("\r\n", "\n").replace("\r", "\n")
+    text = text.lstrip("\ufeff").replace("\r\n", "\n").replace("\r", "\n")
     lines = text.split("\n")
     start = [at for at, line in enumerate(lines) if line.startswith("*** START OF")]
     end = [at for at, line in enumerate(lines) if line.startswith("*** END OF")]

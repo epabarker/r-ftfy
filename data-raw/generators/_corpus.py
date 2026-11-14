@@ -6,7 +6,9 @@ The corpus is under tests/corpus/, kept out of the built package:
     tests/corpus/inputs/<slice>.tsv.xz     the inputs of one slice
     tests/corpus/snapshot/<slice>.tsv.xz   what the reference version gives
 
-corpus_inputs.py writes the slice `own`, built from our own text.
+corpus_inputs.py writes the slice `own`, built from our own text, and
+corpus_inputs_outside.py the slice `outside`, built from the committed
+outside text of data-raw/outside/ (ticket #45).
 corpus_snapshot.py writes one snapshot for every inputs file it finds, so
 another slice is added by committing its inputs file and nothing else.
 

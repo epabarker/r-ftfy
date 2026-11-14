@@ -148,7 +148,7 @@ def build(values, rows):
     made = 0
     for detail, _, text in rng.sample(values, len(values)):
         mixed = mix_up(text, "utf-8", "windows-1252", errors="replace")
-        if "�" in mixed and made < 400:
+        if "\ufffd" in mixed and made < 400:
             made += rows.add("lossy-replaced", detail + ", utf-8>windows-1252", mixed)
     made = 0
     for detail, _, text in rng.sample(values, len(values)):
