@@ -112,3 +112,17 @@ licensors, and no licence of theirs applies to the package.
        The sets of characters that Python's regex classes \s, \w and \d
        match are written into the regular expressions as code-point sets,
        as observed on CPython 3.13 with Unicode 15.1.0.
+
+
+Logo
+----
+
+   man/figures/logo.png
+       The package logo. It is not derived from python-ftfy. It is
+
+           Copyright 2026 Ed Barker
+
+       under the Apache License, Version 2.0, like the rest of the
+       package. Its lettering is set in Space Grotesk and JetBrains Mono,
+       both under the SIL Open Font License 1.1. The lettering is part of
+       the image, and no font software is included in the package.

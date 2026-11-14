@@ -13,3 +13,4 @@
 ^\.Rproj\.user$
 ^bench$
 ^tests/corpus$
+^logo$
