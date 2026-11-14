@@ -1,7 +1,8 @@
 # Regenerates every generated file and snapshot from the reference version
 # (ftfy 6.3.1 on Python 3.13) and fails on any byte difference from what is
-# committed. This is the only place outside a maintainer's machine where
-# Python runs (ADR 0009).
+# committed. Python runs outside a maintainer's machine here and in the
+# benchmark workflow (benchmark.yaml), which times the reference version
+# against the package; no test of the package runs it (ADR 0009).
 #
 # A ticket that adds a generated file adds a script to data-raw/generators/;
 # this workflow does not list them and does not need to change.
