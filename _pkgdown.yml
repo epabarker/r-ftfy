@@ -1,0 +1,32 @@
+# The pkgdown site (issue #49, the resolution of issue #19). Built by
+# .github/workflows/pkgdown.yaml and published to GitHub Pages.
+url: https://epabarker.github.io/r-ftfy/
+
+# docs/ holds the ADRs and the agent docs, so the site is built elsewhere.
+destination: site
+
+template:
+  bootstrap: 5
+  bslib:
+    # Aubergine from the logo is the primary colour: the navbar and links.
+    primary: "#3B1F4A"
+    # Mint is used only on aubergine (on white its contrast is about 1.6:1):
+    # the package name and the hovered and current links of the aubergine
+    # navbar. Its other links are white.
+    navbar-dark-color: "rgba(255, 255, 255, 0.85)"
+    navbar-dark-hover-color: "#7EE0B5"
+    navbar-dark-active-color: "#7EE0B5"
+    # System fonts, no web fonts.
+    base_font: >-
+      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+      "Noto Sans", "Liberation Sans", Arial, sans-serif
+    heading_font: >-
+      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+      "Noto Sans", "Liberation Sans", Arial, sans-serif
+    code_font: >-
+      SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace
+
+navbar:
+  bg: primary
+  type: dark
