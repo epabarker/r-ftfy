@@ -185,7 +185,7 @@ replay_step <- function(x, action, parameter) {
   )
 }
 
-# The fixers that work on bytes (ftfy/fixes.py:420 and :463). Every other
+# The fixers that work on bytes (ftfy/fixes.py:419 and :442). Every other
 # fixer works on text, `fix_c1_controls` too, although upstream records it
 # as a `transcode` step.
 byte_fixers <- c("restore_byte_a0", "replace_lossy_sequences")

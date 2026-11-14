@@ -153,7 +153,7 @@ bind_steps <- function(steps) {
 }
 
 # One step of the repair, over strings with no `NA`: upstream's
-# `_fix_encoding_one_step_and_explain()` (ftfy/__init__.py:469). Returns
+# `_fix_encoding_one_step_and_explain()` (ftfy/__init__.py:468). Returns
 # the texts and the steps taken, as `repair_encoding()` does. It loops over
 # codecs, never over strings: `todo` holds the positions not yet answered.
 repair_encoding_step <- function(x, config) {

@@ -142,7 +142,7 @@ fix_and_explain <- function(x, ..., config = ftfy_config()) {
 }
 
 # The fixers of the loop that come after the encoding repair, in the order
-# upstream runs them (ftfy/__init__.py:398), less `fix_surrogates`, which
+# upstream runs them (ftfy/__init__.py:402), less `fix_surrogates`, which
 # is not ported. Each is gated by the option of its own name and found as
 # `fixer_<name>`.
 loop_fixers <- c(
@@ -152,7 +152,7 @@ loop_fixers <- c(
 )
 
 # The fixer loop over a vector of segments: upstream's `fix_and_explain()`
-# (ftfy/__init__.py:359) on each element, each taken whole.
+# (ftfy/__init__.py:364) on each element, each taken whole.
 #
 # `x` is a bare character vector of valid UTF-8 strings and `NA`s, as
 # `entry_step()` gives it or any pieces cut from that. `config` is the
@@ -165,7 +165,7 @@ loop_fixers <- c(
 # for the elements that hold no "<". It is decided once, from the text as
 # it comes in, and not looked at again. `fix_text()` passes its own vector,
 # because there a "<" switches the fixer off for the later segments of the
-# same string too (ftfy/__init__.py:351); when it does, the option in
+# same string too (ftfy/__init__.py:356); when it does, the option in
 # `config` is not read.
 #
 # Returns what `repair_encoding()` returns: a list of `text`, the fixed
