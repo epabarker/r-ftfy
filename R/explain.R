@@ -203,7 +203,10 @@ fix_segments <- function(x, config, unescape_html = NULL) {
 
     if (config$fix_encoding) {
       repaired <- repair_encoding(now, config)
-      steps <- add_steps(steps, repaired$steps, element = live[repaired$steps$element])
+      steps <- add_step(
+        steps, live[repaired$steps$element], repaired$steps$action,
+        repaired$steps$parameter
+      )
       now <- repaired$text
     }
 

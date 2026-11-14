@@ -107,7 +107,9 @@ repair_encoding <- function(x, config) {
   live <- which(!is.na(x))
   while (length(live) > 0L) {
     pass <- repair_encoding_step(text[live], config)
-    steps <- add_steps(steps, pass$steps, element = live[pass$steps$element])
+    steps <- add_step(
+      steps, live[pass$steps$element], pass$steps$action, pass$steps$parameter
+    )
     changed <- pass$text != text[live]
     text[live] <- pass$text
     live <- live[changed]
@@ -130,8 +132,9 @@ new_steps <- function() {
   list()
 }
 
-# Add one step, or the steps of a chunk, for the elements `element`.
-# `action` and `parameter` are single strings or parallel to `element`.
+# Add a step for each of the elements `element`. `action` and `parameter`
+# are single strings, the same step for all, or parallel to `element`, as
+# when the steps of an inner call, renumbered, are added.
 add_step <- function(steps, element, action, parameter) {
   if (length(element) == 0L) {
     return(steps)
@@ -142,10 +145,6 @@ add_step <- function(steps, element, action, parameter) {
     parameter = rep_len(parameter, length(element))
   )
   steps
-}
-
-add_steps <- function(steps, chunk, element) {
-  add_step(steps, element, chunk$action, chunk$parameter)
 }
 
 bind_steps <- function(steps) {

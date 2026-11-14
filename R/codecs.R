@@ -88,11 +88,6 @@ codec <- function(name) {
   found
 }
 
-# Whether `name` is one of the 13 codecs.
-codec_is_known <- function(name) {
-  is.character(name) && length(name) == 1L && name %in% plan_codecs
-}
-
 # Upstream's `possible_encoding()`: could each string have been decoded
 # from this codec, that is, can it be encoded with it? `NA` for `NA`.
 # Every string can be encoded as UTF-8.
