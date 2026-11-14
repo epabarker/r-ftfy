@@ -129,6 +129,9 @@ options_not_ported <- c(
 #' however they are given. In Python ftfy 6.3.1, `fix_text()` ignores them
 #' when they are given as keyword arguments.
 #'
+#' Every departure from the reference version is listed, with examples,
+#' on the page [ftfy-differences].
+#'
 #' @param ... Options to change from their defaults, each given by its full
 #'   name. See the section Options.
 #'

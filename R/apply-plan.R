@@ -49,6 +49,9 @@
 #' put in their place, because an R string cannot hold U+0000. Codec names
 #' are accepted in one spelling only.
 #'
+#' Every departure from the reference version is listed, with examples,
+#' on the page [ftfy-differences].
+#'
 #' @param x A character vector. Anything else is an error, as is a string
 #'   that is not valid UTF-8.
 #' @param plan The plan to replay: a vector of plans, or a character vector

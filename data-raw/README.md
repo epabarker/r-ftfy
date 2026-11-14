@@ -35,11 +35,13 @@ To add a generated file, add one script to `generators/` that writes one file. N
 Rscript data-raw/build.R
 ```
 
-`build.R` runs every script in `sysdata/` and saves the objects they define to `R/sysdata.rda`, then rebuilds `NAMESPACE` and `man/` with roxygen2. It needs no Python. `Rscript data-raw/build.R --check` fails if `R/sysdata.rda` does not match its sources.
+`build.R` runs every script in `sysdata/` and saves the objects they define to `R/sysdata.rda`, writes the "differences from Python ftfy" help page to `R/differences.R`, then rebuilds `NAMESPACE` and `man/` with roxygen2. It needs no Python. `Rscript data-raw/build.R --check` fails if `R/sysdata.rda` or `R/differences.R` does not match its sources.
+
+The differences page is written by `differences.R` from the departure registry, `inst/departures/`: one section for each `<id>.dcf`, found by listing. To change what the page says about a departure, edit its entry and run `build.R`; a new entry needs nothing else. The help topic is `ftfy-differences` (`man/ftfy-differences.Rd`).
 
 `sysdata/patterns.R` reads every file in `patterns/` into the internal vector `patterns`, and `sysdata/codecs.R` reads every file in `codecs/` into the internal list `codec_tables`. Neither lists its files. `sysdata/tables.R` reads the five files in `tables/` into `html_entities`, `html_numeric`, `ligatures`, `width_map` and `control_chars`. Only decode tables are shipped: the encode side of each codec is built from its table when the package is loaded.
 
-`R/sysdata.rda`, `NAMESPACE` and `man/` are never edited or merged by hand. On a merge conflict in any of them, take either side and run `build.R`.
+`R/sysdata.rda`, `R/differences.R`, `NAMESPACE` and `man/` are never edited or merged by hand. On a merge conflict in any of them, take either side and run `build.R`.
 
 ## The upstream JSON cases
 

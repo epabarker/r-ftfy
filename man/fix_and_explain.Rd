@@ -68,6 +68,9 @@ their place, so no step \verb{apply remove_control_chars} is recorded for
 removing it. And a string that ends in a newline just after the byte
 C0, or after the first five bytes of a six-byte surrogate pair, is not
 repaired by reading the newline as the missing byte.
+
+Every departure from the reference version is listed, with examples,
+on the page \link{ftfy-differences}.
 }
 
 \examples{

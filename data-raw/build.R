@@ -1,8 +1,10 @@
 # Rebuild what is derived from committed sources: the internal package data
-# in R/sysdata.rda, then NAMESPACE and man/ (through roxygen2).
+# in R/sysdata.rda, the "differences from Python ftfy" page in
+# R/differences.R, then NAMESPACE and man/ (through roxygen2).
 #
 #   Rscript data-raw/build.R           rebuild everything
-#   Rscript data-raw/build.R --check   fail if R/sysdata.rda is out of date
+#   Rscript data-raw/build.R --check   fail if R/sysdata.rda or
+#                                      R/differences.R is out of date
 #
 # Internal data is built by the scripts in data-raw/sysdata/, which are found
 # by listing that directory. Each script is run in its own environment, with
@@ -10,8 +12,12 @@
 # there whose name does not start with a dot goes into R/sysdata.rda. To
 # ship a new object, add a script; nothing here lists them.
 #
-# R/sysdata.rda, NAMESPACE and man/ are never edited or merged by hand. On a
-# merge conflict in any of them, take either side and run this script.
+# The differences page is written from the departure registry,
+# inst/departures/, by data-raw/differences.R: one section for each entry.
+#
+# R/sysdata.rda, R/differences.R, NAMESPACE and man/ are never edited or
+# merged by hand. On a merge conflict in any of them, take either side and
+# run this script.
 #
 # This script needs no Python. It carries no derived-file header because it
 # holds nothing taken from python-ftfy; the scripts in data-raw/sysdata/ and
@@ -59,11 +65,16 @@ target <- "R/sysdata.rda"
 built <- build_sysdata()
 current <- identical(read_sysdata(target), built)
 
+source("data-raw/differences.R", local = TRUE)
+page_current <- differences_current()
+
 if (check_only) {
-  if (!current) {
-    stop(target, " is out of date: run `Rscript data-raw/build.R` and commit the result")
+  stale <- c(target, differences_file)[!c(current, page_current)]
+  if (length(stale) > 0L) {
+    stop(paste(stale, collapse = " and "), " out of date: ",
+         "run `Rscript data-raw/build.R` and commit the result")
   }
-  message(target, " is up to date")
+  message(target, " and ", differences_file, " are up to date")
   quit(status = 0L)
 }
 
@@ -75,6 +86,14 @@ if (current) {
   save(list = names(built), envir = list2env(built), file = target,
        version = 3L, compress = "xz")
   message("wrote ", target, ": ", paste(names(built), collapse = ", "))
+}
+
+# As for the internal data, the page is rewritten only when it changes.
+if (page_current) {
+  message(differences_file, " is up to date")
+} else {
+  write_differences()
+  message("wrote ", differences_file)
 }
 
 roxygen2::roxygenise(".", load_code = roxygen2::load_source)

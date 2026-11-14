@@ -99,6 +99,9 @@ explained_frame <- function(text, plan_text) {
 #' C0, or after the first five bytes of a six-byte surrogate pair, is not
 #' repaired by reading the newline as the missing byte.
 #'
+#' Every departure from the reference version is listed, with examples,
+#' on the page [ftfy-differences].
+#'
 #' @inheritParams fix_encoding
 #'
 #' @return A data frame with one row for each element of `x`, in the order

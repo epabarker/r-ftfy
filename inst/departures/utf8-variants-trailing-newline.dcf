@@ -13,18 +13,26 @@ Reference: The newline is read as the missing last byte of the sequence
  b'\xed\xa0\xbd\xed\xb8\n'.decode('utf-8-variants') returns
  '\U0001f60a'; with any byte after the newline, or without the newline,
  both raise UnicodeDecodeError. fix_encoding('sch\u00c3\u00b6n \u00c0\n')
- returns 'sch\xf6n \x00' with the plan encode latin-1, decode
- utf-8-variants, and fix_text() of it returns 'sch\xf6n '.
+ returns 'sch\xf6n \x00', fix_encoding_and_explain() gives that text
+ with the plan [('encode', 'latin-1'), ('decode', 'utf-8-variants')],
+ and fix_text() of it returns 'sch\xf6n '.
  fix_encoding('\u00ed\u00a0\u00bd\u00ed\u00b8\n') and fix_text() of it
- return '\U0001f60a'.
+ return '\U0001f60a'. In a text of several lines, a line that ends this
+ way is joined to the next:
+ fix_text('one \u00c3\u00a9 \u00c0\ntwo \u00c3\u00a9') returns
+ 'one \xe9 two \xe9'.
 R: Decoding fails, as it does in the reference version when anything
  other than a final newline follows, so this decoding repairs nothing and
  the newline is kept. The repair then goes on as it does for any text
  that does not decode: fix_encoding('sch\u00c3\u00b6n \u00c0\n') gives
- 'sch\xf6n \xc0\n', with the mojibake before the C0 repaired by
- decode_inconsistent_utf8, and fix_encoding('\u00ed\u00a0\u00bd\u00ed\u00b8\n')
- returns its input unchanged. fix_text() gives the same two texts, and
- repairs every other line of its input as the reference version does.
+ 'sch\xf6n \xc0\n', with the mojibake before the C0 repaired by the
+ fixer decode_inconsistent_utf8, so fix_encoding_and_explain() gives the
+ plan 'apply decode_inconsistent_utf8'.
+ fix_encoding('\u00ed\u00a0\u00bd\u00ed\u00b8\n') returns its input
+ unchanged, with the plan 'none'. fix_text() gives the same two texts,
+ and repairs every other line of its input as the reference version
+ does: fix_text('one \u00c3\u00a9 \u00c0\ntwo \u00c3\u00a9') gives
+ 'one \xe9 \xc0\ntwo \xe9', on two lines.
  Replaying the reference version's plan for
  such a text with apply_plan() is a failed replay, at the step decode
  utf-8-variants.

@@ -44,8 +44,9 @@ plainly are UTF-8 mojibake are repaired one by one (the option
 same bytes (the option \code{fix_c1_controls}; see \code{\link[=fix_c1_controls]{fix_c1_controls()}}).
 }
 
-Call it on a whole vector, not once per string: each call has a fixed
-cost of about half a millisecond.
+Call it on a whole vector, not once per string: each call on text that
+is not plain ASCII has a fixed cost of about a millisecond, however
+long the vector (see \link[=ftfy-package]{ftfy} for the measurements).
 }
 \section{Differences from Python ftfy}{
 
@@ -54,6 +55,9 @@ character U+0000, nothing is put in their place, because an R string
 cannot hold U+0000. And a string that ends in a newline just after the
 byte C0, or after the first five bytes of a six-byte surrogate pair, is
 not repaired by reading the newline as the missing byte.
+
+Every departure from the reference version is listed, with examples,
+on the page \link{ftfy-differences}.
 }
 
 \examples{

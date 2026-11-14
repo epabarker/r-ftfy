@@ -48,7 +48,7 @@ entry_step <- function(x) {
   # encoding, which base R knows and stringi can disagree with.
   native <- which(mark == "unknown" & !stringi::stri_enc_isascii(x))
   if (length(native) > 0L) {
-    x[native] <- enc2utf8(x[native])
+    x[native] <- read_native(x[native])
   }
 
   # A mark is a claim about the bytes, not a guarantee.
@@ -72,6 +72,20 @@ entry_shape <- function(x) {
 exit_step <- function(result, shape) {
   attributes(result) <- shape
   result
+}
+
+# Unmarked non-ASCII strings as text, read in the session's native
+# encoding. Where that is UTF-8 the bytes already are the text and only
+# the mark is set, so that invalid bytes reach the check in `entry_step()`
+# on every R. `enc2utf8()` was measured to do the same on R 4.5.3, 4.6.2
+# and devel, but on R 4.2.3 it replaces an invalid byte by text such as
+# `<e9>`, and no error was raised (issue #43).
+read_native <- function(x) {
+  if (isTRUE(l10n_info()[["UTF-8"]])) {
+    Encoding(x) <- "UTF-8"
+    return(x)
+  }
+  enc2utf8(x)
 }
 
 # `latin1`-marked strings as text, read as true ISO 8859-1 through the
