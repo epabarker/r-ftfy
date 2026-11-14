@@ -158,7 +158,7 @@ codec_decode <- function(x, name) {
 translate <- function(old, new, x) {
   ascii <- stringi::stri_enc_isascii(x)
   marked <- which(!ascii)
-  x[marked] <- chartr(old, new, x[marked])
+  x[marked] <- translate_marked(old, new, x[marked])
   if (any(utf8ToInt(old) < 0x80L)) {
     plain <- which(ascii)
     padded <- chartr(old, new, paste0(x[plain], utf8_marked))
@@ -167,6 +167,31 @@ translate <- function(old, new, x) {
   x
 }
 utf8_marked <- intToUtf8(0x100L)
+
+# `chartr()` on strings that are not ASCII. It raises an error for a string
+# that holds the noncharacter U+FFFE or U+FFFF, which are valid UTF-8 and
+# which the reference version carries along like any character (the other
+# 64 noncharacters it takes). Only then are such strings looked for: the
+# text between those two characters is translated and they stay where they
+# are. Neither is in any table, so that is the translation of the string.
+translate_marked <- function(old, new, x) {
+  tryCatch(
+    chartr(old, new, x),
+    error = function(e) {
+      refused <- which(regex_detect(x, chartr_refuses))
+      if (length(refused) == 0L) {
+        stop(e)
+      }
+      x[-refused] <- chartr(old, new, x[-refused])
+      x[refused] <- replace_matches(
+        x[refused], chartr_accepts, function(matched) translate(old, new, matched)
+      )
+      x
+    }
+  )
+}
+chartr_refuses <- "[\\x{FFFE}\\x{FFFF}]"
+chartr_accepts <- "[^\\x{FFFE}\\x{FFFF}]+"
 
 # `utf-8` encoding: the bytes of each string, held as text. The strings
 # are valid UTF-8 already, so their bytes are read as ISO 8859-1, which

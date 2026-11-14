@@ -50,3 +50,4 @@ data-raw/differences.R	Writes the differences page from the departure registry; 
 tests/testthat/helper-help.R	Readers for the package's help pages; this package's own machinery.
 tests/testthat/test-help.R	Tests of this package's own help pages and NEWS.
 tests/testthat/test-differences.R	Tests that the differences page says what the departure registry says; this package's own machinery.
+tests/testthat/test-noncharacters.R	Tests of R-only behaviour around base R chartr() and the noncharacters; no upstream test is translated.
