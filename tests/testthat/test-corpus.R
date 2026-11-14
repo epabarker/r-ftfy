@@ -21,6 +21,10 @@
 # Rows tagged with a Unicode version newer than the running ICU's are not
 # compared, nor are the rows tagged "unassigned"; the first test says how
 # many.
+#
+# The counts pinned here are of the slice "own" only, so that another
+# slice (outside text, ticket #45) changes none of them; the comparison
+# itself is over every slice.
 
 skip_unless_comparing <- function() {
   mode <- Sys.getenv("FTFY_CORPUS_COMPARISON")
@@ -84,7 +88,7 @@ test_that("rows tagged with a Unicode version newer than the running ICU's are n
   newer <- sum(tag != "unassigned" & !corpus_comparable(tag))
 
   expect_identical(length(state$rows) + newer + unassigned, nrow(state$snapshot))
-  expect_identical(unassigned, 80L)
+  expect_identical(sum(tag == "unassigned" & state$inputs$slice == "own"), 80L)
   if (newer > 0L) {
     skip(sprintf(
       paste(
@@ -142,7 +146,7 @@ test_that("the inputs that hold a noncharacter are compared", {
   state <- corpus_loaded()
   noncharacter <- stringi::stri_detect_regex(state$inputs$text, "\\p{Noncharacter_Code_Point}")
   tag <- state$snapshot$unicode
-  old <- noncharacter & tag != "unassigned" &
+  old <- noncharacter & state$inputs$slice == "own" & tag != "unassigned" &
     numeric_version(ifelse(tag == "unassigned", "0", tag)) <= numeric_version("14.0")
 
   expect_identical(sum(old), 184L)
@@ -153,7 +157,8 @@ test_that("the inputs that hold a noncharacter are compared", {
 })
 
 # How many differences of each comparison the registry entry
-# utf8-variants-trailing-newline matches. Every row that shows it is of
+# utf8-variants-trailing-newline matches in the slice "own". Every row
+# there that shows it is of
 # the variant multiline-cut-short, tagged Unicode 6.0 or older, so these
 # counts hold on every ICU. They are 0 for the two variants that do not
 # repair encoding, and for the fixers, badness() and is_bad().
@@ -183,8 +188,10 @@ test_that("the trailing-newline departure is met as often as pinned, in one vari
     skip("Not every family was compared.")
   }
   differences <- do.call(rbind, unname(state$differences[corpus_families]))
+  own <- state$inputs$slice == "own"
   shown <- differences[differences$departure %in% "utf8-variants-trailing-newline", ]
-  cut_short <- state$inputs$variant == "multiline-cut-short"
+  shown <- shown[own[shown$row], , drop = FALSE]
+  cut_short <- state$inputs$variant == "multiline-cut-short" & own
 
   expect_true(all(cut_short[shown$row]))
   expect_true(all(numeric_version(state$snapshot$unicode[cut_short]) <= numeric_version("6.0")))

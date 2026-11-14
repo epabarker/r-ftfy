@@ -35,7 +35,7 @@
 # decoder made to read a final newline as the reference version reads it
 # (C0 0A at the end as C0 80; ED, A0 to AF, 80 to BF, ED, B0 to BF, 0A at
 # the end as a pair whose last byte is 8A, since only the low six bits of
-# that byte are used: ftfy/bad_codecs/utf8_variants.py:158 and :207). The
+# that byte are used: ftfy/bad_codecs/utf8_variants.py:168 and :221). The
 # difference is this departure when that run met such bytes and gives the
 # reference version's result, and so nothing but the departure lies
 # between the two. It is asked of the function itself, so the codecs
