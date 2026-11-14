@@ -22,7 +22,7 @@ python data-raw/regenerate.py
 
 ## Outside text
 
-`outside/` holds the outside text of the larger corpus (ticket #45), under the licence rule of the resolution of #15. `outside/SOURCES` names each source with its version, licence and attribution; `outside/pins.tsv` gives the URL and SHA-256 of every file read from them; `outside/values.tsv.xz` is the values selected, committed. The selection script is the only thing here that downloads, and it is run by a maintainer, never by the `reference` workflow:
+`outside/` holds the outside text of the larger corpus (ticket #45), under the licence rule of the resolution of #15. `outside/SOURCES` names each source with its version, licence and attribution; `outside/pins.tsv` gives the URL and SHA-256 of every file read from them; `outside/values.tsv.xz` is the values selected, committed; `outside/variants.tsv` lists the variants of the slice with the fewest rows of each, read by both the generator and the tests. The languages and the codecs each is mixed up with are in `generators/_outside.py`, which the selection and the generator both import. The selection script is the only thing here that downloads, and it is run by a maintainer, never by the `reference` workflow:
 
 ```
 python data-raw/outside/select.py --downloads <empty directory outside the repo>

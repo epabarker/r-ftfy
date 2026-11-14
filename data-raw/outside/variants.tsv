@@ -1,0 +1,6 @@
+variant	least	what
+clean	2000	a value as the source has it
+mixup-1	2000	one layer: encoded with UTF-8, decoded with another codec
+mixup-2	500	two layers
+lossy-replaced	150	the holes of strict windows-1252 decoded as U+FFFD
+lossy-a0-space	50	the byte A0 of a mix-up became a space
