@@ -140,7 +140,7 @@ test_that("the snapshot has every column of the scope, and every cell reads", {
   )
   variants <- names(corpus_variants())
   expect_length(variants, 15L)
-  sub_options <- c("restore_byte_a0", "replace_lossy_sequences", "decode_inconsistent_utf8", "fix_c1_controls")
+  sub_options <- encoding_sub_options
   explaining <- c("fix_and_explain", "fix_encoding_and_explain")
   text_columns <- c(
     paste0("fixer.", fixers),

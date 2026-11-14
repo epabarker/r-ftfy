@@ -12,11 +12,9 @@ fix_and_explain_variants <- function() {
     "fix_latin_ligatures", "fix_character_width", "uncurl_quotes",
     "fix_line_breaks", "remove_control_chars"
   )
-  off <- lapply(booleans, function(option) stats::setNames(list(FALSE), option))
-  names(off) <- paste0("no_", booleans)
   c(
     list(default = list()),
-    off,
+    options_off(booleans),
     list(
       normalization_NFD = list(normalization = "NFD"),
       normalization_NFKC = list(normalization = "NFKC"),
@@ -35,7 +33,7 @@ fix_and_explain_variants <- function() {
 # filled in. A reference text that holds U+0000 stays escaped (see
 # `unescape_reference()`).
 read_fix_and_explain_snapshot <- function() {
-  raw <- read_reference_table("fix_and_explain.tsv", text = "text")
+  raw <- read_reference("fix_and_explain.tsv", text = "text")
   variants <- setdiff(names(fix_and_explain_variants()), "default")
   stopifnot(identical(
     names(raw),

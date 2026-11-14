@@ -10,7 +10,7 @@ text_fixer_names <- c(
 # The rows of one fixer: a data frame of `text`, the input, and `fixed`,
 # what the reference version's fixer of that name gives for it.
 read_text_fixer_snapshot <- function(fixer) {
-  snapshot <- read_reference_table("text_fixers.tsv", text = c("text", "fixed"))
+  snapshot <- read_reference("text_fixers.tsv", text = c("text", "fixed"))
   stopifnot(fixer %in% snapshot$fixer)
   snapshot[snapshot$fixer == fixer, c("text", "fixed")]
 }

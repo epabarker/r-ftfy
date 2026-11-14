@@ -23,10 +23,9 @@ test_that("apply_plan() replays the plan of a repair on the text it came from", 
 # column is filled from the column it stands for, and a reference text that
 # holds U+0000 stays escaped (see `unescape_reference()`).
 replay_rows <- function() {
-  raw <- read_reference_table("fix_encoding.tsv", text = "text")
+  raw <- read_reference("fix_encoding.tsv", text = "text")
   fill <- function(column, from) ifelse(raw[[column]] == "", raw[[from]], raw[[column]])
-  options <- c("restore_byte_a0", "replace_lossy_sequences",
-               "decode_inconsistent_utf8", "fix_c1_controls")
+  options <- encoding_sub_options
   rows <- lapply(c("", options), function(option) {
     if (option == "") {
       plan <- raw$plan
@@ -183,7 +182,7 @@ test_that("each text fixer replays as the reference version's fixer, under eithe
 })
 
 test_that("the two text fixers of the encoding repair replay as the reference version's", {
-  raw <- read_reference_table("fix_encoding.tsv", text = "text")
+  raw <- read_reference("fix_encoding.tsv", text = "text")
   for (fixer in c("decode_inconsistent_utf8", "fix_c1_controls")) {
     reference <- unescape_reference(ifelse(raw[[fixer]] == "", raw$text, raw[[fixer]]))
     for (action in c("apply", "transcode")) {

@@ -46,7 +46,7 @@ read_json_cases <- function(reader = json_reader()) {
   absent <- is.na(cases$fixed_encoding)
   cases$fixed_encoding[absent] <- cases$fixed[absent]
 
-  snapshot <- read_reference_table(
+  snapshot <- read_reference(
     "json_cases.tsv",
     text = c("original", "fix_text", "fix_and_explain_text", "fix_encoding_text",
              "extra_layer", "extra_layer_fix_text")

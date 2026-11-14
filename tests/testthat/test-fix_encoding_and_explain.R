@@ -126,7 +126,7 @@ test_that("fix_encoding_and_explain() takes options by name and through a saved 
 })
 
 test_that("the texts are those of fix_encoding() on every snapshot input", {
-  snapshot <- read_reference_table("fix_encoding.tsv", text = "text")
+  snapshot <- read_reference("fix_encoding.tsv", text = "text")
 
   expect_identical(fix_encoding_and_explain(snapshot$text)$text, fix_encoding(snapshot$text))
 })
@@ -162,7 +162,7 @@ test_that("one call on the whole vector gives the same texts and plans as one ca
   # string each, the slowest kind of test here. It runs wherever NOT_CRAN
   # is "true": every check job of the R-CMD-check workflow.
   skip_on_cran()
-  snapshot <- read_reference_table("fix_encoding.tsv", text = "text")
+  snapshot <- read_reference("fix_encoding.tsv", text = "text")
   cases <- read_json_cases()
   x <- c(snapshot$text, NA, cases$original, snapshot$text[1:200], NA, cases$original[1:40])
   # A fixed shuffle, so that duplicates and `NA`s are not next to each other.

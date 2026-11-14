@@ -112,12 +112,10 @@ corpus_variants <- function() {
     "fix_latin_ligatures", "fix_character_width", "uncurl_quotes", "fix_line_breaks",
     "remove_control_chars"
   )
-  off <- lapply(booleans, function(option) stats::setNames(list(FALSE), option))
-  names(off) <- paste0("no_", booleans)
   all_off <- c(stats::setNames(rep(list(FALSE), length(booleans)), booleans), list(normalization = NULL))
   c(
     list(default = list()),
-    off,
+    options_off(booleans),
     list(normalization_NULL = list(normalization = NULL), all_off = all_off)
   )
 }

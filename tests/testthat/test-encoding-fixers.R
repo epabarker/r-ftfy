@@ -4,7 +4,7 @@
 # and :505), so nothing here is translated.
 
 fixer_snapshot <- function() {
-  raw <- read_reference_table("fix_encoding.tsv", text = character())
+  raw <- read_reference("fix_encoding.tsv", text = character())
   fill <- function(column) ifelse(raw[[column]] == "", raw$text, raw[[column]])
   data.frame(
     text = stringi::stri_unescape_unicode(raw$text),

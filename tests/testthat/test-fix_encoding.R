@@ -7,13 +7,8 @@
 # data-raw/generators/snapshot_fix_encoding.py. A sparse column is filled
 # from the column it stands for, and every reference text is read with
 # `unescape_reference()`, which leaves a text holding U+0000 escaped.
-encoding_options <- c(
-  "restore_byte_a0", "replace_lossy_sequences",
-  "decode_inconsistent_utf8", "fix_c1_controls"
-)
-
 read_encoding_snapshot <- function() {
-  raw <- read_reference_table("fix_encoding.tsv", text = character())
+  raw <- read_reference("fix_encoding.tsv", text = character())
   fill <- function(column, from) ifelse(raw[[column]] == "", raw[[from]], raw[[column]])
   out <- data.frame(
     text = stringi::stri_unescape_unicode(raw$text),
@@ -23,7 +18,7 @@ read_encoding_snapshot <- function() {
     fix_c1_controls = unescape_reference(fill("fix_c1_controls", "text")),
     stringsAsFactors = FALSE
   )
-  for (option in encoding_options) {
+  for (option in encoding_sub_options) {
     out[[paste0("no_", option)]] <- unescape_reference(fill(paste0("no_", option), "fixed"))
     out[[paste0("plan_no_", option)]] <- fill(paste0("plan_no_", option), "plan")
   }
@@ -127,7 +122,7 @@ test_that("fix_encoding() differs from the snapshot only on the rows of the two 
 test_that("each of the four options under fix_encoding changes the repair as in the reference version", {
   snapshot <- read_encoding_snapshot()
 
-  for (option in encoding_options) {
+  for (option in encoding_sub_options) {
     reference <- snapshot[[paste0("no_", option)]]
     # The option matters: without it some texts are repaired differently.
     expect_gte(sum(reference != snapshot$fixed), 10, label = option)
@@ -171,7 +166,7 @@ test_that("the steps recorded inside the repair are the reference version's plan
   expect_identical(sum(departs), 4L)
 
   expect_identical(internal_plans(snapshot$text)[!departs], snapshot$plan[!departs])
-  for (option in encoding_options) {
+  for (option in encoding_sub_options) {
     plans <- do.call(internal_plans, c(list(snapshot$text), stats::setNames(list(FALSE), option)))
     expect_identical(plans[!departs], snapshot[[paste0("plan_no_", option)]][!departs], label = option)
   }

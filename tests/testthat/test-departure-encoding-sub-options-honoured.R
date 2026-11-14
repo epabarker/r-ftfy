@@ -15,8 +15,7 @@
 # what it gives for the option in a TextFixerConfig.
 sub_option_examples <- function() {
   data.frame(
-    option = c("restore_byte_a0", "replace_lossy_sequences",
-               "decode_inconsistent_utf8", "fix_c1_controls"),
+    option = encoding_sub_options,
     text = c("voil\u00c3  le travail", "\u00c3\ufffdtude",
              "\u2603 caf\u00c3\u00a9", "\u0094\u044f"),
     keyword = c("voil\u00e0 le travail", "\ufffdtude", "\u2603 caf\u00e9", "\"\u044f"),

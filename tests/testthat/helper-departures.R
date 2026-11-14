@@ -118,17 +118,3 @@ expect_reference <- function(fun, input, actual, reference,
     )
   ))
 }
-
-# Read a tab-separated snapshot whose escaped columns are named in `text`.
-# Every column comes back as character.
-read_reference_table <- function(name, text) {
-  out <- utils::read.delim(
-    test_path("reference", name),
-    quote = "", colClasses = "character", na.strings = character(0),
-    comment.char = "", strip.white = FALSE, encoding = "UTF-8",
-    stringsAsFactors = FALSE
-  )
-  stopifnot(all(text %in% names(out)))
-  out[text] <- lapply(out[text], stringi::stri_unescape_unicode)
-  out
-}

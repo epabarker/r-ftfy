@@ -15,24 +15,13 @@ bytes_from_hex <- function(hex) {
   }, character(1), USE.NAMES = FALSE)
 }
 
-# Unescape reference texts. A text of the reference version that holds
-# U+0000 cannot be an R string: it stays escaped, as the file has it, and
-# is recognised by the six characters \u0000. (The generators escape a
-# backslash, so an escaped text holds them for no other reason.) The
-# matcher of the departure `decoded-nul-dropped` reads this form.
-unescape_reference <- function(x) {
-  holds_nul <- grepl("\\u0000", x, fixed = TRUE)
-  x[!holds_nul] <- stringi::stri_unescape_unicode(x[!holds_nul])
-  x
-}
-
 # The decoder corpus. `bytes` is the byte string; `utf8` and `variants`
 # are what the package must give for the two codecs, with `NA` for
 # "fails"; `python_variants` is what the reference version gives for
 # `utf-8-variants` (see `unescape_reference()`); `departure` is "" or the
 # id of the registry entry by which the last two differ.
 read_decoder_corpus <- function() {
-  raw <- read_reference_table("decoder_corpus.tsv", text = character())
+  raw <- read_reference("decoder_corpus.tsv", text = character())
   text_or_na <- function(status, text, unescape) {
     stopifnot(all(status %in% c("text", "fails")), all(text[status == "fails"] == ""))
     out <- unescape(text)

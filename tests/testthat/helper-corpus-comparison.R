@@ -9,11 +9,6 @@
 # `what` ("text", "plan" or "value"). A call is one call of the package on
 # the whole vector of inputs that gives one or more comparisons.
 
-corpus_sub_options <- c(
-  "restore_byte_a0", "replace_lossy_sequences", "decode_inconsistent_utf8",
-  "fix_c1_controls"
-)
-
 corpus_fixers <- c(
   "unescape_html", "remove_terminal_escapes", "uncurl_quotes",
   "fix_latin_ligatures", "fix_character_width", "fix_line_breaks",
@@ -88,7 +83,7 @@ corpus_calls <- function(snapshot, inputs) {
       keys <- paste0("fix_text.", variant)
       form <- ""
       option <- sub("^no_", "", variant)
-      if (option %in% corpus_sub_options) {
+      if (option %in% encoding_sub_options) {
         keys <- c(keys, paste0("fix_text.keyword_no_", option))
         form <- c("", "keyword")
       }

@@ -175,7 +175,7 @@ trailing_newline_counts <- function() {
   repeated <- function(keys, n) stats::setNames(rep(n, length(keys)), keys)
   explaining <- c("fix_and_explain", "fix_encoding_and_explain")
   counts <- c(
-    repeated(c(paste0("fix_text.", variants), paste0("fix_text.keyword_no_", corpus_sub_options)), 293L),
+    repeated(c(paste0("fix_text.", variants), paste0("fix_text.keyword_no_", encoding_sub_options)), 293L),
     fix_text.max_decode_length_10 = 124L,
     fix_text.max_decode_length_60 = 279L,
     repeated(c(

@@ -2,14 +2,6 @@
 # tests/testthat/reference/fix_text.tsv, written by
 # data-raw/generators/snapshot_fix_text.py.
 
-# The four options of the encoding repair. The reference version does not
-# pass them on when they are given to fix_text() as keyword arguments (the
-# departure `encoding-sub-options-honoured`).
-encoding_sub_options <- c(
-  "restore_byte_a0", "replace_lossy_sequences", "decode_inconsistent_utf8",
-  "fix_c1_controls"
-)
-
 # The variants the snapshot holds, by column name: for each, the options
 # that are passed to fix_text(). "default" passes none; every other
 # variant changes one option. A `config_no_<option>` variant is what the
@@ -18,8 +10,8 @@ encoding_sub_options <- c(
 # same way for both.
 fix_text_variants <- function() {
   variants <- fix_and_explain_variants()
-  off <- lapply(encoding_sub_options, function(option) stats::setNames(list(FALSE), option))
-  names(off) <- paste0("config_no_", encoding_sub_options)
+  off <- options_off(encoding_sub_options)
+  names(off) <- paste0("config_", names(off))
   c(
     variants,
     list(
@@ -35,7 +27,7 @@ fix_text_variants <- function() {
 # version gives for it with that variant's options. The empty fields of
 # the file, which stand for "as with default options", are filled in.
 read_fix_text_snapshot <- function() {
-  raw <- read_reference_table("fix_text.tsv", text = "text")
+  raw <- read_reference("fix_text.tsv", text = "text")
   variants <- setdiff(names(fix_text_variants()), "default")
   stopifnot(identical(names(raw), c("text", "fixed", variants)))
   out <- list(default = data.frame(
