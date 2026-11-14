@@ -14,8 +14,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import require_reference, write_ascii
-from _table import code_points, storable
+from _reference import require_reference, storable, write_ascii
+from _table import code_points
 
 require_reference()
 

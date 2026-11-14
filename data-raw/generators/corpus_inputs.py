@@ -44,7 +44,7 @@ import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import REPO, escape, require_reference
+from _reference import REPO, escape, require_reference, storable
 
 require_reference()
 
@@ -61,7 +61,6 @@ from _corpus import (
     age_ranges,
     check_ages,
     newest,
-    storable,
 )
 from _xz import write_xz
 

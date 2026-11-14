@@ -28,8 +28,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import escape, require_reference, write_ascii
-from _table import storable
+from _reference import escape, require_reference, storable, write_ascii
 
 require_reference()
 

@@ -78,7 +78,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import REPO, escape, require_reference
+from _reference import REPO, escape, plan_text, require_reference, storable
 
 require_reference()
 
@@ -94,7 +94,6 @@ from _corpus import (
     inputs_files,
     newest,
     read_inputs,
-    storable,
 )
 from _xz import write_xz
 
@@ -186,12 +185,6 @@ def explained(fun, *args):
         return result, result
     text, plan = result
     return text, plan_text(plan)
-
-
-def plan_text(plan):
-    if not plan:
-        return "none"
-    return " > ".join("%s %s" % (action, parameter) for action, parameter in plan)
 
 
 def text_cell(value, base):

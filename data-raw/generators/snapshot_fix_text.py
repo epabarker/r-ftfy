@@ -47,7 +47,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import escape, require_reference, write_ascii
+from _reference import escape, has_surrogate, require_reference, write_ascii
 
 require_reference()
 
@@ -199,10 +199,6 @@ def joined_lines(rng):
             )
         out.append("\n".join(lines) + ("\n" if rng.random() < 0.5 else ""))
     return out
-
-
-def has_surrogate(text):
-    return any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
 
 
 def main():

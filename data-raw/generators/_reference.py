@@ -61,3 +61,21 @@ def escape(text):
         else:
             out.append("\\U%08X" % cp)
     return "".join(out)
+
+
+def has_surrogate(text):
+    """Whether the text holds a surrogate, which no R string can hold."""
+    return any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
+
+
+def storable(text):
+    """Whether an R string can hold the text: no U+0000 and no surrogate."""
+    return "\x00" not in text and not has_surrogate(text)
+
+
+def plan_text(plan):
+    """A plan of (action, parameter) steps in its text form: the steps as
+    "action parameter" joined by " > ", or "none" for no steps."""
+    if not plan:
+        return "none"
+    return " > ".join("%s %s" % (action, parameter) for action, parameter in plan)

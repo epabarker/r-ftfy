@@ -3,6 +3,8 @@
 generator: files whose names start with an underscore are skipped by
 data-raw/regenerate.py."""
 
+from _reference import storable
+
 
 def code_point(number):
     """One code point as four to six upper-case hexadecimal digits."""
@@ -12,11 +14,6 @@ def code_point(number):
 def code_points(text):
     """A string as its code points in hexadecimal, separated by spaces."""
     return " ".join(code_point(ord(ch)) for ch in text)
-
-
-def storable(text):
-    """Can an R string hold this text? Not U+0000, not a surrogate."""
-    return not any(ord(ch) == 0 or 0xD800 <= ord(ch) <= 0xDFFF for ch in text)
 
 
 def translate_table(mapping):

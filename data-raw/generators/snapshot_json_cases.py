@@ -31,7 +31,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import REPO, escape, require_reference, write_ascii
+from _reference import REPO, escape, plan_text, require_reference, storable, write_ascii
 
 require_reference()
 
@@ -50,16 +50,6 @@ COLUMNS = [
     "extra_layer",
     "extra_layer_fix_text",
 ]
-
-
-def plan_text(plan):
-    if not plan:
-        return "none"
-    return " > ".join("%s %s" % (action, parameter) for action, parameter in plan)
-
-
-def storable(text):
-    return "\x00" not in text and not any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
 
 
 def main():

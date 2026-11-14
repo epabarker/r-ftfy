@@ -38,7 +38,7 @@ import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import escape, require_reference, write_ascii
+from _reference import escape, has_surrogate, plan_text, require_reference, storable, write_ascii
 
 require_reference()
 
@@ -314,20 +314,6 @@ def old_characters(rng):
         length = rng.randrange(1, 7)
         out.append("".join(rng.choice(pool) for _ in range(length)))
     return out
-
-
-def storable(text):
-    return "\x00" not in text and not has_surrogate(text)
-
-
-def has_surrogate(text):
-    return any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
-
-
-def plan_text(plan):
-    if not plan:
-        return "none"
-    return " > ".join("%s %s" % (action, parameter) for action, parameter in plan)
 
 
 def main():

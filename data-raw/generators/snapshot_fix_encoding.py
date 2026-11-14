@@ -27,7 +27,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from _reference import escape, require_reference, write_ascii
+from _reference import escape, has_surrogate, plan_text, require_reference, storable, write_ascii
 
 require_reference()
 
@@ -184,23 +184,9 @@ def random_strings(rng):
     return out
 
 
-def storable(text):
-    return "\x00" not in text and not any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
-
-
-def plan_text(plan):
-    if not plan:
-        return "none"
-    return " > ".join("%s %s" % (action, parameter) for action, parameter in plan)
-
-
 def same_or(value, default):
     """A sparse field: empty when the value is the default."""
     return "" if value == default else value
-
-
-def has_surrogate(text):
-    return any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
 
 
 def main():

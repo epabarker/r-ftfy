@@ -130,11 +130,6 @@ def newest(texts):
     return UNASSIGNED if best == (99, 0) else "%d.%d" % best
 
 
-def storable(text):
-    """Whether an R string can hold the text: no U+0000 and no surrogate."""
-    return "\x00" not in text and not any(0xD800 <= ord(ch) <= 0xDFFF for ch in text)
-
-
 def unescape(field):
     """The text of an escaped field (the inverse of _reference.escape)."""
     return field.encode("ascii").decode("unicode_escape")
