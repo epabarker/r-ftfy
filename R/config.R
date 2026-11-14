@@ -235,14 +235,18 @@ unknown_option_message <- function(name, candidates) {
     hint <- options_not_ported[[name]]
   } else {
     # The nearest name is the one option this abbreviates, or else the one
-    # the fewest edits away, when that is few enough to be a slip.
+    # the fewest edits away, when that is few enough to be a slip, or else
+    # the one option that shares a word with it that no other option has.
     distance <- drop(utils::adist(name, candidates))
     abbreviated <- which(startsWith(candidates, name))
     if (length(abbreviated) == 1L) {
       distance[[abbreviated]] <- 0
     }
     nearest <- which.min(distance)
-    if (distance[[nearest]] <= max(2, nchar(name) %/% 3L)) {
+    if (distance[[nearest]] > max(2, nchar(name) %/% 3L)) {
+      nearest <- sharing_a_word(name, candidates)
+    }
+    if (length(nearest) == 1L) {
       hint <- paste0("Did you mean `", candidates[[nearest]], "`?")
     } else {
       hint <- paste0(
@@ -252,6 +256,43 @@ unknown_option_message <- function(name, candidates) {
     }
   }
   paste0("Unknown option `", name, "`. ", hint, " See `?ftfy_config`.")
+}
+
+# The place in `candidates` of the one candidate that shares a word of
+# `name` that no other candidate has, or `integer()`. Words are the parts
+# between underscores, compared by `word_stem()`, so `normalise` finds
+# `normalization` and `fix_ligatures` finds `fix_latin_ligatures`, while
+# `fix` or `remove` alone, which several options hold, finds none.
+sharing_a_word <- function(name, candidates) {
+  words <- lapply(strsplit(candidates, "_", fixed = TRUE), function(w) unique(word_stem(w)))
+  holders <- rep.int(seq_along(candidates), lengths(words))
+  stems <- unlist(words, use.names = FALSE)
+  distinctive <- stems[!stems %in% stems[duplicated(stems)]]
+  shared <- intersect(word_stem(strsplit(name, "_", fixed = TRUE)[[1L]]), distinctive)
+  unique(holders[match(shared, stems)])
+}
+
+# A word in lower case and American spelling, less a common ending:
+# `normalise`, `normalized` and `normalisation` all give `normaliz`.
+word_stem <- function(word) {
+  endings <- c("ations", "ation", "ing", "ed", "es", "e", "s")
+  word <- tolower(word)
+  british <- split_ending(word, paste0("is", endings[-7L]))
+  spelt <- nzchar(british$ending)
+  word[spelt] <- paste0(
+    british$stem[spelt], "iz", substring(british$ending[spelt], 3L)
+  )
+  split_ending(word, endings)$stem
+}
+
+# Each word as `stem` and `ending`: the longest of `endings` it ends with,
+# or "".
+split_ending <- function(word, endings) {
+  ending <- rep("", length(word))
+  for (candidate in endings[order(nchar(endings))]) {
+    ending[endsWith(word, candidate)] <- candidate
+  }
+  list(stem = substr(word, 1L, nchar(word) - nchar(ending)), ending = ending)
 }
 
 # One option's value, checked and in its stored form: `TRUE`, `FALSE`,

@@ -153,6 +153,41 @@ test_that("an unknown option name is an error suggesting the nearest name", {
                "Did you mean `fix_line_breaks`?", fixed = TRUE)
 })
 
+test_that("a British spelling of an option suggests the option", {
+  for (name in c("normalise", "normalize", "normalisation", "normalised")) {
+    args <- stats::setNames(list("NFC"), name)
+    expect_error(do.call(fix_text, c(list("a"), args)),
+                 paste0("Unknown option `", name, "`. Did you mean `normalization`?"),
+                 fixed = TRUE)
+    expect_error(do.call(ftfy_config, args),
+                 paste0("Unknown option `", name, "`. Did you mean `normalization`?"),
+                 fixed = TRUE)
+  }
+})
+
+test_that("a name sharing a word with one option alone suggests that option", {
+  expect_error(fix_text("a", fix_ligatures = FALSE),
+               "Unknown option `fix_ligatures`. Did you mean `fix_latin_ligatures`?",
+               fixed = TRUE)
+  expect_error(ftfy_config(fix_ligatures = FALSE),
+               "Unknown option `fix_ligatures`. Did you mean `fix_latin_ligatures`?",
+               fixed = TRUE)
+  expect_error(ftfy_config(remove_ansi_escapes = TRUE),
+               "Did you mean `remove_terminal_escapes`?", fixed = TRUE)
+  expect_error(fix_text("a", max_decode_size = 10),
+               "Did you mean `max_decode_length`?", fixed = TRUE)
+  # A word that several options hold suggests none of them.
+  for (name in c("fix_everything", "remove_all_controls", "control_codes")) {
+    args <- stats::setNames(list(FALSE), name)
+    expect_error(do.call(fix_text, c(list("a"), args)),
+                 paste0("Unknown option `", name, "`. The options are: "),
+                 fixed = TRUE)
+    expect_error(do.call(ftfy_config, args),
+                 paste0("Unknown option `", name, "`. The options are: "),
+                 fixed = TRUE)
+  }
+})
+
 test_that("an unnamed extra argument is an error", {
   message <- "without a name"
   expect_error(fix_encoding(mojibake, FALSE), message)
