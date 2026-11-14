@@ -6,3 +6,6 @@ __pycache__/
 .DS_Store
 /*.tar.gz
 /*.Rcheck/
+
+# Agent worktrees
+.claude/worktrees/
