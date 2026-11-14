@@ -5,7 +5,6 @@
 # - upstream/test_cases.json is upstream's file, byte for byte.
 # - reference/json_cases.tsv is the snapshot of what the reference version
 #   gives for each case, written by data-raw/generators/snapshot_json_cases.py.
-# - not-yet-passing.txt lists the checks the package cannot pass yet.
 #
 # A case is identified by its index in the JSON array, from 0, and by
 # nothing else: one record occurs twice (indexes 7 and 10) and runs twice.
@@ -183,43 +182,4 @@ run_json_checks <- function(cases, checks = json_checks) {
     )
   })
   do.call(rbind, results)
-}
-
-# The not-yet-passing list: one line per case and check, "<check><tab><index>",
-# sorted by check and then by index.
-not_yet_passing_path <- function() test_path("not-yet-passing.txt")
-
-read_not_yet_passing <- function(path = not_yet_passing_path()) {
-  lines <- readLines(path, encoding = "UTF-8")
-  parts <- strsplit(lines, "\t", fixed = TRUE)
-  if (!all(lengths(parts) == 2L)) {
-    stop(path, " must hold one check and one case index per line, separated by a tab")
-  }
-  data.frame(
-    check = vapply(parts, `[[`, "", 1L),
-    index = as.integer(vapply(parts, `[[`, "", 2L)),
-    stringsAsFactors = FALSE
-  )
-}
-
-entry_keys <- function(entries) {
-  if (nrow(entries) == 0L) {
-    return(character())
-  }
-  entries <- entries[order(entries$check, entries$index, method = "radix"), , drop = FALSE]
-  paste0(entries$check, "\t", entries$index)
-}
-
-# Remove from the list every entry whose check now passes, and every entry
-# that names no check that exists. This only ever deletes lines. Run it
-# through the test file, as data-raw/README.md says.
-shrink_not_yet_passing <- function(results, path = not_yet_passing_path()) {
-  listed <- unique(entry_keys(read_not_yet_passing(path)))
-  failing <- entry_keys(results[!results$passes, , drop = FALSE])
-  kept <- failing[failing %in% listed]
-  con <- file(path, open = "wb")
-  on.exit(close(con))
-  writeLines(kept, con, sep = "\n", useBytes = TRUE)
-  message("not-yet-passing.txt: kept ", length(kept), " of ", length(listed), " entries")
-  invisible(kept)
 }

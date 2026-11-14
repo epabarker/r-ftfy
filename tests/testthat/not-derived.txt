@@ -40,3 +40,5 @@ tests/testthat/helper-fix-and-explain.R	Reader of the fix_and_explain() snapshot
 tests/testthat/test-fix_and_explain.R	Compares with a committed snapshot and tests R-only behaviour; the upstream tests of fix_and_explain are ported in the mirrored test files.
 tests/testthat/test-departure-normalization-follows-icu.R	Test of a departure: R-only behaviour.
 tests/testthat/test-platform.R	Tests of unmarked strings in each native encoding and of the session a CI job runs in: R-only behaviour.
+tests/testthat/helper-fix-text.R	Reader of the fix_text() snapshot; this package's own machinery.
+tests/testthat/test-departure-encoding-sub-options-honoured.R	Test of a departure: R-only behaviour.

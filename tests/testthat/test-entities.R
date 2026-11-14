@@ -4,8 +4,8 @@
 # another of its assertions adds it to this file, in upstream's order.
 #
 # Here are the assertions of test_entities (tests/test_entities.py:7) that
-# call `unescape_html()` directly: lines 27 to 33. Its other assertions go
-# through functions that later tickets deliver, and are ported there:
+# call `unescape_html()` directly: lines 27 to 33, and its other assertions,
+# each through the function it calls:
 #
 # - tests/test_entities.py:9, :12, :15: `fix_text()`, the last two with the
 #   option `unescape_html`.
@@ -20,6 +20,16 @@
 
 # `fix_text_segment()` of upstream: the text of `fix_and_explain()`.
 fix_text_segment <- function(x, ...) fix_and_explain(x, ...)$text
+
+# tests/test_entities.py:7, test_entities: its lines 9, 12 and 15
+test_that("test_entities: fix_text()", {
+  example <- "&amp;\n<html>\n&amp;"
+  expect_identical(fix_text(example), "&\n<html>\n&amp;")
+
+  expect_identical(fix_text(example, unescape_html = TRUE), "&\n<html>\n&")
+
+  expect_identical(fix_text(example, unescape_html = FALSE), "&amp;\n<html>\n&amp;")
+})
 
 # tests/test_entities.py:7, test_entities: its lines 10, 13, 16 and 18 to 26
 test_that("test_entities: fix_text_segment()", {

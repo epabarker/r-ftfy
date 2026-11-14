@@ -47,7 +47,9 @@ otherwise.
 \item{\code{unescape_html}}{\code{"auto"} (the default), \code{TRUE} or \code{FALSE}.
 Whether to replace HTML entities such as \verb{&amp;} with the characters
 they stand for. \code{"auto"} does so unless the text holds a literal
-\code{<}, which suggests it is HTML whose entities should be kept.}
+\code{<}, which suggests it is HTML whose entities should be kept. In
+\code{\link[=fix_text]{fix_text()}} the \code{<} counts from the segment that holds it to the
+end of its string.}
 \item{\code{remove_terminal_escapes}}{Remove ANSI terminal escapes, such as
 those that change the colour of text in a terminal.}
 \item{\code{fix_encoding}}{Detect mojibake and repair it by decoding the
@@ -80,8 +82,10 @@ displayed effect.}
 \code{"NFKD"}, or \code{NULL} for no normalisation. NFKC and NFKD can change
 meaning: they turn a superscript three into the digit 3.}
 \item{\code{max_decode_length}}{A whole number, at least 1; the default is
-\code{1e6}. The longest segment, in characters, that is repaired in one
-piece.}
+\code{1e6}. The longest segment, in characters, that \code{\link[=fix_text]{fix_text()}} fixes
+in one piece: a line longer than this is cut into pieces of this
+length, and mojibake that a cut falls in is not repaired. The other
+functions take each string whole and do not use it.}
 }
 }
 
@@ -90,6 +94,10 @@ piece.}
 Three of \code{TextFixerConfig}'s fields are not options here, and passing
 one is an error: \code{explain}, \code{fix_surrogates} and the deprecated alias
 \code{fix_entities} (use \code{unescape_html}).
+
+The four options under \code{fix_encoding} are honoured by every function,
+however they are given. In Python ftfy 6.3.1, \code{fix_text()} ignores them
+when they are given as keyword arguments.
 }
 
 \examples{
