@@ -1,4 +1,4 @@
-# ftfy
+# ftfy <img src="man/figures/logo.png" align="right" height="139" alt="ftfy logo: garbled Ã© becoming é" />
 
 ftfy for R is a port of [ftfy](https://github.com/rspeer/python-ftfy) by Robyn Speer. The heuristic, its test cases and most of its data are her work.
 
