@@ -96,7 +96,7 @@ fixer_decode_inconsistent_utf8 <- function(x) {
   splice_matches(x, patterns[["UTF8_DETECTOR_RE"]], function(matched, whole_length) {
     shorter <- nchar(matched, type = "chars") < whole_length
     repairable <- which(shorter)
-    repairable <- repairable[regex_detect(matched[repairable], patterns[["BADNESS_RE"]])]
+    repairable <- repairable[detect_bad(matched[repairable])]
     distinct <- unique(matched[repairable])
     repaired <- repair_encoding(distinct, ftfy_config())$text
     matched[repairable] <- repaired[match(matched[repairable], distinct)]
