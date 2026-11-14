@@ -20,7 +20,15 @@ Reference: The newline is read as the missing last byte of the sequence
  return '\U0001f60a'. In a text of several lines, a line that ends this
  way is joined to the next:
  fix_text('one \u00c3\u00a9 \u00c0\ntwo \u00c3\u00a9') returns
- 'one \xe9 two \xe9'.
+ 'one \xe9 two \xe9'. fix_and_explain('sch\u00c3\u00b6n \u00c0\n')
+ returns 'sch\xf6n ' with the plan [('encode', 'latin-1'), ('decode',
+ 'utf-8-variants'), ('apply', 'remove_control_chars')]. The bytes are
+ met through any codec the repair tries, not only the first that can
+ encode the text: fix_text('David O\u201a\u00c4\u00f4Brien\u00bf\n')
+ returns "David O'Brien" through macroman. And they are met at the end
+ of a piece that max_decode_length cuts:
+ fix_text('Grzegorz Garc\u00c3\u00ada \u00c0\n', max_decode_length=10)
+ returns 'Grzegorz Garc\xeda '.
 R: Decoding fails, as it does in the reference version when anything
  other than a final newline follows, so this decoding repairs nothing and
  the newline is kept. The repair then goes on as it does for any text
@@ -32,7 +40,11 @@ R: Decoding fails, as it does in the reference version when anything
  unchanged, with the plan 'none'. fix_text() gives the same two texts,
  and repairs every other line of its input as the reference version
  does: fix_text('one \u00c3\u00a9 \u00c0\ntwo \u00c3\u00a9') gives
- 'one \xe9 \xc0\ntwo \xe9', on two lines.
+ 'one \xe9 \xc0\ntwo \xe9', on two lines. fix_and_explain() keeps the
+ newline in the same way, with the plan 'apply decode_inconsistent_utf8'
+ for 'sch\u00c3\u00b6n \u00c0\n', and so does fix_text() for the other
+ two examples: it gives "David O'\xc4\xf4Brien\xbf\n" and
+ 'Grzegorz Garc\xeda \xc0\n'.
  Replaying the reference version's plan for
  such a text with apply_plan() is a failed replay, at the step decode
  utf-8-variants.

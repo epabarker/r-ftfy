@@ -126,7 +126,8 @@ test_that("the registry entry matches the difference in fix_encoding() and no ot
   for (i in seq_along(text)) {
     expect_true(matcher(list(fun = "fix_encoding", input = text[[i]],
                              reference = reference[[i]], actual = actual[[i]])))
-    # Not a departure of fix_and_explain(): no snapshot row shows it there.
+    # Not matched for fix_and_explain() without the options R was called
+    # with: that is the rule below, at the end of this file.
     expect_false(matcher(list(fun = "fix_and_explain", input = text[[i]],
                               reference = reference[[i]], actual = actual[[i]])))
     # R lost the newline too, or gave nothing.
@@ -192,8 +193,8 @@ test_that("the registry entry matches the failed replay in apply_plan() and no o
 # [('encode', 'latin-1'), ('decode', 'utf-8-variants'), ('apply',
 # 'remove_control_chars')]) for this text: the newline is read as the
 # second byte of C0 80 and the U+0000 is then removed (run on ftfy 6.3.1
-# with Python 3.13). No row of the fix_and_explain() snapshot shows this
-# departure, so the matcher is not widened to it.
+# with Python 3.13). The corpus shows it there; the matcher reaches it
+# through the rule for differences that name R's options (end of this file).
 test_that("fix_and_explain() keeps the newline after a sequence cut short", {
   text <- "sch\u00c3\u00b6n \u00c0\n"
   explained <- fix_and_explain(text)
@@ -304,4 +305,117 @@ test_that("the registry entry matches the difference in fix_text() and no other"
     expect_false(matcher(list(fun = "fix_text", input = other,
                               reference = "x", actual = "x\n")))
   }
+})
+
+# The cases the corpus comparison (ticket #44) found that the rules above
+# do not reach: a line that only a later codec encodes to the bytes, a
+# piece cut by `max_decode_length`, the texts and plans of the two
+# explaining functions. The reference results were run on ftfy 6.3.1 with
+# Python 3.13. R keeps the newline in each.
+test_that("R keeps the newline where only a later codec, or a cut piece, reaches the bytes", {
+  # Latin-1 cannot encode U+201A; sloppy-windows-1252 can, and gives no C0;
+  # MacRoman gives the inverted question mark as C0. The reference version
+  # gives "David O'Brien".
+  expect_identical(
+    fix_text("David O\u201a\u00c4\u00f4Brien\u00bf\n"),
+    "David O'\u00c4\u00f4Brien\u00bf\n"
+  )
+  # The last piece of ten characters is "arc\u00c3\u00ada \u00c0\n". The
+  # reference version gives "Grzegorz Garc\u00eda ".
+  expect_identical(
+    fix_text("Grzegorz Garc\u00c3\u00ada \u00c0\n", max_decode_length = 10),
+    "Grzegorz Garc\u00eda \u00c0\n"
+  )
+  # Five bytes of a surrogate pair through sloppy-windows-1250. The
+  # reference version gives the text with U+1F60A and the plan
+  # `encode sloppy-windows-1250 > decode utf-8-variants`.
+  explained <- fix_and_explain("Emma Kowalski\u00ed\u00a0\u02dd\u00ed\u00b8\n")
+  expect_identical(explained$text, "Emma Kowalski\u00ed\u00a0\u02dd\u00ed\u00b8\n")
+  expect_identical(as.character(explained$plan), "none")
+})
+
+# The rule for a difference that names the options R was called with, as
+# the corpus comparison gives it: R is run again with its decoder reading a
+# final newline as the reference version does, and must then give the
+# reference version's result.
+trailing_newline_differences <- function() {
+  scho <- "sch\u00c3\u00b6n \u00c0\n"
+  david <- "David O\u201a\u00c4\u00f4Brien\u00bf\n"
+  emma <- "Emma Kowalski\u00ed\u00a0\u02dd\u00ed\u00b8\n"
+  list(
+    list(fun = "fix_and_explain", input = scho, reference = "sch\u00f6n ",
+         actual = "sch\u00f6n \u00c0\n", what = "text", options = list()),
+    list(fun = "fix_and_explain", input = scho,
+         reference = "encode latin-1 > decode utf-8-variants > apply remove_control_chars",
+         actual = "apply decode_inconsistent_utf8", what = "plan", options = list()),
+    # With remove_control_chars off the reference text keeps U+0000, and
+    # stays escaped.
+    list(fun = "fix_and_explain", input = scho, reference = "sch\\u00F6n \\u0000",
+         actual = "sch\u00f6n \u00c0\n", what = "text",
+         options = list(remove_control_chars = FALSE)),
+    list(fun = "fix_and_explain", input = scho,
+         reference = "encode latin-1 > decode utf-8-variants",
+         actual = "apply decode_inconsistent_utf8", what = "plan",
+         options = list(remove_control_chars = FALSE)),
+    list(fun = "fix_encoding_and_explain", input = scho, reference = "sch\\u00F6n \\u0000",
+         actual = "sch\u00f6n \u00c0\n", what = "text", options = list()),
+    list(fun = "fix_encoding_and_explain", input = emma,
+         reference = "encode sloppy-windows-1250 > decode utf-8-variants",
+         actual = "none", what = "plan", options = list()),
+    list(fun = "fix_encoding", input = emma, reference = paste0("Emma Kowalski", intToUtf8(0x1F60A)),
+         actual = emma, options = list()),
+    list(fun = "fix_text", input = david, reference = "David O'Brien",
+         actual = "David O'\u00c4\u00f4Brien\u00bf\n", options = list()),
+    list(fun = "fix_text", input = "Grzegorz Garc\u00c3\u00ada \u00c0\n",
+         reference = "Grzegorz Garc\u00eda ", actual = "Grzegorz Garc\u00eda \u00c0\n",
+         options = list(max_decode_length = 10)),
+    # The reference version's keyword form ignores the option: its result
+    # is looked for with default options.
+    list(fun = "fix_text", input = scho, reference = "sch\u00f6n ",
+         actual = "sch\u00f6n \u00c0\n", options = list(restore_byte_a0 = FALSE),
+         form = "keyword"),
+    list(fun = "apply_plan", input = david, reference = "David O'Brien", actual = NA_character_,
+         plan = "encode macroman > decode utf-8-variants > apply uncurl_quotes > apply remove_control_chars",
+         options = list())
+  )
+}
+
+test_that("the registry entry matches these differences when they name R's options", {
+  matcher <- departure_matchers()[["utf8-variants-trailing-newline"]]
+  differences <- trailing_newline_differences()
+
+  for (difference in differences) {
+    expect_true(matcher(difference), info = paste(difference$fun, difference$what))
+  }
+  # Without the options only the older rules apply, and they reach neither
+  # the explaining functions nor a line that a later codec encodes.
+  expect_false(matcher(differences[[1]][c("fun", "input", "reference", "actual")]))
+  expect_false(matcher(differences[[8]][c("fun", "input", "reference", "actual")]))
+})
+
+test_that("the registry entry matches no other difference that names R's options", {
+  matcher <- departure_matchers()[["utf8-variants-trailing-newline"]]
+  differences <- trailing_newline_differences()
+  with <- function(i, ...) utils::modifyList(differences[[i]], list(...))
+
+  # The reference version's result is not what reading the newline as it
+  # does gives.
+  expect_false(matcher(with(1, reference = "sch\u00f6n x")))
+  expect_false(matcher(with(1, reference = "sch\u00f6n \n")))
+  expect_false(matcher(with(2, reference = "encode sloppy-windows-1252 > decode utf-8-variants > apply remove_control_chars")))
+  expect_false(matcher(with(8, reference = "David O'Brien\u00bf\n")))
+  # An extra `apply remove_control_chars` is allowed for fix_and_explain()
+  # only, which runs that fixer.
+  expect_false(matcher(with(6, reference = "encode sloppy-windows-1250 > decode utf-8-variants > apply remove_control_chars")))
+  # The decoder never meets such bytes: something follows the newline, the
+  # repair is switched off, or the line is cut too short.
+  expect_false(matcher(with(1, input = "sch\u00c3\u00b6n \u00c0\nx", actual = "sch\u00f6n \u00c0\nx")))
+  expect_false(matcher(with(1, options = list(fix_encoding = FALSE))))
+  expect_false(matcher(with(9, options = list(max_decode_length = 3))))
+  # R raised an error or gave nothing; a replay that gave a text.
+  expect_false(matcher(with(1, actual = simpleError("boom"))))
+  expect_false(matcher(with(1, actual = NA_character_)))
+  expect_false(matcher(with(11, actual = "David O'Brien")))
+  # Another function.
+  expect_false(matcher(with(1, fun = "uncurl_quotes")))
 })
