@@ -23,8 +23,9 @@
 #' * C1 control characters are read as the Windows-1252 characters at the
 #'   same bytes (the option `fix_c1_controls`; see [fix_c1_controls()]).
 #'
-#' Call it on a whole vector, not once per string: each call has a fixed
-#' cost of about half a millisecond.
+#' Call it on a whole vector, not once per string: each call on text that
+#' is not plain ASCII has a fixed cost of about a millisecond, however
+#' long the vector (see [ftfy][ftfy-package] for the measurements).
 #'
 #' @section Differences from Python ftfy:
 #' Where the repair decodes the two bytes C0 80, which stand for the
@@ -32,6 +33,9 @@
 #' cannot hold U+0000. And a string that ends in a newline just after the
 #' byte C0, or after the first five bytes of a six-byte surrogate pair, is
 #' not repaired by reading the newline as the missing byte.
+#'
+#' Every departure from the reference version is listed, with examples,
+#' on the page [ftfy-differences].
 #'
 #' @param x A character vector. Anything else is an error, as is a string
 #'   that is not valid UTF-8.

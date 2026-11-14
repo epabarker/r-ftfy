@@ -42,3 +42,9 @@ tests/testthat/test-departure-normalization-follows-icu.R	Test of a departure: R
 tests/testthat/test-platform.R	Tests of unmarked strings in each native encoding and of the session a CI job runs in: R-only behaviour.
 tests/testthat/helper-fix-text.R	Reader of the fix_text() snapshot; this package's own machinery.
 tests/testthat/test-departure-encoding-sub-options-honoured.R	Test of a departure: R-only behaviour.
+R/ftfy-package.R	The package help page: this package's own account of itself; nothing translated from upstream.
+R/differences.R	Written by data-raw/build.R from the departure registry, inst/departures/; this package's own record.
+data-raw/differences.R	Writes the differences page from the departure registry; holds nothing from upstream.
+tests/testthat/helper-help.R	Readers for the package's help pages; this package's own machinery.
+tests/testthat/test-help.R	Tests of this package's own help pages and NEWS.
+tests/testthat/test-differences.R	Tests that the differences page says what the departure registry says; this package's own machinery.

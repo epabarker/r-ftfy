@@ -98,6 +98,9 @@ one is an error: \code{explain}, \code{fix_surrogates} and the deprecated alias
 The four options under \code{fix_encoding} are honoured by every function,
 however they are given. In Python ftfy 6.3.1, \code{fix_text()} ignores them
 when they are given as keyword arguments.
+
+Every departure from the reference version is listed, with examples,
+on the page \link{ftfy-differences}.
 }
 
 \examples{
