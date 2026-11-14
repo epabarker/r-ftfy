@@ -41,15 +41,16 @@ jobs:
           - {id: ubuntu-r-4.2, os: ubuntu-latest, r: "4.2", native: UTF-8}
           # `locale`: generated on the runner and set for the check.
           - {id: ubuntu-latin1, os: ubuntu-latest, r: release, native: Latin-1, locale: en_US.ISO-8859-1}
-          # `icu`: stringi is rebuilt from source against that ICU. The
-          # bundled ICU is 74 (Unicode 15.1). The system ICU of Ubuntu 22.04
-          # is 70 (Unicode 14.0), older than the reference version's Unicode
-          # 15.1, so the departure `normalization-follows-icu` is exercised
-          # there. Ubuntu 24.04 has ICU 74 and would show nothing.
+          # `icu`: stringi is rebuilt from source against that ICU. Its bundled
+          # ICU is 74.1 (Unicode 15.1, that of the reference version). The
+          # system ICU of Ubuntu 22.04 is 70.1 (Unicode 14.0), so that job
+          # exercises the departure `normalization-follows-icu`. The other
+          # Ubuntu jobs take stringi as a binary linked to the newer system
+          # ICU of ubuntu-latest (78.2, Unicode 17.0, in November 2026).
           - {id: icu-bundled, os: ubuntu-latest, r: release, native: UTF-8, icu: bundled}
           - {id: icu-system, os: ubuntu-22.04, r: release, native: UTF-8, icu: system}
-          # TEMP-43 - {id: macos-release, os: macos-latest, r: release, native: UTF-8}
-          # TEMP-43 - {id: windows-release, os: windows-latest, r: release, native: UTF-8}
+          - {id: macos-release, os: macos-latest, r: release, native: UTF-8}
+          - {id: windows-release, os: windows-latest, r: release, native: UTF-8}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
