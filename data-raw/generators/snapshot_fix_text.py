@@ -16,8 +16,8 @@ Columns, tab separated. Texts are escaped (see _reference.escape).
 
 The last four are there because the reference version treats the two
 forms differently. Given as a keyword argument, an option of the encoding
-repair is not passed on to the repair (ftfy/__init__.py:340 makes a config
-that does not explain, and :391 then calls fix_encoding(text) with no
+repair is not passed on to the repair (ftfy/__init__.py:341 makes a config
+that does not explain, and :396 then calls fix_encoding(text) with no
 config), so the four columns no_<option> of these options are empty in
 every row, and the script stops if one is not. (For fix_c1_controls that
 is a fact about these rows: the fixer of that name in the loop is switched

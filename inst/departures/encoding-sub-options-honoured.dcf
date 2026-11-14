@@ -10,9 +10,9 @@ Input: Any text given to fix_text() with one of the options
 Reference: The option is not passed on to the encoding repair when it
  is given to fix_text() as a keyword argument, so the encoding is
  repaired as with default options. fix_text() then makes a config with
- explain=False (ftfy/__init__.py:340), and fix_and_explain() calls
+ explain=False (ftfy/__init__.py:341), and fix_and_explain() calls
  fix_encoding(text) with no config when it does not explain
- (ftfy/__init__.py:391). Run on ftfy 6.3.1 with Python 3.13:
+ (ftfy/__init__.py:396). Run on ftfy 6.3.1 with Python 3.13:
  fix_text('voil\xc3  le travail', restore_byte_a0=False) returns
  'voil\xe0 le travail', fix_text('\xc3\ufffdtude',
  replace_lossy_sequences=False) returns '\ufffdtude',
