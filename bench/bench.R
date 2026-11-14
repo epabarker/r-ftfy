@@ -108,7 +108,7 @@ results <- list()
 differences <- character(0)
 values_checked <- 0L
 
-compare <- function(column, fun, r_output, python_output, distinct) {
+compare <- function(column, fun, r_output, python_output, distinct, run = "distinct values") {
   if (length(r_output) != length(python_output)) {
     stop(column, ": ", length(python_output), " reference outputs for ", length(r_output), " values")
   }
@@ -117,8 +117,8 @@ compare <- function(column, fun, r_output, python_output, distinct) {
   if (length(differing) > 0L) {
     shown <- utils::head(differing, 5L)
     differences <<- c(differences, sprintf(
-      "- `%s`, `%s`: %d of %d values differ. The first:\n%s", column, fun,
-      length(differing), length(r_output),
+      "- `%s`, `%s`, the run on the %s: %d of %d values differ. The first:\n%s", column, fun,
+      run, length(differing), length(r_output),
       paste0(sprintf("  - value %d, input `%s`: R `%s`, reference `%s`", shown,
         stringi::stri_escape_unicode(distinct[shown]),
         stringi::stri_escape_unicode(r_output[shown]),
@@ -144,7 +144,7 @@ for (column in columns) {
   whole <- rep_len(distinct, n)
   py <- run_python(column, full_function, "full", full_reps)
   r <- run_r(f, distinct, whole, function(output) rep_len(output, n), full_reps)
-  compare(column, full_function, r$output, py$output, distinct)
+  compare(column, full_function, r$output, py$output, distinct, "whole column")
   results[[length(results) + 1L]] <- list(column = column, fun = full_function, scope = "full",
     count = n, python = py$seconds, r = r$seconds)
 }

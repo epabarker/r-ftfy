@@ -15,7 +15,7 @@ name: benchmark
 on:
   pull_request:
   push:
-    branches: [main, "integration/**", "ticket/46-benchmark"]
+    branches: [main, "integration/**"]
   workflow_dispatch:
 
 permissions:
