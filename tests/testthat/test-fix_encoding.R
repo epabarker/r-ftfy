@@ -218,6 +218,10 @@ test_that("the repair returns its steps as a long table over the elements it was
 })
 
 test_that("one call on the whole vector gives the same texts as one call per element", {
+  # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
+  # string each, the slowest kind of test here. It runs wherever NOT_CRAN
+  # is "true": every job of the R-CMD-check workflow.
+  skip_on_cran()
   snapshot <- read_encoding_snapshot()
   x <- c(snapshot$text, NA, snapshot$text[1:200], NA)
   # A fixed shuffle, so that duplicates and `NA`s are not next to each other.

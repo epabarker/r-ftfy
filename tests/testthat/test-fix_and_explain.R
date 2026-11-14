@@ -16,13 +16,15 @@ test_that("fix_and_explain() gives the reference version's texts and plans with 
 test_that("the only differences from the snapshot are the registered departures, on the rows put there for them", {
   rows <- snapshot$default
   explained <- fix_and_explain(rows$text)
+  # The registry is read once, not for every row.
+  matchers <- departure_matchers()
   departures_of <- function(actual, reference) {
     differs <- which(actual != reference)
     vapply(differs, function(i) {
       departure_matching(list(
         fun = "fix_and_explain", input = rows$text[[i]],
         reference = reference[[i]], actual = actual[[i]]
-      ))
+      ), matchers)
     }, "")
   }
   in_text <- departures_of(explained$text, rows$fixed)
@@ -156,6 +158,10 @@ test_that("names, dim and dimnames of the input are not carried", {
 })
 
 test_that("one call on the whole vector gives what one call per element gives", {
+  # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
+  # string each, the slowest kind of test here. It runs wherever NOT_CRAN
+  # is "true": every job of the R-CMD-check workflow.
+  skip_on_cran()
   x <- c(snapshot$default$text, NA, snapshot$default$text[1:20], NA)
   whole <- fix_and_explain(x)
   each <- lapply(x, fix_and_explain)

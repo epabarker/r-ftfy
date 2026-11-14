@@ -68,6 +68,8 @@ test_that("the option does the same by name, in a saved config, and in the other
 
 test_that("the snapshot shows the departure for every one of the four options", {
   snapshot <- read_fix_text_snapshot()
+  # The registry is read once, not for every row.
+  matchers <- departure_matchers()
 
   for (option in encoding_sub_options) {
     keyword <- snapshot[[paste0("no_", option)]]
@@ -77,7 +79,7 @@ test_that("the snapshot shows the departure for every one of the four options", 
     # The reference version ignores the keyword on every row.
     expect_identical(keyword$fixed, snapshot$default$fixed, info = option)
     # R gives what the reference version gives for the option in a config.
-    expect_reference("fix_text", config$text, actual, config$fixed)
+    expect_reference("fix_text", config$text, actual, config$fixed, matchers)
     # So R differs from the keyword form on the rows where the option
     # matters, and each of those differences is this departure or, on the
     # rows put there for it, the trailing-newline departure.
@@ -85,7 +87,8 @@ test_that("the snapshot shows the departure for every one of the four options", 
     expect_gte(length(differs), 3L, label = option)
     ids <- vapply(differs, function(at) {
       departure_matching(list(fun = "fix_text", input = keyword$text[[at]],
-                              reference = keyword$fixed[[at]], actual = actual[[at]]))
+                              reference = keyword$fixed[[at]], actual = actual[[at]]),
+                         matchers)
     }, "")
     expect_true(
       all(ids %in% c("encoding-sub-options-honoured", "utf8-variants-trailing-newline")),

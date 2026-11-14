@@ -245,6 +245,8 @@ test_that("fix_text() agrees with the reference version when the line does not e
 
 test_that("the snapshot of fix_text() shows the departure on the three rows put there for it", {
   snapshot <- read_fix_text_snapshot()
+  # The registry is read once, not for every row.
+  matchers <- departure_matchers()
 
   expect_true(all(cut_short_lines() %in% snapshot$default$text))
   for (variant in names(snapshot)) {
@@ -253,7 +255,8 @@ test_that("the snapshot of fix_text() shows the departure on the three rows put 
     differs <- which(actual != rows$fixed)
     ids <- vapply(differs, function(at) {
       id <- departure_matching(list(fun = "fix_text", input = rows$text[[at]],
-                                    reference = rows$fixed[[at]], actual = actual[[at]]))
+                                    reference = rows$fixed[[at]], actual = actual[[at]]),
+                               matchers)
       if (is.null(id)) "" else id
     }, "")
     shown <- rows$text[differs[ids == "utf8-variants-trailing-newline"]]
