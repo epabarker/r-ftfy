@@ -1,5 +1,6 @@
 ^LICENSE$
 ^GLOSSARY\.md$
+^CLAUDE\.md$
 ^docs$
 ^data-raw$
 ^\.github$
