@@ -18,18 +18,21 @@
 #' version is shown as Python prints it, so `\xe9` is that same character
 #' there.
 #'
-#' A departure is on whatever the options, and no option brings the
-#' reference version's result back. Anything else that differs from the
-#' reference version is a bug in this package: please report it.
+#' A departure is on by default, and no option brings the reference
+#' version's result back.
 #'
 #' The registry is installed with the package, one file for each entry, in
 #' the directory `system.file("departures", package = "ftfy")`. This page
 #' is written from those files and is never edited by hand.
 #'
-#' Parts of Python ftfy that this package does not have are not departures
-#' and are not listed here: see [ftfy][ftfy-package] for what is absent,
-#' [ftfy_config()] for the options that are not taken, and [apply_plan()]
-#' for what a failed replay is.
+#' Some other differences are not departures and are not listed here. They
+#' are parts of Python ftfy that this package does not have, and things an
+#' R function cannot return. See [ftfy][ftfy-package] for what is absent,
+#' [ftfy_config()] for the options that are not taken, [ftfy_plan()] for
+#' codec names, which have no aliases, and [apply_plan()] for a plan that
+#' ends in bytes. Each function's help page has a section on its
+#' differences from Python ftfy. A difference that is neither on this page
+#' nor on those is a bug in this package: please report it.
 #'
 #' @name ftfy-differences
 #' @aliases differences departures

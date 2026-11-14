@@ -4,7 +4,7 @@ A move to a new reference version and a new departure are both changes of this k
 
 # ftfy 0.1.0
 
-The first release, which has not been made yet. Its reference version is Python ftfy 6.3.1 on Python 3.13: with the exceptions below, every function returns what that version returns.
+The first release, which has not been made yet. Its reference version is Python ftfy 6.3.1 on Python 3.13, and the package aims to return what that version returns. Where it does not, the difference is on the help page `?"ftfy-differences"` or in the section "Differences from Python ftfy" of a function's help page; the ones that change what a user gets are below.
 
 ## Default output that differs from the reference version
 

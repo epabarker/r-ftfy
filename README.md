@@ -16,7 +16,7 @@ is_bad(c("sÃ³", "só"))
 
 Every function takes a character vector and works on all of it at once.
 
-Call it on the whole vector, or the whole column, and not once per row. Each call has a fixed cost: 0.6 to 1.6 milliseconds on one string that is not plain ASCII, where Python ftfy takes 6 to 16 microseconds. That cost was accepted so that a whole vector could be fixed in one pass with no compiled code; `?ftfy` says where the figures come from.
+Call it on the whole vector, or the whole column, and not once per row. Each call has a fixed cost. The cost accepted when the design was chosen (ADR 0008) is 0.6 to 1.6 milliseconds for a call on one string that is not plain ASCII, where Python ftfy takes 6 to 16 microseconds; it was accepted so that a whole vector could be fixed in one pass with no compiled code. `?ftfy` has the figures measured on the package as it is now.
 
 ## Status
 
