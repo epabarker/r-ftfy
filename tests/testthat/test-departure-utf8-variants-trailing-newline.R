@@ -4,8 +4,8 @@
 # the input is undecodable, where the reference version reads the newline
 # as the missing byte.
 #
-# Asserted here at the decoder level and through fix_encoding(). Ticket
-# #41 adds the assertions through fix_text().
+# Asserted here at the decoder level and through fix_encoding(),
+# apply_plan(), fix_and_explain() and fix_text().
 
 # C0 0A and ED A0 BD ED B8 0A, alone and after text.
 cut_short_bytes <- function() {
@@ -126,8 +126,8 @@ test_that("the registry entry matches the difference in fix_encoding() and no ot
   for (i in seq_along(text)) {
     expect_true(matcher(list(fun = "fix_encoding", input = text[[i]],
                              reference = reference[[i]], actual = actual[[i]])))
-    # Not yet a departure of any other export (ticket #41 adds fix_text()).
-    expect_false(matcher(list(fun = "fix_text", input = text[[i]],
+    # Not a departure of fix_and_explain(): no snapshot row shows it there.
+    expect_false(matcher(list(fun = "fix_and_explain", input = text[[i]],
                               reference = reference[[i]], actual = actual[[i]])))
     # R lost the newline too, or gave nothing.
     expect_false(matcher(list(fun = "fix_encoding", input = text[[i]],
@@ -193,8 +193,7 @@ test_that("the registry entry matches the failed replay in apply_plan() and no o
 # 'remove_control_chars')]) for this text: the newline is read as the
 # second byte of C0 80 and the U+0000 is then removed (run on ftfy 6.3.1
 # with Python 3.13). No row of the fix_and_explain() snapshot shows this
-# departure, so the matcher is not widened to it here; ticket #41 widens
-# it to fix_text().
+# departure, so the matcher is not widened to it.
 test_that("fix_and_explain() keeps the newline after a sequence cut short", {
   text <- "sch\u00c3\u00b6n \u00c0\n"
   explained <- fix_and_explain(text)
@@ -202,4 +201,104 @@ test_that("fix_and_explain() keeps the newline after a sequence cut short", {
   expect_identical(explained$text, "sch\u00f6n \u00c0\n")
   expect_identical(as.character(explained$plan), "apply decode_inconsistent_utf8")
   expect_identical(apply_plan(text, explained$plan), explained$text)
+})
+
+# fix_text() (ticket #41): the example of ADR 0004. Each line is repaired
+# with its newline, so the departure is met at the end of any line, not
+# only at the end of the input. The reference results were run on ftfy
+# 6.3.1 with Python 3.13 and are in the snapshot reference/fix_text.tsv.
+cut_short_lines <- function() {
+  c("sch\u00c3\u00b6n \u00c0\n", "one \u00c3\u00a9 \u00c0\ntwo \u00c3\u00a9",
+    "caf\u00c3\u00a9 \u00ed\u00a0\u00bd\u00ed\u00b8\n")
+}
+cut_short_lines_reference <- function() {
+  c("sch\u00f6n ", "one \u00e9 two \u00e9", paste0("caf\u00e9 ", intToUtf8(0x1F60A)))
+}
+
+test_that("fix_text() keeps the newline and the character before it", {
+  # ADR 0004: the reference version gives 'sch\u00f6n ' for the first.
+  expect_identical(
+    fix_text(cut_short_lines()),
+    c("sch\u00f6n \u00c0\n", "one \u00e9 \u00c0\ntwo \u00e9",
+      "caf\u00e9 \u00ed\u00a0\u00bd\u00ed\u00b8\n")
+  )
+  expect_identical(
+    fix_text("sch\u00c3\u00b6n \u00c0\n", remove_control_chars = FALSE),
+    "sch\u00f6n \u00c0\n"
+  )
+})
+
+test_that("fix_text() agrees with the reference version when the line does not end there", {
+  snapshot <- read_fix_text_snapshot()$default
+  rows <- snapshot[snapshot$text %in% c(
+    "sch\u00c3\u00b6n \u00c0",
+    "caf\u00c3\u00a9 \u00ed\u00a0\u00bd\u00ed\u00b8\u008a\n"
+  ), ]
+
+  expect_identical(nrow(rows), 2L)
+  expect_identical(fix_text(rows$text), rows$fixed)
+  expect_identical(
+    fix_text("caf\u00c3\u00a9 \u00ed\u00a0\u00bd\u00ed\u00b8\u008a\n"),
+    paste0("caf\u00e9 ", intToUtf8(0x1F60A), "\n")
+  )
+})
+
+test_that("the snapshot of fix_text() shows the departure on the three rows put there for it", {
+  snapshot <- read_fix_text_snapshot()
+
+  expect_true(all(cut_short_lines() %in% snapshot$default$text))
+  for (variant in names(snapshot)) {
+    rows <- snapshot[[variant]]
+    actual <- fix_text_variant(rows$text, variant)
+    differs <- which(actual != rows$fixed)
+    ids <- vapply(differs, function(at) {
+      id <- departure_matching(list(fun = "fix_text", input = rows$text[[at]],
+                                    reference = rows$fixed[[at]], actual = actual[[at]]))
+      if (is.null(id)) "" else id
+    }, "")
+    shown <- rows$text[differs[ids == "utf8-variants-trailing-newline"]]
+    expected <- switch(
+      variant,
+      # With no encoding repair nothing is decoded, and cut into pieces of
+      # 3 characters no piece ends in such a sequence and a newline.
+      no_fix_encoding = ,
+      max_decode_length_3 = character(),
+      # The first two are lines of no more than 10 characters.
+      max_decode_length_10 = cut_short_lines()[1:2],
+      cut_short_lines()
+    )
+    expect_setequal(shown, expected)
+  }
+})
+
+test_that("the registry entry matches the difference in fix_text() and no other", {
+  matcher <- departure_matchers()[["utf8-variants-trailing-newline"]]
+  text <- cut_short_lines()
+  reference <- cut_short_lines_reference()
+  actual <- fix_text(text)
+
+  for (i in seq_along(text)) {
+    expect_true(matcher(list(fun = "fix_text", input = text[[i]],
+                             reference = reference[[i]], actual = actual[[i]])))
+    # The reference version kept as many newlines as R: some other difference.
+    expect_false(matcher(list(fun = "fix_text", input = text[[i]],
+                              reference = paste0(reference[[i]], "\n"), actual = actual[[i]])))
+    # R lost the newline too, or gave nothing.
+    expect_false(matcher(list(fun = "fix_text", input = text[[i]],
+                              reference = reference[[i]], actual = reference[[i]])))
+    expect_false(matcher(list(fun = "fix_text", input = text[[i]],
+                              reference = reference[[i]], actual = NA_character_)))
+  }
+  # With remove_control_chars off the reference text holds U+0000 and
+  # stays escaped.
+  expect_true(matcher(list(fun = "fix_text", input = text[[1]],
+                           reference = "sch\\u00F6n \\u0000", actual = actual[[1]])))
+  expect_false(matcher(list(fun = "fix_text", input = text[[1]],
+                            reference = "sch\\u00F6n \\u0000\\u000A", actual = actual[[1]])))
+  # Texts in which no line ends in the sequence and a newline.
+  for (other in c("one\ntwo\n", "sch\u00c3\u00b6n \u00c0", "caf\u00c3\u00a9\n\u00c0",
+                  "\u00ed\u00a0\u00bd\n")) {
+    expect_false(matcher(list(fun = "fix_text", input = other,
+                              reference = "x", actual = "x\n")))
+  }
 })

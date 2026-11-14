@@ -10,10 +10,7 @@
 # - tests/test_characters.py:45 and :46, test_surrogates: `fix_surrogates` is not
 #   ported, and its inputs are lone surrogates, which no R string holds.
 #
-# Ported by the tickets that deliver the functions they call:
-#
-# - tests/test_characters.py:41, test_ohio_flag: `fix_text()`.
-# - tests/test_characters.py:50 to :56, test_color_escapes: `fix_and_explain()`.
+# Every other test of the file is here.
 
 # tests/test_characters.py:16 (the assertion is line 17)
 test_that("test_byte_order_mark", {
@@ -40,6 +37,18 @@ test_that("test_welsh_flag", {
     "\U0001f3f4\U000e0067\U000e0062\U000e0077\U000e006c\U000e0073\U000e007f"
   )
   expect_identical(remove_control_chars(text), text)
+})
+
+# tests/test_characters.py:36 (the assertion is line 41)
+test_that("test_ohio_flag", {
+  # I did not expect to find the "Flag of Ohio" emoji in the wild but there
+  # it is. Test that this emoji (which no emoji database believes has been
+  # implemented) passes through unchanged.
+  text <- paste0(
+    "#superman #ohio \U0001f3f4\U000e0075\U000e0073\U000e006f\U000e0068\U000e007f",
+    " #cleveland #usa \U0001f1fa\U0001f1f8"
+  )
+  expect_identical(fix_text(text), text)
 })
 
 # tests/test_characters.py:49 (the assertions are lines 52 and 53)

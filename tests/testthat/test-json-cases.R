@@ -46,33 +46,16 @@ test_that("the duplicate record runs twice", {
 
 # tests/test_examples_in_json.py:48, test_json_example(), and
 # tests/test_examples_in_json.py:94, test_failing_json_example()
-test_that("every check on every JSON case passes, apart from the not-yet-passing list", {
+test_that("every check on every JSON case passes", {
   results <- run_json_checks(read_json_cases())
 
-  # Set FTFY_SHRINK_NOT_YET_PASSING=true to delete the entries that now pass.
-  if (identical(Sys.getenv("FTFY_SHRINK_NOT_YET_PASSING"), "true")) {
-    shrink_not_yet_passing(results)
-  }
-
-  listed <- read_not_yet_passing()
-  listed_keys <- paste0(listed$check, "\t", listed$index)
-  all_keys <- entry_keys(results)
-  failing <- entry_keys(results[!results$passes, , drop = FALSE])
-  passing <- entry_keys(results[results$passes, , drop = FALSE])
-
-  # The list is sorted and has no repeats, so that it has one form.
-  expect_identical(listed_keys, entry_keys(listed))
-  expect_identical(anyDuplicated(listed_keys), 0L)
-
-  # Every entry names a check that exists on a case it applies to.
-  expect_identical(setdiff(listed_keys, all_keys), character())
-
-  # A check that fails must be on the list.
-  unlisted <- setdiff(failing, listed_keys)
-  errors <- unique(results$error[!is.na(results$error) &
-    paste0(results$check, "\t", results$index) %in% unlisted])
-  expect_identical(unlisted, character(), info = paste(errors, collapse = "\n"))
-
-  # The list may only shrink: a listed check that now passes must be removed.
-  expect_identical(intersect(listed_keys, passing), character())
+  failing <- results[!results$passes, , drop = FALSE]
+  errors <- unique(failing$error[!is.na(failing$error)])
+  expect_identical(
+    sprintf("%s\t%d", failing$check, failing$index), character(),
+    info = paste(errors, collapse = "\n")
+  )
+  # Seven checks on each of the 151 pass cases and four on each of the 10
+  # fail cases.
+  expect_identical(nrow(results), 7L * 151L + 4L * 10L)
 })

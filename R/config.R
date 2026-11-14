@@ -79,7 +79,9 @@ options_not_ported <- c(
 #'   \item{`unescape_html`}{`"auto"` (the default), `TRUE` or `FALSE`.
 #'     Whether to replace HTML entities such as `&amp;` with the characters
 #'     they stand for. `"auto"` does so unless the text holds a literal
-#'     `<`, which suggests it is HTML whose entities should be kept.}
+#'     `<`, which suggests it is HTML whose entities should be kept. In
+#'     [fix_text()] the `<` counts from the segment that holds it to the
+#'     end of its string.}
 #'   \item{`remove_terminal_escapes`}{Remove ANSI terminal escapes, such as
 #'     those that change the colour of text in a terminal.}
 #'   \item{`fix_encoding`}{Detect mojibake and repair it by decoding the
@@ -112,14 +114,20 @@ options_not_ported <- c(
 #'     `"NFKD"`, or `NULL` for no normalisation. NFKC and NFKD can change
 #'     meaning: they turn a superscript three into the digit 3.}
 #'   \item{`max_decode_length`}{A whole number, at least 1; the default is
-#'     `1e6`. The longest segment, in characters, that is repaired in one
-#'     piece.}
+#'     `1e6`. The longest segment, in characters, that [fix_text()] fixes
+#'     in one piece: a line longer than this is cut into pieces of this
+#'     length, and mojibake that a cut falls in is not repaired. The other
+#'     functions take each string whole and do not use it.}
 #' }
 #'
 #' @section Differences from Python ftfy:
 #' Three of `TextFixerConfig`'s fields are not options here, and passing
 #' one is an error: `explain`, `fix_surrogates` and the deprecated alias
 #' `fix_entities` (use `unescape_html`).
+#'
+#' The four options under `fix_encoding` are honoured by every function,
+#' however they are given. In Python ftfy 6.3.1, `fix_text()` ignores them
+#' when they are given as keyword arguments.
 #'
 #' @param ... Options to change from their defaults, each given by its full
 #'   name. See the section Options.

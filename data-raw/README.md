@@ -32,17 +32,9 @@ Rscript data-raw/build.R
 
 `R/sysdata.rda`, `NAMESPACE` and `man/` are never edited or merged by hand. On a merge conflict in any of them, take either side and run `build.R`.
 
-## The upstream JSON cases and the not-yet-passing list
+## The upstream JSON cases
 
-`tests/testthat/upstream/test_cases.json` is upstream's file, byte for byte. `generators/snapshot_json_cases.py` reads it and writes what the reference version gives for each case to `tests/testthat/reference/json_cases.tsv`.
-
-`tests/testthat/not-yet-passing.txt` names every check on those cases that the package cannot pass yet, one line per check and case index. The list may only shrink. When a change makes listed checks pass, the test fails until they are removed; remove them with:
-
-```
-FTFY_SHRINK_NOT_YET_PASSING=true Rscript -e 'pkgload::load_all(".", quiet = TRUE); testthat::test_file("tests/testthat/test-json-cases.R")'
-```
-
-This only deletes lines. Never add a line by hand. The file merges with git's union driver, so two branches that delete different lines do not conflict; after any merge that touches it, run the command above and commit the result.
+`tests/testthat/upstream/test_cases.json` is upstream's file, byte for byte. `generators/snapshot_json_cases.py` reads it and writes what the reference version gives for each case to `tests/testthat/reference/json_cases.tsv`. Every check on every case passes (`tests/testthat/test-json-cases.R`); there is no list of checks that may fail.
 
 ## The departure registry
 

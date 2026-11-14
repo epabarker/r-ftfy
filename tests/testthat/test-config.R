@@ -188,11 +188,14 @@ test_that("explain and fix_surrogates are rejected as unknown options", {
 
 # tests/test_entities.py:40, test_old_parameter_name(). Upstream accepts the
 # old name `fix_entities` with a deprecation warning; here it is an unknown
-# option (ADR 0001). `fix_text()` joins this test when it exists.
+# option (ADR 0001). Upstream's two calls are the ones on `fix_text()`
+# (tests/test_entities.py:43 and :45).
 test_that("the old parameter name fix_entities is an unknown-option error", {
   example <- "&amp;\n<html>\n&amp;"
   message <- "Unknown option `fix_entities`. .*`unescape_html`"
 
+  expect_error(fix_text(example, fix_entities = TRUE), message)
+  expect_error(fix_text(example, fix_entities = FALSE), message)
   expect_error(fix_encoding(example, fix_entities = TRUE), message)
   expect_error(fix_encoding(example, fix_entities = FALSE), message)
   expect_error(fix_and_explain(example, fix_entities = TRUE), message)

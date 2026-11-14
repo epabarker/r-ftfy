@@ -2,8 +2,8 @@
 # ADR 0007): C0 80 decoded with `utf-8-variants` gives nothing, where the
 # reference version gives U+0000.
 #
-# Asserted here at the decoder level, through fix_encoding(), apply_plan()
-# and fix_and_explain(). Ticket #41 adds the assertions through fix_text().
+# Asserted here at the decoder level and through fix_encoding(),
+# apply_plan(), fix_and_explain() and fix_text().
 
 # The bytes of 'null\u00c0\u20acseparated' in sloppy-windows-1252.
 nul_bytes <- function() "null\u00c0\u0080separated"
@@ -158,4 +158,26 @@ test_that("the registry entry matches the plan difference in fix_and_explain() a
     actual = "encode sloppy-windows-1252 > decode utf-8"
   )))
   expect_false(matcher(difference(input = "caf\u00c3\u00a9\u0007")))
+})
+
+# fix_text() (ticket #41). With default options the reference version
+# removes the U+0000 it decoded, as a control character, so the texts are
+# equal; with remove_control_chars off it keeps it (run on ftfy 6.3.1 with
+# Python 3.13: 'null\x00separated' and 'caf\xe9 \x00 end\nnext \xe9\n').
+test_that("fix_text() gives the reference version's text without the U+0000", {
+  text <- c("null\u00c0\u20acseparated", "caf\u00c3\u00a9 \u00c0\u0080 end\nnext \u00c3\u00a9\n")
+  fixed <- c("nullseparated", "caf\u00e9  end\nnext \u00e9\n")
+
+  expect_identical(fix_text(text), fixed)
+  kept <- fix_text(text, remove_control_chars = FALSE)
+  expect_identical(kept, fixed)
+  expect_reference(
+    "fix_text", text, kept,
+    unescape_reference(c("null\\u0000separated", "caf\\u00E9 \\u0000 end\\u000Anext \\u00E9\\u000A"))
+  )
+  expect_identical(
+    departure_matching(list(fun = "fix_text", input = text[[1]],
+                            reference = "null\\u0000separated", actual = kept[[1]])),
+    "decoded-nul-dropped"
+  )
 })
