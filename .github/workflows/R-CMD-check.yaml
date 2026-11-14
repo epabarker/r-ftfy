@@ -219,7 +219,7 @@ jobs:
         run: |
           field() {
             if [ -f "$2" ]; then
-              sed -n "s/^$1: //p" "$2"
+              sed -n "s/^$1: //p" "$2" | tr -d '\r'
             fi
           }
           {
