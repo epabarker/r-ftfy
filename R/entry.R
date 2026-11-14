@@ -77,8 +77,9 @@ exit_step <- function(result, shape) {
 # Unmarked non-ASCII strings as text, read in the session's native
 # encoding. Where that is UTF-8 the bytes already are the text and only
 # the mark is set, so that invalid bytes reach the check in `entry_step()`
-# on every R: `enc2utf8()` does the same from R 4.3, but R 4.2 replaces an
-# invalid byte by text such as `<e9>` and no error is seen (issue #43).
+# on every R. `enc2utf8()` was measured to do the same on R 4.5.3, 4.6.2
+# and devel, but on R 4.2.3 it replaces an invalid byte by text such as
+# `<e9>`, and no error was raised (issue #43).
 read_native <- function(x) {
   if (isTRUE(l10n_info()[["UTF-8"]])) {
     Encoding(x) <- "UTF-8"
