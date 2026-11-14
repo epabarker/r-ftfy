@@ -70,9 +70,12 @@ test_that("with default options the only differences from the snapshot are the t
   rows <- snapshot$default
   actual <- fix_text(rows$text)
   differs <- which(actual != rows$fixed)
+  # The registry is read once, not for every row.
+  matchers <- departure_matchers()
   ids <- vapply(differs, function(at) {
     departure_matching(list(fun = "fix_text", input = rows$text[[at]],
-                            reference = rows$fixed[[at]], actual = actual[[at]]))
+                            reference = rows$fixed[[at]], actual = actual[[at]]),
+                       matchers)
   }, "")
 
   expect_identical(length(differs), 3L)
@@ -312,6 +315,10 @@ whole_vector_fixture <- function() {
 }
 
 test_that("for all four core functions, one call on the whole vector gives what one call per element gives", {
+  # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
+  # string each, the slowest kind of test here. It runs wherever NOT_CRAN
+  # is "true": every check job of the R-CMD-check workflow.
+  skip_on_cran()
   x <- whole_vector_fixture()
   expect_true(anyNA(x) && anyDuplicated(x) > 0L)
   option_sets <- list(
@@ -320,6 +327,13 @@ test_that("for all four core functions, one call on the whole vector gives what 
     list(restore_byte_a0 = FALSE, decode_inconsistent_utf8 = FALSE, uncurl_quotes = FALSE)
   )
 
+  # A quarter of the fixture is repeats. The call on one element is made
+  # once for each distinct value, on its first place in `x`, and the result
+  # is put at every place of that value.
+  first <- which(!duplicated(unname(x)))
+  place <- match(unname(x), unname(x)[first])
+  expect_lt(length(first), length(x))
+
   for (options in option_sets) {
     call <- function(fun, x) do.call(fun, c(list(x), options))
     info <- paste(names(options), collapse = ", ")
@@ -327,7 +341,7 @@ test_that("for all four core functions, one call on the whole vector gives what 
     # The two that return a vector: texts, names and missing strings.
     for (fun in list(fix_text, fix_encoding)) {
       whole <- call(fun, x)
-      each <- vapply(seq_along(x), function(i) unname(call(fun, x[i])), "")
+      each <- vapply(first, function(i) unname(call(fun, x[i])), "")[place]
       expect_identical(unname(whole), each, info = info)
       expect_identical(names(whole), names(x), info = info)
       expect_identical(is.na(whole), is.na(x), info = info)
@@ -335,7 +349,7 @@ test_that("for all four core functions, one call on the whole vector gives what 
     # The two that return a data frame: texts and plans.
     for (fun in list(fix_and_explain, fix_encoding_and_explain)) {
       whole <- call(fun, x)
-      each <- lapply(seq_along(x), function(i) call(fun, x[i]))
+      each <- lapply(first, function(i) call(fun, x[i]))[place]
       expect_identical(whole$text, vapply(each, function(one) one$text, ""), info = info)
       expect_identical(
         as.character(whole$plan),

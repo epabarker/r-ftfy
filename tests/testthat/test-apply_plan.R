@@ -396,6 +396,10 @@ test_that("the unexported replay gives NA for each element that fails and raises
 # Whole vectors -------------------------------------------------------------------
 
 test_that("one call on a vector with a plan per element equals one call per element", {
+  # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
+  # string each, the slowest kind of test here. It runs wherever NOT_CRAN
+  # is "true": every check job of the R-CMD-check workflow.
+  skip_on_cran()
   rows <- replay_rows()
   x <- c(rows$text[1:1500], NA, rows$text[1:200], NA, rows$text[1:3])
   plan <- c(rows$plan[1:1500], "none", rows$plan[1:200], NA, NA, "decode utf-8", "encode cp437")
@@ -431,13 +435,16 @@ test_that("every plan fix_encoding_and_explain() returns replays to its text", {
 test_that("the reference version's encoding plan replays to its text on every snapshot row", {
   rows <- replay_rows()
   replayed <- ftfy:::replay_plan(rows$text, rows$plan)
+  # The registry is read once, not for every row.
+  matchers <- departure_matchers()
 
-  expect_reference("apply_plan", rows$text, replayed, rows$fixed)
+  expect_reference("apply_plan", rows$text, replayed, rows$fixed, matchers)
   # The rows on which a departure applies, by registry entry.
   differs <- which((is.na(replayed) | replayed != rows$fixed) & rows$option == "")
   ids <- vapply(differs, function(i) {
     id <- departure_matching(list(fun = "apply_plan", input = rows$text[[i]],
-                                  reference = rows$fixed[[i]], actual = replayed[[i]]))
+                                  reference = rows$fixed[[i]], actual = replayed[[i]]),
+                             matchers)
     if (is.null(id)) "unmatched" else id
   }, "")
   expect_identical(
