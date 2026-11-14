@@ -27,6 +27,14 @@
 #' is not plain ASCII has a fixed cost of about a millisecond, however
 #' long the vector (see [ftfy][ftfy-package] for the measurements).
 #'
+#' Measured against the reference version (macOS arm64, each distinct
+#' value once), `fix_encoding()` is slower than Python ftfy in two cases:
+#' on long text that is mostly clean, 1.24 times its time per value on
+#' notes of about 260 characters, and on a call with few values, 1.10
+#' times on 2,000 short names and 1.49 times on 1,000. `fix_text()` was
+#' faster than the reference version on every column measured, these
+#' included.
+#'
 #' @section Differences from Python ftfy:
 #' Where the repair decodes the two bytes C0 80, which stand for the
 #' character U+0000, nothing is put in their place, because an R string
