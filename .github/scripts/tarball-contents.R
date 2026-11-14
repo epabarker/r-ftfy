@@ -1,8 +1,13 @@
 # Checks what the built tarball ships (issue #49, the resolution of issue
-# #19): exactly one image, man/figures/logo.png at 480 x 556, and none of
-# the pkgdown site configuration, favicons or logo sources. Run from the
-# directory holding the tarball. Fails, naming the offending files, when
-# the tarball ships anything else.
+# #19): exactly one image, man/figures/logo.png at the size logo_size
+# gives, and none of the pkgdown site configuration, favicons or logo
+# sources. Run from the directory holding the tarball. Fails, naming the
+# offending files, when the tarball ships anything else.
+
+# The size of the logo, width then height, in pixels. Double, as the size
+# read from the PNG header below is.
+logo_size <- c(480, 556)
+logo_label <- sprintf("%d x %d", logo_size[1], logo_size[2])
 
 tarball <- list.files(pattern = "^ftfy_.*[.]tar[.]gz$")
 stopifnot(length(tarball) == 1L)
@@ -43,9 +48,9 @@ if ("man/figures/logo.png" %in% images) {
     sum(as.integer(header[17:20]) * 256^(3:0)),
     sum(as.integer(header[21:24]) * 256^(3:0))
   )
-  if (!identical(size, c(480, 556))) {
+  if (!identical(size, logo_size)) {
     problems <- c(problems, sprintf(
-      "man/figures/logo.png is %d x %d, not 480 x 556.", size[1], size[2]
+      "man/figures/logo.png is %d x %d, not %s.", size[1], size[2], logo_label
     ))
   }
 }
@@ -53,4 +58,7 @@ if ("man/figures/logo.png" %in% images) {
 if (length(problems)) {
   stop(paste(problems, collapse = "\n"), call. = FALSE)
 }
-cat("The tarball ships one image, man/figures/logo.png (480 x 556), and no site configuration or logo sources.\n")
+cat(sprintf(
+  "The tarball ships one image, man/figures/logo.png (%s), and no site configuration or logo sources.\n",
+  logo_label
+))

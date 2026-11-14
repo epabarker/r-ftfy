@@ -1,4 +1,4 @@
-# Derived from python-ftfy v6.3.1, ftfy/. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+# Derived from python-ftfy v6.3.1, ftfy/bad_codecs/sloppy.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
 # Runs after: corpus_inputs.py
 """Write the inputs of the larger corpus that are built from outside text
 to tests/corpus/inputs/outside.tsv.xz (ticket #45).
@@ -12,7 +12,9 @@ Columns as in corpus_inputs.py:
 
 - id: 1, 2, ... in file order.
 - slice: "outside" on every row.
-- variant: one of VARIANTS below.
+- variant: one of the variants of data-raw/outside/variants.tsv, which
+  also gives the fewest rows of each; the script stops when a variant has
+  fewer, and the tests read the same file.
 - detail: "<source> <language> <kind>" of the value the row was made
   from, then, for a row that is not clean, ", " and the codecs of its
   mix-up, as "utf-8>sloppy-windows-1253" for text encoded with the first
@@ -23,10 +25,10 @@ Columns as in corpus_inputs.py:
 Every value is there as it is, as a clean row. Each is also mixed up
 through the codecs of its language: UTF-8 read with the single-byte codec
 of the language's region, as text of that language is most often
-damaged, and now and then with another; and some at two layers, or with
-undecodable bytes replaced by U+FFFD, or with the no-break space of the
-mix-up turned into a space. No input is there twice, nor is any input of
-our own slice.
+damaged, and now and then with another; and some at two layers, or read
+with strict windows-1252, whose holes are decoded as U+FFFD, or with the
+no-break space of the mix-up turned into a space. No input is there
+twice, nor is any input of our own slice.
 
 Every draw is seeded, so a rerun gives the same file byte for byte. The
 script stops unless it runs under the reference interpreter, because the
@@ -46,36 +48,38 @@ require_reference()
 import ftfy.bad_codecs  # noqa: E402,F401  registers the sloppy codecs
 
 from _corpus import INPUT_COLUMNS, INPUTS_DIR, MAX_INPUTS, check_ages, newest, read_inputs, unescape  # noqa: E402
+from _outside import REGIONS, WESTERN  # noqa: E402
 from _xz import read_xz, write_xz  # noqa: E402
 
 SEED = 45
 SLICE = "outside"
 VALUES = "data-raw/outside/values.tsv.xz"
+VARIANTS_FILE = "data-raw/outside/variants.tsv"
 # The slice "own" may grow to 42,000 rows (corpus_inputs.py), so this one
 # stays at or below the rest of the cap of 50,000.
 MAX_OUTSIDE = 8_000
 
-VARIANTS = {
-    "clean": 2000,  # a value as the source has it
-    "mixup-1": 2000,  # one layer: encoded with UTF-8, decoded with another codec
-    "mixup-2": 500,  # two layers
-    "lossy-replaced": 150,  # undecodable bytes became U+FFFD
-    "lossy-a0-space": 50,  # the byte A0 of a mix-up became a space
-}
 
-WESTERN = ["sloppy-windows-1252", "latin-1"]
-WESTERN_OTHER = ["windows-1252", "macroman", "cp437"]
-# The codecs a language's text is most often read with by mistake, and
-# the others it is sometimes read with.
-REGIONS = [
-    (("fr", "de", "es", "it", "pt", "nl", "sv", "da", "no", "fi", "is"), WESTERN, WESTERN_OTHER),
-    (("pl", "cs", "hu", "ro", "hr", "sk", "sl"), ["sloppy-windows-1250", "iso-8859-2"], WESTERN),
-    (("ru", "uk", "bg", "sr"), ["sloppy-windows-1251"], WESTERN),
-    (("el",), ["sloppy-windows-1253"], WESTERN),
-    (("tr",), ["sloppy-windows-1254"], WESTERN),
-    (("lt", "lv", "et"), ["sloppy-windows-1257"], WESTERN),
-    (("ja", "zh", "ko", "ar", "he", "und"), WESTERN, ["macroman", "sloppy-windows-1251"]),
-]
+def read_variants():
+    """The variants, in order, with the fewest rows of each."""
+    with open(VARIANTS_FILE, encoding="ascii") as handle:
+        lines = handle.read().splitlines()
+    assert lines[0] == "variant\tleast\twhat", VARIANTS_FILE
+    return {variant: int(least) for variant, least, _ in (line.split("\t") for line in lines[1:])}
+
+
+VARIANTS = read_variants()
+
+# The most rows of each lossy variant: build() stops drawing values for a
+# variant once it has this many, where every value of the outside text
+# is drawn for each of the other variants. A cap is a ceiling and the
+# variant's least in variants.tsv a floor that main() checks, so a cap is
+# never below its least; the room between them is for drawn values that
+# give no row (no U+FFFD or A0 in the mix-up, or a text already there).
+MOST_REPLACED = 400
+MOST_A0_SPACE = 200
+assert MOST_REPLACED >= VARIANTS["lossy-replaced"] and MOST_A0_SPACE >= VARIANTS["lossy-a0-space"]
+
 CODECS_OF = {language: (main, other) for languages, main, other in REGIONS for language in languages}
 
 
@@ -148,12 +152,12 @@ def build(values, rows):
     made = 0
     for detail, _, text in rng.sample(values, len(values)):
         mixed = mix_up(text, "utf-8", "windows-1252", errors="replace")
-        if "\ufffd" in mixed and made < 400:
+        if "\ufffd" in mixed and made < MOST_REPLACED:
             made += rows.add("lossy-replaced", detail + ", utf-8>windows-1252", mixed)
     made = 0
     for detail, _, text in rng.sample(values, len(values)):
         mixed = mix_up(text, "utf-8", "sloppy-windows-1252")
-        if mixed is not None and "\xa0" in mixed and made < 200:
+        if mixed is not None and "\xa0" in mixed and made < MOST_A0_SPACE:
             made += rows.add(
                 "lossy-a0-space", detail + ", utf-8>sloppy-windows-1252", mixed.replace("\xa0", " ")
             )

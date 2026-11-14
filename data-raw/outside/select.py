@@ -47,6 +47,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "generators"))
 
 from _corpus import age  # noqa: E402
+from _outside import LOCALES  # noqa: E402
 from _reference import REPO, escape, storable  # noqa: E402
 from _xz import write_xz  # noqa: E402
 
@@ -59,19 +60,14 @@ COLUMNS = ["source", "language", "kind", "text"]
 # reference interpreter's (15.1).
 CLDR_VERSION = "44.1.0"
 CLDR_BASE = "https://raw.githubusercontent.com/unicode-org/cldr-json/%s/cldr-json/" % CLDR_VERSION
-
-# The locales, by the groups of the resolution of #15: Western European,
-# Central European, Cyrillic, Greek, Turkish, Baltic, and CJK, Arabic and
-# Hebrew as clean controls.
-LOCALES = [
-    "fr", "de", "es", "it", "pt", "nl", "sv", "da", "no", "fi", "is",
-    "pl", "cs", "hu", "ro", "hr", "sk", "sl",
-    "ru", "uk", "bg", "sr",
-    "el",
-    "tr",
-    "lt", "lv", "et",
-    "ja", "zh", "ko", "ar", "he",
-]
+# The files read for each locale of LOCALES (in _outside.py, which also
+# gives each its codecs), by part, in the order they are downloaded.
+CLDR_PARTS = {
+    "territories": "cldr-localenames-full/main/%s/territories.json",
+    "languages": "cldr-localenames-full/main/%s/languages.json",
+    "calendar": "cldr-dates-full/main/%s/ca-gregorian.json",
+    "annotations": "cldr-annotations-full/annotations/%s/annotations.json",
+}
 
 # How many values of each kind are taken from each locale or book.
 KINDS = {
@@ -108,17 +104,16 @@ BOOKS = [
 GUTENBERG_URL = "https://www.gutenberg.org/cache/epub/%d/pg%d.txt"
 
 
+def cldr_url(part, locale):
+    return CLDR_BASE + CLDR_PARTS[part] % locale
+
+
 def files():
     """Every file the script reads, as (source, url), in a fixed order."""
     out = []
     for locale in LOCALES:
-        for part in (
-            "cldr-localenames-full/main/%s/territories.json",
-            "cldr-localenames-full/main/%s/languages.json",
-            "cldr-dates-full/main/%s/ca-gregorian.json",
-            "cldr-annotations-full/annotations/%s/annotations.json",
-        ):
-            out.append(("cldr", CLDR_BASE + part % locale))
+        for part in CLDR_PARTS:
+            out.append(("cldr", cldr_url(part, locale)))
     for number, _ in BOOKS:
         out.append(("gutenberg", GUTENBERG_URL % (number, number)))
     return out
@@ -150,7 +145,7 @@ def local_name(url):
     return hashlib.sha256(url.encode("ascii")).hexdigest()[:16] + "-" + url.rsplit("/", 1)[1]
 
 
-def fetch(url, downloads):
+def fetch(source, url, downloads):
     """The bytes of a file: from the downloads directory if it is there,
     else downloaded into it."""
     path = os.path.join(downloads, local_name(url))
@@ -160,7 +155,7 @@ def fetch(url, downloads):
             data = response.read()
         with open(path, "wb") as handle:
             handle.write(data)
-        if "gutenberg.org" in url:
+        if source == "gutenberg":
             time.sleep(2)
     with open(path, "rb") as handle:
         return handle.read()
@@ -205,19 +200,19 @@ def names_of(table):
 
 
 def cldr_values(locale, documents, rng):
-    territories, languages, calendar, annotations = documents
-    names = territories["main"][locale]["localeDisplayNames"]
+    """The values of one locale, from its parsed files by part."""
+    names = documents["territories"]["main"][locale]["localeDisplayNames"]
     out = [("territory", value) for value in sample(rng, names_of(names["territories"]), KINDS["territory"])]
-    names = languages["main"][locale]["localeDisplayNames"]
+    names = documents["languages"]["main"][locale]["localeDisplayNames"]
     out += [("language", value) for value in sample(rng, names_of(names["languages"]), KINDS["language"])]
-    gregorian = calendar["main"][locale]["dates"]["calendars"]["gregorian"]
+    gregorian = documents["calendar"]["main"][locale]["dates"]["calendars"]["gregorian"]
     for kind, key in (("month", "months"), ("weekday", "days")):
         found = []
         for context in ("format", "stand-alone"):
             for width in ("abbreviated", "wide"):
                 found += list(gregorian[key][context][width].values())
         out += [(kind, value) for value in sample(rng, found, KINDS[kind])]
-    table = annotations["annotations"]["annotations"]
+    table = documents["annotations"]["annotations"]["annotations"]
     found = [entry["tts"][0] for _, entry in sorted(table.items()) if entry.get("tts")]
     out += [("emoji-name", value) for value in sample(rng, found, KINDS["emoji-name"])]
     return out
@@ -273,32 +268,33 @@ def book_values(data, rng):
     return out
 
 
-def select(documents):
-    """The rows of the values file, from the parsed files by url."""
-    rows = []
+def first_of_each_text(rows):
+    """The rows, without any whose text an earlier row has."""
     seen = set()
+    out = []
+    for row in rows:
+        if row[3] not in seen:
+            seen.add(row[3])
+            out.append(row)
+    return out
 
-    def add(source, language, kind, text):
-        if text not in seen:
-            seen.add(text)
-            rows.append((source, language, kind, text))
 
+def select(documents):
+    """The rows of the values file, from the downloaded files by url."""
+    rows = []
     emoji = []
     for locale in LOCALES:
-        urls = [url for source, url in files() if source == "cldr" and "/%s/" % locale in url]
-        parsed = [json.loads(documents[url].decode("utf-8")) for url in urls]
+        parsed = {part: json.loads(documents[cldr_url(part, locale)].decode("utf-8")) for part in CLDR_PARTS}
         rng = random.Random("%d:cldr:%s" % (SEED, locale))
-        for kind, text in cldr_values(locale, parsed, rng):
-            add("cldr", locale, kind, text)
-        emoji += emoji_of(parsed[3])
+        rows += [("cldr", locale, kind, text) for kind, text in cldr_values(locale, parsed, rng)]
+        emoji += emoji_of(parsed["annotations"])
     rng = random.Random("%d:cldr:emoji" % SEED)
-    for text in sample(rng, emoji, KINDS["emoji"]):
-        add("cldr", "und", "emoji", text)
+    rows += [("cldr", "und", "emoji", text) for text in sample(rng, emoji, KINDS["emoji"])]
     for number, language in BOOKS:
         rng = random.Random("%d:gutenberg:%d" % (SEED, number))
-        for kind, text in book_values(documents[GUTENBERG_URL % (number, number)], rng):
-            add("gutenberg", language, kind, text)
-    return rows
+        values = book_values(documents[GUTENBERG_URL % (number, number)], rng)
+        rows += [("gutenberg", language, kind, text) for kind, text in values]
+    return first_of_each_text(rows)
 
 
 def write_values(rows):
@@ -329,7 +325,7 @@ def main():
     if args.pin:
         found = []
         for source, url in wanted:
-            found.append((source, url, hashlib.sha256(fetch(url, downloads)).hexdigest()))
+            found.append((source, url, hashlib.sha256(fetch(source, url, downloads)).hexdigest()))
         write_pins(found)
         return
     pins = read_pins()
@@ -339,7 +335,7 @@ def main():
     documents = {}
     try:
         for source, url in wanted:
-            documents[url] = verified(url, fetch(url, downloads), pins)
+            documents[url] = verified(url, fetch(source, url, downloads), pins)
     except ChecksumMismatch as error:
         sys.exit("stopped, nothing written: %s" % error)
     write_values(select(documents))

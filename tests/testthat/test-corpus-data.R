@@ -110,15 +110,21 @@ outside_dir <- function() {
   test_path("..", "..", "data-raw", "outside")
 }
 
-test_that("the outside-text slice is there, within the cap, beside our own slice", {
+test_that("the outside-text slice is there beside our own slice, with every variant of variants.tsv", {
   skip_without_corpus()
+  skip_if_not(dir.exists(outside_dir()), "data-raw/outside/ is not here.")
 
+  # The cap over every slice together is checked above.
   expect_identical(corpus_slices(), c("outside", "own"))
   inputs <- read_corpus_inputs("outside")
   expect_gte(nrow(inputs), 5000L)
-  expect_lte(nrow(inputs), 50000L - nrow(read_corpus_table("inputs", "own")))
+  # The variants and the fewest rows of each: corpus_inputs_outside.py
+  # reads the same file and stops when a variant has fewer.
+  variants <- utils::read.delim(file.path(outside_dir(), "variants.tsv"), colClasses = "character")
+  expect_identical(names(variants), c("variant", "least", "what"))
+  least <- stats::setNames(as.integer(variants$least), variants$variant)
+  expect_false(anyNA(least))
   counts <- table(inputs$variant)
-  least <- c(clean = 2000, "mixup-1" = 2000, "mixup-2" = 500, "lossy-replaced" = 150, "lossy-a0-space" = 50)
   expect_setequal(names(counts), names(least))
   expect_true(all(counts[names(least)] >= least))
   expect_true(all(grepl("^[a-z]+ [a-z]{2,3} [a-z-]+(, [a-z0-9>-]+)?$", inputs$detail)))
@@ -133,8 +139,17 @@ test_that("every source of the outside-text slice is listed in SOURCES with its 
   sources <- read.dcf(file.path(outside_dir(), "SOURCES"))
   expect_true(all(c("Id", "Name", "Version", "Licence", "Attribution", "Files") %in% colnames(sources)))
   expect_false(anyNA(sources[, c("Id", "Name", "Version", "Licence", "Attribution")]))
-  # Only licences the rule of #15 accepts.
-  accepted <- c("Unicode-3.0", "public domain", "CC0-1.0", "CC-BY-4.0", "OGL-UK-3.0", "MIT", "BSD")
+  # Only licences the rule of the resolution of #15 accepts, by its
+  # categories: "public domain, CC0, MIT/BSD-style, attribution-only
+  # (CC-BY, OGL, Unicode licence)". Share-alike, non-commercial,
+  # no-derivatives and no-redistribution licences are excluded. A licence
+  # is named by its SPDX id, but for public domain, which has none.
+  accepted <- c(
+    "public domain",
+    "CC0-1.0",
+    "MIT", "BSD-2-Clause", "BSD-3-Clause",
+    "CC-BY-4.0", "OGL-UK-3.0", "Unicode-3.0"
+  )
   expect_true(all(sources[, "Licence"] %in% accepted))
   used <- unique(sub(" .*$", "", read_corpus_inputs("outside")$detail))
   expect_setequal(used, sources[, "Id"])
