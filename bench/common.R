@@ -78,6 +78,39 @@ install_tree <- function(root, lib = tempfile("ftfy-bench-lib-")) {
 # on Unix, which is too coarse for the small columns.
 now <- function() as.numeric(Sys.time())
 
+# The lines of a report that say where it was run: the commit, the machine
+# (its CPU model, never a host or user name), OS, R, stringi and ICU.
+machine_lines <- function(root) {
+  git <- function(...) {
+    out <- tryCatch(suppressWarnings(system2("git", c("-C", shQuote(root), ...), stdout = TRUE,
+      stderr = FALSE)), error = function(e) character(0))
+    if (is.null(attr(out, "status"))) out else character(0)
+  }
+  commit <- git("rev-parse", "HEAD")
+  commit <- if (length(commit) == 1L) {
+    paste0(commit, if (length(git("status", "--porcelain")) > 0L) " (with uncommitted changes)" else "")
+  } else {
+    "unknown"
+  }
+  cpu <- tryCatch(
+    if (Sys.info()[["sysname"]] == "Darwin") {
+      system2("sysctl", c("-n", "machdep.cpu.brand_string"), stdout = TRUE)
+    } else {
+      sub("^[^:]*:\\s*", "", grep("^model name", readLines("/proc/cpuinfo"), value = TRUE)[1])
+    },
+    error = function(e) NA_character_, warning = function(w) NA_character_)
+  if (length(cpu) != 1L || is.na(cpu)) cpu <- "unknown"
+  icu <- stringi::stri_info()
+  c(
+    sprintf("- Commit: %s", commit),
+    sprintf("- Machine: %s, %d cores, %s", cpu, parallel::detectCores(), R.version$platform),
+    sprintf("- OS: %s", utils::sessionInfo()$running),
+    sprintf("- R: %s", paste(R.version$major, R.version$minor, sep = ".")),
+    sprintf("- stringi: %s, ICU %s (%s), Unicode %s", utils::packageVersion("stringi"),
+      icu$ICU.version, if (isTRUE(icu$ICU.system)) "system" else "bundled", icu$Unicode.version)
+  )
+}
+
 # ---------------------------------------------------------------------------
 # The Rprof breakdown of ADR 0008: where the time of `f(values)` goes.
 

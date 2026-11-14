@@ -183,26 +183,6 @@ over_text <- vapply(over, function(result) {
   sprintf("`%s` with `%s()` (%.2f)", result$column, result$fun, ratio_of(result))
 }, "")
 
-git <- function(...) {
-  out <- tryCatch(suppressWarnings(system2("git", c("-C", shQuote(root), ...), stdout = TRUE,
-    stderr = FALSE)), error = function(e) character(0))
-  if (is.null(attr(out, "status"))) out else character(0)
-}
-commit <- git("rev-parse", "HEAD")
-commit <- if (length(commit) == 1L) {
-  paste0(commit, if (length(git("status", "--porcelain")) > 0L) " (with uncommitted changes)" else "")
-} else {
-  "unknown"
-}
-cpu <- tryCatch(
-  if (Sys.info()[["sysname"]] == "Darwin") {
-    system2("sysctl", c("-n", "machdep.cpu.brand_string"), stdout = TRUE)
-  } else {
-    sub("^[^:]*:\\s*", "", grep("^model name", readLines("/proc/cpuinfo"), value = TRUE)[1])
-  },
-  error = function(e) NA_character_, warning = function(w) NA_character_)
-if (length(cpu) != 1L || is.na(cpu)) cpu <- "unknown"
-icu <- stringi::stri_info()
 
 headline <- if (length(differences) > 0L) {
   "**FAILED: R's output differs from the reference version's. The times below mean nothing.**"
@@ -221,12 +201,7 @@ report <- c(
   headline,
   "",
   sprintf("- Date: %s", format(Sys.time(), "%Y-%m-%d %H:%M UTC", tz = "UTC")),
-  sprintf("- Commit: %s", commit),
-  sprintf("- Machine: %s, %d cores, %s", cpu, parallel::detectCores(), R.version$platform),
-  sprintf("- OS: %s", utils::sessionInfo()$running),
-  sprintf("- R: %s", paste(R.version$major, R.version$minor, sep = ".")),
-  sprintf("- stringi: %s, ICU %s (%s), Unicode %s", utils::packageVersion("stringi"),
-    icu$ICU.version, if (isTRUE(icu$ICU.system)) "system" else "bundled", icu$Unicode.version),
+  machine_lines(root),
   sprintf("- Python: %s (%s), ftfy %s, Unicode %s", python_info[["python"]],
     python_info[["implementation"]], python_info[["ftfy"]], python_info[["unicode"]]),
   sprintf("- Repetitions: %d (whole column: %d), after one untimed call. Each cell is the median, with the lowest and highest in brackets.",
