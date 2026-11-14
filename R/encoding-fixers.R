@@ -11,8 +11,8 @@
 
 #' Repair UTF-8 mojibake inside other text
 #'
-#' Text from one encoding sometimes ends up inside text from another, so
-#' that the string as a whole cannot be decoded in any one way.
+#' Text written with one codec sometimes ends up inside text written with
+#' another, so that the string as a whole cannot be decoded in any one way.
 #' `decode_inconsistent_utf8()` finds the sequences in each string that
 #' plainly are UTF-8 mojibake and repairs each as [fix_encoding()] would
 #' repair it alone, leaving the rest of the string as it is.

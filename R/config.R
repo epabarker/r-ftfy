@@ -97,7 +97,7 @@ options_not_ported <- c(
 #'   \item{`decode_inconsistent_utf8`}{Where sequences plainly look like
 #'     UTF-8 mojibake but the string as a whole cannot be read in another
 #'     codec, repair those sequences anyway. This helps with strings joined
-#'     from text in different encodings.}
+#'     from texts written with different codecs.}
 #'   \item{`fix_c1_controls`}{Replace C1 control characters (U+0080 to
 #'     U+009F) with the characters Windows-1252 has at those bytes, as
 #'     HTML5 does, even when the whole string does not decode as Latin-1.}

@@ -233,7 +233,7 @@ plan_from_text <- function(x) {
   malformed <- !stringi::stri_enc_isascii(distinct)
   parsed <- parse_steps(distinct[!malformed])
   # Rebuilding the text form from the steps and comparing it with what was
-  # given catches every other departure from the format: stray spaces, a
+  # given catches every other format error: stray spaces, a
   # missing parameter, a trailing separator, the empty string.
   rebuilt <- plan_text_from_steps(
     sum(!malformed), parsed$element, parsed$action, parsed$parameter

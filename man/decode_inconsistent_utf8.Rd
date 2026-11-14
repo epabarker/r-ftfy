@@ -16,8 +16,8 @@ A character vector as long as \code{x}, marked as UTF-8, with the
 \code{names}, \code{dim} and \code{dimnames} of \code{x}. A missing string gives \code{NA}.
 }
 \description{
-Text from one encoding sometimes ends up inside text from another, so
-that the string as a whole cannot be decoded in any one way.
+Text written with one codec sometimes ends up inside text written with
+another, so that the string as a whole cannot be decoded in any one way.
 \code{decode_inconsistent_utf8()} finds the sequences in each string that
 plainly are UTF-8 mojibake and repairs each as \code{\link[=fix_encoding]{fix_encoding()}} would
 repair it alone, leaving the rest of the string as it is.

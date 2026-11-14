@@ -34,8 +34,8 @@ newline that ends it, or, when a line is longer than the option
 \code{max_decode_length}, a piece of it of at most that many characters. Each
 segment is fixed by itself, as \code{\link[=fix_and_explain]{fix_and_explain()}} fixes a whole
 string, and the fixed segments are joined again. So mojibake is looked
-for line by line, and a line in one encoding does not keep the repair
-from a line in another.
+for line by line, and a line mis-decoded with one codec does not keep
+the repair from a line mis-decoded with another.
 
 With \code{unescape_html = "auto"}, the default, HTML entities are replaced
 until a segment holds a \code{<}, which is taken to mean that the text is

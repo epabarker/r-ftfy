@@ -14,8 +14,8 @@
 #' `max_decode_length`, a piece of it of at most that many characters. Each
 #' segment is fixed by itself, as [fix_and_explain()] fixes a whole
 #' string, and the fixed segments are joined again. So mojibake is looked
-#' for line by line, and a line in one encoding does not keep the repair
-#' from a line in another.
+#' for line by line, and a line mis-decoded with one codec does not keep
+#' the repair from a line mis-decoded with another.
 #'
 #' With `unescape_html = "auto"`, the default, HTML entities are replaced
 #' until a segment holds a `<`, which is taken to mean that the text is
