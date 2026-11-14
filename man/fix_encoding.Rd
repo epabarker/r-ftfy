@@ -45,16 +45,9 @@ same bytes (the option \code{fix_c1_controls}; see \code{\link[=fix_c1_controls]
 }
 
 Call it on a whole vector, not once per string: each call on text that
-is not plain ASCII has a fixed cost of about a millisecond, however
-long the vector (see \link[=ftfy-package]{ftfy} for the measurements).
-
-Measured against the reference version (macOS arm64, each distinct
-value once), \code{fix_encoding()} is slower than Python ftfy in two cases:
-on long text that is mostly clean, 1.24 times its time per value on
-notes of about 260 characters, and on a call with few values, 1.10
-times on 2,000 short names and 1.49 times on 1,000. \code{fix_text()} was
-faster than the reference version on every column measured, these
-included.
+is not plain ASCII has a fixed cost of up to 0.75 milliseconds,
+however long the vector (see \link[=ftfy-package]{ftfy} for
+the measurements).
 }
 \section{Differences from Python ftfy}{
 

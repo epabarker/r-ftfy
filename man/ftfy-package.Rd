@@ -50,16 +50,19 @@ loops over strings, and a value that occurs many times is fixed once.
 Each call has a fixed cost, whatever the length of the vector, because
 stringi compiles a regular expression every time it is used and the
 pattern that detects mojibake takes about half a millisecond to
-compile. The cost that was accepted when this design was chosen is 0.6
+compile. A cheap check comes first, so that pattern is compiled only
+when some string in the call could be mojibake: text such as
+\code{"caf\\u00e9"}, with no two non-ASCII characters side by side, never
+needs it. The cost that was accepted when this design was chosen is 0.6
 to 1.6 milliseconds for a call on one string that is not plain ASCII,
 where Python ftfy takes 6 to 16 microseconds on such a string. Those
 figures are from the record of that decision (ADR 0008 in the
 package's repository), measured on an Apple silicon Mac. Measured
 again on the functions as they are now, on such a machine with R 4.6.2
-and stringi 1.8.7, one call of \code{\link[=fix_text]{fix_text()}} on one string took 0.8 to
-2.1 milliseconds when the string was not plain ASCII, the higher
+and stringi 1.8.7, one call of \code{\link[=fix_text]{fix_text()}} on one string took 0.4 to
+1.3 milliseconds when the string was not plain ASCII, the higher
 figure for mojibake, and 0.06 milliseconds when it was plain ASCII.
-One call of \code{\link[=fix_encoding]{fix_encoding()}} took 0.6 to 1.2 milliseconds.
+One call of \code{\link[=fix_encoding]{fix_encoding()}} took 0.16 to 0.75 milliseconds.
 
 So a call for each row of a data frame pays that cost for each row,
 and one call on the column pays it once.

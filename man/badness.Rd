@@ -28,8 +28,9 @@ there is at least one. Neither changes the text.
 Both give what Python ftfy 6.3.1 gives on Python 3.13. The longer a
 string is, the more likely it is to hold one such sequence by chance.
 
-Call these on a whole vector, not once per string: each call has a fixed
-cost of about half a millisecond.
+Call these on a whole vector, not once per string: a call of \code{badness()}
+has a fixed cost of about half a millisecond, and so does a call of
+\code{is_bad()} when any string in it could be mojibake.
 }
 \examples{
 x <- c("caf\u00c3\u00a9", "caf\u00e9", NA)

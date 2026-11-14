@@ -24,16 +24,9 @@
 #'   same bytes (the option `fix_c1_controls`; see [fix_c1_controls()]).
 #'
 #' Call it on a whole vector, not once per string: each call on text that
-#' is not plain ASCII has a fixed cost of about a millisecond, however
-#' long the vector (see [ftfy][ftfy-package] for the measurements).
-#'
-#' Measured against the reference version (macOS arm64, each distinct
-#' value once), `fix_encoding()` is slower than Python ftfy in two cases:
-#' on long text that is mostly clean, 1.24 times its time per value on
-#' notes of about 260 characters, and on a call with few values, 1.10
-#' times on 2,000 short names and 1.49 times on 1,000. `fix_text()` was
-#' faster than the reference version on every column measured, these
-#' included.
+#' is not plain ASCII has a fixed cost of up to 0.75 milliseconds,
+#' however long the vector (see [ftfy][ftfy-package] for
+#' the measurements).
 #'
 #' @section Differences from Python ftfy:
 #' Where the repair decodes the two bytes C0 80, which stand for the
@@ -169,7 +162,7 @@ repair_encoding_step <- function(x, config) {
 
   # Empty, ASCII and not-bad text is returned unchanged.
   todo <- which(!stringi::stri_enc_isascii(x))
-  todo <- todo[regex_detect(x[todo], patterns[["BADNESS_RE"]])]
+  todo <- todo[detect_bad(x[todo])]
   latin1 <- logical(length(x))
 
   # Was the text meant to be UTF-8, but decoded with a single-byte codec?

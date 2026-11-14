@@ -11,6 +11,11 @@ pattern_names <- c(
   "ALTERED_UTF8_RE", "LOSSY_UTF8_RE", "A_GRAVE_WORD_RE"
 )
 bytes_pattern_names <- c("ALTERED_UTF8_RE", "LOSSY_UTF8_RE", "A_GRAVE_WORD_RE")
+# Generated too, but derived from upstream's BADNESS_RE rather than ported:
+# they answer only whether a string holds a match of it, faster (#52).
+# Python cannot compile the second, so they are checked below against
+# BADNESS_RE's column of the fixture and are not columns of their own.
+derived_pattern_names <- c("BADNESS_SCREEN_RE", "BADNESS_DETECT_RE")
 
 read_pattern_spans <- function() {
   read_reference("pattern_spans.tsv")
@@ -29,8 +34,8 @@ spans_as_python_writes_them <- function(x, pattern) {
   out
 }
 
-test_that("the package holds the ten generated patterns, each one ASCII line", {
-  expect_setequal(names(patterns), pattern_names)
+test_that("the package holds the ten generated patterns and the two derived ones, each one ASCII line", {
+  expect_setequal(names(patterns), c(pattern_names, derived_pattern_names))
   expect_true(all(stringi::stri_enc_isascii(patterns)))
   expect_false(any(grepl("\n", patterns, fixed = TRUE)))
   expect_false(any(grepl("\r", patterns, fixed = TRUE)))
@@ -38,10 +43,11 @@ test_that("the package holds the ten generated patterns, each one ASCII line", {
 
 test_that("no generated pattern sets an option inside itself or holds a space or a hash", {
   # "(?x)" and its like would switch on what ADR 0005 forbids. The only
-  # groups that start "(?" are the three the generator writes. Every
-  # literal is written as \x{...}, so no pattern needs a space or a hash.
+  # groups that start "(?" are the three the generator writes, and the
+  # lookbehind of BADNESS_DETECT_RE. Every literal is written as \x{...},
+  # so no pattern needs a space or a hash.
   rest <- patterns
-  for (group in c("(?:", "(?!", "(?<!")) {
+  for (group in c("(?:", "(?!", "(?<!", "(?<=")) {
     rest <- gsub(group, "", rest, fixed = TRUE)
   }
   expect_false(any(grepl("(?", rest, fixed = TRUE)))
@@ -90,6 +96,52 @@ for (name in pattern_names) {
     )
   })
 }
+
+test_that("BADNESS_SCREEN_RE matches every string that BADNESS_RE matches in the reference version", {
+  fixture <- read_pattern_spans()
+  fixture <- fixture[fixture$kind == "text", ]
+  bad <- nzchar(fixture$BADNESS_RE)
+
+  screened <- regex_detect(fixture$text, patterns[["BADNESS_SCREEN_RE"]])
+
+  expect_identical(
+    stringi::stri_escape_unicode(fixture$text[bad & !screened]), character(0),
+    label = "the bad strings the screen lets through as not bad"
+  )
+  # A screen that matched everything would pass the line above.
+  expect_gt(sum(!screened & !bad), 1000)
+})
+
+test_that("BADNESS_DETECT_RE matches a string exactly when BADNESS_RE matches it in the reference version", {
+  fixture <- read_pattern_spans()
+  fixture <- fixture[fixture$kind == "text", ]
+
+  found <- regex_detect(fixture$text, patterns[["BADNESS_DETECT_RE"]])
+
+  differs <- which(found != nzchar(fixture$BADNESS_RE))
+  expect_identical(
+    stringi::stri_escape_unicode(fixture$text[differs]), character(0),
+    label = "the strings on which BADNESS_DETECT_RE differs"
+  )
+})
+
+test_that("every branch of BADNESS_DETECT_RE starts on a character that cannot be ASCII, or at the start", {
+  # What makes it fast (#52): ICU can skip every ASCII character, because
+  # no match of it starts on one. BADNESS_RE's matches do, on the strings
+  # where a branch that begins with [a-z] or \s matches.
+  fixture <- read_pattern_spans()
+  text <- fixture$text[fixture$kind == "text"]
+  starts_on_ascii <- function(pattern) {
+    located <- regex_locate_all(text, pattern)
+    first <- unlist(lapply(located, function(m) m[, 1L]), use.names = FALSE)
+    of <- rep.int(seq_along(text), vapply(located, nrow, 0L))
+    character_at <- substring(text[of], first, first)
+    sum(first > 1L & stringi::stri_enc_isascii(character_at))
+  }
+
+  expect_gt(starts_on_ascii(patterns[["BADNESS_RE"]]), 100)
+  expect_identical(starts_on_ascii(patterns[["BADNESS_DETECT_RE"]]), 0L)
+})
 
 test_that("regex_locate_all() gives one two-column matrix per string, and NA for NA", {
   found <- regex_locate_all(c("a\u2018b\u2019", "none", NA, ""), patterns[["SINGLE_QUOTE_RE"]])

@@ -184,6 +184,18 @@ def _sequence(items, writer):
     return "".join(out)
 
 
+def items_to_icu(items):
+    """The ICU form of a sequence of items from the parse tree of a str
+    pattern with no groups, written by the same rules as `to_icu()`.
+    `_badness.py` uses it to write patterns derived from upstream's."""
+    writer = _Writer(is_bytes=False)
+    pattern = _sequence(items, writer)
+    if writer.groups_written:
+        raise NotImplementedError("groups")
+    pattern.encode("ascii")
+    return pattern
+
+
 def to_icu(compiled):
     """The ICU pattern equivalent to a compiled Python pattern.
 
