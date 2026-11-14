@@ -14,8 +14,11 @@
 # Everything else is left to the strict check, so a lone surrogate, a pair
 # cut short and a C0 followed by anything but 80 are undecodable.
 #
-# The two patterns below are the only hand-written patterns in the package
-# (ADR 0005). Upstream's (utf8_variants.py:58 and :81) also match a
+# The two patterns below are written by hand, not generated from upstream
+# (ADR 0005). The package's other hand-written patterns are not upstream's:
+# the two classes around U+FFFE and U+FFFF that `translate_marked()` in
+# R/codecs.R uses, and the screen of `could_change()` in R/explain.R.
+# Upstream's (utf8_variants.py:58 and :81) also match a
 # sequence cut short by the end of the input, written with `$`, which in
 # Python matches before a final newline as well. That is what makes
 # upstream read C0 0A and ED A0 BD ED B8 0A at the end of the input as
