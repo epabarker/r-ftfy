@@ -29,7 +29,7 @@
 #' strings taken whole.
 #'
 #' Call it on a whole vector, not once per string: each call on text that
-#' is not plain ASCII has a fixed cost of 0.4 to 1.2 milliseconds,
+#' is not plain ASCII has a fixed cost of 0.4 to 1.3 milliseconds,
 #' however long the vector (see [ftfy][ftfy-package] for the
 #' measurements). A value that occurs many times is fixed once.
 #'

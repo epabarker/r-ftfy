@@ -50,9 +50,9 @@
 #' package's repository), measured on an Apple silicon Mac. Measured
 #' again on the functions as they are now, on such a machine with R 4.6.2
 #' and stringi 1.8.7, one call of [fix_text()] on one string took 0.4 to
-#' 1.2 milliseconds when the string was not plain ASCII, the higher
+#' 1.3 milliseconds when the string was not plain ASCII, the higher
 #' figure for mojibake, and 0.06 milliseconds when it was plain ASCII.
-#' One call of [fix_encoding()] took 0.15 to 0.72 milliseconds.
+#' One call of [fix_encoding()] took 0.15 to 0.77 milliseconds.
 #'
 #' So a call for each row of a data frame pays that cost for each row,
 #' and one call on the column pays it once.
