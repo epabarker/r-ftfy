@@ -317,7 +317,7 @@ whole_vector_fixture <- function() {
 test_that("for all four core functions, one call on the whole vector gives what one call per element gives", {
   # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
   # string each, the slowest kind of test here. It runs wherever NOT_CRAN
-  # is "true": every job of the R-CMD-check workflow.
+  # is "true": every check job of the R-CMD-check workflow.
   skip_on_cran()
   x <- whole_vector_fixture()
   expect_true(anyNA(x) && anyDuplicated(x) > 0L)

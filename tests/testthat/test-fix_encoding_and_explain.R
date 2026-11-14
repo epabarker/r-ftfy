@@ -160,7 +160,7 @@ test_that("the encoding texts and plans of the 10 fail cases are the reference v
 test_that("one call on the whole vector gives the same texts and plans as one call per element", {
   # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
   # string each, the slowest kind of test here. It runs wherever NOT_CRAN
-  # is "true": every job of the R-CMD-check workflow.
+  # is "true": every check job of the R-CMD-check workflow.
   skip_on_cran()
   snapshot <- read_reference_table("fix_encoding.tsv", text = "text")
   cases <- read_json_cases()

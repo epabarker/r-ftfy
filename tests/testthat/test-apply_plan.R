@@ -398,7 +398,7 @@ test_that("the unexported replay gives NA for each element that fails and raises
 test_that("one call on a vector with a plan per element equals one call per element", {
   # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
   # string each, the slowest kind of test here. It runs wherever NOT_CRAN
-  # is "true": every job of the R-CMD-check workflow.
+  # is "true": every check job of the R-CMD-check workflow.
   skip_on_cran()
   rows <- replay_rows()
   x <- c(rows$text[1:1500], NA, rows$text[1:200], NA, rows$text[1:3])

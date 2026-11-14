@@ -86,7 +86,7 @@ test_that("both fixers keep the shape of the input and give UTF-8 marked text", 
 test_that("one call on the whole vector gives the same texts as one call per element", {
   # Not among the tests issue #14 keeps on CRAN: thousands of calls on one
   # string each, the slowest kind of test here. It runs wherever NOT_CRAN
-  # is "true": every job of the R-CMD-check workflow.
+  # is "true": every check job of the R-CMD-check workflow.
   skip_on_cran()
   snapshot <- fixer_snapshot()
   x <- c(snapshot$text[seq(1, nrow(snapshot), by = 3)], NA, snapshot$text[1:50])
