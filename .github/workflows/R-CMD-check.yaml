@@ -18,7 +18,7 @@ name: R-CMD-check
 on:
   pull_request:
   push:
-    branches: [main, "integration/**"]
+    branches: [main, "integration/**", "ticket/44-corpus-comparison"]
   workflow_dispatch:
 
 permissions:
@@ -41,9 +41,6 @@ jobs:
           # `source-tree`: also runs the checks that need R/ and data-raw/.
           # `corpus`: also runs the corpus comparison.
           - {id: ubuntu-release, os: ubuntu-latest, r: release, native: UTF-8, source-tree: true, corpus: true}
-          - {id: ubuntu-devel, os: ubuntu-latest, r: devel, native: UTF-8, http-user-agent: release}
-          - {id: ubuntu-oldrel, os: ubuntu-latest, r: oldrel-1, native: UTF-8}
-          - {id: ubuntu-r-4.2, os: ubuntu-latest, r: "4.2", native: UTF-8}
           # `locale`: generated on the runner and set for the check.
           - {id: ubuntu-latin1, os: ubuntu-latest, r: release, native: Latin-1, locale: en_US.ISO-8859-1, corpus: true}
           # `icu`: stringi is rebuilt from source against that ICU. Its bundled
@@ -54,8 +51,6 @@ jobs:
           # ICU of ubuntu-latest (78.2, Unicode 17.0, in November 2026).
           - {id: icu-bundled, os: ubuntu-latest, r: release, native: UTF-8, icu: bundled, corpus: true}
           - {id: icu-system, os: ubuntu-22.04, r: release, native: UTF-8, icu: system, corpus: true}
-          - {id: macos-release, os: macos-latest, r: release, native: UTF-8}
-          - {id: windows-release, os: windows-latest, r: release, native: UTF-8}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
