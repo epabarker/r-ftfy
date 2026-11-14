@@ -20,7 +20,16 @@ Call it on the whole vector, or the whole column, and not once per row. Each cal
 
 ## Status
 
-The package is in development and has not been released. Functions are being added one at a time; the ones shown above work today.
+Version 0.1 is written and tested but has not been released yet. It ports what Python ftfy 6.3.1 does to text:
+
+- `fix_text()` for the whole repair, and `fix_and_explain()`, which repairs each string as one segment and also returns the plan of steps it took;
+- `fix_encoding()` and `fix_encoding_and_explain()` for mojibake alone;
+- `apply_plan()` to replay a plan on other text, and `ftfy_plan()` and `plan_steps()` to build and read plans;
+- the separate fixers, such as `uncurl_quotes()`, `unescape_html()` and `fix_c1_controls()`;
+- `badness()` and `is_bad()`, the measure of how much a string looks like mojibake;
+- the options of Python ftfy, by name in a call or saved with `ftfy_config()`, less `explain` and `fix_surrogates`, which have no counterpart here.
+
+File handling, the command line and Python ftfy's other parts listed in `?ftfy` are not ported.
 
 Install the development version with:
 
