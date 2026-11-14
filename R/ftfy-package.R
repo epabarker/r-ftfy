@@ -52,7 +52,7 @@
 #' and stringi 1.8.7, one call of [fix_text()] on one string took 0.4 to
 #' 1.3 milliseconds when the string was not plain ASCII, the higher
 #' figure for mojibake, and 0.06 milliseconds when it was plain ASCII.
-#' One call of [fix_encoding()] took 0.16 to 0.75 milliseconds.
+#' One call of [fix_encoding()] took 0.15 to 0.77 milliseconds.
 #'
 #' So a call for each row of a data frame pays that cost for each row,
 #' and one call on the column pays it once.

@@ -61,6 +61,18 @@ Rscript bench/profile.R --column notes_n1e4 --function fix_text
 
 Self time is put into five buckets by where the function lives: stringi (its C code and ICU, which `Rprof` cannot tell apart), base R's compiled functions, the package's own R code, the garbage collector, and the rest.
 
+## The cost of one call on one string
+
+ADR 0008 accepts a fixed cost of 0.6 to 1.6 ms for one call on one string that is not plain ASCII (#53). `per-call.R` measures it. It needs no Python:
+
+```
+Rscript bench/per-call.R [--out FILE] [--label TEXT] [--reps 301] [--lib DIR]
+```
+
+It times one call of `fix_text()` and of `fix_encoding()` on each of five single strings: plain ASCII, accented Latin and Cyrillic that are not mojibake, and two kinds of mojibake. Each cell is the median of `--reps` calls after one untimed call, with the 10th and 90th percentiles.
+
+It then runs the calls again with every call of the package's regex wrappers (`regex_detect`, `regex_locate_all`, `regex_replace_all`) timed, and gives the time and number of calls per pattern. A pattern is named after its file in `data-raw/patterns/`, its codec, or its object in the package. A pattern built at run time is named after the function that used it. A call on no strings is counted separately, because stringi compiles nothing for it. Results are committed in `bench/results/` as `<date>-per-call.md`.
+
 ## CI
 
-`.github/workflows/benchmark.yaml` runs the same command on an Ubuntu runner on every pull request and every push to the integration branch, puts the report in the job summary and uploads it. It never fails on a ratio.
+`.github/workflows/benchmark.yaml` runs the same command, and then `per-call.R`, on an Ubuntu runner on every pull request and every push to the integration branch. It puts both reports in the job summary and uploads them. It never fails on a ratio.

@@ -60,21 +60,37 @@ jobs:
             --label "A run on a shared GitHub runner (${GITHUB_REF_NAME}, ${GITHUB_EVENT_NAME}). Not the release-gate run." \
             --out "$RUNNER_TEMP/benchmark.md"
 
+      # The cost of one call on one string (#53). Fails only if it cannot run.
+      - name: Time one call on one string
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          Rscript bench/per-call.R \
+            --label "A run on a shared GitHub runner (${GITHUB_REF_NAME}, ${GITHUB_EVENT_NAME}). Not the release-gate run." \
+            --out "$RUNNER_TEMP/per-call.md"
+
       - name: Write the job summary
         if: ${{ !cancelled() }}
         shell: bash
         run: |
-          if [ -s "$RUNNER_TEMP/benchmark.md" ]; then
-            cat "$RUNNER_TEMP/benchmark.md" >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "::error::The benchmark wrote no result."
-            echo "The benchmark wrote no result; see the log of the step before." >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
+          status=0
+          for report in benchmark per-call; do
+            if [ -s "$RUNNER_TEMP/$report.md" ]; then
+              cat "$RUNNER_TEMP/$report.md" >> "$GITHUB_STEP_SUMMARY"
+              echo >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "::error::bench wrote no $report.md."
+              echo "bench wrote no $report.md; see the log of the steps before." >> "$GITHUB_STEP_SUMMARY"
+              status=1
+            fi
+          done
+          exit $status
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: benchmark
-          path: ${{ runner.temp }}/benchmark.md
+          path: |
+            ${{ runner.temp }}/benchmark.md
+            ${{ runner.temp }}/per-call.md
           retention-days: 30

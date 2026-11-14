@@ -24,7 +24,7 @@
 #'   same bytes (the option `fix_c1_controls`; see [fix_c1_controls()]).
 #'
 #' Call it on a whole vector, not once per string: each call on text that
-#' is not plain ASCII has a fixed cost of up to 0.75 milliseconds,
+#' is not plain ASCII has a fixed cost of up to 0.77 milliseconds,
 #' however long the vector (see [ftfy][ftfy-package] for
 #' the measurements).
 #'
