@@ -5,3 +5,5 @@
 tests/testthat/upstream/test_cases.json -text
 # Branches each append lines to this list; a union merge never conflicts.
 tests/testthat/not-derived.txt merge=union
+# The benchmark columns and the larger corpus are kept compressed.
+*.xz binary
