@@ -18,9 +18,7 @@ cat("LC_CTYPE:", Sys.getlocale("LC_CTYPE"), "\n")
 str(l10n_info())
 
 pkgload::load_all(".", quiet = TRUE)
-if (isTRUE(l10n_info()[["Latin-1"]])) {
-  source(file.path(".github", "scripts", "native-bytes.R"))
-}
+source(file.path(".github", "scripts", "native-bytes.R"))
 testthat::test_dir(
   file.path("tests", "testthat"),
   package = "ftfy", load_package = "none", stop_on_failure = TRUE

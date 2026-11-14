@@ -123,7 +123,7 @@ jobs:
       - name: Generate the locale ${{ matrix.config.locale }}
         if: matrix.config.locale
         run: |
-          sudo locale-gen ${{ matrix.config.locale }}
+          sudo localedef -i en_US -f ISO-8859-1 ${{ matrix.config.locale }}
           locale -a
           echo "LC_ALL=${{ matrix.config.locale }}" >> "$GITHUB_ENV"
 
@@ -165,11 +165,11 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      # What base R itself does with unmarked bytes 80 to 9F where the
-      # native encoding is Latin-1: the data behind the tests named
-      # "measured" in test-platform.R, printed even when they fail.
-      - name: Print what enc2utf8() makes of unmarked bytes 80 to 9F
-        if: ${{ !cancelled() && matrix.config.native == 'Latin-1' }}
+      # What base R itself does with unmarked non-ASCII bytes in this
+      # session: the data behind the tests named "measured" in
+      # test-platform.R, printed even when they fail.
+      - name: Print what enc2utf8() makes of unmarked bytes
+        if: ${{ !cancelled() }}
         run: Rscript .github/scripts/native-bytes.R
 
       - name: The same tests in the C locale
