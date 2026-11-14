@@ -1,0 +1,80 @@
+# Runs the package and the reference version (ftfy 6.3.1 on Python 3.13)
+# side by side on the committed benchmark columns and reports the R to
+# Python ratio per value in the job summary (issue #46, ADR 0008).
+#
+# It reports and never judges the ratio: a ratio at or above 1 is a warning
+# at the top of the summary and the job stays green. The job fails only
+# when the bench itself fails or R's output differs from the reference
+# version's on a benchmark value. It is not meant to be a required check.
+#
+# A shared runner is not the named developer machine of the release gate:
+# the committed results under bench/results/ are that.
+
+name: benchmark
+
+on:
+  pull_request:
+  push:
+    branches: [main, "integration/**", "ticket/46-benchmark"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request replaces the run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    name: R to Python ratio
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"hard"'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install the reference version, hash-pinned
+        run: python -m pip install --require-hashes --no-deps -r data-raw/requirements.txt
+
+      # Fails when the bench fails or an output differs; not on any ratio.
+      - name: Run the benchmark
+        shell: bash
+        run: |
+          Rscript bench/bench.R --python "$(command -v python)" \
+            --label "A run on a shared GitHub runner (${GITHUB_REF_NAME}, ${GITHUB_EVENT_NAME}). Not the release-gate run." \
+            --out "$RUNNER_TEMP/benchmark.md"
+
+      - name: Write the job summary
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          if [ -s "$RUNNER_TEMP/benchmark.md" ]; then
+            cat "$RUNNER_TEMP/benchmark.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::error::The benchmark wrote no result."
+            echo "The benchmark wrote no result; see the log of the step before." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: benchmark
+          path: ${{ runner.temp }}/benchmark.md
+          retention-days: 30
