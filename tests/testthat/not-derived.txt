@@ -53,3 +53,4 @@ tests/testthat/test-differences.R	Tests that the differences page says what the 
 tests/testthat/test-noncharacters.R	Tests of R-only behaviour around base R chartr() and the noncharacters; no upstream test is translated.
 tests/testthat/helper-corpus-comparison.R	The comparison with the corpus snapshot; this package's own machinery.
 tests/testthat/test-corpus.R	Compares with the corpus snapshot only; no upstream test is translated.
+data-raw/outside/select.py	Selects outside text from the sources in data-raw/outside/SOURCES; downloads and parses them, holds nothing from upstream and does not run the reference version.

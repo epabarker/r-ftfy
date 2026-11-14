@@ -100,6 +100,81 @@ test_that("our own slice has every kind of input the resolution of #14 names", {
   expect_gte(sum(nchar(inputs$text) > 1000L), 200L)
 })
 
+# The outside-text slice (ticket #45): natural-language text from outside
+# sources under the licence rule of the resolution of #15, selected by
+# data-raw/outside/select.py and committed in data-raw/outside/, from which
+# corpus_inputs_outside.py builds the inputs. Its `detail` is
+# "<source> <language> <kind>", then ", <codecs>" for a mix-up.
+
+outside_dir <- function() {
+  test_path("..", "..", "data-raw", "outside")
+}
+
+test_that("the outside-text slice is there, within the cap, beside our own slice", {
+  skip_without_corpus()
+
+  expect_identical(corpus_slices(), c("outside", "own"))
+  inputs <- read_corpus_inputs("outside")
+  expect_gte(nrow(inputs), 5000L)
+  expect_lte(nrow(inputs), 50000L - nrow(read_corpus_table("inputs", "own")))
+  counts <- table(inputs$variant)
+  least <- c(clean = 2000, "mixup-1" = 2000, "mixup-2" = 500, "lossy-replaced" = 150, "lossy-a0-space" = 50)
+  expect_setequal(names(counts), names(least))
+  expect_true(all(counts[names(least)] >= least))
+  expect_true(all(grepl("^[a-z]+ [a-z]{2,3} [a-z-]+(, [a-z0-9>-]+)?$", inputs$detail)))
+  # Free text of several lines is there, as the sources wrote it.
+  expect_gte(sum(grepl("\n", inputs$text, fixed = TRUE)), 100L)
+})
+
+test_that("every source of the outside-text slice is listed in SOURCES with its licence and attribution", {
+  skip_without_corpus()
+  skip_if_not(dir.exists(outside_dir()), "data-raw/outside/ is not here.")
+
+  sources <- read.dcf(file.path(outside_dir(), "SOURCES"))
+  expect_true(all(c("Id", "Name", "Version", "Licence", "Attribution", "Files") %in% colnames(sources)))
+  expect_false(anyNA(sources[, c("Id", "Name", "Version", "Licence", "Attribution")]))
+  # Only licences the rule of #15 accepts.
+  accepted <- c("Unicode-3.0", "public domain", "CC0-1.0", "CC-BY-4.0", "OGL-UK-3.0", "MIT", "BSD")
+  expect_true(all(sources[, "Licence"] %in% accepted))
+  used <- unique(sub(" .*$", "", read_corpus_inputs("outside")$detail))
+  expect_setequal(used, sources[, "Id"])
+  # Every file the selection downloads is pinned with a checksum.
+  pins <- utils::read.delim(file.path(outside_dir(), "pins.tsv"), colClasses = "character")
+  expect_identical(names(pins), c("source", "url", "sha256"))
+  expect_true(all(grepl("^[0-9a-f]{64}$", pins$sha256)))
+  expect_setequal(unique(pins$source), sources[, "Id"])
+  expect_true(all(grepl("^https://", pins$url)))
+  expect_false(anyDuplicated(pins$url) > 0L)
+})
+
+test_that("the outside-text slice covers the languages of the resolution of #15, each through its own codec", {
+  skip_without_corpus()
+
+  inputs <- read_corpus_inputs("outside")
+  language <- sub("^[a-z]+ ([a-z]+) .*$", "\\1", inputs$detail)
+  clean <- inputs$variant == "clean"
+  # Western European, Central European, Russian or Ukrainian, Greek,
+  # Turkish; and CJK, Arabic, Hebrew and emoji as clean controls.
+  for (lang in c("fr", "de", "es", "pl", "cs", "hu", "ru", "uk", "el", "tr", "ja", "zh", "ko", "ar", "he")) {
+    expect_gte(sum(clean & language == lang), 30L, label = lang)
+  }
+  expect_gte(sum(clean & grepl(" emoji$", inputs$detail)), 50L)
+  mixed_through <- function(lang, codec) {
+    sum(inputs$variant == "mixup-1" & language == lang & endsWith(inputs$detail, paste0("utf-8>", codec)))
+  }
+  expect_gte(mixed_through("fr", "sloppy-windows-1252"), 20L)
+  expect_gte(mixed_through("de", "latin-1"), 20L)
+  expect_gte(mixed_through("pl", "sloppy-windows-1250"), 20L)
+  expect_gte(mixed_through("cs", "iso-8859-2"), 20L)
+  expect_gte(mixed_through("ru", "sloppy-windows-1251"), 20L)
+  expect_gte(mixed_through("uk", "sloppy-windows-1251"), 20L)
+  expect_gte(mixed_through("el", "sloppy-windows-1253"), 20L)
+  expect_gte(mixed_through("tr", "sloppy-windows-1254"), 20L)
+  # Every value of the slice is outside text: it holds a letter beyond
+  # ASCII, or it is an emoji.
+  expect_true(all(grepl("[^\\x01-\\x7F]", inputs$text, perl = TRUE)))
+})
+
 test_that("every row is tagged with a Unicode version, and the tags tell rows apart", {
   skip_without_corpus()
 

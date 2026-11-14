@@ -1,5 +1,5 @@
 # Derived from python-ftfy v6.3.1, ftfy/__init__.py, ftfy/fixes.py and ftfy/badness.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
-# Runs after: corpus_inputs.py
+# Runs after: corpus_inputs.py, corpus_inputs_outside.py
 """Write the snapshot of the larger corpus: for every inputs file
 tests/corpus/inputs/<slice>.tsv.xz, what the reference version gives for
 each input, to tests/corpus/snapshot/<slice>.tsv.xz, row for row.
