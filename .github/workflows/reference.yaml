@@ -12,7 +12,7 @@ name: reference
 on:
   pull_request:
   push:
-    branches: [main, "integration/**"]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

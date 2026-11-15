@@ -17,3 +17,4 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 ^site$
+^cran-comments\.md$

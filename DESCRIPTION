@@ -1,6 +1,6 @@
 Package: ftfy
 Title: Fixes Text for You: Repair Mojibake and Related Damage in Text
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Robyn", "Speer", role = c("aut", "cph"),
            comment = "Author of Python ftfy, of which this package is a port"),

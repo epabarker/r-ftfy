@@ -12,6 +12,13 @@ test_that("utf-8-variants decodes Java's null", {
   expect_identical(ftfy:::codec_decode(bytes, "utf-8-variants"), "here comes a null! ")
 })
 
+# Upstream doctest, ftfy/bad_codecs/__init__.py:29.
+test_that("utf-8-variants decodes a CESU-8 surrogate pair", {
+  bytes <- "\u00ed\u00a0\u00bd\u00ed\u00b8\u008d"
+
+  expect_identical(ftfy:::codec_decode(bytes, "utf-8-variants"), "\U0001f60d")
+})
+
 # Upstream doctest, ftfy/bad_codecs/sloppy.py:58.
 test_that("sloppy-windows-1252 merges Windows-1252 with Latin-1", {
   some_bytes <- "\u0080\u0081\u0082"

@@ -75,4 +75,4 @@ It then runs the calls again with every call of the package's regex wrappers (`r
 
 ## CI
 
-`.github/workflows/benchmark.yaml` runs the same command, and then `per-call.R`, on an Ubuntu runner on every pull request and every push to the integration branch. It puts both reports in the job summary and uploads them. It never fails on a ratio.
+`.github/workflows/benchmark.yaml` runs the same command, and then `per-call.R`, on an Ubuntu runner on every pull request and every push to `main`. It puts both reports in the job summary and uploads them. It never fails on a ratio.
