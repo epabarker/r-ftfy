@@ -31,7 +31,7 @@ Changes
 The material from python-ftfy was translated from Python to R and modified.
 It is not the original. The translation and the modifications are
 
-    Copyright 2026 Ed Barker
+    Copyright 2026 Edward Barker
 
 under the same licence. The port was written with AI assistance.
 
@@ -120,7 +120,7 @@ Logo
    man/figures/logo.png
        The package logo. It is not derived from python-ftfy. It is
 
-           Copyright 2026 Ed Barker
+           Copyright 2026 Edward Barker
 
        under the Apache License, Version 2.0, like the rest of the
        package. Its lettering is set in Space Grotesk and JetBrains Mono,
