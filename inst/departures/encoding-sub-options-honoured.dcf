@@ -1,0 +1,41 @@
+Id: encoding-sub-options-honoured
+Title: The options of the encoding repair are honoured by fix_text()
+Input: Any text given to fix_text() with one of the options
+ restore_byte_a0, replace_lossy_sequences, decode_inconsistent_utf8 or
+ fix_c1_controls set to FALSE by name, where that option changes what
+ the encoding repair does. For example 'voil\u00c3  le travail' (two
+ spaces after the first word) with restore_byte_a0, '\u00c3\ufffdtude'
+ with replace_lossy_sequences,
+ '\u2603 caf\u00c3\u00a9' with decode_inconsistent_utf8 and
+ '\u0094\u044f' with fix_c1_controls.
+Reference: The option is not passed on to the encoding repair when it
+ is given to fix_text() as a keyword argument, so the encoding is
+ repaired as with default options. fix_text() then makes a config with
+ explain=False (ftfy/__init__.py:341), and fix_and_explain() calls
+ fix_encoding(text) with no config when it does not explain
+ (ftfy/__init__.py:396). Run on ftfy 6.3.1 with Python 3.13:
+ fix_text('voil\xc3  le travail', restore_byte_a0=False) returns
+ 'voil\xe0 le travail' (one space), fix_text('\xc3\ufffdtude',
+ replace_lossy_sequences=False) returns '\ufffdtude',
+ fix_text('\u2603 caf\xc3\xa9', decode_inconsistent_utf8=False) returns
+ '\u2603 caf\xe9' and fix_text('\x94\u044f', fix_c1_controls=False)
+ returns '"\u044f': each is what fix_text() returns with no option. The
+ option is honoured when it comes in a config object, which explains
+ unless told not to: fix_text('voil\xc3  le travail',
+ TextFixerConfig(restore_byte_a0=False)) returns 'voil\xe0  le travail'
+ (both spaces), and the other three return '\xc3\ufffdtude',
+ '\u2603 caf\xc3\xa9' and '\x94\u044f'. fix_encoding() and
+ fix_encoding_and_explain() honour the option in both forms. So does
+ fix_and_explain() while it explains, which it does unless its config
+ says explain=False: fix_and_explain('voil\xc3  le travail',
+ TextFixerConfig(explain=False, restore_byte_a0=False)) returns the text
+ 'voil\xe0 le travail' (one space).
+R: The option is honoured however it is given, by name or in a config
+ made by ftfy_config(), and fix_text() gives what the reference version
+ gives for the option in a TextFixerConfig: 'voil\xe0  le travail'
+ (both spaces), '\xc3\ufffdtude', '\u2603 caf\xc3\xa9' and '\x94\u044f'
+ for the four calls above. This package has no option explain and its
+ other functions give what the reference version gives while it
+ explains, so the difference is seen only in fix_text() with one of the
+ four options given by name. With default options nothing differs.
+Decided: docs/adr/0001-options-as-named-arguments-over-a-config-object.md

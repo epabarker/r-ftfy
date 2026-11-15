@@ -1,0 +1,56 @@
+# Scripts that hold nothing translated, copied or adapted from python-ftfy,
+# and so do not start with the derived-file header (ADR 0012).
+# One line each: the path from the package root, a tab, the reason.
+# A path ending in / is a directory below tests/testthat/: it covers every
+# script under it that has no header. Append new lines at the end. Generator scripts cannot be
+# listed.
+# test-derived-header.R reads this file; the rule is in helper-derived.R.
+R/entry.R	The shared entry step: R-specific checks of marks, types and validity that upstream does not have.
+R/onload.R	R's load hook.
+R/regex.R	Wrappers that pass this package's stringi regex options (ADR 0005).
+data-raw/build.R	Builds R/sysdata.rda, NAMESPACE and man/ from committed files; holds nothing from upstream.
+tests/testthat.R	The standard testthat runner.
+tests/testthat/departures/	Matchers of the departure registry, one for each departure: R-only behaviour.
+tests/testthat/helper-departures.R	The departure registry's readers and comparison; this package's own machinery.
+tests/testthat/helper-derived.R	The derived-file header check; this package's own machinery.
+tests/testthat/helper-reference.R	Readers for committed snapshots; this package's own machinery.
+tests/testthat/test-attribution.R	Tests of this package's own copyright, citation and README files.
+tests/testthat/test-badness.R	Compares with a committed snapshot only; no upstream test is translated.
+tests/testthat/test-codecs.R	Tests of the generated codec tables' shape (Seam 2); no upstream test is translated.
+tests/testthat/test-departure-invalid-utf8-input.R	Test of a departure: R-only behaviour.
+tests/testthat/test-departures.R	Tests of the departure registry; this package's own machinery.
+tests/testthat/test-derived-header.R	Tests of the derived-file header check; this package's own machinery.
+tests/testthat/test-entry.R	Tests of the shared entry step: R-only behaviour.
+tests/testthat/test-plan.R	Tests of the ftfy_plan class, an R-only design (ADR 0002); no upstream test is translated.
+tests/testthat/entry-step/	Registrations for the entry-step test set, one for each export: R-only behaviour.
+tests/testthat/helper-entry-step.R	The entry-step test set; this package's own machinery.
+tests/testthat/helper-regex-lint.R	The regex lint; this package's own machinery (ADR 0005).
+tests/testthat/test-regex-lint.R	Tests of the regex lint and of the options every regex call passes: R-only behaviour.
+tests/testthat/test-departure-regex-overflow.R	Test of a departure: R-only behaviour.
+tests/testthat/helper-decoder-corpus.R	Readers for the decoder corpus and byte strings; this package's own machinery.
+tests/testthat/test-decoder-corpus.R	Compares the decoders with a committed snapshot only; no upstream test is translated.
+tests/testthat/test-utf8-validity.R	Compares strict UTF-8 validity with the Unicode standard's table; nothing from upstream.
+tests/testthat/test-departure-decoded-nul-dropped.R	Test of a departure: R-only behaviour.
+tests/testthat/test-departure-utf8-variants-trailing-newline.R	Test of a departure: R-only behaviour.
+tests/testthat/test-encoding-fixers.R	Compares the two exported encoding fixers with a committed snapshot only; upstream has no test or doctest of either.
+tests/testthat/helper-text-fixers.R	Reader of the text fixers snapshot; this package's own machinery.
+tests/testthat/test-text-fixers.R	Compares with a committed snapshot and tests the generated tables and R-only behaviour; no upstream test is translated.
+tests/testthat/test-departure-apply-plan-replays-normalize.R	Test of a departure: R-only behaviour.
+tests/testthat/helper-fix-and-explain.R	Reader of the fix_and_explain() snapshot; this package's own machinery.
+tests/testthat/test-fix_and_explain.R	Compares with a committed snapshot and tests R-only behaviour; the upstream tests of fix_and_explain are ported in the mirrored test files.
+tests/testthat/test-departure-normalization-follows-icu.R	Test of a departure: R-only behaviour.
+tests/testthat/test-platform.R	Tests of unmarked strings in each native encoding and of the session a CI job runs in: R-only behaviour.
+tests/testthat/helper-fix-text.R	Reader of the fix_text() snapshot; this package's own machinery.
+tests/testthat/test-departure-encoding-sub-options-honoured.R	Test of a departure: R-only behaviour.
+tests/testthat/helper-corpus.R	Readers of the larger corpus; this package's own machinery.
+tests/testthat/test-corpus-data.R	Tests of the generated corpus and benchmark columns as data; no upstream test is translated.
+R/ftfy-package.R	The package help page: this package's own account of itself; nothing translated from upstream.
+R/differences.R	Written by data-raw/build.R from the departure registry, inst/departures/; this package's own record.
+data-raw/differences.R	Writes the differences page from the departure registry; holds nothing from upstream.
+tests/testthat/helper-help.R	Readers for the package's help pages; this package's own machinery.
+tests/testthat/test-help.R	Tests of this package's own help pages and NEWS.
+tests/testthat/test-differences.R	Tests that the differences page says what the departure registry says; this package's own machinery.
+tests/testthat/test-noncharacters.R	Tests of R-only behaviour around base R chartr() and the noncharacters; no upstream test is translated.
+tests/testthat/helper-corpus-comparison.R	The comparison with the corpus snapshot; this package's own machinery.
+tests/testthat/test-corpus.R	Compares with the corpus snapshot only; no upstream test is translated.
+data-raw/outside/select.py	Selects outside text from the sources in data-raw/outside/SOURCES; downloads and parses them, holds nothing from upstream and does not run the reference version.

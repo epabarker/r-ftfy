@@ -1,0 +1,28 @@
+Package: ftfy
+Title: Fixes Text for You: Repair Mojibake and Related Damage in Text
+Version: 0.1.0
+Authors@R: c(
+    person("Robyn", "Speer", role = c("aut", "cph"),
+           comment = "Author of Python ftfy, of which this package is a port"),
+    person("Edward", "Barker", email = "epabarker@pm.me",
+           role = c("aut", "cre", "cph"))
+    )
+Description: Repairs mojibake, text that was decoded with the wrong
+    codec, and related damage in character vectors. A port to R of the
+    'Python' package 'ftfy' by Robyn Speer.
+License: Apache License (== 2.0)
+Copyright: See file inst/COPYRIGHTS
+URL: https://github.com/epabarker/r-ftfy
+BugReports: https://github.com/epabarker/r-ftfy/issues
+Depends:
+    R (>= 4.2)
+Imports:
+    stringi (>= 1.5.3)
+Suggests:
+    jsonlite,
+    testthat (>= 3.0.0)
+Config/ftfy/upstream: 6.3.1
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.0.0

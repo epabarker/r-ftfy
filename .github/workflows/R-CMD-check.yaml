@@ -1,0 +1,310 @@
+# R CMD check on every platform the documentation makes claims about
+# (issue #43, the resolution of issue #14), and the CRAN budgets.
+#
+# Each job of the matrix says which session its tests must find (native
+# encoding, ICU build). tests/testthat/test-platform.R asserts it from
+# inside the test run and writes what it saw to a file; the job fails when
+# that file is missing, so a job cannot pass without its tests having run
+# in the session it names.
+#
+# The jobs with `corpus` also compare every export with the snapshot of the
+# larger corpus (issue #44): tests/corpus/ is not in the tarball, so that
+# runs from the checkout, and a mismatch fails the job.
+#
+# Marking these jobs as required checks is a repository setting.
+
+name: R-CMD-check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request replaces the run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: ${{ matrix.config.id }}
+    runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          # `source-tree`: also runs the checks that need R/ and data-raw/.
+          # `corpus`: also runs the corpus comparison.
+          # `manual`: also builds the PDF manual, as CRAN does, with TinyTeX.
+          - {id: ubuntu-release, os: ubuntu-latest, r: release, native: UTF-8, source-tree: true, corpus: true, manual: true}
+          - {id: ubuntu-devel, os: ubuntu-latest, r: devel, native: UTF-8, http-user-agent: release}
+          - {id: ubuntu-oldrel, os: ubuntu-latest, r: oldrel-1, native: UTF-8}
+          - {id: ubuntu-r-4.2, os: ubuntu-latest, r: "4.2", native: UTF-8}
+          # `locale`: generated on the runner and set for the check.
+          - {id: ubuntu-latin1, os: ubuntu-latest, r: release, native: Latin-1, locale: en_US.ISO-8859-1, corpus: true}
+          # `icu`: stringi is rebuilt from source against that ICU. Its bundled
+          # ICU is 74.1 (Unicode 15.1, that of the reference version). The
+          # system ICU of Ubuntu 22.04 is 70.1 (Unicode 14.0), so that job
+          # exercises the departure `normalization-follows-icu`. The other
+          # Ubuntu jobs take stringi as a binary linked to the newer system
+          # ICU of ubuntu-latest (78.2, Unicode 17.0, in November 2026).
+          - {id: icu-bundled, os: ubuntu-latest, r: release, native: UTF-8, icu: bundled, corpus: true}
+          - {id: icu-system, os: ubuntu-22.04, r: release, native: UTF-8, icu: system, corpus: true}
+          - {id: macos-release, os: macos-latest, r: release, native: UTF-8}
+          - {id: windows-release, os: windows-latest, r: release, native: UTF-8}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+
+      - name: Install the system ICU's headers
+        if: matrix.config.icu == 'system'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libicu-dev pkg-config
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck, any::pkgload
+          needs: check
+
+      # stringi's INSTALL: `--disable-pkg-config` compiles the ICU bundled
+      # in its source; `--disable-icu-bundle` enforces the system ICU.
+      # `R CMD INSTALL` is called directly so that a failed build fails the
+      # step instead of leaving the binary installed above in place.
+      - name: Rebuild stringi against the ${{ matrix.config.icu }} ICU
+        if: matrix.config.icu
+        env:
+          FTFY_ICU: ${{ matrix.config.icu }}
+        run: |
+          flag <- c(bundled = "--disable-pkg-config", system = "--disable-icu-bundle")[[Sys.getenv("FTFY_ICU")]]
+          cat("stringi as installed by setup-r-dependencies:\n")
+          str(stringi::stri_info()[c("ICU.version", "ICU.system", "Unicode.version")])
+          unloadNamespace("stringi")
+          source_dir <- tempfile("stringi-source")
+          dir.create(source_dir)
+          tarball <- utils::download.packages(
+            "stringi", source_dir, repos = "https://cloud.r-project.org", type = "source"
+          )[1L, 2L]
+          Sys.setenv(MAKEFLAGS = paste0("-j", parallel::detectCores()))
+          status <- system2(
+            file.path(R.home("bin"), "R"),
+            c("CMD", "INSTALL", paste0("--configure-args=", flag), shQuote(tarball))
+          )
+          if (status != 0L) {
+            stop("Building stringi with ", flag, " failed.")
+          }
+          cat("stringi as rebuilt with ", flag, ":\n", sep = "")
+          str(stringi::stri_info()[c("ICU.version", "ICU.system", "Unicode.version")])
+        shell: Rscript {0}
+
+      - name: Internal package data matches its committed sources
+        if: matrix.config.source-tree
+        run: Rscript data-raw/build.R --check
+
+      # R CMD check runs the tests away from R/ and data-raw/, so the tests
+      # that read the source tree run here, where a skip is a failure.
+      - name: Derived files carry the header, and the README gives credit
+        if: matrix.config.source-tree
+        env:
+          FTFY_SOURCE_TREE: "true"
+        run: |
+          pkgload::load_all(".", quiet = TRUE)
+          for (file in c("test-derived-header.R", "test-attribution.R")) {
+            testthat::test_file(file.path("tests", "testthat", file), stop_on_failure = TRUE)
+          }
+        shell: Rscript {0}
+
+      - name: Generate the locale ${{ matrix.config.locale }}
+        if: matrix.config.locale
+        run: |
+          sudo localedef -i en_US -f ISO-8859-1 ${{ matrix.config.locale }}
+          locale -a
+          echo "LC_ALL=${{ matrix.config.locale }}" >> "$GITHUB_ENV"
+
+      # From here on the job's environment says what the tests must find.
+      # The locale is set only now, after everything has been installed.
+      - name: Say which session the tests must find
+        shell: bash
+        run: |
+          {
+            echo "FTFY_PLATFORM_REPORT=${{ runner.temp }}/platform-${{ matrix.config.id }}.txt"
+            echo "FTFY_EXPECT_NATIVE=${{ matrix.config.native }}"
+            echo "FTFY_EXPECT_ICU=${{ matrix.config.icu }}"
+          } >> "$GITHUB_ENV"
+          if [ "${{ matrix.config.icu }}" = "system" ]; then
+            echo "FTFY_EXPECT_ICU_VERSION=$(pkg-config --modversion icu-i18n)" >> "$GITHUB_ENV"
+          fi
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            echo "System ICU on this runner: $(pkg-config --modversion icu-i18n 2>/dev/null || echo 'not found by pkg-config')"
+          fi
+
+      - uses: r-lib/actions/setup-tinytex@v2
+        if: matrix.config.manual
+
+      # R's manual is set in Inconsolata, which TinyTeX may not include.
+      - name: Install the LaTeX packages the manual needs
+        if: matrix.config.manual
+        run: tlmgr install inconsolata
+
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          args: ${{ matrix.config.manual && 'c("--as-cran")' || 'c("--no-manual", "--as-cran")' }}
+          error-on: '"warning"'
+
+      # The corpus comparison, from the checkout, in this job's session (in
+      # the Latin-1 job LC_ALL is already set). It writes every difference
+      # no departure registry entry matches to a CSV, uploaded below
+      # whether the step passes or fails.
+      - name: Compare every export with the corpus snapshot
+        if: matrix.config.corpus && !cancelled()
+        env:
+          FTFY_CORPUS_MISMATCHES: ${{ runner.temp }}/corpus-mismatches-${{ matrix.config.id }}.csv
+        run: Rscript .github/scripts/corpus-comparison.R
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.config.corpus && !cancelled()
+        with:
+          name: corpus-mismatches-${{ matrix.config.id }}
+          path: ${{ runner.temp }}/corpus-mismatches-${{ matrix.config.id }}.csv
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: The tests ran in the session this job names
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          if [ ! -s "$FTFY_PLATFORM_REPORT" ]; then
+            echo "::error::test-platform.R left no report: the tests did not run, or not with this job's environment."
+            exit 1
+          fi
+          cat "$FTFY_PLATFORM_REPORT"
+          {
+            echo "### ${{ matrix.config.id }}"
+            echo '```'
+            cat "$FTFY_PLATFORM_REPORT"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # What base R itself does with unmarked non-ASCII bytes in this
+      # session: the data behind the tests named "measured" in
+      # test-platform.R, printed even when they fail.
+      - name: Print what enc2utf8() makes of unmarked bytes
+        if: ${{ !cancelled() }}
+        run: Rscript .github/scripts/native-bytes.R
+
+      # The corpus comparison is left to the step above (FTFY_CORPUS_COMPARISON).
+      - name: The same tests in the C locale
+        if: matrix.config.native == 'Latin-1'
+        env:
+          LC_ALL: C
+          FTFY_CORPUS_COMPARISON: skip
+          FTFY_EXPECT_NATIVE: C
+          FTFY_PLATFORM_REPORT: ${{ runner.temp }}/platform-ubuntu-c-locale.txt
+        run: Rscript .github/scripts/test-in-session.R
+
+      # R on a current Windows has UTF-8 as its native encoding, which the
+      # check above covers. Older Windows has a code page instead, and no
+      # runner has one, so the session is switched to code page 1252 and
+      # the whole suite run again.
+      - name: The same tests with code page 1252 as the native encoding
+        if: runner.os == 'Windows'
+        env:
+          FTFY_CORPUS_COMPARISON: skip
+          FTFY_SET_LC_CTYPE: English_United States.1252
+          FTFY_EXPECT_NATIVE: Latin-1
+          FTFY_PLATFORM_REPORT: ${{ runner.temp }}/platform-windows-cp1252.txt
+        run: Rscript .github/scripts/test-in-session.R
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: platform-${{ matrix.config.id }}
+          path: ${{ runner.temp }}/platform-*.txt
+          retention-days: 7
+
+  # One table of what every job ran on, and the check that the two ICU jobs
+  # really ran different ICUs.
+  sessions:
+    name: sessions and ICU builds
+    needs: check
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: platform-*
+          path: reports
+          merge-multiple: true
+
+      - name: Report every session, and compare the two ICU builds
+        run: |
+          field() {
+            if [ -f "$2" ]; then
+              sed -n "s/^$1: //p" "$2" | tr -d '\r'
+            fi
+          }
+          {
+            echo "| job | R | native | LC_CTYPE | ICU | system ICU | Unicode |"
+            echo "|---|---|---|---|---|---|---|"
+            for report in reports/platform-*.txt; do
+              job=$(basename "$report" .txt)
+              echo "| ${job#platform-} | $(field R "$report") | $(field native "$report") | $(field LC_CTYPE "$report") | $(field ICU.version "$report") | $(field ICU.system "$report") | $(field Unicode.version "$report") |"
+            done
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+          bundled=$(field ICU.version reports/platform-icu-bundled.txt)
+          system=$(field ICU.version reports/platform-icu-system.txt)
+          echo "stringi's bundled ICU: '$bundled'; the system ICU: '$system'" | tee -a "$GITHUB_STEP_SUMMARY"
+          if [ -z "$bundled" ] || [ -z "$system" ]; then
+            echo "::error::An ICU job left no report."
+            exit 1
+          fi
+          if [ "$bundled" = "$system" ]; then
+            echo "::error::Both ICU jobs ran ICU $bundled: the suite was not run on two ICUs."
+            exit 1
+          fi
+
+  # The CRAN budgets of issue #14: the tests as CRAN runs them take under
+  # 60 seconds, and the fixtures shipped in the tarball are under 3 MB.
+  budgets:
+    name: CRAN budgets
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          needs: check
+
+      - name: Build and install the tarball
+        run: |
+          R CMD build .
+          R CMD INSTALL ftfy_*.tar.gz
+
+      # setup-r sets NOT_CRAN to true for the job; CRAN does not.
+      - name: Measure the tests and the fixtures against the budgets
+        env:
+          NOT_CRAN: "false"
+        run: Rscript .github/scripts/cran-budgets.R

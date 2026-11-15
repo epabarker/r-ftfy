@@ -1,0 +1,25 @@
+Id: decoded-nul-dropped
+Title: A decoded NUL is dropped
+Input: Text that is repaired by decoding bytes with the codec
+ utf-8-variants, where the bytes hold C0 80, Java's encoding of U+0000.
+ For example 'null\u00c0\u20acseparated', whose characters U+00C0
+ U+20AC encode in sloppy-windows-1252 to C0 80. Also a plan replayed
+ with apply_plan() whose step 'decode utf-8-variants' meets C0 80.
+Reference: U+0000 in place of each C0 80. Run on ftfy 6.3.1 with Python
+ 3.13: b'null\xc0\x80separated'.decode('utf-8-variants') and
+ fix_encoding('null\u00c0\u20acseparated') both return
+ 'null\x00separated'. fix_text() of the same text returns
+ 'nullseparated', because its fixer remove_control_chars then removes
+ the U+0000; fix_text() with remove_control_chars=False returns
+ 'null\x00separated'. fix_and_explain() of it returns that text with the plan
+ [('encode', 'sloppy-windows-1252'), ('decode', 'utf-8-variants'),
+ ('apply', 'remove_control_chars')].
+R: Nothing in place of each C0 80, because an R string cannot hold
+ U+0000: the decoder and fix_encoding() give 'nullseparated'. fix_text()
+ with default options gives the same text as the reference version,
+ and with remove_control_chars = FALSE it gives 'nullseparated' too.
+ So does fix_and_explain() with default options, but its plan is 'encode sloppy-windows-1252
+ > decode utf-8-variants', without the step 'apply
+ remove_control_chars', because there is no U+0000 left for that fixer
+ to remove. The plan still replays to the text.
+Decided: docs/adr/0007-a-decoded-nul-is-dropped.md

@@ -1,0 +1,45 @@
+# Regenerates every generated file and snapshot from the reference version
+# (ftfy 6.3.1 on Python 3.13) and fails on any byte difference from what is
+# committed. Python runs outside a maintainer's machine here and in the
+# benchmark workflow (benchmark.yaml), which times the reference version
+# against the package; no test of the package runs it (ADR 0009).
+#
+# A ticket that adds a generated file adds a script to data-raw/generators/;
+# this workflow does not list them and does not need to change.
+
+name: reference
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install the reference version, hash-pinned
+        run: python -m pip install --require-hashes --no-deps -r data-raw/requirements.txt
+
+      - name: Regenerate every generated file and snapshot
+        run: python data-raw/regenerate.py
+
+      - name: Fail on any byte difference
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Regenerating from the reference version changed committed files."
+            git status --porcelain
+            git diff --stat
+            git diff | head -c 20000
+            exit 1
+          fi

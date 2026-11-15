@@ -1,0 +1,236 @@
+# Derived from python-ftfy v6.3.1, ftfy/fixes.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+
+# The four fixers the encoding repair uses (R/encoding.R). Two work on
+# bytes held as text and are internal; two work on text and are exported.
+#
+# Each has an internal form named `fixer_<name>`, after its name in
+# `plan_fixers`, as the fixers of R/text-fixers.R have: it takes a bare
+# character vector and returns one of the same length, keeps `NA` as `NA`,
+# runs no entry step and never loops over strings. A string it does not
+# change comes back identical.
+
+#' Repair UTF-8 mojibake inside other text
+#'
+#' Text written with one codec sometimes ends up inside text written with
+#' another, so that the string as a whole cannot be decoded in any one way.
+#' `decode_inconsistent_utf8()` finds the sequences in each string that
+#' plainly are UTF-8 mojibake and repairs each as [fix_encoding()] would
+#' repair it alone, leaving the rest of the string as it is.
+#'
+#' [fix_encoding()] does this itself, as one of its steps, for a string it
+#' cannot decode as a whole (the option `decode_inconsistent_utf8`). A
+#' sequence that is the whole string is left alone here: that is the case
+#' [fix_encoding()] handles.
+#'
+#' Call it on a whole vector, not once per string.
+#'
+#' @inheritParams badness
+#'
+#' @return A character vector as long as `x`, marked as UTF-8, with the
+#'   `names`, `dim` and `dimnames` of `x`. A missing string gives `NA`.
+#'
+#' @seealso [fix_encoding()], [fix_c1_controls()]
+#'
+#' @examples
+#' # A snowman that was never mangled, beside mojibake
+#' x <- c("\u2603 caf\u00c3\u00a9", "caf\u00e9", NA)
+#' decode_inconsistent_utf8(x)
+#' @export
+decode_inconsistent_utf8 <- function(x) {
+  shape <- entry_shape(x)
+  x <- entry_step(x)
+  exit_step(fixer_decode_inconsistent_utf8(x), shape)
+}
+
+#' Read C1 control characters as Windows-1252
+#'
+#' `fix_c1_controls()` replaces each C1 control character (U+0080 to
+#' U+009F) with the character Windows-1252 has at the same byte, which is
+#' what web browsers do. U+0085 becomes an ellipsis and U+0092 a right
+#' single quotation mark. The five that Windows-1252 leaves unassigned
+#' (U+0081, U+008D, U+008F, U+0090 and U+009D) stay as they are.
+#'
+#' [fix_encoding()] does this itself, as its last resort (the option
+#' `fix_c1_controls`).
+#'
+#' Call it on a whole vector, not once per string.
+#'
+#' @inheritParams badness
+#'
+#' @return A character vector as long as `x`, marked as UTF-8, with the
+#'   `names`, `dim` and `dimnames` of `x`. A missing string gives `NA`.
+#'
+#' @seealso [fix_encoding()], [decode_inconsistent_utf8()]
+#'
+#' @examples
+#' x <- c("that\u0092s all\u0085", "plain", NA)
+#' fix_c1_controls(x)
+#' @export
+fix_c1_controls <- function(x) {
+  shape <- entry_shape(x)
+  x <- entry_step(x)
+  exit_step(fixer_fix_c1_controls(x), shape)
+}
+
+# Upstream's `fix_c1_controls()` (ftfy/fixes.py:505) over a vector: every
+# C1 control is encoded as Latin-1 and decoded as `sloppy-windows-1252`,
+# which is one translation of the 32 characters. `NA` stays `NA`.
+fixer_fix_c1_controls <- function(x) {
+  controls <- 0x80:0x9F
+  becomes <- codec_tables[["sloppy-windows-1252"]][controls + 1L]
+  moved <- becomes != controls
+  has <- which(regex_detect(x, patterns[["C1_CONTROL_RE"]]))
+  x[has] <- translate(intToUtf8(controls[moved]), intToUtf8(becomes[moved]), x[has])
+  x
+}
+
+# Upstream's `decode_inconsistent_utf8()` (ftfy/fixes.py:481) over a
+# vector. Every match of `UTF8_DETECTOR_RE` that is shorter than its
+# string and is bad is replaced by its own encoding repair. All matches of
+# the whole vector are repaired in one call, each distinct one once.
+#
+# That repair runs with the default options whatever the caller's are, as
+# upstream's does: it calls `ftfy.fix_encoding(substr)` with no config
+# (ftfy/fixes.py:494).
+fixer_decode_inconsistent_utf8 <- function(x) {
+  splice_matches(x, patterns[["UTF8_DETECTOR_RE"]], function(matched, whole_length) {
+    shorter <- nchar(matched, type = "chars") < whole_length
+    repairable <- which(shorter)
+    repairable <- repairable[detect_bad(matched[repairable])]
+    distinct <- unique(matched[repairable])
+    repaired <- repair_encoding(distinct, ftfy_config())$text
+    matched[repairable] <- repaired[match(matched[repairable], distinct)]
+    matched
+  })
+}
+
+# Upstream's `restore_byte_a0()` (ftfy/fixes.py:419) over bytes held as
+# text: puts back byte A0 where a space stands in a sequence
+# that would otherwise be UTF-8.
+fixer_restore_byte_a0 <- function(bytes) {
+  # C3 20, an a with grave accent as a word of its own, keeps its space.
+  bytes <- regex_replace_all(bytes, patterns[["A_GRAVE_WORD_RE"]], "\u00c3\u00a0 ")
+  splice_matches(bytes, patterns[["ALTERED_UTF8_RE"]], function(matched, whole_length) {
+    gsub(" ", "\u00a0", matched, fixed = TRUE)
+  })
+}
+
+# Upstream's `replace_lossy_sequences()` (ftfy/fixes.py:442) over bytes
+# held as text: a sequence that would be UTF-8 but for a byte 1A or a "?"
+# in it becomes the three bytes of U+FFFD.
+fixer_replace_lossy_sequences <- function(bytes) {
+  regex_replace_all(bytes, patterns[["LOSSY_UTF8_RE"]], "\u00ef\u00bf\u00bd")
+}
+
+# Locate, compute, splice (ADR 0008): replace every match of `pattern` in
+# `x` by a computed value. `NA` stays `NA`. `compute(matched, whole_length)`
+# takes every match of the whole vector at once, with the length in
+# characters of the string each is in, and returns their replacements.
+#
+# `replace_matches()` in R/text-fixers.R is this for a replacement that
+# depends on the matched text alone. The work grows in proportion to the
+# text, however many matches one string holds: the pieces are cut by
+# `character_cutter()` and the pieces of a string are pasted in pairs
+# (`paste_runs()`). Nothing here loops over strings or over matches.
+splice_matches <- function(x, pattern, compute) {
+  if (anyNA(x)) {
+    present <- which(!is.na(x))
+    x[present] <- splice_matches(x[present], pattern, compute)
+    return(x)
+  }
+  located <- regex_locate_all(x, pattern)
+  count <- lengths(located, use.names = FALSE) %/% 2L
+  spliced <- which(count > 0L)
+  if (length(spliced) == 0L) {
+    return(x)
+  }
+  count <- count[spliced]
+  text <- x[spliced]
+  # Each matrix unlists as its starts and then its ends. `string` is the
+  # place in `spliced` of the string each match is in.
+  flat <- unlist(located[spliced], use.names = FALSE)
+  is_start <- sequence(2L * count) <= rep.int(count, 2L * count)
+  start <- flat[is_start]
+  end <- flat[!is_start]
+  string <- rep.int(seq_along(spliced), count)
+
+  cutter <- character_cutter(text)
+  cut <- cutter$cut
+  replacement <- compute(cut(string, start, end), cutter$characters[string])
+
+  # A string with matches is its gaps and replacements in turn, then what
+  # is left after its last match.
+  first <- !duplicated(string)
+  gap_start <- c(1, end[-length(end)] + 1)
+  gap_start[first] <- 1
+  gap <- cut(string, gap_start, start - 1)
+  last <- cumsum(count)
+  rest <- cut(seq_along(spliced), end[last] + 1, cutter$characters)
+
+  match_number <- seq_along(string)
+  pieces <- c(gap, replacement, rest)
+  owner <- c(string, string, seq_along(spliced))
+  place <- order(owner, c(2 * match_number - 1, 2 * match_number, 2 * last + 0.5))
+  x[spliced] <- paste_runs(pieces[place], owner[place])
+  x
+}
+
+# Cut pieces out of the strings `x` (valid UTF-8, no `NA`) by their
+# positions in characters, in time that grows in proportion to the text
+# and not with how far into a string a piece is. Returns a list:
+#
+# - `cut(of, first, last)`: characters `first` to `last` of each string
+#   `x[of]`, as `substring()` gives them; the empty string where `last` is
+#   `first - 1`. Positions are within each string, from 1.
+# - `characters`: the length in characters of each string;
+# - `code_points`: the code points of the strings joined into one.
+#
+# `substring()` finds a character of a UTF-8 string by reading from the
+# start, so cutting every match out of one long string that way takes time
+# that grows with the square of its length. Here the positions in
+# characters are turned into positions in bytes, from the widths of all the
+# code points taken once (doubles, because the bytes of a whole vector can
+# pass 2^31), and the pieces are cut from the strings marked as bytes,
+# where `substring()` goes straight to its place. A cut falls only between
+# characters, so every piece is valid UTF-8 and is marked so again. Nothing
+# is removed from the text on the way: a leading U+FEFF is three bytes like
+# any other.
+character_cutter <- function(x) {
+  characters <- nchar(x, type = "chars")
+  code_points <- utf8ToInt(paste(x, collapse = ""))
+  bytes_before <- c(0, cumsum(
+    1 + (code_points >= 0x80L) + (code_points >= 0x800L) + (code_points >= 0x10000L)
+  ))
+  characters_before <- cumsum(as.numeric(characters)) - characters
+  as_bytes <- unname(x)
+  Encoding(as_bytes) <- "bytes"
+  cut <- function(of, first, last) {
+    before <- characters_before[of]
+    string_start <- bytes_before[before + 1]
+    piece <- substring(
+      as_bytes[of],
+      bytes_before[before + first] - string_start + 1,
+      bytes_before[before + last + 1] - string_start
+    )
+    Encoding(piece) <- "UTF-8"
+    piece
+  }
+  list(cut = cut, characters = characters, code_points = code_points)
+}
+
+# Paste together the pieces of each run of equal `owner`, giving one string
+# per run, in order. Neighbouring pieces are pasted in pairs until every
+# run is one piece, so the work is the total length times the logarithm of
+# the longest run, with no loop over runs.
+paste_runs <- function(pieces, owner) {
+  while (anyDuplicated(owner) > 0L) {
+    starts <- which(!duplicated(owner))
+    position <- sequence(diff(c(starts, length(owner) + 1L)))
+    odd <- position %% 2L == 1L
+    paired <- which(odd & c(owner[-1L] == owner[-length(owner)], FALSE))
+    pieces[paired] <- paste0(pieces[paired], pieces[paired + 1L])
+    pieces <- pieces[odd]
+    owner <- owner[odd]
+  }
+  pieces
+}

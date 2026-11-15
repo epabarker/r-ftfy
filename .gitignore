@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.Rproj.user
+.Rhistory
+.RData
+.DS_Store
+/*.tar.gz
+/*.Rcheck/
+
+# The pkgdown site, built by .github/workflows/pkgdown.yaml
+/site/
+
+# Agent worktrees
+.claude/worktrees/

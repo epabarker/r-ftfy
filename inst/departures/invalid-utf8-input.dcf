@@ -1,0 +1,17 @@
+Id: invalid-utf8-input
+Title: Invalid UTF-8 input is an error
+Input: Any string whose bytes are not valid UTF-8 once it has been
+ converted by its mark, in a call to any exported function that takes
+ text. For example the bytes 63 61 66 E9 marked as UTF-8, the bytes
+ ED A0 80 (a lone surrogate, U+D800), or C0 80.
+Reference: A Python string cannot hold arbitrary invalid bytes, so the
+ nearest inputs are strings holding surrogate code points, which the
+ reference version accepts. Run on ftfy 6.3.1 with Python 3.13:
+ fix_text('caf\udce9') returns 'caf\ufffd', fix_text('\ud800') returns
+ '\ufffd', and fix_encoding() returns both strings unchanged. Bytes
+ given in place of text, as in fix_text(b'caf\xe9'), raise UnicodeError.
+R: An error raised by the entry step, before any other work. The message
+ says how many elements hold invalid UTF-8, names the positions of the
+ first five, and says that the data was probably read with the wrong
+ codec. No invalid input is repaired.
+Decided: https://github.com/epabarker/r-ftfy/issues/12#issuecomment-6858969101

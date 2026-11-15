@@ -1,0 +1,65 @@
+# Derived from python-ftfy v6.3.1, tests/test_characters.py. Copyright 2023 Robyn Speer. Apache-2.0. Translated to R and modified; see inst/COPYRIGHTS.
+
+# The mirror of upstream's tests/test_characters.py. A ticket that ports
+# another of its tests adds it to this file, in upstream's order.
+#
+# Not ported, by the resolution of issue #14:
+#
+# - tests/test_characters.py:13, test_possible_encoding: `possible_encoding`
+#   is internal here. (It also runs over U+0000, which no R string holds.)
+# - tests/test_characters.py:45 and :46, test_surrogates: `fix_surrogates` is not
+#   ported, and its inputs are lone surrogates, which no R string holds.
+#
+# Every other test of the file is here.
+
+# tests/test_characters.py:16 (the assertion is line 17)
+test_that("test_byte_order_mark", {
+  expect_identical(fix_encoding("\u00ef\u00bb\u00bf"), "\ufeff")
+})
+
+# tests/test_characters.py:20 (the assertion is line 26)
+test_that("test_control_chars", {
+  text <- paste0(
+    "\ufeffSometimes, \ufffcbad ideas \u007f\ufffalike these characters\ufffb ",
+    "\u206aget standardized.\r\n"
+  )
+  fixed <- "Sometimes, bad ideas like these characters get standardized.\r\n"
+  expect_identical(remove_control_chars(text), fixed)
+})
+
+# tests/test_characters.py:29 (the assertion is line 33)
+test_that("test_welsh_flag", {
+  # ftfy used to remove "tag characters", but they have been repurposed in
+  # the "Flag of England", "Flag of Scotland", and "Flag of Wales" emoji
+  # sequences.
+  text <- paste0(
+    "This flag has a dragon on it ",
+    "\U0001f3f4\U000e0067\U000e0062\U000e0077\U000e006c\U000e0073\U000e007f"
+  )
+  expect_identical(remove_control_chars(text), text)
+})
+
+# tests/test_characters.py:36 (the assertion is line 41)
+test_that("test_ohio_flag", {
+  # I did not expect to find the "Flag of Ohio" emoji in the wild but there
+  # it is. Test that this emoji (which no emoji database believes has been
+  # implemented) passes through unchanged.
+  text <- paste0(
+    "#superman #ohio \U0001f3f4\U000e0075\U000e0073\U000e006f\U000e0068\U000e007f",
+    " #cleveland #usa \U0001f1fa\U0001f1f8"
+  )
+  expect_identical(fix_text(text), text)
+})
+
+# tests/test_characters.py:49 (the assertions are lines 52 and 53)
+test_that("test_color_escapes", {
+  explained <- fix_and_explain("\001\033[36;44mfoo")
+  expect_identical(explained$text, "foo")
+  expect_identical(
+    explained$plan,
+    ftfy_plan(list(
+      c("apply", "remove_terminal_escapes"),
+      c("apply", "remove_control_chars")
+    ))
+  )
+})

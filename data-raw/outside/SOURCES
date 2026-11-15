@@ -1,0 +1,89 @@
+Id: cldr
+Name: Unicode Common Locale Data Repository (CLDR), JSON form
+Version: cldr-json 44.1.0 (CLDR 44.1, Unicode 15.1), tag 44.1.0 of
+ https://github.com/unicode-org/cldr-json
+Licence: Unicode-3.0
+Attribution: Unicode CLDR, Copyright 2015-2023 Unicode, Inc., used under
+ the Unicode License V3. The notice below is the LICENSE file of that tag
+ (sha256 907d4254fb50c09e8a3a7612439b4e4944e4b8b64b08e4568b042bc3b9dfd28b),
+ unchanged.
+Files: For each of 32 locales, territories.json and languages.json of
+ cldr-localenames-full, ca-gregorian.json of cldr-dates-full and
+ annotations.json of cldr-annotations-full; each URL and checksum is in
+ pins.tsv.
+Taken: names of territories and languages, of months and days of the
+ week, the text-to-speech names of emoji, and the emoji themselves.
+Notice: UNICODE LICENSE V3
+ .
+ COPYRIGHT AND PERMISSION NOTICE
+ .
+ Copyright © 2015-2023 Unicode, Inc.
+ .
+ NOTICE TO USER: Carefully read the following legal agreement. BY
+ DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING DATA FILES, AND/OR
+ SOFTWARE, YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE
+ TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT
+ DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.
+ .
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of data files and any associated documentation (the "Data Files") or
+ software and any associated documentation (the "Software") to deal in the
+ Data Files or Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, and/or sell
+ copies of the Data Files or Software, and to permit persons to whom the
+ Data Files or Software are furnished to do so, provided that either (a)
+ this copyright and permission notice appear with all copies of the Data
+ Files or Software, or (b) this copyright and permission notice appear in
+ associated Documentation.
+ .
+ THE DATA FILES AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF
+ THIRD PARTY RIGHTS.
+ .
+ IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE
+ BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES,
+ OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+ WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA
+ FILES OR SOFTWARE.
+ .
+ Except as contained in this notice, the name of a copyright holder shall
+ not be used in advertising or otherwise to promote the sale, use or other
+ dealings in these Data Files or Software without prior written
+ authorization of the copyright holder.
+
+Id: gutenberg
+Name: Books transcribed by Project Gutenberg (https://www.gutenberg.org)
+Version: The plain-text files at https://www.gutenberg.org/cache/epub/,
+ as downloaded on 2026-11-14 with the checksums in pins.tsv. These files
+ are not versioned: Project Gutenberg rebuilds them now and then, and a
+ rebuilt file fails the checksum, as it should. A maintainer then pins it
+ again with select.py --pin and reviews what changed.
+Licence: public domain
+Attribution: The texts of these books, each in its original language,
+ each released by Project Gutenberg as public domain in the United
+ States, and each by an author who died before 1940, so also in the
+ public domain where copyright lasts the author's life plus 70 years.
+ No translation is used. Only the
+ text between the start and end markers of each file is read, and a
+ paragraph that names Project Gutenberg or the edition is left out, so
+ the values hold no Project Gutenberg trademark or licence text.
+ .
+ 798 (fr) Stendhal (1783-1842), Le rouge et le noir.
+ 22367 (de) Franz Kafka (1883-1924), Die Verwandlung.
+ 2000 (es) Miguel de Cervantes Saavedra (1547-1616), Don Quijote.
+ 45334 (it) Alessandro Manzoni (1785-1873), I promessi sposi.
+ 55752 (pt) Machado de Assis (1839-1908), Dom Casmurro.
+ 27729 (pl) Adam Mickiewicz (1798-1855), Bajki.
+ 13083 (cs) Karel Capek (1890-1938), R.U.R.
+ 27685 (hu) Gergely Csiky (1842-1891), Az Atlasz-csalad.
+ 64597 (ro) Ion Luca Caragiale (1852-1912), Nuvele.
+ 34126 (sl) Ivan Cankar (1876-1918), Za narodov blagor.
+ 5316 (ru) Aleksandr Pushkin (1799-1837), a poem.
+ 14741 (ru) Gavriil Derzhavin (1743-1816), Dukhovnye ody.
+ 15008 (sr) Branislav Nusic (1864-1938), Svet.
+ 27301 (el) Emmanouel Rhoides (1835-1904), Syriana diegemata.
+Files: One plain-text file for each book above; each URL and checksum is
+ in pins.tsv.
+Taken: paragraphs, on one line and with their line breaks.
