@@ -88,7 +88,7 @@ test_that("CPython and Unicode data are named as sources, with no copyright line
   expect_match(text, "sources and not[[:space:]]+licensors")
   # The only copyright lines are upstream's and the port's.
   holders <- grep("^[[:space:]]*Copyright [0-9]{4}", lines, value = TRUE)
-  expect_true(all(grepl("Robyn Speer|Ed Barker", holders)))
+  expect_true(all(grepl("Robyn Speer|Edward Barker", holders)))
   expect_no_match(text, "PSF|Python Software Foundation|Unicode License|Unicode, Inc")
 })
 

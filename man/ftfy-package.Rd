@@ -108,7 +108,7 @@ Python ftfy: \url{https://github.com/rspeer/python-ftfy}. This package:
 Robyn Speer, author of Python ftfy, of which this package is a port
 (author and copyright holder).
 
-Ed Barker \email{epabarker@pm.me} (author, maintainer and copyright
+Edward Barker \email{epabarker@pm.me} (author, maintainer and copyright
 holder). The port was written with AI assistance, under the
 maintainer's direction: any errors in the translation are this
 package's and not Robyn Speer's.

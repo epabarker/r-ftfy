@@ -30,7 +30,7 @@ local({
     bibtype = "Manual",
     key = "ftfy-r",
     header = "To name the R port as well, add:",
-    author = c(person("Robyn", "Speer"), person("Ed", "Barker")),
+    author = c(person("Robyn", "Speer"), person("Edward", "Barker")),
     title = paste0("{ftfy}: ", meta$Title),
     year = year,
     note = paste0("R package version ", meta$Version, ". A port of Python ftfy ", meta$`Config/ftfy/upstream`),
