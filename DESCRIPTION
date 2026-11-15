@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: c(
     person("Robyn", "Speer", role = c("aut", "cph"),
            comment = "Author of Python ftfy, of which this package is a port"),
-    person("Ed", "Barker", email = "epabarker@pm.me",
+    person("Edward", "Barker", email = "epabarker@pm.me",
            role = c("aut", "cre", "cph"))
     )
 Description: Repairs mojibake, text that was decoded with the wrong
