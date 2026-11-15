@@ -14,7 +14,7 @@ test_that("utf-8-variants decodes Java's null", {
 
 # Upstream doctest, ftfy/bad_codecs/__init__.py:29.
 test_that("utf-8-variants decodes a CESU-8 surrogate pair", {
-  bytes <- "í ½í¸\u008d"
+  bytes <- "\u00ed\u00a0\u00bd\u00ed\u00b8\u008d"
 
   expect_identical(ftfy:::codec_decode(bytes, "utf-8-variants"), "\U0001f60d")
 })
